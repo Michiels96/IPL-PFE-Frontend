@@ -72,5 +72,29 @@ export class AppComponent {
       }
     )
   }
+  createKid = () => {
+    this.api.postKid(this.kid_selected).subscribe( 
+      data => {
+        console.log(data);
+        
+       this.enfants.push(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  deleteKid = () => {
+    this.api.delKid(this.kid_selected.enfant_id).subscribe( 
+      data => {
+        console.log(data);
+        
+       this.getEnfants();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
     
 }

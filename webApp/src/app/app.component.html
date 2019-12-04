@@ -8,5 +8,7 @@ Nom: <input type="text" [(ngModel)]="kid_selected.nom"/><br>
 Prenom: <input type="text" [(ngModel)]="kid_selected.prenom"/><br>
 Age: <input type="text" [(ngModel)]="kid_selected.age"/><br>
 handicap: <input type="text" [(ngModel)]="kid_selected.handicaps"/><br>
-<button (click)="updateKid()">POST</button>
+<button (click)="updateKid()">Update</button>
+<button (click)="createKid()">Post</button>
+<button (click)="deleteKid()">delete</button>
 <router-outlet></router-outlet>
