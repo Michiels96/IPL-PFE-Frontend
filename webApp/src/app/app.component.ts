@@ -9,10 +9,17 @@ import { ApiService } from './api.service';
 })
 export class AppComponent {
   enfants = [];
-  handicap = [];
+  handicaps = [];
+  kid_selected;
+  //enfant_id;
+  nom;
+  prenom;
+  age;
+  handicap;
 
   constructor(private api: ApiService){
     this.getEnfants();
+   this.kid_selected={age:-1,enfant_id:-1,handicap:-1,handicaps:'',nom:'',prenom:''};
   }
   getEnfants = () => {
     this.api.getAllHandicaps().subscribe(
@@ -26,7 +33,7 @@ export class AppComponent {
     )
     this.api.getAllEnfants().subscribe(
       data => {
-        console.log("salut"+data);
+        console.log(data);
         this.enfants = data;
       },
       error => {
@@ -34,4 +41,36 @@ export class AppComponent {
       }
     )
   }
+  kidClicked=(enfant) =>{
+    console.log(enfant.nom)
+    this.api.getOneKid(enfant.enfant_id).subscribe( 
+      data => {
+        console.log(data);
+        /*this.prenom = data.prenom;
+        this.nom = data.nom;
+        this.age = data.age;
+        this.handicap = data.handicaps;*/
+       this.kid_selected=data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  updateKid = () => {
+    this.api.updateKid(this.kid_selected).subscribe( 
+      data => {
+        console.log(data);
+        /*this.prenom = data.prenom;
+        this.nom = data.nom;
+        this.age = data.age;
+        this.handicap = data.handicaps;*/
+       this.kid_selected=data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+    
 }
