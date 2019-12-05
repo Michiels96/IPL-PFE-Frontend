@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,11 +17,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
+import { AccueilComponent } from './components/accueil/accueil.component';
+import { ChoixCategorieComponent } from './components/choix-categorie/choix-categorie.component';
+
 @NgModule({
   declarations: [
+    AccueilComponent,
+    ChoixCategorieComponent,
     AppComponent,
     ConnectionFormComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,13 +34,19 @@ import { MatListModule } from '@angular/material/list';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js',{ enabled: environment.production}),
+    //ServiceWorkerModule.register('ngsw-worker.js',{ enabled: environment.production}),
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+
+    // Permet de faire les differents routerLink 
+    RouterModule.forRoot ([
+      { path: '', component: AccueilComponent },
+      { path: 'choix-categorie', component: ChoixCategorieComponent},
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
