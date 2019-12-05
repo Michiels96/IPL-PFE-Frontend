@@ -1,14 +1,22 @@
-<h1>Liste enfants2</h1>
-<ul>
-  <li *ngFor="let enfant of enfants">
-    <h3 (click)=kidClicked(enfant)>{{enfant.prenom}} {{enfant.nom}}</h3>
-  </li>
-</ul>
-Nom: <input type="text" [(ngModel)]="kid_selected.nom"/><br>
-Prenom: <input type="text" [(ngModel)]="kid_selected.prenom"/><br>
-Age: <input type="text" [(ngModel)]="kid_selected.age"/><br>
-handicap: <input type="text" [(ngModel)]="kid_selected.handicaps"/><br>
-<button (click)="updateKid()">Update</button>
-<button (click)="createKid()">Post</button>
-<button (click)="deleteKid()">delete</button>
+
+<div *ngIf='isShowed;else connect_content'>
+  <h1>Liste enfants2</h1>
+  <ul>
+    <li *ngFor="let enfant of enfants">
+      <h3 (click)=kidClicked(enfant)>{{enfant.prenom}} {{enfant.nom}}</h3>
+    </li>
+  </ul>
+  Nom: <input type="text" [(ngModel)]="kid_selected.nom"/><br>
+  Prenom: <input type="text" [(ngModel)]="kid_selected.prenom"/><br>
+  Age: <input type="text" [(ngModel)]="kid_selected.age"/><br>
+  handicap: <input type="text" [(ngModel)]="kid_selected.handicaps"/><br>
+  <button (click)="updateKid()">Update</button>
+  <button (click)="createKid()">Post</button>
+  <button (click)="deleteKid()">delete</button>
+  <button (click)="goToConnectForm()">espace educateur</button>
+  <br>
+</div>
+<ng-template #connect_content>
+  <app-connection-form></app-connection-form>
+</ng-template>
 <router-outlet></router-outlet>

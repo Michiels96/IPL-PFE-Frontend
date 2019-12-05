@@ -16,10 +16,14 @@ export class AppComponent {
   prenom;
   age;
   handicap;
+  isShowed=true;
 
   constructor(private api: ApiService){
     this.getEnfants();
    this.kid_selected={age:-1,enfant_id:-1,handicap:-1,handicaps:'',nom:'',prenom:''};
+  }
+  goToConnectForm(){
+    this.isShowed=false;
   }
   getEnfants = () => {
     this.api.getAllHandicaps().subscribe(
