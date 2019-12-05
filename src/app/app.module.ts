@@ -9,11 +9,19 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import {environment} from '../environments/environment'
 import { FormsModule } from '@angular/forms';
 import { ConnectionFormComponent } from './components/connection-form/connection-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConnectionFormComponent
+    ConnectionFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +29,13 @@ import { ConnectionFormComponent } from './components/connection-form/connection
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js',{ enabled: environment.production})
+    ServiceWorkerModule.register('ngsw-worker.js',{ enabled: environment.production}),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
