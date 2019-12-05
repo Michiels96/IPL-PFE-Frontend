@@ -8,10 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {environment} from '../environments/environment'
 import { FormsModule } from '@angular/forms';
+import { ConnectionFormComponent } from './components/connection-form/connection-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConnectionFormComponent
   ],
   imports: [
     BrowserModule,
