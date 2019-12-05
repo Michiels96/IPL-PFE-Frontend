@@ -1,4 +1,15 @@
 
+<div *ngIf='isShowed;else connect_content'>
+    <h3><strong>Bienvenue sur l'application APEH</strong></h3>
+<div class="ButtonJouer">
+    <button [routerLink]="['/choix-categorie']">Jouer</button>
+<br>
+    <button (click)="goToConnectForm()">espace educateur</button>
+</div>
+</div>
+<ng-template #connect_content>
+  <app-connection-form (messageToEmit)=" getInscriptionForm($event)"></app-connection-form>
+</ng-template>
 <!-- <div *ngIf='isShowed;else connect_content'>
   <h1>Liste enfants2</h1>
   <ul>
