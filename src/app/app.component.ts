@@ -18,7 +18,8 @@ export class AppComponent {
   prenom;
   age;
   handicap;
-  isShowed=true;
+  isShowedForm=true;
+  isShowedChoixCat=true;
 
   constructor(private api: ApiService){
     this.getEnfants();
@@ -40,8 +41,11 @@ export class AppComponent {
       }
     )
   }
+  goToChoix(){
+   this.isShowedChoixCat=false;
+  }
   goToConnectForm(){
-    this.isShowed=false;
+    this.isShowedForm=false;
   }
   getEnfants = () => {
     this.api.getAllHandicaps().subscribe(

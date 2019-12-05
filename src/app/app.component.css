@@ -2,9 +2,14 @@ h3 {
     text-align: center;
     size: 50px;
 }
+.btn-primary {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}
 
-.ButtonJouer {
-    text-align: center;
-    size: 10;
-    color: red;
+.btn-block {
+    display: inline-block;
+    width: 15%;
+    
 }
