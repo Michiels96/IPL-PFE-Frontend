@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component ,Input, Output} from '@angular/core';
 import { ApiService } from './api.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { ApiService } from './api.service';
   providers: [ApiService]
 })
 export class AppComponent {
+  inscriptionForm: FormGroup;
   enfants = [];
   handicaps = [];
   kid_selected;
@@ -21,6 +23,22 @@ export class AppComponent {
   constructor(private api: ApiService){
     this.getEnfants();
    this.kid_selected={age:-1,enfant_id:-1,handicap:-1,handicaps:'',nom:'',prenom:''};
+  }
+  getInscriptionForm(form:FormGroup){
+    this.inscriptionForm=form;
+    console.log("form recu 2 ! "); 
+    console.log(this.inscriptionForm.value);
+
+    this.api.postUser(this.inscriptionForm.value).subscribe( 
+      data => {
+        console.log(data);
+        
+      // this.enfants.push(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
   goToConnectForm(){
     this.isShowed=false;
@@ -88,6 +106,18 @@ export class AppComponent {
       }
     )
   }
+ /* createUser = () => {
+    this.api.postUser(this.kid_selected).subscribe( 
+      data => {
+        console.log(data);
+        
+      // this.enfants.push(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }*/
   deleteKid = () => {
     this.api.delKid(this.kid_selected.enfant_id).subscribe( 
       data => {

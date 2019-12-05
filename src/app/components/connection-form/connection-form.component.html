@@ -3,25 +3,29 @@
     <h3>Connexion educateur</h3>
     <label>
         Educateur:
-        <input type="text" formControlName="educateur">
+        <input type="text" formControlName="username">
       </label> <br>
     <label>
         Mot de passe:
-        <input type="text" formControlName="mdp">
+        <input type="text" formControlName="password">
       </label> <br>
 <button type='submit'>Se connecter</button>
 
 </form>
-<div class="btn-group" dropdown>
-    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-      Button dropdown <span class="caret"></span>
-    </button>
-    <ul *dropdownMenu class="dropdown-menu" role="menu">
-      <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-      <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-      <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-      <li class="divider dropdown-divider"></li>
-      <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-      </li>
-    </ul>
-  </div>
+<br>
+<form [formGroup]="inscription" (ngSubmit)="sendInscription()">
+    <h3>Inscription educateur</h3>
+    <label>
+        Educateur:
+        <input type="text" formControlName="username">
+      </label> <br>
+    <label>
+        Mot de passe:
+        <input type="text" formControlName="password">
+      </label> <br>
+    <label>
+        Email:
+        <input type="text" formControlName="email">
+     </label> <br>
+<button type='submit'>S'inscrire'</button>
+

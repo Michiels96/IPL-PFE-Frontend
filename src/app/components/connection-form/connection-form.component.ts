@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
 import { FormBuilder } from '@angular/forms';
 
@@ -8,9 +8,17 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./connection-form.component.css']
 })
 export class ConnectionFormComponent implements OnInit {
+  @Output()
+  messageToEmit = new EventEmitter<FormGroup>();
   connexion=new FormGroup({
-    educateur: new FormControl(''),
-    mdp: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
+  inscription=new FormGroup({
+    id:new FormControl(-1),
+    username: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl('')
   });
   constructor(/*private formBuilder:FormBuilder*/) { 
     /*this.connexion=this.formBuilder.group({
@@ -25,5 +33,9 @@ export class ConnectionFormComponent implements OnInit {
   }
   callingFunction() {
     console.log(this.connexion.value);
+  }
+  sendInscription(){
+    console.log(this.inscription.value);
+    this.messageToEmit.emit(this.inscription);
   }
 }

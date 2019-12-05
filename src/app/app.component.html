@@ -17,6 +17,6 @@
   <br>
 </div>
 <ng-template #connect_content>
-  <app-connection-form></app-connection-form>
+  <app-connection-form (messageToEmit)=" getInscriptionForm($event)"></app-connection-form>
 </ng-template>
 <router-outlet></router-outlet>
