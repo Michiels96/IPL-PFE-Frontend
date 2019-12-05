@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  baseurl = "http://127.0.0.1:8000";
- //baseurl ="https://pfe-back-dev.herokuapp.com/?fbclid=IwAR2zQyo6CaVgeqTwFe685TItUjnEGIn72g-Ka0MOC2DVKbtoHh3Dsm5qKZM";
+  //baseurl = "http://127.0.0.1:8000";
+  baseurl ="https://pfe-back-dev.herokuapp.com";
   httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
   constructor(private http: HttpClient) { }
