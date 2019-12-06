@@ -48,7 +48,7 @@ import { CategorieComponentComponent } from './components/categorie-component/ca
 
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
-      {path: '', component: AppComponent },
+      // {path: '', component: AppComponent },
       { path: 'choix-categorie', component: ChoixCategorieComponent },
       { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },
