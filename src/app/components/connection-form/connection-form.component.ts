@@ -14,6 +14,8 @@ export class ConnectionFormComponent implements OnInit {
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();*/
   isTokenValid=false;
+  listeEnfants;
+  kid_selected=-1;
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -45,7 +47,7 @@ export class ConnectionFormComponent implements OnInit {
         let regex = /\d/;
         if(regex.test(data.token)){
           this.isTokenValid=true;
-         
+          this.getEnfants();
         }
         else{
           this.isTokenValid=false;
@@ -77,5 +79,18 @@ export class ConnectionFormComponent implements OnInit {
     )
   }
 
-  
+  getEnfants = () => {
+   
+    this.api.getAllEnfants().subscribe(
+      data => {
+        //console.log(data);
+        this.listeEnfants = data;
+        console.log("enfant");
+        console.log(this.listeEnfants);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 }

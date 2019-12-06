@@ -26,7 +26,7 @@ export class AppComponent {
   isShowedChoixCat=true;
 
   constructor(private api: ApiService){
-    this.getEnfants();
+    //this.getEnfants();
    this.kid_selected={age:-1,enfant_id:-1,handicap:-1,handicaps:'',nom:'',prenom:''};
   }
   
@@ -50,7 +50,7 @@ export class AppComponent {
     )
   }
 
-  getEnfants = () => {
+ /* getEnfants = () => {
     this.api.getAllHandicaps().subscribe(
       data => {
         console.log(data);
@@ -69,7 +69,7 @@ export class AppComponent {
         console.log(error);
       }
     )
-  }
+  }*/
   kidClicked=(enfant) =>{
     console.log(enfant.nom)
     this.api.getOneKid(enfant.enfant_id).subscribe( 
@@ -119,7 +119,7 @@ export class AppComponent {
       data => {
         console.log(data);
         
-       this.getEnfants();
+      //this.getEnfants();
       },
       error => {
         console.log(error);

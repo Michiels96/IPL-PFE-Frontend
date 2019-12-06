@@ -3,6 +3,12 @@
  <p>
   <button class="btn btn-lg btn-primary btn-block" (click)="deconnexion()">Se déconnecter</button>
  </p>
+ <p>
+  <select  [(ngModel)]="kid_selected">
+    <option *ngFor="let enfant of listeEnfants" [value]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
+  </select>
+ 
+  </p>
 </div>
 <ng-template #not_connected>
 <div>
