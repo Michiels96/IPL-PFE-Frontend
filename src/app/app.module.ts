@@ -50,7 +50,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
-      {path: '', component: AccueilComponent },
+      { path: '', component: AccueilComponent },
       { path: 'choix-categorie', component: ChoixCategorieComponent },
       { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },

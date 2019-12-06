@@ -10,16 +10,17 @@ export class CategorieComponentComponent implements OnInit {
 
   var_images;
   var_libelle_categorie_selectionne;
-  @Input() categorie_libelle_selectionne
+  @Input() categorie_libelle_selectionne;
 
   constructor(private api: ApiService) { }
 
   getLibelleCategorie = () => {
+    console.log("Cat : " + this.categorie_libelle_selectionne);
     this.api.getCategorieByLibelle(this.categorie_libelle_selectionne).subscribe(
       data => {
         console.log(data);
         this.var_libelle_categorie_selectionne = data;
-        console.log("Libelle : " + this.var_libelle_categorie_selectionne);
+        console.log("Cat : " + this.categorie_libelle_selectionne);
       },
       error => {
         console.log("Error " + error);
