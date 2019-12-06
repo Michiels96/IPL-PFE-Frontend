@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ChoixCategorieComponent } from './components/choix-categorie/choix-categorie.component';
 import { CategorieComponentComponent } from './components/categorie-component/categorie-component.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CategorieComponentComponent } from './components/categorie-component/ca
     ConnectionFormComponent,
     NavbarComponent,
     CategorieComponentComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { CategorieComponentComponent } from './components/categorie-component/ca
 
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
-      // {path: '', component: AppComponent },
+      {path: '', component: AccueilComponent },
       { path: 'choix-categorie', component: ChoixCategorieComponent },
       { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },
