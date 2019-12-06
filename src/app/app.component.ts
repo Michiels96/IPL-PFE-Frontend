@@ -29,43 +29,7 @@ export class AppComponent {
     this.getEnfants();
    this.kid_selected={age:-1,enfant_id:-1,handicap:-1,handicaps:'',nom:'',prenom:''};
   }
-  getForm(form:FormGroup){
-    if(form.contains("id")){
-      this.inscriptionForm=form;
-      console.log("form recu 2 ! "); 
-      console.log(this.inscriptionForm.value);
-
-      this.api.postUser(this.inscriptionForm.value).subscribe( 
-        data => {
-          console.log(data);
-          
-        // this.enfants.push(data);
-        },
-        error => {
-          console.log(error);
-        }
-      )
-    }
-    else{
-      this.api.connectUser(form.value).subscribe( 
-        data => {
-          console.log("token");
-          console.log(data);
-          
-          this.token=data;
-          if(/\d/.test(this.token)){
-            this.isTokenValid=true;
-          }
-          else{
-            this.isTokenValid=false;
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      )
-    }
-  }
+  
   goToChoix(){
    this.isShowedChoixCat=false;
    this.getCategories();

@@ -1,5 +1,5 @@
-<div *ngif='isTokenForm; else not_connected'>
- <h2>Bonjour {{connexion.controls["username"].value}}</h2>
+<div *ngIf='isTokenValid; else not_connected'>
+ <h2>Bonjour {{connexion.controls["username"].value}} !</h2>
 </div>
 <ng-template #not_connected>
 <div>
@@ -33,4 +33,5 @@
 <button class="btn btn-lg btn-primary btn-block" type='submit'>S'inscrire'</button>
 </form></div>
 </ng-template>
+
 
