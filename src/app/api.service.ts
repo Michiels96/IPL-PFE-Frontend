@@ -13,6 +13,10 @@ export class ApiService {
   httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
   constructor(private http: HttpClient) { }
+
+  getCategorieByLibelle(libelle): Observable<any>{
+    return this.http.get(this.baseurl + '/images/categories/'+ libelle +'/', {headers:this.httpHeaders});
+  }
   
   getAllCategories(): Observable<any>{
     return this.http.get(this.baseurl + '/images/categories/', {headers:this.httpHeaders});
