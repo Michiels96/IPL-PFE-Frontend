@@ -8,6 +8,8 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./connection-form.component.css']
 })
 export class ConnectionFormComponent implements OnInit {
+  @Input()
+  isTokenForm=false;
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();
   connexion=new FormGroup({
@@ -31,8 +33,10 @@ export class ConnectionFormComponent implements OnInit {
   ngOnInit() {
    
   }
-  callingFunction() {
+  tryToConnect() {
     console.log(this.connexion.value);
+    this.messageToEmit.emit(this.connexion);
+    
   }
   sendInscription(){
     console.log(this.inscription.value);

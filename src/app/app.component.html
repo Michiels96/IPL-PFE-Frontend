@@ -11,7 +11,7 @@
 </div>
 </div>
 <ng-template #connect_content>
-  <app-connection-form (messageToEmit)=" getInscriptionForm($event)"></app-connection-form>
+  <app-connection-form (messageToEmit)="getForm($event)" [isTokenForm]="isTokenValid"></app-connection-form>
 </ng-template>
 <ng-template #choix_cat_content>
 <app-choix-categorie></app-choix-categorie>

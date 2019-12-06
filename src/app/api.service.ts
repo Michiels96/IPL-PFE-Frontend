@@ -39,4 +39,8 @@ export class ApiService {
     
     return this.http.delete(this.baseurl + '/enfants/'+id+'/',{headers:this.httpHeaders});
   }
+  connectUser(user): Observable<any>{
+    let postContent=JSON.stringify(user);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
+    return this.http.post(this.baseurl + '/prof/login/',postContent, {headers:this.httpHeaders});
+  }
 }
