@@ -1,5 +1,12 @@
-
-<form class="form-signin" [formGroup]="connexion" (ngSubmit)="callingFunction()">
+<div *ngIf='isTokenValid; else not_connected'>
+ <h2>Bonjour {{connexion.controls["username"].value}} !</h2>
+ <p>
+  <button class="btn btn-lg btn-primary btn-block" (click)="deconnexion()">Se déconnecter</button>
+ </p>
+</div>
+<ng-template #not_connected>
+<div>
+<form class="form-signin" [formGroup]="connexion" (ngSubmit)="tryToConnect()">
     <h3>Connexion educateur</h3>
     <label>
         Educateur:
@@ -10,7 +17,6 @@
         <input type="text" formControlName="password">
       </label> <br>
 <button class="btn btn-lg btn-primary btn-block" type='submit'>Se connecter</button>
-
 </form>
 <br>
 <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
@@ -28,4 +34,7 @@
         <input type="text" formControlName="email">
      </label> <br>
 <button class="btn btn-lg btn-primary btn-block" type='submit'>S'inscrire'</button>
+</form></div>
+</ng-template>
+
 

@@ -1,6 +1,7 @@
 import { Component ,Input, Output} from '@angular/core';
 import { ApiService } from './api.service';
 import { FormGroup } from '@angular/forms';
+import { tokenName } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent {
   handicaps = [];
   kid_selected;
   //enfant_id;
+  @Input() isTokenValid=false;
+  token;
   nom;
   prenom;
   age;
@@ -26,22 +29,7 @@ export class AppComponent {
     this.getEnfants();
    this.kid_selected={age:-1,enfant_id:-1,handicap:-1,handicaps:'',nom:'',prenom:''};
   }
-  getInscriptionForm(form:FormGroup){
-    this.inscriptionForm=form;
-    console.log("form recu 2 ! "); 
-    console.log(this.inscriptionForm.value);
-
-    this.api.postUser(this.inscriptionForm.value).subscribe( 
-      data => {
-        console.log(data);
-        
-      // this.enfants.push(data);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
+  
   goToChoix(){
    this.isShowedChoixCat=false;
    this.getCategories();

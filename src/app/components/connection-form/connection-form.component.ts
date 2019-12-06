@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
-import { FormBuilder } from '@angular/forms';
+import { ApiService } from 'src/app/api.service';
+
 
 @Component({
   selector: 'app-connection-form',
@@ -8,8 +9,11 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./connection-form.component.css']
 })
 export class ConnectionFormComponent implements OnInit {
+ /* @Input()
+  isTokenForm=false;
   @Output()
-  messageToEmit = new EventEmitter<FormGroup>();
+  messageToEmit = new EventEmitter<FormGroup>();*/
+  isTokenValid=false;
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -20,22 +24,58 @@ export class ConnectionFormComponent implements OnInit {
     password: new FormControl(''),
     email: new FormControl('')
   });
-  constructor(/*private formBuilder:FormBuilder*/) { 
-    /*this.connexion=this.formBuilder.group({
-      educateur:['']/* new FormControl(''),
-      mdp: ['']/* new FormControl('')});*/
-    //nom_enfant;
-    //prenom_enfant; 
+  constructor(private api: ApiService) { 
+    
   }
 
   ngOnInit() {
    
   }
-  callingFunction() {
+
+  deconnexion(){
+    this.isTokenValid=false;
+  }
+  tryToConnect() {
     console.log(this.connexion.value);
+    //this.messageToEmit.emit(this.connexion);
+    this.api.connectUser(this.connexion.value).subscribe( 
+      data => {
+        console.log("token");
+        console.log(data);
+        let regex = /\d/;
+        if(regex.test(data.token)){
+          this.isTokenValid=true;
+         
+        }
+        else{
+          this.isTokenValid=false;
+          
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    
   }
   sendInscription(){
     console.log(this.inscription.value);
-    this.messageToEmit.emit(this.inscription);
+    //this.messageToEmit.emit(this.inscription);
+    
+    console.log("form recu 2 ! "); 
+    console.log(this.inscription.value);
+
+    this.api.postUser(this.inscription.value).subscribe( 
+      data => {
+        console.log(data);
+        
+      // this.enfants.push(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
+
+  
 }
