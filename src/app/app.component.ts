@@ -18,6 +18,7 @@ export class AppComponent {
   prenom;
   age;
   handicap;
+  categories;
   isShowedForm=true;
   isShowedChoixCat=true;
 
@@ -43,10 +44,24 @@ export class AppComponent {
   }
   goToChoix(){
    this.isShowedChoixCat=false;
+   this.getCategories();
   }
   goToConnectForm(){
     this.isShowedForm=false;
   }
+
+  getCategories = () => {
+    this.api.getAllCategories().subscribe(
+      data => {
+        console.log(data);
+        this.categories = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   getEnfants = () => {
     this.api.getAllHandicaps().subscribe(
       data => {

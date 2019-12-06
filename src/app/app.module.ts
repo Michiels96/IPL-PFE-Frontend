@@ -19,13 +19,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ChoixCategorieComponent } from './components/choix-categorie/choix-categorie.component';
+import { CategorieComponentComponent } from './components/categorie-component/categorie-component.component';
 
 @NgModule({
   declarations: [
-    ChoixCategorieComponent,
     AppComponent,
+    ChoixCategorieComponent,
     ConnectionFormComponent,
     NavbarComponent,
+    CategorieComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,10 @@ import { ChoixCategorieComponent } from './components/choix-categorie/choix-cate
 
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
-      { path: 'choix-categorie', component: ChoixCategorieComponent},
+      {path: '', component: AppComponent },
+      { path: 'choix-categorie', component: ChoixCategorieComponent },
+      { path: 'categories', component: CategorieComponentComponent },
+      { path: 'connexion', component: ConnectionFormComponent },
     ])
   ],
   providers: [],

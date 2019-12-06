@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-choix-categorie',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChoixCategorieComponent implements OnInit {
 
+  // Pour que le parent (app.component) transmet à l'enfant(choix_categorie.component)
+  @Input() categories_fils;
   constructor() { }
 
   ngOnInit() {

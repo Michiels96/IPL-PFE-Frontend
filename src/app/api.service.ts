@@ -13,7 +13,11 @@ export class ApiService {
   httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
   constructor(private http: HttpClient) { }
-
+  
+  getAllCategories(): Observable<any>{
+    return this.http.get(this.baseurl + '/images/categories/', {headers:this.httpHeaders});
+  }
+  
   getAllEnfants(): Observable<any>{
     return this.http.get(this.baseurl + '/enfants/', {headers:this.httpHeaders});
   }
