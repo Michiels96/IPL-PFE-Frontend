@@ -1,7 +1,14 @@
 <div style="text-align: center;">
     <h3><strong>Choisi(e) la catégorie qui ressemble le plus à tes habitudes</strong></h3>
 </div>
+<br/>
+<br />
 
-<li *ngFor="let cat of var_categories">
-    <a [routerLink]="['/categories']" >{{cat.libelle}}</a>
-</li>
+<div class="list-group">
+    <li style="list-style-type: none;" *ngFor="let cat of var_categories"> 
+        <strong><a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" (click)="getLibelleCategorie()" [routerLink]="['/categories']">
+            {{cat.libelle}}
+        </a>
+        </strong>
+    </li>
+</div>

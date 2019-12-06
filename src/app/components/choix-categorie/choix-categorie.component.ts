@@ -22,7 +22,6 @@ export class ChoixCategorieComponent implements OnInit {
       data => {
         console.log(data);
         this.var_categories = data;
-        console.log("categories : " + this.var_categories);
       },
       error => {
         console.log(error);
