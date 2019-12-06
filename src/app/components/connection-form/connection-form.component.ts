@@ -31,6 +31,10 @@ export class ConnectionFormComponent implements OnInit {
   ngOnInit() {
    
   }
+
+  deconnexion(){
+    this.isTokenValid=false;
+  }
   tryToConnect() {
     console.log(this.connexion.value);
     //this.messageToEmit.emit(this.connexion);
