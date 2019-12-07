@@ -16,7 +16,7 @@ export class AccueilComponent implements OnInit {
     this.api.getAllEnfants().subscribe(
       data => {
         //console.log(data);
-        this.listeEnfants = data;
+        this.listeEnfants =data;//Array.of(data);
         console.log("enfant");
         console.log(this.listeEnfants);
       },
