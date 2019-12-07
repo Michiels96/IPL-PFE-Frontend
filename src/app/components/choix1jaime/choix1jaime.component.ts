@@ -13,7 +13,11 @@ export class Choix1jaimeComponent implements OnInit {
   var_imagesPasAimees = [];
   var_imagesEnregistrees = [this.var_imagesAimees, this.var_imagesPasAimees];
   var_activiteCourante;
-  constructor(private api: ApiService,private router:Router) {}
+  var_pasComplet;
+
+  constructor(private api: ApiService,private router:Router) {
+    this.var_pasComplet = false;
+  }
   
   ngOnInit() {
     this.getAllImagesByLibelle();
@@ -44,32 +48,43 @@ export class Choix1jaimeComponent implements OnInit {
 
   addImgToYes(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
+      this.var_pasComplet = false;
       this.var_imagesEnregistrees[this.var_imagesAimees.push(activite)];
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
-      console.log("trop loin oui")
+      this.question1Terminee();
     }
-    
   }
 
   addImgToNo(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
+      this.var_pasComplet = false;
       this.var_imagesEnregistrees[this.var_imagesPasAimees.push(activite)];
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
-      console.log("trop loin non")
+      this.question1Terminee();
     }
   }
 
   imgBypass(){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
+      this.var_pasComplet = false;
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
-      console.log("trop loin bypass")
+      this.question1Terminee();
     }
   }
 
+  question1Terminee(){
+    if(this.var_imagesAimees.length == 0 && this.var_imagesPasAimees.length == 0){
+      this.var_pasComplet = true;
+      this.var_activiteCourante = this.var_imagesByLibelle[1];
+    }
+    else{
+      this.router.navigate(['/choixContent',{q1_imagesEnregistrees:this.var_imagesEnregistrees}]);
+    }
+  }
 }
