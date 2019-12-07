@@ -16,16 +16,29 @@
         <img class="card-img-bottom" src="images/t2.jpg">
       </div> -->
 
-<div class="card-body">
-    <li style="list-style-type: none;" *ngFor="let cat of var_categories"> 
-        <figure>
-            <strong><a style="background-color: beige; " [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
-                <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/bus.jpg">
-                <figcaption>{{cat.libelle}}</figcaption>
-            </a>
-            </strong>
-        </figure>
-    </li>
+<div class="card">
+    <div class="card-body">
+        <div class="list-group">
+            <div *ngFor="let cat of var_categories;">
+
+            <li style="list-style-type: none;" *ngFor="let img of var_images;">
+                <div *ngIf="cat.libelle === img.categorie_image; else break">
+                    <div *ngIf="cpt == 0">
+                    {{compteurPlus()}}
+                    <strong>
+                        <a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
+                            <img style="height:20%;width:20%;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
+                        </a>
+                    </strong>
+                    </div>
+                </div>
+                <ng-template #break>
+                    {{compteurReset()}}
+                </ng-template>
+            </li>
+            </div>
+        </div>
+    </div>
 </div>
 <ul>
     <li style="list-style-type: none;" *ngFor="let img of var_images">

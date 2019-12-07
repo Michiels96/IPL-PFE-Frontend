@@ -12,6 +12,7 @@ export class ChoixCategorieComponent implements OnInit {
 
   var_categories;
   var_images;
+  cpt = 0;
 
   cat_libelle="";
   constructor(private api: ApiService,private router:Router) { }
@@ -40,9 +41,18 @@ export class ChoixCategorieComponent implements OnInit {
     )
   }
 
+  compteurPlus(){
+    this.cpt++;
+  }
+
+  compteurReset(){
+    this.cpt = 0;
+  }
+
   ngOnInit() {
     this.getCategories();
     this.getImages();
+    this.compteurReset();
   }
 
   getCat(cat){
