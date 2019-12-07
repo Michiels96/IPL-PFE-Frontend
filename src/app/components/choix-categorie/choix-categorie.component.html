@@ -1,38 +1,37 @@
-
-<div id="fond"> 
-    <div class="ruban">     
-        <h2>Catégorie</h2>     
-    </div>     
-    <div class="ruban_gauche"></div>
-    <div class="ruban_droit"></div>
-</div>
-
-<br/>
-<br />
-
-<h3><strong>
-    Choisi la catégorie qui ressemble le plus à tes habitudes
-</strong></h3>
-
-<div class="card-body">
-    <div *ngFor="let cat of var_categories">
-
-        <li style="list-style-type: none;" *ngFor="let img of var_images;">
-            <div *ngIf="cat.libelle === img.categorie_image; else break">
-                <div *ngIf="cpt == 0;">
-                    {{compteurPlus()}}
-                    <figure>
-                        <strong><a style="background-color: beige; " [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
-                            <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
-                            <figcaption>{{cat.libelle}}</figcaption>
-                        </a>
-                        </strong>
-                    </figure>
-                </div>
-            </div>
-            <ng-template #break>
-                {{compteurReset()}}
-            </ng-template>       
-        </li>
+<div class="page">
+    <div id="fond"> 
+        <div class="ruban">     
+            <h2>Catégorie</h2>     
+        </div>     
+        <div class="ruban_gauche"></div>
+        <div class="ruban_droit"></div>
     </div>
+
+    <br/>
+    <br />
+
+    <h3>Choisi la catégorie qui ressemble le plus à tes habitudes</h3>
+
+    <div class="card-body">
+        <div *ngFor="let cat of var_categories">
+            <li style="list-style-type: none;" *ngFor="let img of var_images;">
+                <div *ngIf="cat.libelle === img.categorie_image; else break">
+                    <div *ngIf="cpt == 0;">
+                        {{compteurPlus()}}
+                        <figure>
+                            <strong><a style="background-color: beige; " [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
+                                <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
+                                <figcaption>{{cat.libelle}}</figcaption>
+                            </a>
+                            </strong>
+                        </figure>
+                    </div>
+                </div>
+                <ng-template #break>
+                    {{compteurReset()}}
+                </ng-template>       
+            </li>
+        </div>
+    </div>
+    
 </div>

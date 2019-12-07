@@ -8,15 +8,26 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./categorie-component.component.css']
 })
 export class CategorieComponentComponent implements OnInit {
-
-  images;
+  
+  var_images;
   libelle_categorie_selectionne;
   constructor(private api: ApiService,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.libelle_categorie_selectionne=this.route.snapshot.paramMap.get('cat');
-    console.log("CAT");
-    console.log(this.libelle_categorie_selectionne);
+    this.getImages();
+  }
+
+  getImages = () => {
+    this.api.getAllImages().subscribe(
+      data => {
+        this.var_images = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
