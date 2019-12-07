@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-categorie-component',
@@ -8,28 +9,31 @@ import { ApiService } from 'src/app/api.service';
 })
 export class CategorieComponentComponent implements OnInit {
 
-  var_images;
-  var_libelle_categorie_selectionne;
-  @Input() categorie_libelle_selectionne;
+  images;
+  libelle_categorie_selectionne;
+ 
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,private route: ActivatedRoute) { }
 
-  getLibelleCategorie = () => {
+  /*getLibelleCategorie = () => {
     console.log("Cat : " + this.categorie_libelle_selectionne);
     this.api.getCategorieByLibelle(this.categorie_libelle_selectionne).subscribe(
       data => {
         console.log(data);
-        this.var_libelle_categorie_selectionne = data;
+        this.libelle_categorie_selectionne = data;
         console.log("Cat : " + this.categorie_libelle_selectionne);
       },
       error => {
         console.log("Error " + error);
       }
     )
-  }
+  }*/
 
   ngOnInit() {
-    this.getLibelleCategorie();
+    //this.getLibelleCategorie();
+    this.libelle_categorie_selectionne=this.route.snapshot.paramMap.get('cat');
+    console.log("CAT");
+    console.log(this.libelle_categorie_selectionne);
   }
 
 }

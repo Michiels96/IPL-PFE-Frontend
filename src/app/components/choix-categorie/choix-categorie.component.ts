@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -14,8 +15,8 @@ export class ChoixCategorieComponent implements OnInit {
   //@Input() categories_fils;
 
   var_categories;
-
-  constructor(private api: ApiService) { }
+  cat_libelle="";
+  constructor(private api: ApiService,private router:Router) { }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
@@ -31,6 +32,12 @@ export class ChoixCategorieComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
+  
   }
-
+  getCat(cat){
+    this.cat_libelle=cat.libelle;
+    console.log("libelle:");
+    console.log(this.cat_libelle);
+    this.router.navigate(['/categories',{cat:this.cat_libelle}]);
+  }
 }
