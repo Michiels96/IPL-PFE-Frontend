@@ -2,7 +2,7 @@
     <h3>Dis nous si tu aimes ou n'aimes pas cette activité</h3>
     <h4>Activité nr°{{var_activiteCourante.image_id}}</h4>
     <p>
-        <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
+        <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.description}}"/>
     </p>
     <p>
         <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>

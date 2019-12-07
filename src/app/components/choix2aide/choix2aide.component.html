@@ -1,1 +1,16 @@
-<p>choix2aide works!</p>
+<div style="text-align: center;">
+    <h3>Maintenant par rapport à ces activités, dis nous si tu a besoin d'aide ou pas</h3>
+    <h4>Activité nr°{{var_activiteCourante.image_id}}</h4>
+    <p>
+        <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
+    </p>
+    <p>
+        <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>
+        <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">non</button>
+        <br/>
+        <button type="button" class="btn btn-info" (click)="$event.preventDefault();imgBypass()">je passe</button>
+    </p>
+    <p *ngIf="var_pasComplet == true">
+        <strong>Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
+    </p>
+</div>

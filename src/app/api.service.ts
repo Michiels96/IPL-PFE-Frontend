@@ -22,6 +22,10 @@ export class ApiService {
   getAllImages(): Observable<any>{
     return this.http.get(this.baseurl + '/images/images/', {headers:this.httpHeaders});
   }
+
+  getAllImagesByLibelle(libelle): Observable<any>{
+    return this.http.get(this.baseurl + '/images/repertoire/'+libelle+'/', {headers:this.httpHeaders});
+  }
   
   getAllEnfants(): Observable<any>{
     return this.http.get(this.baseurl + '/enfant/enfants/', {headers:this.httpHeaders});

@@ -21,25 +21,23 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.getAllImagesByLibelle();
+    this.getAllImagesByLibelle("deplacements");
   }
 
 
-  getAllImagesByLibelle = () => {
-    this.api.getAllImages().subscribe(
+  getAllImagesByLibelle = (libelle) => {
+    this.api.getAllImagesByLibelle(libelle).subscribe(
       data => {
         var i = 1;
         for(var key in data){
-          if(data[key].categorie_image == "deplacements"){
-            data[key].description = data[key].description+".jpg";
-            this.var_imagesByLibelle.push(data[key]); 
-            if(i == 1){
-              this.var_activiteCourante = data[key];
-            }
-            i++;
+          data[key].description = data[key].description+".jpg";
+          this.var_imagesByLibelle.push(data[key]); 
+          if(i == 1){
+            this.var_activiteCourante = data[key];
           }
+          i++;
         }
-        console.log("AFTER TRI "+JSON.stringify(this.var_imagesByLibelle));
+        console.log(JSON.stringify(this.var_imagesByLibelle));
       },
       error => {
         console.log(error);
