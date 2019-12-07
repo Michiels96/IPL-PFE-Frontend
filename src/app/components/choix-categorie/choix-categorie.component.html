@@ -1,50 +1,39 @@
-<div style="text-align: center;">
-    <h3><strong>Choisi la catégorie qui ressemble le plus à tes habitudes</strong></h3>
+
+<div id="fond"> 
+    <div class="ruban">     
+        <h2>Catégorie</h2>     
+    </div>     
+    <div class="ruban_gauche"></div>
+    <div class="ruban_droit"></div>
 </div>
+
 <br/>
 <br />
 
-<!-- <div class="card">
-        <img style="height:20%;width:20%;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/bus.jpg">
-        <div class="card-body">
-          <h4 class="card-title">
-             
-          </h4>
-          <p class="card-text">Du texte</p>
-          <p class="card-text"><small class="text-muted">Des informations</small></p>
-        </div>
-        <img class="card-img-bottom" src="images/t2.jpg">
-      </div> -->
+<h3><strong>
+    Choisi la catégorie qui ressemble le plus à tes habitudes
+</strong></h3>
 
-<div class="card">
-    <div class="card-body">
-        <div class="list-group">
-            <div *ngFor="let cat of var_categories;">
+<div class="card-body">
+    <div *ngFor="let cat of var_categories">
 
-            <li style="list-style-type: none;" *ngFor="let img of var_images;">
-                <div *ngIf="cat.libelle === img.categorie_image; else break">
-                    <div *ngIf="cpt == 0">
+        <li style="list-style-type: none;" *ngFor="let img of var_images;">
+            <div *ngIf="cat.libelle === img.categorie_image; else break">
+                <div *ngIf="cpt == 0;">
                     {{compteurPlus()}}
-                    <strong>
-                        <a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
-                            <img style="height:20%;width:20%;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
+                    <figure>
+                        <strong><a style="background-color: beige; " [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
+                            <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
+                            <figcaption>{{cat.libelle}}</figcaption>
                         </a>
-                    </strong>
-                    </div>
+                        </strong>
+                    </figure>
                 </div>
-                <ng-template #break>
-                    {{compteurReset()}}
-                </ng-template>
-            </li>
             </div>
-        </div>
+            <ng-template #break>
+                {{compteurReset()}}
+            </ng-template>       
+        </li>
     </div>
 </div>
-<ul>
-    <li style="list-style-type: none;" *ngFor="let img of var_images">
-        <figure>
-            <img src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
-            <figcaption>{{img.description}}</figcaption>
-        </figure>
-    </li>
-</ul>
+

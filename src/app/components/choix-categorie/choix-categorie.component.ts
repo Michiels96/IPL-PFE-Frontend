@@ -13,8 +13,7 @@ export class ChoixCategorieComponent implements OnInit {
   var_categories;
   var_images;
   cpt = 0;
-
-  cat_libelle="";
+  cat_libelle = "";
   constructor(private api: ApiService,private router:Router) { }
 
   getCategories = () => {
@@ -41,17 +40,10 @@ export class ChoixCategorieComponent implements OnInit {
     )
   }
 
-  compteurPlus(){
-    this.cpt++;
-  }
-
-  compteurReset(){
-    this.cpt = 0;
-  }
-
   ngOnInit() {
     this.getCategories();
     this.getImages();
+    this.compteurPlus();
     this.compteurReset();
   }
 
@@ -60,5 +52,13 @@ export class ChoixCategorieComponent implements OnInit {
     console.log("libelle:");
     console.log(this.cat_libelle);
     this.router.navigate(['/categories',{cat:this.cat_libelle}]);
+  }
+
+  compteurPlus() {
+    this.cpt++;
+  }
+
+  compteurReset() {
+    this.cpt = 0;
   }
 }
