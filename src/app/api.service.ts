@@ -31,8 +31,8 @@ export class ApiService {
   getOneKid(id): Observable<any>{
     return this.http.get(this.baseurl + '/enfants/'+ id +'/', {headers:this.httpHeaders});
   }
-  updateKid(kid): Observable<any>{
-    let updateContent={age:kid.age,enfant_id:kid.enfant_id,handicap:kid.handicap,handicaps:kid.handicaps,nom:kid.nom,prenom:kid.prenom};
+  updateKid(kid,bool): Observable<any>{
+    let updateContent={age:kid.age,enfant_id:kid.enfant_id,nom:kid.nom,prenom:kid.prenom,connecte:bool};
     return this.http.put(this.baseurl + '/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{

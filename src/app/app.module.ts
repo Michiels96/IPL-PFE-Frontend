@@ -21,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
 import { ChoixCategorieComponent } from './components/choix-categorie/choix-categorie.component';
 import { CategorieComponentComponent } from './components/categorie-component/categorie-component.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { EducateurUIComponent } from './components/educateur-ui/educateur-ui.component';
+import { AuthGuard } from './auth/auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
     NavbarComponent,
     CategorieComponentComponent,
     AccueilComponent,
+    EducateurUIComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
       { path: 'choix-categorie', component: ChoixCategorieComponent },
       { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },
+      { path: 'ui', component: EducateurUIComponent },
     ])
   ],
   providers: [],
