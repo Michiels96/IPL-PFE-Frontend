@@ -7,14 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  //baseurl = "http://127.0.0.1:8000";
-  //baseurl ="https://pfe-front-dev.herokuapp.com";
+  // connexion backend local
+  // baseurl = "http://127.0.0.1:8000";
+  // connexion backend en ligne (heroku)
   baseurl ="https://pfe-back-dev.herokuapp.com";
   httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
   constructor(private http: HttpClient) { }
 
   getCategorieByLibelle(libelle): Observable<any>{
+    console.log({headers:this.httpHeaders});
     return this.http.get(this.baseurl + '/images/categories/'+ libelle +'/', {headers:this.httpHeaders});
   }
   
