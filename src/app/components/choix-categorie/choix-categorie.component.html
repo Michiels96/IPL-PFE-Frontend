@@ -5,10 +5,13 @@
 <br />
 
 <div class="list-group">
-    <li style="list-style-type: none;" *ngFor="let cat of var_categories"> 
-        <strong><a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" [routerLink]="['/categories']">
+    <li style="list-style-type: none;">
+        <div *ngFor="let cat of var_categories; index as libelle"> 
+        <strong><a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" [routerLink]="['/categories',libelle]">
+            {{cat.categorie_id}}
             {{cat.libelle}}
         </a>
         </strong>
+        </div>
     </li>
 </div>

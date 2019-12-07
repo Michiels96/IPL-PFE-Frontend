@@ -9,10 +9,6 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ChoixCategorieComponent implements OnInit {
 
-  // Pour que le parent (app.component) transmet à l'enfant(choix_categorie.component)
-  // Parent = AccueilComponent
-  //@Input() categories_fils;
-
   var_categories;
 
   constructor(private api: ApiService) { }
@@ -32,5 +28,4 @@ export class ChoixCategorieComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
   }
-
 }
