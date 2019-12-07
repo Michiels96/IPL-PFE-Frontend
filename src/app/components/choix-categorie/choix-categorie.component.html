@@ -28,5 +28,12 @@
             </li>
         </div>
     </div>
-
 </div>
+<ul>
+    <li style="list-style-type: none;" *ngFor="let img of var_images">
+        <figure>
+            <img src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
+            <figcaption>{{img.description}}</figcaption>
+        </figure>
+    </li>
+</ul>

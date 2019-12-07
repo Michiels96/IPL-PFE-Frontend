@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ChoixCategorieComponent implements OnInit {
 
   var_categories;
+  var_images;
+
   cat_libelle="";
   constructor(private api: ApiService,private router:Router) { }
 
@@ -26,8 +28,21 @@ export class ChoixCategorieComponent implements OnInit {
     )
   }
 
+  getImages = () => {
+    this.api.getAllImages().subscribe(
+      data => {
+        this.var_images = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   ngOnInit() {
     this.getCategories();
+    this.getImages();
   }
 
   getCat(cat){

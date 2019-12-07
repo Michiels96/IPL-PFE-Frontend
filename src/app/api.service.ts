@@ -15,7 +15,11 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getCategorieByLibelle(libelle): Observable<any>{
-    return this.http.get(this.baseurl + '/images/categories/'+ libelle +'/', {headers:this.httpHeaders});
+    return this.http.get(this.baseurl + '/images/images/'+ libelle +'/', {headers:this.httpHeaders});
+  }
+
+  getAllImages(): Observable<any>{
+    return this.http.get(this.baseurl + '/images/images/', {headers:this.httpHeaders});
   }
   
   getAllCategories(): Observable<any>{
