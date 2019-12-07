@@ -52,7 +52,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
     RouterModule.forRoot ([
       { path: '', component: AccueilComponent },
       { path: 'choix-categorie', component: ChoixCategorieComponent },
-      { path: 'categories/:libelle', component: CategorieComponentComponent },
+      { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },
     ])
   ],

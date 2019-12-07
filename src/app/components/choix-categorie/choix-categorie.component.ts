@@ -28,8 +28,8 @@ export class ChoixCategorieComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
-  
   }
+
   getCat(cat){
     this.cat_libelle=cat.libelle;
     console.log("libelle:");
