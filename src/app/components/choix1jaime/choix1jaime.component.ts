@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/SharedService';
 
 @Component({
   selector: 'app-choix1jaime',
@@ -15,7 +16,7 @@ export class Choix1jaimeComponent implements OnInit {
   var_activiteCourante;
   var_pasComplet;
 
-  constructor(private api: ApiService,private router:Router) {
+  constructor(private api: ApiService,private router:Router, private sharedService: SharedService) {
     this.var_pasComplet = false;
   }
   
@@ -84,7 +85,9 @@ export class Choix1jaimeComponent implements OnInit {
       this.var_activiteCourante = this.var_imagesByLibelle[1];
     }
     else{
-      this.router.navigate(['/choixContent',{q1_imagesEnregistrees:this.var_imagesEnregistrees}]);
+      this.var_pasComplet = false;
+      this.sharedService.setData(this.var_imagesEnregistrees);
+      this.router.navigate(['/choixAide']);
     }
   }
 }
