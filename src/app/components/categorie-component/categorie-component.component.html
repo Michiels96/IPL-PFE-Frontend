@@ -1,9 +1,50 @@
-<p>Categorie : </p>
-<h3>
-    <strong>
-        {{libelle_categorie_selectionne}}
-        <!-- {{categorie_libelle_selectionne}} -->
-        <!-- <app-choix-categorie (categorie_libelle_selectionne) = "var_libelle_categorie_selectionne" ></app-choix-categorie> -->
-        <!-- <p>{{categorie_libelle_selectionne.libelle}}</p> -->
-    </strong>
-</h3>
+<div class="page">
+
+
+<div id="fond"> 
+    <div class="ruban">     
+        <h2>{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
+    </div>     
+    <div class="ruban_gauche"></div>
+    <div class="ruban_droit"></div>
+</div>
+
+<!-- <li style="list-style-type: none;" *ngFor="let img of var_images;">
+    <div *ngIf="libelle_categorie_selectionne === img.categorie_image;"> -->
+        <!-- <figure> -->
+            <!-- <strong><a style="background-color: beige;">
+                <strong><p class="description"> {{img.description}} : </p></strong> <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"> -->
+                <!-- <figcaption>{{cat.libelle}}</figcaption> -->
+            <!-- </a>
+            </strong> -->
+        <!-- </figure> -->
+    <!-- </div>
+</li> -->
+<br />
+<br />
+
+<table class="table">
+    <li style="list-style-type: none;" *ngFor="let img of var_images;">
+        <div *ngIf="libelle_categorie_selectionne === img.categorie_image;">
+        <thead>
+            <tr>
+                <th>Description image</th>
+                <th>Image</th>
+                <th>Oui</th>
+                <th>Non</th>
+                <th>Je voudrais le faire</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{img.description.toUpperCase()}}</td>
+                    <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
+                    <td><input type="radio" name="oui"/></td>
+                    <td><input type="radio" name="non"/></td>
+                    <td><input type="radio" name="jevoudrais"/></td>
+                </tr>
+            </tbody>
+        </div>
+    </li>
+</table>
+</div>

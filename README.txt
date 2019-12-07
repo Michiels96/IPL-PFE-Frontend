@@ -1,4 +1,7 @@
-Pour lancer le projet --> http-server -p 8080 -c-1 dist/angular-pwa
+étapes d'installation après un git clone:
 
-ensuite aller sur internet et tapper localhost:8080
+- npm install
 
+- ng serve
+
+localhost:4200

@@ -10,11 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ChoixCategorieComponent implements OnInit {
 
-  // Pour que le parent (app.component) transmet à l'enfant(choix_categorie.component)
-  // Parent = AccueilComponent
-  //@Input() categories_fils;
-
   var_categories;
+  var_images;
+  cpt=0;
+
   cat_libelle="";
   constructor(private api: ApiService,private router:Router) { }
 
@@ -30,14 +29,37 @@ export class ChoixCategorieComponent implements OnInit {
     )
   }
 
+  getImages = () => {
+    this.api.getAllImages().subscribe(
+      data => {
+        this.var_images = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   ngOnInit() {
     this.getCategories();
-  
+    this.getImages();
+    this.compteurPlus();
+    this.compteurReset();
   }
+
   getCat(cat){
     this.cat_libelle=cat.libelle;
     console.log("libelle:");
     console.log(this.cat_libelle);
     this.router.navigate(['/categories',{cat:this.cat_libelle}]);
+  }
+
+  compteurPlus() {
+    this.cpt++;
+  }
+
+  compteurReset() {
+    this.cpt = 0;
   }
 }

@@ -50,6 +50,17 @@ export class AppComponent {
     )
   }
 
+  getAllImages = () => {
+    this.api.getAllImages().subscribe(
+      data => {
+        //console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
  /* getEnfants = () => {
     this.api.getAllHandicaps().subscribe(
       data => {
