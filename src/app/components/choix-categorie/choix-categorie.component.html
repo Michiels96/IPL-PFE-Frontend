@@ -4,11 +4,29 @@
 <br/>
 <br />
 
-<div class="list-group">
-    <li style="list-style-type: none;" *ngFor="let cat of var_categories"> 
-        <strong><a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
-            {{cat.libelle}}
-        </a>
-        </strong>
-    </li>
+<!-- <div class="card">
+        <img style="height:20%;width:20%;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/bus.jpg">
+        <div class="card-body">
+          <h4 class="card-title">
+             
+          </h4>
+          <p class="card-text">Du texte</p>
+          <p class="card-text"><small class="text-muted">Des informations</small></p>
+        </div>
+        <img class="card-img-bottom" src="images/t2.jpg">
+      </div> -->
+
+<div class="card">
+    <div class="card-body">
+        <div class="list-group">
+            <li style="list-style-type: none;" *ngFor="let cat of var_categories"> 
+                <strong><a style="background-color: beige; text-decoration-line: underline;" class="list-group-item" [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
+                    {{cat.libelle}}
+                    <img style="height:20%;width:20%;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/bus.jpg">
+                </a>
+                </strong>
+            </li>
+        </div>
+    </div>
+
 </div>
