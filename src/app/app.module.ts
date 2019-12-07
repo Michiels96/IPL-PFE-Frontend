@@ -21,6 +21,9 @@ import { MatListModule } from '@angular/material/list';
 import { ChoixCategorieComponent } from './components/choix-categorie/choix-categorie.component';
 import { CategorieComponentComponent } from './components/categorie-component/categorie-component.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { Choix1jaimeComponent } from './components/choix1jaime/choix1jaime.component';
+import { Choix2contentComponent } from './components/choix2content/choix2content.component';
+import { Choix3aideComponent } from './components/choix3aide/choix3aide.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { AccueilComponent } from './components/accueil/accueil.component';
     NavbarComponent,
     CategorieComponentComponent,
     AccueilComponent,
+    Choix1jaimeComponent,
+    Choix2contentComponent,
+    Choix3aideComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,9 @@ import { AccueilComponent } from './components/accueil/accueil.component';
       { path: 'choix-categorie', component: ChoixCategorieComponent },
       { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },
+      { path: 'choixJaime', component: Choix1jaimeComponent },
+      { path: 'choixContent', component: Choix2contentComponent },
+      { path: 'choixAide', component: Choix3aideComponent },
     ])
   ],
   providers: [],
