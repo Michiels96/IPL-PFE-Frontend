@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Choix2contentComponent } from './choix2content.component';
+import { Choix2aideComponent } from './choix2aide.component';
 
-describe('Choix2contentComponent', () => {
-  let component: Choix2contentComponent;
-  let fixture: ComponentFixture<Choix2contentComponent>;
+describe('Choix2aideComponent', () => {
+  let component: Choix2aideComponent;
+  let fixture: ComponentFixture<Choix2aideComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Choix2contentComponent ]
+      declarations: [ Choix2aideComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Choix2contentComponent);
+    fixture = TestBed.createComponent(Choix2aideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

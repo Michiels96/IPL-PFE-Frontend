@@ -22,8 +22,8 @@ import { ChoixCategorieComponent } from './components/choix-categorie/choix-cate
 import { CategorieComponentComponent } from './components/categorie-component/categorie-component.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { Choix1jaimeComponent } from './components/choix1jaime/choix1jaime.component';
-import { Choix2contentComponent } from './components/choix2content/choix2content.component';
-import { Choix3aideComponent } from './components/choix3aide/choix3aide.component';
+import { Choix2aideComponent } from './components/choix2aide/choix2aide.component';
+import { Choix3contentComponent } from './components/choix3content/choix3content.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import { Choix3aideComponent } from './components/choix3aide/choix3aide.componen
     CategorieComponentComponent,
     AccueilComponent,
     Choix1jaimeComponent,
-    Choix2contentComponent,
-    Choix3aideComponent,
+    Choix2aideComponent,
+    Choix3contentComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +61,6 @@ import { Choix3aideComponent } from './components/choix3aide/choix3aide.componen
       { path: 'categories', component: CategorieComponentComponent },
       { path: 'connexion', component: ConnectionFormComponent },
       { path: 'choixJaime', component: Choix1jaimeComponent },
-      { path: 'choixContent', component: Choix2contentComponent },
-      { path: 'choixAide', component: Choix3aideComponent },
     ])
   ],
   providers: [],
