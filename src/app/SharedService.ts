@@ -2,16 +2,27 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SharedService {
-    data;
+    dataChoix1;
+    dataChoix2;
+
     constructor(){
-      this.data= {};
+      this.dataChoix1= {};
+      this.dataChoix2= {};
     }
 
-    setData(val: object){
-        this.data= val;
+    setDataChoix1(val: object){
+        this.dataChoix1= val;
     }
 
-    getData(){
-        return this.data;
+    getDataChoix1(){
+        return this.dataChoix1;
+    }
+
+    setDataChoix2(val: object){
+        this.dataChoix2= val;
+    }
+
+    getDataChoix2(){
+        return this.dataChoix2;
     }
 }

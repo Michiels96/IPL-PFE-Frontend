@@ -1,16 +1,18 @@
 <div style="text-align: center;">
-    <h3>Maintenant par rapport à ces activités, dis nous si tu a besoin d'aide ou pas</h3>
-    <h4>Activité nr°{{var_activiteCourante.image_id}}</h4>
+    <h3>Maintenant par rapport à ces activités, <br/>dis nous si tu a besoin d'aide pour celles-ci ou pas</h3>
+    <h4>
+        Activité 
+        <span *ngIf="var_questionsAimeesPass == false">aimée</span>
+        <span *ngIf="var_questionsAimeesPass == true">Pas aimée</span>
+        nr°{{var_activiteCourante.image_id}}
+    </h4>
     <p>
         <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
     </p>
-    <p>
-        <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>
-        <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">non</button>
+    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Besoin d'aide</button>
+    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas besoin d'aide</button>
+    <div *ngIf="imgBack == true">
         <br/>
-        <button type="button" class="btn btn-info" (click)="$event.preventDefault();imgBypass()">je passe</button>
-    </p>
-    <p *ngIf="var_pasComplet == true">
-        <strong>Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
-    </p>
+        <button type="button" class="btn btn-info" (click)="$event.preventDefault();goImgBack()">Revenir à l'activité précédente</button>
+    </div>
 </div>
