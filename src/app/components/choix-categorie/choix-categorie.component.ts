@@ -24,7 +24,6 @@ export class ChoixCategorieComponent implements OnInit {
   getCategories = () => {
     this.api.getAllCategories().subscribe(
       data => {
-        console.log(data);
         this.var_categories = data;
       },
       error => {
@@ -37,7 +36,6 @@ export class ChoixCategorieComponent implements OnInit {
     this.api.getAllImages().subscribe(
       data => {
         this.var_images = data;
-        console.log(data);
       },
       error => {
         console.log(error);
@@ -54,8 +52,6 @@ export class ChoixCategorieComponent implements OnInit {
 
   getCat(cat){
     this.cat_libelle=cat.libelle;
-    console.log("libelle:");
-    console.log(this.cat_libelle);
     var cast = [this.cat_libelle];
     this.sharedService.setDataChoixCategorie(cast);
     this.router.navigate(['/categories']);

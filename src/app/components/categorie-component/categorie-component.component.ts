@@ -19,11 +19,20 @@ export class CategorieComponentComponent implements OnInit {
   
 
   ngOnInit() {
+    
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
     this.initImages(this.libelle_categorie_selectionne);
+    // si l'enfant a deja selectionné des activités d'autre catégories
+    console.log(this.sharedService.getDataCategorie());
+    /*
+    if(this.sharedService.getDataCategorie().length != undefined){
+      this.choix_images = this.sharedService.getDataCategorie();
+      console.log("selection recuperée !!! "+this.choix_images);
+    }
+    */
   }
 
   initImages(image){
