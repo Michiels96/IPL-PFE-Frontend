@@ -97,3 +97,15 @@ input[type=radio] {
     height: 3em;
     color: cyan; /* fonctionne pas*/
 }
+
+.green {
+    background-color: green;
+}
+
+.grey {
+    background-color: grey;
+}
+
+button.premier {
+    background-color: green;
+}

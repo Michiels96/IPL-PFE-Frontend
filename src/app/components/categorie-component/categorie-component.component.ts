@@ -14,6 +14,9 @@ export class CategorieComponentComponent implements OnInit {
   var_images;
   libelle_categorie_selectionne;
   choix_images = [];
+  isClickedYes = false;
+  isClickedNo = false;
+  isClickedWant = false;
 
   constructor(private api: ApiService,private route: ActivatedRoute) { }
 
