@@ -10,6 +10,9 @@ import { SharedService } from 'src/app/SharedService';
 })
 export class Choix3contentComponent implements OnInit {
 
+  var_activitesAimees;
+  var_activitesPasAimees;
+
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
