@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'src/app/SharedService';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ChoixCategorieComponent implements OnInit {
   var_images;
   cpt = 0;
   cat_libelle = "";
-  constructor(private api: ApiService,private router:Router) { }
+  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
@@ -51,7 +52,9 @@ export class ChoixCategorieComponent implements OnInit {
     this.cat_libelle=cat.libelle;
     console.log("libelle:");
     console.log(this.cat_libelle);
-    this.router.navigate(['/categories',{cat:this.cat_libelle}]);
+    var cast = [this.cat_libelle];
+    this.sharedService.setDataChoixCategorie(cast);
+    this.router.navigate(['/categories']);
   }
 
   compteurPlus() {

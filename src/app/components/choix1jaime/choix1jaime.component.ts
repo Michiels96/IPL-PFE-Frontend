@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix1jaime.component.css']
 })
 export class Choix1jaimeComponent implements OnInit {
+  var_imagesCategorieDemandees = [];
   var_imagesByLibelle = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
@@ -25,31 +26,18 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.var_imagesByLibelle = this.sharedService.getDataCategorie();
+    console.log(this.var_imagesByLibelle);
+    this.renameDescriptionForUrl();
     //this.getAllImagesByLibelle("deplacements");
-    this.getAllImagesByLibelle();
+    //this.getAllImagesByLibelle();
   }
 
-
-   getAllImagesByLibelle = () => {
-    this.api.getAllImages().subscribe(
-      data => {
-        var i = 1;
-        for(var key in data){
-          if(data[key].categorie_image == "deplacements"){
-            data[key].description = data[key].description+".jpg";
-            this.var_imagesByLibelle.push(data[key]); 
-            if(i == 1){
-              this.var_activiteCourante = data[key];
-            }
-            i++;
-          }
-        }
-        //console.log("AFTER TRI "+JSON.stringify(this.var_imagesByLibelle));
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    
+   renameDescriptionForUrl = () => {
+    for(var key in this.var_imagesByLibelle){
+      this.var_imagesByLibelle[key].description = this.var_imagesByLibelle[key].description+".jpg";
+    }
   }
 /*
   getAllImagesByLibelle = (libelle) => {
