@@ -2,12 +2,12 @@
     <h3>Pour terminer, <br/>dis nous si tu est content de la situation actuelle ou pas</h3>
     <h4>
         Activité 
-        <span *ngIf="var_questionsAimeesPass == false">aimée</span>
-        <span *ngIf="var_questionsAimeesPass == true">Pas aimée</span>
-
-        <span *ngIf="var_questionsAidePass == false">avec laquelle j'ai besoin d'aide</span>
-        <span *ngIf="var_questionsAidePass == true">avec laquelle je n'ai pas besoin d'aide</span>
+        <span *ngIf="var_activiteCourante.aime == true">aimée </span>
+        <span *ngIf="var_activiteCourante.aime == false">Pas aimée </span>
         nr°{{var_activiteCourante.image_id}}
+        <span *ngIf="var_activiteCourante.aide == true"> avec laquelle j'ai besoin d'aide</span>
+        <span *ngIf="var_activiteCourante.aide == false"> avec laquelle je n'ai pas besoin d'aide</span>
+        
     </h4>
     <p>
         <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
@@ -18,4 +18,6 @@
         <br/>
         <button type="button" class="btn btn-info" (click)="$event.preventDefault();goImgBack()">Revenir à l'activité précédente</button>
     </div>
+    <br/>
+    <button type="button" class="btn btn-secondary" (click)="$event.preventDefault();backToChoix2()">Retourner à la deuxième question</button>
 </div>

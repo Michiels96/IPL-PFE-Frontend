@@ -10,10 +10,9 @@ import { SharedService } from 'src/app/SharedService';
 })
 export class Choix1jaimeComponent implements OnInit {
   var_imagesByLibelle = [];
-  var_imagesAimees = [];
-  var_imagesPasAimees = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
-  var_activitesEnregistres = [this.var_imagesAimees, this.var_imagesPasAimees];
+  var_activitesEnregistres = [];
+
   var_activiteCourante;
   var_pasComplet;
 
@@ -42,7 +41,7 @@ export class Choix1jaimeComponent implements OnInit {
             i++;
           }
         }
-        console.log("AFTER TRI "+JSON.stringify(this.var_imagesByLibelle));
+        //console.log("AFTER TRI "+JSON.stringify(this.var_imagesByLibelle));
       },
       error => {
         console.log(error);
@@ -73,7 +72,8 @@ export class Choix1jaimeComponent implements OnInit {
   addImgToYes(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
-      this.var_activitesEnregistres[this.var_imagesAimees.push(activite)];
+      activite.aime = true;
+      this.var_activitesEnregistres.push(activite);
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
@@ -84,7 +84,8 @@ export class Choix1jaimeComponent implements OnInit {
   addImgToNo(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
-      this.var_activitesEnregistres[this.var_imagesPasAimees.push(activite)];
+      activite.aime = false;
+      this.var_activitesEnregistres.push(activite);
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
@@ -92,7 +93,7 @@ export class Choix1jaimeComponent implements OnInit {
     }
   }
 
-  imgBypass(){
+  imgByPass(){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
@@ -103,11 +104,12 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
   question1Terminee(){
-    if(this.var_imagesAimees.length == 0 && this.var_imagesPasAimees.length == 0){
+    if(this.var_activitesEnregistres.length == 0){
       this.var_pasComplet = true;
       this.var_activiteCourante = this.var_imagesByLibelle[1];
     }
     else{
+      console.log("CHOIX 1 "+JSON.stringify(this.var_activitesEnregistres));
       this.var_pasComplet = false;
       this.sharedService.setDataChoix1(this.var_activitesEnregistres);
       this.router.navigate(['/choixAide']);

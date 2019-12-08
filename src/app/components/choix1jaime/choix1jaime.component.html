@@ -11,9 +11,9 @@
         <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>
         <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">non</button>
         <br/>
-        <button type="button" class="btn btn-info" (click)="$event.preventDefault();imgBypass()">je passe</button>
+        <button type="button" class="btn btn-info" (click)="$event.preventDefault();imgByPass()">je passe</button>
     </p>
     <p *ngIf="var_pasComplet == true">
-        <strong>Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
+        <strong class="alert alert-danger" role="alert">Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
     </p>
 </div>
