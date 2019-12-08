@@ -10,8 +10,8 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./categorie-component.component.css']
 })
 export class CategorieComponentComponent implements OnInit {
-  
   var_images;
+  // libelle_categorie_selectionne: choix-categorie ==> categorie-component 
   libelle_categorie_selectionne;
   choix_images = [];
   

@@ -9,8 +9,8 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix1jaime.component.css']
 })
 export class Choix1jaimeComponent implements OnInit {
+  // var_imagesCategorieDemandees: categorie-component ==> choix1
   var_imagesCategorieDemandees = [];
-  var_imagesByLibelle = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
 
@@ -26,17 +26,21 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.var_imagesByLibelle = this.sharedService.getDataCategorie();
-    console.log(this.var_imagesByLibelle);
+    if(this.sharedService.getDataCategorie().length == undefined){
+      this.router.navigate(['/categories']);
+    }
+    this.var_imagesCategorieDemandees = this.sharedService.getDataCategorie();
+    console.log(this.var_imagesCategorieDemandees);
     this.renameDescriptionForUrl();
+    this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
     //this.getAllImagesByLibelle("deplacements");
     //this.getAllImagesByLibelle();
   }
 
     
    renameDescriptionForUrl = () => {
-    for(var key in this.var_imagesByLibelle){
-      this.var_imagesByLibelle[key].description = this.var_imagesByLibelle[key].description+".jpg";
+    for(var key in this.var_imagesCategorieDemandees){
+      this.var_imagesCategorieDemandees[key].description = this.var_imagesCategorieDemandees[key].description+".jpg";
     }
   }
 /*
@@ -46,13 +50,13 @@ export class Choix1jaimeComponent implements OnInit {
         var i = 1;
         for(var key in data){
           data[key].description = data[key].description+".jpg";
-          this.var_imagesByLibelle.push(data[key]); 
+          this.var_imagesCategorieDemandees.push(data[key]); 
           if(i == 1){
             this.var_activiteCourante = data[key];
           }
           i++;
         }
-        console.log(JSON.stringify(this.var_imagesByLibelle));
+        console.log(JSON.stringify(this.var_imagesCategorieDemandees));
       },
       error => {
         console.log(error);
@@ -61,37 +65,37 @@ export class Choix1jaimeComponent implements OnInit {
   }
 */
   addImgToYes(activite){
-    console.log(this.var_imagesByLibelle[this.var_i]);
-    if(this.var_i < this.var_imagesByLibelle.length){
+    console.log(this.var_imagesCategorieDemandees[this.var_i]);
+    if(this.var_i < this.var_imagesCategorieDemandees.length){
       this.var_pasComplet = false;
       activite.aime = true;
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];
-      if(this.var_i == this.var_imagesByLibelle.length){  
+      this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
+      if(this.var_i == this.var_imagesCategorieDemandees.length){  
         this.question1Terminee();
       }
     }
   }
 
   addImgToNo(activite){
-    if(this.var_i <= this.var_imagesByLibelle.length){
+    if(this.var_i <= this.var_imagesCategorieDemandees.length){
       this.var_pasComplet = false;
       activite.aime = false;
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
-      if(this.var_i == this.var_imagesByLibelle.length){  
+      this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];  
+      if(this.var_i == this.var_imagesCategorieDemandees.length){  
         this.question1Terminee();
       }
     }
   }
 
   imgByPass(){
-    if(this.var_i < this.var_imagesByLibelle.length){
+    if(this.var_i < this.var_imagesCategorieDemandees.length){
       this.var_pasComplet = false;
       this.var_i++;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
+      this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];  
     }
     else{
       this.question1Terminee();
@@ -106,7 +110,7 @@ export class Choix1jaimeComponent implements OnInit {
     if(this.var_activitesEnregistres.length == 0){
       this.var_pasComplet = true;
       this.var_i = 0;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];
+      this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
     }
     else{
       console.log("CHOIX 1 "+JSON.stringify(this.var_activitesEnregistres));

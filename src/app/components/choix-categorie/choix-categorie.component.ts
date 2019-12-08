@@ -13,9 +13,13 @@ export class ChoixCategorieComponent implements OnInit {
 
   var_categories;
   var_images;
-  cpt = 0;
-  cat_libelle = "";
-  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { }
+  cpt;
+  cat_libelle;
+
+  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
+    this.cpt = 0;
+    this.cat_libelle = "";
+  }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
