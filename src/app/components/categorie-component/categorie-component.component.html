@@ -1,87 +1,84 @@
 <div class="page">
 
-    <div id="fond"> 
-        <div class="ruban">     
-            <h2>{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
-        </div>     
-        <div class="ruban_gauche"></div>
-        <div class="ruban_droit"></div>
+        <div id="fond"> 
+            <div class="ruban">     
+                <h2>{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
+            </div>     
+            <div class="ruban_gauche"></div>
+            <div class="ruban_droit"></div>
+        </div>
+        
+        <br/>
+        <br />
+        <!--
+        <form [formGroup] = "saveInfoForm" (ngSubmit)="onSubmit()"> Balise form
+        <table class="table">
+            <li style="list-style-type: none;" *ngFor="let img of var_images;">
+                    <div *ngIf="libelle_categorie_selectionne === img.categorie_image;">
+                        <thead>
+                            <tr>
+                                <th>Description image</th>
+                                <th>Image</th>
+                                <th>Choix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                Ligne en dessous en commentaire, il faut le mettre pour pouvoir recuperer les infos dans le ts (pas encore fait dans le ts)-->
+                                    <!-- [formControlName]="description" [name]="description" class="form-control" -->
+                                    <!-- Quand j'essaye de mettre cette ligne dans le td bah y a rien qui s'affiche, ca beug 
+                                    je suis obligé de le mettre dans le td. -->
+                            <!--
+                                <td [formControlName]="description" [name]="description" class="form-control">{{img.description.toUpperCase()}}</td>
+                                <td [formControlName]="image" [name]="image" class="form-control"><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
+                                <td>
+                                    <select [formControlName]="choix" [name]="choix" class="form-control">
+                                        <option value=""></option>
+                                        <option value="oui">Oui</option>
+                                        <option value="non">Non</option>
+                                        <option value="jevoudrais">Je voudrais le faire</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </div>
+                </li>
+            </table>
+        </form>
+        <button type="submit" name="Valider">Valider</button>-->
     </div>
     
-    <br/>
-    <br />
-    <!---
-    <form [formGroup] = "saveInfoForm" (ngSubmit)="onSubmit()"> Balise form-->
-        <!--
-    <table class="table">
-        <li style="list-style-type: none;" *ngFor="let img of var_images;">
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- <table class="table">
+            <li style="list-style-type: none;" *ngFor="let img of var_images;">
                 <div *ngIf="libelle_categorie_selectionne === img.categorie_image;">
-                    <thead>
+                <thead>
+                    <tr>
+                        <th>Description image</th>
+                        <th>Image</th>
+                        <th>Oui</th>
+                        <th>Non</th>
+                        <th>Je voudrais le faire</th>
+                    </tr>
+                </thead>
+                <tbody>
                         <tr>
-                            <th>Description image</th>
-                            <th>Image</th>
-                            <th>Choix</th>
+                            <td>{{img.description.toUpperCase()}}</td>
+                            <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
+                            <td><input type="radio" name="oui"/></td>
+                            <td><input type="radio" name="non"/></td>
+                            <td><input type="radio" name="jevoudrais"/></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <tr>
-                             Ligne en dessous en commentaire, il faut le mettre pour pouvoir recuperer les infos dans le ts (pas encore fait dans le ts)-->
-                                <!-- [formControlName]="description" [name]="description" class="form-control" -->
-                                <!-- Quand j'essaye de mettre cette ligne dans le td bah y a rien qui s'affiche, ca beug 
-                                je suis obligé de le mettre dans le td. -->
-                        <!--
-                            <td [formControlName]="description" [name]="description" class="form-control">{{img.description.toUpperCase()}}</td>
-                            <td [formControlName]="image" [name]="image" class="form-control"><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
-                            <td>
-                                <select [formControlName]="choix" [name]="choix" class="form-control">
-                                    <option value=""></option>
-                                    <option value="oui">Oui</option>
-                                    <option value="non">Non</option>
-                                    <option value="jevoudrais">Je voudrais le faire</option>
-                                </select>
-                            </td>
-                        </tr>
-                    
                     </tbody>
                 </div>
             </li>
-        </table>
-    </form>
-    -->
-    <button type="submit" name="Valider">Valider</button>
-    
-</div>
-
-
-
-
-
-
-
-
-
-<!-- <table class="table">
-        <li style="list-style-type: none;" *ngFor="let img of var_images;">
-            <div *ngIf="libelle_categorie_selectionne === img.categorie_image;">
-            <thead>
-                <tr>
-                    <th>Description image</th>
-                    <th>Image</th>
-                    <th>Oui</th>
-                    <th>Non</th>
-                    <th>Je voudrais le faire</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>{{img.description.toUpperCase()}}</td>
-                        <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
-                        <td><input type="radio" name="oui"/></td>
-                        <td><input type="radio" name="non"/></td>
-                        <td><input type="radio" name="jevoudrais"/></td>
-                    </tr>
-                </tbody>
-            </div>
-        </li>
-    </table> -->
+        </table> -->

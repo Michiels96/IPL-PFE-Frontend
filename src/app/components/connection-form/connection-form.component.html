@@ -1,16 +1,4 @@
-<div *ngIf='isTokenValid; else not_connected'>
- <h2>Bonjour {{connexion.controls["username"].value}} !</h2>
- <p>
-  <button class="btn btn-lg btn-primary btn-block" (click)="deconnexion()">Se déconnecter</button>
- </p>
- <p>
-  <select  [(ngModel)]="kid_selected">
-    <option *ngFor="let enfant of listeEnfants" [value]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
-  </select>
-  </p>
-  <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
-</div>
-<ng-template #not_connected>
+
 <div>
 <form class="form-signin" [formGroup]="connexion" (ngSubmit)="tryToConnect()">
     <h3>Connexion educateur</h3>
@@ -41,6 +29,6 @@
      </label> <br>
 <button class="btn btn-lg btn-primary btn-block" type='submit'>S'inscrire'</button>
 </form></div>
-</ng-template>
+
 
 

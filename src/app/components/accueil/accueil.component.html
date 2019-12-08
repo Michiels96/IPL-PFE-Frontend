@@ -8,8 +8,8 @@
     <br />
 
 <div class="select_kid" *ngIf='isNotConnected; else not_connected'>
-    <select [(ngModel)]="kid_selected">
-        <option *ngFor="let enfant of listeEnfants" [value]="enfant"> {{enfant.nom}} {{enfant.prenom}}</option>
+    <select  [(ngModel)]="kid_selected">
+        <option *ngFor="let enfant of listeEnfants" [ngValue]="enfant"> {{enfant.nom}} {{enfant.prenom}}</option>
     </select>
     <br>
     <button class="btn btn-lg btn-primary" style="background-color: blue;" (click)="connecterEnfant()">Valider </button>
