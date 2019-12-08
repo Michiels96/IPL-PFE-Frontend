@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth/auth.service';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
@@ -10,7 +11,7 @@ export class AccueilComponent implements OnInit {
   listeEnfants;
   kid_selected;
   isNotConnected=true;
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,public authService: AuthService) { }
 
   ngOnInit() {
     this.api.getAllEnfants().subscribe(
@@ -35,6 +36,7 @@ export class AccueilComponent implements OnInit {
         this.kid_selected = data;
         if(this.kid_selected.connecte==true){
           this.isNotConnected=false;
+          this.authService.loginKid();
           console.log("connecté")
         }
         

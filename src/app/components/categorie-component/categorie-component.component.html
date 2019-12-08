@@ -1,19 +1,19 @@
 <div class="page">
 
-    <div id="fond"> 
-        <div class="ruban">     
-            <h2>{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
-        </div>     
-        <div class="ruban_gauche"></div>
-        <div class="ruban_droit"></div>
-    </div>
+        <div id="fond"> 
+            <div class="ruban">     
+                <h2>{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
+            </div>     
+            <div class="ruban_gauche"></div>
+            <div class="ruban_droit"></div>
+        </div>
+        
+        <br/>
+        <br />
     
-    <br/>
-    <br />
-    
-    <form [formGroup] = "saveInfoForm" (ngSubmit)="onSubmit()">
-    <table class="table">
-        <li style="list-style-type: none;" *ngFor="let img of choix_images;">
+    <form (ngSubmit)="onSubmit()">
+        <table class="table">
+            <li style="list-style-type: none;" *ngFor="let img of choix_images;">
                 <thead>
                     <tr>
                         <th>Description image</th>
@@ -22,16 +22,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr>   
                         <td>{{img.description.toUpperCase()}}</td>
                         <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
                         <td>
-                            <select ng-model="choix" name="choix" class="form-control">
-                            <option *ngFor="let opt of options" value="{{opt.value}}" (click)="select()">{{opt.name}}</option>
-                                    <!-- <option value="oui">Oui</option>
-                                    <option value="non">Non</option>
-                                    <option value="jevoudrais">Je voudrais le faire</option> -->
-                            </select>
+                            <button value="oui" (click)="setChoix(img.image_id, 'oui')">Oui</button>
+                            <button value="non" (click)="setChoix(img.image_id, 'non')">Non</button>
+                            <button value="jevoudrais" (click)="setChoix(img.image_id, 'je voudrais')">Je voudrais le faire</button>
                         </td>
                     </tr>
                 </tbody>

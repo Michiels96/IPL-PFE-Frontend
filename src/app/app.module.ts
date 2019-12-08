@@ -23,10 +23,13 @@ import { CategorieComponentComponent } from './components/categorie-component/ca
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { EducateurUIComponent } from './components/educateur-ui/educateur-ui.component';
 import { AuthGuard } from './auth/auth/auth.guard';
+import { KidAuthGuard } from './auth/auth/kid-auth.guard';
 import { Choix1jaimeComponent } from './components/choix1jaime/choix1jaime.component';
 import { Choix2aideComponent } from './components/choix2aide/choix2aide.component';
 import { Choix3contentComponent } from './components/choix3content/choix3content.component';
 import { SharedService } from './SharedService';
+import { AuthentificatedComponent } from './components/authentificated/authentificated.component';
+import { DeconnexionElementComponent } from './components/deconnexion-element/deconnexion-element.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { SharedService } from './SharedService';
     Choix1jaimeComponent,
     Choix2aideComponent,
     Choix3contentComponent,
+    AuthentificatedComponent,
+    DeconnexionElementComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,13 +66,16 @@ import { SharedService } from './SharedService';
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
       { path: '', component: AccueilComponent },
-      { path: 'choix-categorie', component: ChoixCategorieComponent },
-      { path: 'categories', component: CategorieComponentComponent },
+      //{ path: 'choix-categorie', component: ChoixCategorieComponent,canActivate: [KidAuthGuard] },
+      { path: 'choix-categorie', component: ChoixCategorieComponent},
+      //{ path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard] },
+      { path: 'categories', component: CategorieComponentComponent},
       { path: 'connexion', component: ConnectionFormComponent },
-      { path: 'ui', component: EducateurUIComponent },
-      { path: 'choixJaime', component: Choix1jaimeComponent },
-      { path: 'choixAide', component: Choix2aideComponent },
-      { path: 'choixContent', component: Choix3contentComponent },
+      { path: 'auth', component: AuthentificatedComponent,canActivate: [AuthGuard] },
+      { path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard] },
+      { path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard] },
+      { path: 'choixAide', component: Choix2aideComponent,canActivate: [KidAuthGuard] },
+      { path: 'choixContent', component: Choix3contentComponent,canActivate: [KidAuthGuard] },
     ])
   ],
   providers: [SharedService],

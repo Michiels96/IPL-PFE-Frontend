@@ -12,9 +12,8 @@ export class ChoixCategorieComponent implements OnInit {
 
   var_categories;
   var_images;
-  cpt=0;
-
-  cat_libelle="";
+  cpt = 0;
+  cat_libelle = "";
   constructor(private api: ApiService,private router:Router) { }
 
   getCategories = () => {

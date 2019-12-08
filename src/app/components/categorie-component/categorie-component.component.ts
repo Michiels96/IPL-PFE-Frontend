@@ -4,8 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { ReactiveFormsModule } from '@angular/forms';
-
 @Component({
   selector: 'app-categorie-component',
   templateUrl: './categorie-component.component.html',
@@ -15,10 +13,8 @@ export class CategorieComponentComponent implements OnInit {
   
   var_images;
   libelle_categorie_selectionne;
-
   choix_images = [];
-  choix;
-
+  
   options = [
     {name: "Fais un choix", value: ""},
     {name: "Oui", value: "oui"},
@@ -26,30 +22,11 @@ export class CategorieComponentComponent implements OnInit {
     {name: "Je voudrais", value: "voudrais"}
   ]
 
-  saveInfoForm = new FormGroup({
-    description : new FormControl(''),
-    image : new FormControl(''),
-    choix : new FormControl('')
-  });
-
-  constructor(private api: ApiService,private route: ActivatedRoute, private fb: FormBuilder){ }
+  constructor(private api: ApiService,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.libelle_categorie_selectionne=this.route.snapshot.paramMap.get('cat');
-    //this.getImages();
     this.initImages(this.libelle_categorie_selectionne);
-  }
-
-  getImages = () => {
-    this.api.getAllImages().subscribe(
-      data => {
-        this.var_images = data;
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    )
   }
 
   initImages(image){
@@ -68,6 +45,11 @@ export class CategorieComponentComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  setChoix(i, value){
+    this.choix_images[i-1]['choix'] = value;
+    console.log(this.choix_images);
   }
 
   onSubmit() {
