@@ -22,7 +22,9 @@ export class CategorieComponentComponent implements OnInit {
     {name: "Je voudrais", value: "voudrais"}
   ]
 
-  constructor(private api: ApiService,private route: ActivatedRoute) { }
+  bntStyle: string;  
+  constructor(private api: ApiService,private route: ActivatedRoute) { this. bntStyle = 'btn-default';}
+  
 
   ngOnInit() {
     this.libelle_categorie_selectionne=this.route.snapshot.paramMap.get('cat');
@@ -46,15 +48,17 @@ export class CategorieComponentComponent implements OnInit {
       }
     )
   }
-
+  
   setChoix(i, value){
-    this.choix_images[i-1]['choix'] = value;
+    this.choix_images[i]['choix'] = value;
     console.log(this.choix_images);
   }
 
   onSubmit() {
 
-    // console.log("Données du formulaire : ", this.saveInfoForm.value);
+    console.log("Choix images : ", this.choix_images);
+    this.bntStyle = 'btn-change';
+
   }
 
 }

@@ -97,3 +97,14 @@ input[type=radio] {
     height: 3em;
     color: cyan; /* fonctionne pas*/
 }
+
+.btn-default {
+    color: white;
+    background-color: blue;
+  
+  }
+  
+  .btn-change {
+    color: Red;
+    background-color: white;
+  }
