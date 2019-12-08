@@ -88,7 +88,7 @@ export class Choix3contentComponent implements OnInit {
   backToChoix2(){
     //alert('Attention tes réponses à la question 2 et 3 vont être perdues!');
     var demande = prompt('Attention tes réponses à la question 2 et 3 vont être perdues! Est tu sur? (oui/non)');
-    if(demande == "o" || demande == "oui" || demande == "O" || demande == "Oui" || demande == "OUI"){
+    if(demande == "o" || demande == "oui" || demande == "O" || demande == "Oui" || demande == "OUI" || demande == ""){
       this.router.navigate(['/choixAide']);
     }
   }
