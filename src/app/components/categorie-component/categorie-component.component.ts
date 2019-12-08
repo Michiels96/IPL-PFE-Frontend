@@ -41,7 +41,6 @@ export class CategorieComponentComponent implements OnInit {
             this.choix_images.push(img);
           }
         }
-        console.log(this.choix_images);
       },
       error => {
         console.log(error);
