@@ -4,6 +4,21 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedin = false;
+  isKidLoggedin= false;
 
-  constructor() { }
+    login() {
+        this.isLoggedin = true;
+    }
+
+    logout() {
+        this.isLoggedin = false;
+    }
+    loginKid() {
+      this.isKidLoggedin = true;
+  }
+
+    logoutKid() {
+        this.isKidLoggedin = false;
+    }
 }
