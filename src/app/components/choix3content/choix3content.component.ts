@@ -15,7 +15,8 @@ export class Choix3contentComponent implements OnInit {
 
   // var_activitesContentEnregistres: JSON de choix3 ==> ...
   var_activitesContentEnregistres = [];
-
+  
+  
   var_i;
   imgBack;
   var_activiteCourante;

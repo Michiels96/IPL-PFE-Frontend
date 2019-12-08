@@ -2,7 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-categorie-component',
@@ -13,11 +15,34 @@ export class CategorieComponentComponent implements OnInit {
   
   var_images;
   libelle_categorie_selectionne;
-  constructor(private api: ApiService,private route: ActivatedRoute) { }
+
+  choix_images = [];
+  choix;
+
+  options = [
+    {name: "Fais un choix", value: ""},
+    {name: "Oui", value: "oui"},
+    {name: "Non", value: "non"},
+    {name: "Je voudrais", value: "voudrais"}
+  ]
+
+  saveInfoForm = new FormGroup({
+    description : new FormControl(''),
+    image : new FormControl(''),
+    choix : new FormControl('')
+  });
+
+  constructor(private api: ApiService,private route: ActivatedRoute, private fb: FormBuilder){ }
 
   ngOnInit() {
     this.libelle_categorie_selectionne=this.route.snapshot.paramMap.get('cat');
-    this.getImages();
+    //this.getImages();
+    this.initImages(this.libelle_categorie_selectionne);
+    // this.saveInfoForm = this.fb.group({
+    //   description: this.saveInfoForm.get('description').value,
+    //   image: this.saveInfoForm.get('image').value,
+    //   choix: this.saveInfoForm.get('choix').value,
+    // })
   }
 
   getImages = () => {
@@ -32,8 +57,27 @@ export class CategorieComponentComponent implements OnInit {
     )
   }
 
+  initImages(image){
+    this.api.getAllImages().subscribe(
+      data => {
+        this.var_images = data;
+        for(let img of this.var_images){
+          if(img.categorie_image == image){
+            img['choix'] = null;
+            this.choix_images.push(img);
+          }
+        }
+        console.log(this.choix_images);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   onSubmit() {
 
+    // console.log("Données du formulaire : ", this.saveInfoForm.value);
   }
 
 }
