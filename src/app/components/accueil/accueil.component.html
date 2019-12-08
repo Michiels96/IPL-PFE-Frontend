@@ -3,7 +3,7 @@
 </div>
 
 <div style="text-align:center">
-    <button class="btn btn-lg btn-primary" style="background-color: blue;" [routerLink]="['/connexion']" >espace educateur</button>
+    <button class="btn btn-lg btn-primary" style="background-color: blue;" [routerLink]="['/connexion']" >Connexion</button>
     <br />
     <br />
 
@@ -12,7 +12,7 @@
         <option *ngFor="let enfant of listeEnfants" [ngValue]="enfant"> {{enfant.nom}} {{enfant.prenom}}</option>
     </select>
     <br>
-    <button class="btn btn-lg btn-primary" style="background-color: blue;" (click)="connecterEnfant()">Valider </button>
+    <button class="btn btn-lg btn-primary" style="background-color: blue;" (click)="connecterEnfant()">C'est moi ! </button>
 </div>
 <br>
 <ng-template #not_connected>
