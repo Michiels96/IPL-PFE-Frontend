@@ -10,8 +10,9 @@
     
     <br/>
     <br />
-    
-    <form [formGroup] = "saveInfoForm" (ngSubmit)="onSubmit()"> <!--Balise form-->
+    <!---
+    <form [formGroup] = "saveInfoForm" (ngSubmit)="onSubmit()"> Balise form-->
+        <!--
     <table class="table">
         <li style="list-style-type: none;" *ngFor="let img of var_images;">
                 <div *ngIf="libelle_categorie_selectionne === img.categorie_image;">
@@ -23,9 +24,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!---
+                        
                         <tr>
-                            <!-- Ligne en dessous en commentaire, il faut le mettre pour pouvoir recuperer les infos dans le ts (pas encore fait dans le ts)-->
+                             Ligne en dessous en commentaire, il faut le mettre pour pouvoir recuperer les infos dans le ts (pas encore fait dans le ts)-->
                                 <!-- [formControlName]="description" [name]="description" class="form-control" -->
                                 <!-- Quand j'essaye de mettre cette ligne dans le td bah y a rien qui s'affiche, ca beug 
                                 je suis obligé de le mettre dans le td. -->
@@ -41,12 +42,13 @@
                                 </select>
                             </td>
                         </tr>
-                    -->
+                    
                     </tbody>
                 </div>
             </li>
         </table>
     </form>
+    -->
     <button type="submit" name="Valider">Valider</button>
     
 </div>
