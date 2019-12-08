@@ -1,5 +1,5 @@
-.page {
-    background-color: bisque;
+html {
+    background-color: beige;
 }
 
 /*
@@ -97,7 +97,7 @@ h3 {
 
 .previous {
     right: 90%;
-    margin: 60px;
+    margin: 40px;
     position: fixed; 
     border-style: ridge;
     border-radius: 50px;

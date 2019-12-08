@@ -1,3 +1,4 @@
+<html>
 <div class="page">
         <button class="previous" [routerLink]="['/']" title="Précédent">Précédent</button>
 
@@ -18,10 +19,9 @@
         <div *ngFor="let cat of var_categories">
             <li style="list-style-type: none;" *ngFor="let img of var_images;">
                 <div *ngIf="cat.libelle === img.categorie_image; else break">
-                    <div *ngIf="cpt == 0;">
+                    <div *ngIf="cpt == 0">
                         {{compteurPlus()}}
                         <figure>
-                                <!-- [routerLink]="['/categories',{cat:cat_libelle}]" -->
                             <strong><a style="background-color: beige;" [routerLink]="['/categories',{cat:cat_libelle}]" (click)="$event.preventDefault();getCat(cat)">
                                 <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
                                 <figcaption>{{cat.libelle}}</figcaption>
@@ -37,3 +37,4 @@
         </div>
     </div> 
 </div>
+</html>
