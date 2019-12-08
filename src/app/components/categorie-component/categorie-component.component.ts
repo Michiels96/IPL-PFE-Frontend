@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-categorie-component',
   templateUrl: './categorie-component.component.html',
@@ -28,6 +30,10 @@ export class CategorieComponentComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  onSubmit() {
+
   }
 
 }
