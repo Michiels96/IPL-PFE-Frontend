@@ -20,11 +20,11 @@ export class SharedService {
     - choix-categorie ==> categorie-component
     */
     getDataChoixCategorie(){
-        return this.dataCategorie;
+        return this.dataChoixCategorie;
     }
 
     setDataChoixCategorie(val: object){
-        this.dataCategorie = val;
+        this.dataChoixCategorie = val;
     }
     /*************************/
 

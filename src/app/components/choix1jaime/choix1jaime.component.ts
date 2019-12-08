@@ -29,7 +29,12 @@ export class Choix1jaimeComponent implements OnInit {
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
-    this.var_imagesCategorieDemandees = this.sharedService.getDataCategorie();
+    // filtrage des images avec le champ 'choix' à 'oui'
+    for(var activite of this.sharedService.getDataCategorie()){
+      if(activite.choix == "oui"){
+        this.var_imagesCategorieDemandees.push(activite);
+      }
+    }
     console.log(this.var_imagesCategorieDemandees);
     this.renameDescriptionForUrl();
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
