@@ -1,5 +1,8 @@
-<div style="text-align: center;">
+<div class="page">
     <h3>Maintenant par rapport à ces activités, <br/>dis nous si tu a besoin d'aide pour celles-ci ou pas</h3>
+    <div class="alert alert-secondary" role="alert">
+        <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>    
+    </div>
     <h4>
         Activité 
         <span *ngIf="var_activiteCourante.aime == true">aimée</span>
@@ -7,7 +10,7 @@
         nr°{{var_activiteCourante.image_id}}
     </h4>
     <p>
-        <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
+        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
     </p>
     <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Besoin d'aide</button>
     <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas besoin d'aide</button>
@@ -16,5 +19,5 @@
         <button type="button" class="btn btn-info" (click)="$event.preventDefault();goImgBack()">Revenir à l'activité précédente</button>
     </div>
     <br/>
-    <button type="button" class="btn btn-secondary" (click)="$event.preventDefault();backToChoix1()">Retourner à la première question</button>
+    <button type="button" class="previous" (click)="$event.preventDefault();backToChoix1()">Retourner à la première question</button>
 </div>

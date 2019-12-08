@@ -98,14 +98,30 @@ input[type=radio] {
     color: cyan; /* fonctionne pas*/
 }
 
-.green {
-    background-color: green;
+/* .oui:focus {
+    background-color: red;
 }
 
-.grey {
-    background-color: grey;
+.non:active {
+    background-color: red;
 }
 
-button.premier {
-    background-color: green;
+.voudrais:active {
+    background-color: red;
+} */
+
+button:focus {
+    background-color: greenyellow;
+    
+}
+
+.previous {
+    right: 90%;
+    margin: 40px;
+    position: fixed; 
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: dodgerblue;
+    color: dodgerblue;
+    background-color: floralwhite;
 }

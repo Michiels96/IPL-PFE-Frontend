@@ -1,17 +1,21 @@
-<div style="text-align: center;">
+<div class="page">
     <div *ngIf="var_activiteCourante != null">
         <h3>Dis nous si tu aimes ou n'aimes pas cette activité</h3>
+        <div class="alert alert-secondary" role="alert">
+            <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>
+        </div>
         <h4>Activité nr°{{var_activiteCourante.image_id}}</h4>
         <p>
-            <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.description}}"/>
+            <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.description}}"/>
         </p>
     </div>
-    
     <p>
         <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>
         <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">non</button>
         <br/>
         <button type="button" class="btn btn-info" (click)="$event.preventDefault();imgByPass()">je passe</button>
+        <br/>
+        <button type="button" class="previous" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
     </p>
     <p *ngIf="var_pasComplet == true">
         <strong class="alert alert-danger" role="alert">Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>

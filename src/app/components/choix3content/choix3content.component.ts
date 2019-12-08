@@ -9,13 +9,15 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix3content.component.css']
 })
 export class Choix3contentComponent implements OnInit {
+  // var_reponsesQ2: choix2 ==> choix3 
   var_reponsesQ2 = [];
 
   var_listeQ3 = [];
 
-  // var_activitesContentEnregistres: JSON de choix3 ==> ...
+  // var_activitesContentEnregistres: choix3 ==> ...
   var_activitesContentEnregistres = [];
-
+  
+  
   var_i;
   imgBack;
   var_activiteCourante;
@@ -40,16 +42,12 @@ export class Choix3contentComponent implements OnInit {
 
 
   addImgToYes(activite){
-    console.log("CONTENT "+JSON.stringify(activite));
     this.imgBack = true;
     this.var_i++;
  
     activite.content = true;
     this.var_activitesContentEnregistres.push(activite);
     this.var_activiteCourante = this.var_listeQ3[this.var_i];
-    
-    console.log("var i "+this.var_i);
-    console.log("calcul "+this.var_activitesContentEnregistres.length);
 
     if(this.var_i == this.var_listeQ3.length){
       this.question3Terminee();
@@ -57,16 +55,12 @@ export class Choix3contentComponent implements OnInit {
   }
 
   addImgToNo(activite){
-    console.log("PAS CONTENT "+JSON.stringify(activite));
     this.imgBack = true;
     this.var_i++;
  
     activite.content = false;
     this.var_activitesContentEnregistres.push(activite);
     this.var_activiteCourante = this.var_listeQ3[this.var_i];
-    
-    console.log("var i "+this.var_i);
-    console.log("calcul "+this.var_activitesContentEnregistres.length);
 
     if(this.var_i == this.var_listeQ3.length){
       this.question3Terminee();
@@ -88,14 +82,14 @@ export class Choix3contentComponent implements OnInit {
   backToChoix2(){
     //alert('Attention tes réponses à la question 2 et 3 vont être perdues!');
     var demande = prompt('Attention tes réponses à la question 2 et 3 vont être perdues! Est tu sur? (oui/non)');
-    if(demande == "o" || demande == "oui" || demande == "O" || demande == "Oui" || demande == "OUI"){
+    if(demande == "o" || demande == "oui" || demande == "O" || demande == "Oui" || demande == "OUI" || demande == ""){
       this.router.navigate(['/choixAide']);
     }
   }
 
   question3Terminee(){
     console.log("terminé!");
-    console.log(this.var_activitesContentEnregistres);
+    console.log("CHOIX 3 "+this.var_activitesContentEnregistres);
   }
 
 }
