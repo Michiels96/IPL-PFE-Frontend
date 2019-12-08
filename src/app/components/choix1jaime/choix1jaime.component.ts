@@ -38,7 +38,7 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
     
-   renameDescriptionForUrl = () => {
+  renameDescriptionForUrl = () => {
     for(var key in this.var_imagesCategorieDemandees){
       this.var_imagesCategorieDemandees[key].description = this.var_imagesCategorieDemandees[key].description+".jpg";
     }
