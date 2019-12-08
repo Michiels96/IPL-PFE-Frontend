@@ -14,13 +14,6 @@ export class CategorieComponentComponent implements OnInit {
   var_images;
   libelle_categorie_selectionne;
   choix_images = [];
-  
-  options = [
-    {name: "Fais un choix", value: ""},
-    {name: "Oui", value: "oui"},
-    {name: "Non", value: "non"},
-    {name: "Je voudrais", value: "voudrais"}
-  ]
 
   constructor(private api: ApiService,private route: ActivatedRoute) { }
 
