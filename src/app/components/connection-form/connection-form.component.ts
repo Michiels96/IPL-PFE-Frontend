@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth/auth.service';
+
 
 
 @Component({
@@ -15,8 +17,6 @@ export class ConnectionFormComponent implements OnInit {
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();*/
   isTokenValid=false;
-  listeEnfants;
-  kid_selected;
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -27,12 +27,12 @@ export class ConnectionFormComponent implements OnInit {
     password: new FormControl(''),
     email: new FormControl('')
   });
-  constructor(private api: ApiService,private router:Router) { 
+  constructor(public authService: AuthService,private api: ApiService,private router:Router) { 
     
   }
 
   ngOnInit() {
-    this.kid_selected=-1;
+   
   }
 
   deconnexion(){
@@ -47,12 +47,14 @@ export class ConnectionFormComponent implements OnInit {
         console.log(data);
         let regex = /\d/;
         if(regex.test(data.token)){
+          
+          this.authService.login();
           this.isTokenValid=true;
-          this.getEnfants();
+          this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
         }
         else{
           this.isTokenValid=false;
-          
+          this.router.navigate(['/connexion']);
         }
       },
       error => {
@@ -80,26 +82,4 @@ export class ConnectionFormComponent implements OnInit {
     )
   }
 
-  getEnfants = () => {
-   
-    this.api.getAllEnfants().subscribe(
-      data => {
-        //console.log(data);
-        this.listeEnfants = data;
-        console.log("enfant");
-        console.log(this.listeEnfants);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-  confirmer(){
-    console.log("enfant choisi");
-    console.log(this.kid_selected);
-    if( this.isTokenValid==true){
-      this.router.navigate(['/ui',{id:this.kid_selected}])
-      this.isTokenValid=false;
-    }
-  }
 }
