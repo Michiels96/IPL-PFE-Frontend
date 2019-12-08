@@ -16,9 +16,12 @@ export class Choix1jaimeComponent implements OnInit {
   var_activiteCourante;
   var_pasComplet;
 
+  var_i;
+
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.var_pasComplet = false;
     this.var_activiteCourante = null;
+    this.var_i = 0;
   }
   
   ngOnInit() {
@@ -70,11 +73,13 @@ export class Choix1jaimeComponent implements OnInit {
   }
 */
   addImgToYes(activite){
-    if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
+    console.log(this.var_imagesByLibelle[this.var_activiteCourante.image_id]);
+    if(this.var_i < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
       activite.aime = true;
       this.var_activitesEnregistres.push(activite);
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
+      this.var_i++;
+      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
     }
     else{
       this.question1Terminee();
@@ -82,11 +87,12 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
   addImgToNo(activite){
-    if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
+    if(this.var_i <= this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
       activite.aime = false;
       this.var_activitesEnregistres.push(activite);
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
+      this.var_i++;
+      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
     }
     else{
       this.question1Terminee();
@@ -94,19 +100,25 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
   imgByPass(){
-    if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
+    if(this.var_i < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
+      this.var_i++;
+      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
     }
     else{
       this.question1Terminee();
     }
   }
 
+  backToChoixCategorie(){
+    
+  }
+
   question1Terminee(){
     if(this.var_activitesEnregistres.length == 0){
       this.var_pasComplet = true;
-      this.var_activiteCourante = this.var_imagesByLibelle[1];
+      this.var_i = 0;
+      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];
     }
     else{
       console.log("CHOIX 1 "+JSON.stringify(this.var_activitesEnregistres));
