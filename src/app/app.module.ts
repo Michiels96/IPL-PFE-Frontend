@@ -73,7 +73,8 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
       { path: 'connexion', component: ConnectionFormComponent },
       { path: 'auth', component: AuthentificatedComponent,canActivate: [AuthGuard] },
       { path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard] },
-      { path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard] },
+      // { path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard] },
+      { path: 'choixJaime', component: Choix1jaimeComponent},
       { path: 'choixAide', component: Choix2aideComponent,canActivate: [KidAuthGuard] },
       { path: 'choixContent', component: Choix3contentComponent,canActivate: [KidAuthGuard] },
     ])

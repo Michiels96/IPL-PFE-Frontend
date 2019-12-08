@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -15,15 +14,7 @@ export class CategorieComponentComponent implements OnInit {
   libelle_categorie_selectionne;
   choix_images = [];
   
-  options = [
-    {name: "Fais un choix", value: ""},
-    {name: "Oui", value: "oui"},
-    {name: "Non", value: "non"},
-    {name: "Je voudrais", value: "voudrais"}
-  ]
-
-  bntStyle: string;  
-  constructor(private api: ApiService,private route: ActivatedRoute) { this. bntStyle = 'btn-default';}
+  constructor(private api: ApiService,private route: ActivatedRoute, private router: Router) {}
   
 
   ngOnInit() {
@@ -56,7 +47,7 @@ export class CategorieComponentComponent implements OnInit {
   onSubmit() {
 
     console.log("Choix images : ", this.choix_images);
-    this.bntStyle = 'btn-change';
+    this.router.navigate(['/choixJaime']);
 
   }
 
