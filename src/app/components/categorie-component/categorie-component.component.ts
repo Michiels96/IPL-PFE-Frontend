@@ -14,6 +14,7 @@ export class CategorieComponentComponent implements OnInit {
   // libelle_categorie_selectionne: choix-categorie ==> categorie-component 
   libelle_categorie_selectionne;
   choix_images = [];
+
   
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {}
   
@@ -22,17 +23,17 @@ export class CategorieComponentComponent implements OnInit {
     
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
     if(this.libelle_categorie_selectionne == null){
+      this.sharedService.setDataCategorie(null);
       this.router.navigate(['/choix-categorie']);
     }
+    console.log(this.sharedService.getDataCategorie());
     this.initImages(this.libelle_categorie_selectionne);
     // si l'enfant a deja selectionné des activités d'autre catégories
-    console.log(this.sharedService.getDataCategorie());
-    /*
-    if(this.sharedService.getDataCategorie().length != undefined){
+    
+    if(this.sharedService.getDataCategorie().length != 1){
       this.choix_images = this.sharedService.getDataCategorie();
       console.log("selection recuperée !!! "+this.choix_images);
     }
-    */
   }
 
   initImages(image){
