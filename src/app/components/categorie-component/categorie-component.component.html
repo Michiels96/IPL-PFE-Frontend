@@ -13,7 +13,7 @@
     
     <form (ngSubmit)="onSubmit()">
         <table class="table">
-            <li style="list-style-type: none;" *ngFor="let img of choix_images;">
+            <li style="list-style-type: none;" *ngFor="let img of choix_images; let i = index">
                 <thead>
                     <tr>
                         <th>Description image</th>
@@ -26,9 +26,9 @@
                         <td>{{img.description.toUpperCase()}}</td>
                         <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
                         <td>
-                            <button value="oui" (click)="setChoix(img.image_id, 'oui')">Oui</button>
-                            <button value="non" (click)="setChoix(img.image_id, 'non')">Non</button>
-                            <button value="jevoudrais" (click)="setChoix(img.image_id, 'je voudrais')">Je voudrais le faire</button>
+                            <button value="oui" (click)="setChoix(i, 'oui')">Oui</button>
+                            <button value="non" (click)="setChoix(i, 'non')">Non</button>
+                            <button value="jevoudrais" (click)="setChoix(i, 'je voudrais')">Je voudrais le faire</button>
                         </td>
                     </tr>
                 </tbody>

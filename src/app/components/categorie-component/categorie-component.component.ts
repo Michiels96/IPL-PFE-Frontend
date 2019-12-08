@@ -39,7 +39,6 @@ export class CategorieComponentComponent implements OnInit {
             this.choix_images.push(img);
           }
         }
-        console.log(this.choix_images);
       },
       error => {
         console.log(error);
@@ -48,7 +47,7 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   setChoix(i, value){
-    this.choix_images[i-1]['choix'] = value;
+    this.choix_images[i]['choix'] = value;
     console.log(this.choix_images);
   }
 
