@@ -5,7 +5,7 @@
     </p>
     <p>
      <select  [(ngModel)]="kid_selected">
-       <option *ngFor="let enfant of listeEnfants" [value]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
+       <option *ngFor="let enfant of listeEnfants" [ngValue]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
      </select>
      </p>
      <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
