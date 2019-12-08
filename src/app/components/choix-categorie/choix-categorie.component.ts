@@ -15,10 +15,12 @@ export class ChoixCategorieComponent implements OnInit {
   var_images;
   cpt;
   cat_libelle;
+  var_nbActivites;
 
   constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
     this.cpt = 0;
     this.cat_libelle = "";
+    this.var_nbActivites = 0;
   }
 
   getCategories = () => {
@@ -44,6 +46,9 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.sharedService.getNbChoixCategorie() > 0){
+      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
+    }
     this.getCategories();
     this.getImages();
     this.compteurPlus();

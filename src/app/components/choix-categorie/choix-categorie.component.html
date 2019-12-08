@@ -1,5 +1,5 @@
 <html>
-<div class="page">
+<div class="text-align:center">
         <button class="previous" [routerLink]="['/']" title="Précédent">Précédent</button>
 
     <div id="fond"> 
@@ -36,5 +36,8 @@
             </li>
         </div>
     </div> 
+    <h4 *ngIf="var_nbActivites > 0">
+        Jusqu'à maintenant tu a répondu 'oui' à {{var_nbActivites}} activité<span *ngIf="var_nbActivites > 1">s</span>
+    </h4>
 </div>
 </html>

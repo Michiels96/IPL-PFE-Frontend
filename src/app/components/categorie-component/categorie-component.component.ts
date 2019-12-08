@@ -52,7 +52,6 @@ export class CategorieComponentComponent implements OnInit {
             }
             i++;
           }
-
         }
       },
       error => {
@@ -75,19 +74,22 @@ export class CategorieComponentComponent implements OnInit {
         }
         else{
           // et ajouter les nouvelles
-          if(activite.choix == "oui"){
-            choixImagesToChoix1.push(activite);
-          }
+          choixImagesToChoix1.push(activite);
         }
       }
     }
     else{
       for(var activite of this.var_choix_images){
-        if(activite.choix == "oui"){
-          choixImagesToChoix1.push(activite);
-        }
+        choixImagesToChoix1.push(activite);
       }
     }
+    var nbActivitesOui = 0;
+    for(var activite of choixImagesToChoix1){
+      if(activite.choix == "oui"){
+        nbActivitesOui++;
+      }
+    }
+    this.sharedService.setNbChoixCategorie(nbActivitesOui);
     this.sharedService.setDataCategorie(choixImagesToChoix1);
     console.log(choixImagesToChoix1);
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SharedService {
     dataChoixCategorie;
+    nbChoixCategorie;
     dataCategorie;
     dataChoix1;
     dataChoix2;
@@ -10,6 +11,7 @@ export class SharedService {
 
     constructor(){
         this.dataChoixCategorie = {};
+        this.nbChoixCategorie = 0;
         this.dataCategorie = {};
         this.dataChoix1 = {};
         this.dataChoix2 = {};
@@ -25,6 +27,19 @@ export class SharedService {
 
     setDataChoixCategorie(val: object){
         this.dataChoixCategorie = val;
+    }
+    /*************************/
+
+    /* 
+    composants impliqués: 
+    - choix-categorie <==> categorie-component
+    */
+    getNbChoixCategorie(){
+        return this.nbChoixCategorie;
+    }
+
+    setNbChoixCategorie(val: Number){
+        this.nbChoixCategorie = val;
     }
     /*************************/
 
