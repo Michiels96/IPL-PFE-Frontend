@@ -1,3 +1,7 @@
+.page {
+    background-color: bisque;
+}
+
 /*
 Code Ruban
 */
@@ -25,7 +29,7 @@ Code Ruban
     z-index: 100;
 }
      
-    .ruban h2 {
+.ruban h2 {
     font-size: 25px;
     color: #fff;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
@@ -91,6 +95,14 @@ h3 {
     color: orangered;
 }
 
-.page {
-    background-color: bisque;
+.previous {
+    right: 90%;
+    margin: 60px;
+    position: fixed; 
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: dodgerblue;
+    color: dodgerblue;
+    background-color: floralwhite;
 }
+

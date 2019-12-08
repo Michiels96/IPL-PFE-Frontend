@@ -1,3 +1,6 @@
+.page {
+    background-color: bisque;
+}
 /*
 Code Ruban
 */
@@ -25,7 +28,7 @@ Code Ruban
     z-index: 100;
 }
      
-    .ruban h2 {
+.ruban h2 {
     font-size: 25px;
     color: #fff;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
@@ -57,49 +60,10 @@ Code Ruban
     z-index: -1;
 }
 
-a {
-    background-color: beige; 
-    text-decoration-line: underline;
-}
-
 img {
     width: 300px;
 }
 
-figure {
-    border: 1px solid #333;
-    padding: 5px;
-    width: 310px;
-}
-
-figcaption {
-    background-color: RGBa(0,0,0,0.8);
-    color: #fff;
-    text-align: center;
-    font-style: italic;
-}
-
-.description {
-    size: 10px;
-    color: brown;
-    font-style: unset;
-}
-
-/*
-    Table
-*/
-
-/* table{
-  border-collapse: collapse;
-}
-
-th, td{
-  border: 1px solid black;
-  padding: 50;
-} */
-.page {
-    background-color: bisque;
-}
 
 table{
     border-collapse: collapse;
@@ -107,6 +71,7 @@ table{
     position: relative;
     left: 50%;
     margin-left: -400px; /* - moitié de la largeur */
+    /* table-layout: fixed;  */
 }
 th, td{
     border: 3px solid gray;
@@ -120,7 +85,11 @@ td {
     color:red;
     font-style: italic;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 input[type=radio] {

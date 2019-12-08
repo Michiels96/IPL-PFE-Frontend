@@ -1,1 +1,23 @@
-<p>choix3content works!</p>
+<div style="text-align: center;">
+    <h3>Pour terminer, <br/>dis nous si tu est content de la situation actuelle ou pas</h3>
+    <h4>
+        Activité 
+        <span *ngIf="var_activiteCourante.aime == true">aimée </span>
+        <span *ngIf="var_activiteCourante.aime == false">Pas aimée </span>
+        nr°{{var_activiteCourante.image_id}}
+        <span *ngIf="var_activiteCourante.aide == true"> avec laquelle j'ai besoin d'aide</span>
+        <span *ngIf="var_activiteCourante.aide == false"> avec laquelle je n'ai pas besoin d'aide</span>
+        
+    </h4>
+    <p>
+        <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
+    </p>
+    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Content</button>
+    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas content</button>
+    <div *ngIf="imgBack == true">
+        <br/>
+        <button type="button" class="btn btn-info" (click)="$event.preventDefault();goImgBack()">Revenir à l'activité précédente</button>
+    </div>
+    <br/>
+    <button type="button" class="btn btn-secondary" (click)="$event.preventDefault();backToChoix2()">Retourner à la deuxième question</button>
+</div>
