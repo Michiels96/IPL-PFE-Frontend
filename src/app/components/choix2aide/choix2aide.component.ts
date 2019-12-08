@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix2aide.component.css']
 })
 export class Choix2aideComponent implements OnInit {
+  // var_reponsesQ1: choix1 ==> choix2
   var_reponsesQ1 = [];
 
   var_listeQ2 = [];
