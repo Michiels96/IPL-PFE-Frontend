@@ -12,19 +12,44 @@ export class Choix1jaimeComponent implements OnInit {
   var_imagesByLibelle = [];
   var_imagesAimees = [];
   var_imagesPasAimees = [];
-  var_imagesEnregistrees = [this.var_imagesAimees, this.var_imagesPasAimees];
+  // var_activitesEnregistres: JSON de choix1 ==> choix2
+  var_activitesEnregistres = [this.var_imagesAimees, this.var_imagesPasAimees];
   var_activiteCourante;
   var_pasComplet;
 
-  constructor(private api: ApiService,private router:Router, private sharedService: SharedService) {
+  constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.var_pasComplet = false;
+    this.var_activiteCourante = null;
   }
   
   ngOnInit() {
-    this.getAllImagesByLibelle("deplacements");
+    //this.getAllImagesByLibelle("deplacements");
+    this.getAllImagesByLibelle();
   }
 
 
+   getAllImagesByLibelle = () => {
+    this.api.getAllImages().subscribe(
+      data => {
+        var i = 1;
+        for(var key in data){
+          if(data[key].categorie_image == "deplacements"){
+            data[key].description = data[key].description+".jpg";
+            this.var_imagesByLibelle.push(data[key]); 
+            if(i == 1){
+              this.var_activiteCourante = data[key];
+            }
+            i++;
+          }
+        }
+        console.log("AFTER TRI "+JSON.stringify(this.var_imagesByLibelle));
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+/*
   getAllImagesByLibelle = (libelle) => {
     this.api.getAllImagesByLibelle(libelle).subscribe(
       data => {
@@ -44,11 +69,11 @@ export class Choix1jaimeComponent implements OnInit {
       }
     )
   }
-
+*/
   addImgToYes(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
-      this.var_imagesEnregistrees[this.var_imagesAimees.push(activite)];
+      this.var_activitesEnregistres[this.var_imagesAimees.push(activite)];
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
@@ -59,7 +84,7 @@ export class Choix1jaimeComponent implements OnInit {
   addImgToNo(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
-      this.var_imagesEnregistrees[this.var_imagesPasAimees.push(activite)];
+      this.var_activitesEnregistres[this.var_imagesPasAimees.push(activite)];
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_activiteCourante.image_id];  
     }
     else{
@@ -84,7 +109,7 @@ export class Choix1jaimeComponent implements OnInit {
     }
     else{
       this.var_pasComplet = false;
-      this.sharedService.setData(this.var_imagesEnregistrees);
+      this.sharedService.setDataChoix1(this.var_activitesEnregistres);
       this.router.navigate(['/choixAide']);
     }
   }
