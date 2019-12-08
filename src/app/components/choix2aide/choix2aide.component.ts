@@ -26,10 +26,13 @@ export class Choix2aideComponent implements OnInit {
   var_questionsAimeesPass;
   var_indexPremiereQuestionsPasAimee = 0;
   var_i;
+  // savoir si l'activité à été ajouté dans le tableau où l'aide est demandé
+  var_addYes;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) { 
     this.imgBack = false;
     this.var_questionsAimeesPass = false;
+    this.var_addYes = false;
   }
 
 
@@ -53,18 +56,12 @@ export class Choix2aideComponent implements OnInit {
     }
     this.var_activiteCourante = this.var_activitesAimees[0];
     this.var_i = 0;
-    /*
-    console.log( this.var_activitesAimees);
-    console.log( this.var_activitesPasAimees);
-    */
-    console.log( this.var_listeQ2);
-    
   }
 
 
 
   addImgToYes(){
-    console.log(this.var_listeQ2);
+    this.var_addYes = true;
     console.log("AIME "+JSON.stringify(this.var_listeQ2[this.var_i]));
     this.imgBack = true;
     this.var_i++;
@@ -76,7 +73,6 @@ export class Choix2aideComponent implements OnInit {
       this.var_activiteCourante = this.var_listeQ2[this.var_i];
     }
     else{
-      console.log("888 "+this.var_listeQ2[this.var_i-1]);
       this.var_activitesBesoinDAide.push(this.var_listeQ2[this.var_i-1]);
       this.var_activiteCourante = this.var_listeQ2[this.var_i];
     }
@@ -85,14 +81,11 @@ export class Choix2aideComponent implements OnInit {
     if(this.var_i == (this.var_indexPremiereQuestionsPasAimee+ this.var_activitesPasAimees.length)){
       this.question2Terminee();
     }
-
-    console.log( this.imgBack);
-    console.log( this.var_i);
-    console.log( this.var_questionsAimeesPass);
   }
 
 
-  addImgToNo(activite){
+  addImgToNo(){
+    this.var_addYes = false;
     console.log("AIME PAS "+JSON.stringify(this.var_listeQ2[this.var_i]));
     this.imgBack = true;
     this.var_i++;
@@ -110,10 +103,6 @@ export class Choix2aideComponent implements OnInit {
     if(this.var_i == (this.var_indexPremiereQuestionsPasAimee+ this.var_activitesPasAimees.length)){
       this.question2Terminee();
     }
-
-    console.log(this.imgBack);
-    console.log(this.var_i);
-    console.log(this.var_questionsAimeesPass);
   }
 
 
@@ -129,11 +118,26 @@ export class Choix2aideComponent implements OnInit {
       if(this.var_i == 0){
         this.imgBack = false;
       }
+
+      //savoir ou il faut retirer le dernier élement
+      if(this.var_addYes){
+        this.var_activitesBesoinDAide.pop();
+      }
+      else{
+        this.var_activitesPasBesoinDAide.pop();
+      }
+      this.var_activiteCourante = this.var_listeQ2[this.var_i];
     }
   }
 
   question2Terminee(){
     console.log("terminé!");
+    console.log("Aide demandee "+this.var_activitesBesoinDAide.length);
+    console.log("AIDE "+JSON.stringify(this.var_activitesBesoinDAide));
+
+    console.log("Aide Non demandee "+this.var_activitesPasBesoinDAide.length);
+    console.log("AIDE PAS "+JSON.stringify(this.var_activitesPasBesoinDAide));
+
     this.var_activitesDAideEnregistres.push(this.var_activitesBesoinDAide);
     this.var_activitesDAideEnregistres.push(this.var_activitesPasBesoinDAide);
 

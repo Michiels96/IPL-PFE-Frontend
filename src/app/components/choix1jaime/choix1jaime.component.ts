@@ -23,10 +23,33 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.getAllImagesByLibelle("deplacements");
+    //this.getAllImagesByLibelle("deplacements");
+    this.getAllImagesByLibelle();
   }
 
 
+   getAllImagesByLibelle = () => {
+    this.api.getAllImages().subscribe(
+      data => {
+        var i = 1;
+        for(var key in data){
+          if(data[key].categorie_image == "deplacements"){
+            data[key].description = data[key].description+".jpg";
+            this.var_imagesByLibelle.push(data[key]); 
+            if(i == 1){
+              this.var_activiteCourante = data[key];
+            }
+            i++;
+          }
+        }
+        console.log("AFTER TRI "+JSON.stringify(this.var_imagesByLibelle));
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+/*
   getAllImagesByLibelle = (libelle) => {
     this.api.getAllImagesByLibelle(libelle).subscribe(
       data => {
@@ -46,7 +69,7 @@ export class Choix1jaimeComponent implements OnInit {
       }
     )
   }
-
+*/
   addImgToYes(activite){
     if(this.var_activiteCourante.image_id < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
