@@ -97,21 +97,21 @@ export class AppComponent {
       }
     )
   }
-  updateKid = () => {
+  /*updateKid = () => {
     this.api.updateKid(this.kid_selected).subscribe( 
       data => {
         console.log(data);
         /*this.prenom = data.prenom;
         this.nom = data.nom;
         this.age = data.age;
-        this.handicap = data.handicaps;*/
+        this.handicap = data.handicaps;
        this.kid_selected=data;
       },
       error => {
         console.log(error);
       }
     )
-  }
+  }*/
   createKid = () => {
     this.api.postKid(this.kid_selected).subscribe( 
       data => {

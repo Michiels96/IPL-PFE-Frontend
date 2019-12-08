@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms'
 import { ApiService } from 'src/app/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ConnectionFormComponent implements OnInit {
   messageToEmit = new EventEmitter<FormGroup>();*/
   isTokenValid=false;
   listeEnfants;
-  kid_selected=-1;
+  kid_selected;
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -26,12 +27,12 @@ export class ConnectionFormComponent implements OnInit {
     password: new FormControl(''),
     email: new FormControl('')
   });
-  constructor(private api: ApiService) { 
+  constructor(private api: ApiService,private router:Router) { 
     
   }
 
   ngOnInit() {
-   
+    this.kid_selected=-1;
   }
 
   deconnexion(){
@@ -92,5 +93,13 @@ export class ConnectionFormComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+  confirmer(){
+    console.log("enfant choisi");
+    console.log(this.kid_selected);
+    if( this.isTokenValid==true){
+      this.router.navigate(['/ui',{id:this.kid_selected}])
+      this.isTokenValid=false;
+    }
   }
 }
