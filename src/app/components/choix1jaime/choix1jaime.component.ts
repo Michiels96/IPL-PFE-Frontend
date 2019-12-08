@@ -79,10 +79,10 @@ export class Choix1jaimeComponent implements OnInit {
       activite.aime = true;
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
-    }
-    else{
-      this.question1Terminee();
+      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];
+      if(this.var_i == this.var_imagesByLibelle.length){  
+        this.question1Terminee();
+      }
     }
   }
 
@@ -93,9 +93,9 @@ export class Choix1jaimeComponent implements OnInit {
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
-    }
-    else{
-      this.question1Terminee();
+      if(this.var_i == this.var_imagesByLibelle.length){  
+        this.question1Terminee();
+      }
     }
   }
 
