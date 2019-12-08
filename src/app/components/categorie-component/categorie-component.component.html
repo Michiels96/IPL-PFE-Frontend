@@ -1,4 +1,5 @@
 <div class="page">
+        <button class="previous" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
 
         <div id="fond"> 
             <div class="ruban">     
@@ -26,9 +27,9 @@
                         <td>{{img.description.toUpperCase()}}</td>
                         <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
                         <td>
-                            <button type="button" class="oui" value="oui" (click) ="setChoix(i, 'oui')">Oui</button>
-                            <button type="button" class="non" value="non" (click)="setChoix(i, 'non')">Non</button>
-                            <button type="button" class="voudrais" value="jevoudrais" (click)="setChoix(i, 'je voudrais')">Je voudrais le faire</button>
+                            <button type="button" value="oui" (click) ="setChoix(i, 'oui')">Oui</button>
+                            <button type="button" value="non" (click)="setChoix(i, 'non')">Non</button>
+                            <button type="button" value="jevoudrais" (click)="setChoix(i, 'je voudrais')">Je voudrais le faire</button>
                         </td>
                     </tr>
                 </tbody>

@@ -13,7 +13,7 @@ export class CategorieComponentComponent implements OnInit {
   var_images;
   libelle_categorie_selectionne;
   choix_images = [];
-  
+
   constructor(private api: ApiService,private route: ActivatedRoute, private router: Router) {}
   
 
