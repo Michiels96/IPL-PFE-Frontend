@@ -38,11 +38,6 @@ export class CategorieComponentComponent implements OnInit {
     this.libelle_categorie_selectionne=this.route.snapshot.paramMap.get('cat');
     //this.getImages();
     this.initImages(this.libelle_categorie_selectionne);
-    // this.saveInfoForm = this.fb.group({
-    //   description: this.saveInfoForm.get('description').value,
-    //   image: this.saveInfoForm.get('image').value,
-    //   choix: this.saveInfoForm.get('choix').value,
-    // })
   }
 
   getImages = () => {
