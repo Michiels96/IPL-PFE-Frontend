@@ -73,16 +73,16 @@ export class Choix1jaimeComponent implements OnInit {
   }
 */
   addImgToYes(activite){
-    console.log(this.var_imagesByLibelle[this.var_activiteCourante.image_id]);
+    console.log(this.var_imagesByLibelle[this.var_i]);
     if(this.var_i < this.var_imagesByLibelle.length){
       this.var_pasComplet = false;
       activite.aime = true;
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
-      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
-    }
-    else{
-      this.question1Terminee();
+      this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];
+      if(this.var_i == this.var_imagesByLibelle.length){  
+        this.question1Terminee();
+      }
     }
   }
 
@@ -93,9 +93,9 @@ export class Choix1jaimeComponent implements OnInit {
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
       this.var_activiteCourante = this.var_imagesByLibelle[this.var_i];  
-    }
-    else{
-      this.question1Terminee();
+      if(this.var_i == this.var_imagesByLibelle.length){  
+        this.question1Terminee();
+      }
     }
   }
 
@@ -111,7 +111,7 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
   backToChoixCategorie(){
-    
+    this.router.navigate(['/categories']);
   }
 
   question1Terminee(){
