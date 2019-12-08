@@ -45,7 +45,7 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   onSubmit() {
-
+    
     console.log("Choix images : ", this.choix_images);
     this.router.navigate(['/choixJaime']);
 
