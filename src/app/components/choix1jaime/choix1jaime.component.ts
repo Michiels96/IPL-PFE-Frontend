@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/SharedService';
@@ -26,6 +26,7 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.ifExitApp();
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -92,5 +93,27 @@ export class Choix1jaimeComponent implements OnInit {
       this.sharedService.setDataCategorie(this.var_activitesEnregistres);
       this.router.navigate(['/choixAide']);
     }
+  }
+
+  deconnecterEnfant(kid){
+    this.api.updateKid(kid,false).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp() {
+    if (sessionStorage.length > 0) {
+      if(sessionStorage.getItem('kid_connected')!=''){
+        this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
+        
+      }
+    } 
+      //event.preventDefault();
+     //event.returnValue = false;
   }
 }

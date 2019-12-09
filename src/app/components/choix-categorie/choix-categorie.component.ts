@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { SharedService } from 'src/app/SharedService';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ifExitApp();
     this.kid_nomComplet= this.route.snapshot.paramMap.get('nom_enfant');
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
@@ -65,5 +66,26 @@ export class ChoixCategorieComponent implements OnInit {
 
   onSubmit() {
     this.router.navigate(['/choixJaime']);
+  }
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp() {
+    if (sessionStorage.length > 0) {
+      if(sessionStorage.getItem('kid_connected')!=''){
+        this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
+        
+      }
+    } 
+      //event.preventDefault();
+     //event.returnValue = false;
+  }
+  deconnecterEnfant(kid){
+    this.api.updateKid(kid,false).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
