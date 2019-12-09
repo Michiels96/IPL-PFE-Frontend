@@ -111,8 +111,8 @@ export class Choix2aideComponent implements OnInit {
         
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
+    //event.preventDefault();
+    //event.returnValue = false;
   }
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(

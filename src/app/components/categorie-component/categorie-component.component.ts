@@ -15,12 +15,14 @@ export class CategorieComponentComponent implements OnInit {
   var_choix_images = [];
   rien_choisi;
   nbActivitesOui;
+  dataEnfantConnecte;
 
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
     this.nbActivitesOui = 0;
+    this.dataEnfantConnecte = null;
   }
   
   ngOnInit() {
@@ -30,6 +32,8 @@ export class CategorieComponentComponent implements OnInit {
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
+    this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
+    console.log("88888 "+JSON.stringify(this.dataEnfantConnecte));
     this.initImages(this.libelle_categorie_selectionne);
   }
 
@@ -131,7 +135,22 @@ export class CategorieComponentComponent implements OnInit {
   onSubmit() {
     console.log("Choix images : ", this.var_choix_images);
     if(this.nbActivitesOui >= 1) {
-      console.log("Je suis ici");
+      //création d'une session
+      var id_enfant = this.dataEnfantConnecte.enfant_id;
+      var date_session = new Date();
+      var newSession = {};
+      newSession['session_id'] = -1;
+      newSession['enfant'] = id_enfant;
+      newSession['date'] = date_session;
+      this.api.createSession(newSession).subscribe(
+        data => {
+          console.log(data);
+          this.sharedService.setDataSession(newSession);
+        },
+        error => {
+          console.log(error);
+        }
+      )
       this.router.navigate(['/choixJaime']);
       this.rien_choisi = false;
     }

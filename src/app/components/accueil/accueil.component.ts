@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth/auth.service';
+import { SharedService } from 'src/app/SharedService';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
@@ -14,7 +15,7 @@ export class AccueilComponent implements OnInit {
   isNotConnected=true;
   kid_nomComplet;
   
-  constructor(private api: ApiService,public authService: AuthService, private route: Router) { }
+  constructor(private api: ApiService,public authService: AuthService, private route: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.ifExitApp();
@@ -52,8 +53,8 @@ export class AccueilComponent implements OnInit {
           this.authService.loginKid();
           console.log("connecté")
           sessionStorage.setItem('kid_connected', JSON.stringify(this.kid_selected));
+          this.sharedService.setDataEnfantConnecte(this.kid_selected);
         }
-        
       },
       error => {
         console.log(error);

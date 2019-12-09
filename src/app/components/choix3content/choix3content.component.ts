@@ -102,6 +102,44 @@ export class Choix3contentComponent implements OnInit {
     }
     this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    // sauvegarde en db
+    var session_id = this.sharedService.getDataSession();
+    for(var activite of this.sharedService.getDataCategorie()){
+      var newQuestion = {};
+      newQuestion['question_id'] = -1;
+      newQuestion['session'] = session_id;
+      newQuestion['image_correspondante'] = activite.image_id;
+      newQuestion['img_description'] = activite.description;
+      if(activite.aime == true){
+        newQuestion['aime'] = 'O';
+      }
+      else{
+        newQuestion['aime'] = 'N';
+      }
+      if(activite.aide == true){
+        newQuestion['aide'] = 'O';
+      }
+      else{
+        newQuestion['aide'] = 'N';
+      }
+      if(activite.content == true){
+        newQuestion['content'] = 'O';
+      }
+      else{
+        newQuestion['content'] = 'N';
+      }
+      console.log("123 ");
+      console.log(newQuestion);
+      this.api.createQuestion(newQuestion).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+    
     this.router.navigate(['/syntheseDesChoix']);
   }
   @HostListener('window:beforeunload', ['$event'])
