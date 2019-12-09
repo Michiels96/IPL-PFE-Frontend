@@ -17,6 +17,8 @@ export class ConnectionFormComponent implements OnInit {
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();*/
   //isTokenValid=false;
+  error_connect_msg;
+  error_inscription_msg;
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -33,6 +35,8 @@ export class ConnectionFormComponent implements OnInit {
 
   ngOnInit() {
     this.authService.logout();
+    this.error_connect_msg="";
+    this.error_inscription_msg=""
   }
 
  
@@ -60,7 +64,8 @@ export class ConnectionFormComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        //console.log(error);
+        this.error_connect_msg="Mot de passe ou nom incorrect";
       }
     )
     
@@ -80,6 +85,7 @@ export class ConnectionFormComponent implements OnInit {
       },
       error => {
         console.log(error);
+        this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
       }
     )
   }
