@@ -11,11 +11,14 @@ import { Router } from '@angular/router';
 })
 export class ChoixCategorieComponent implements OnInit {
 
-  var_categories;
+  
   var_images;
   cpt;
   cat_libelle;
   var_nbActivites;
+
+  var_categories = [];
+  var_choix_images = [];
 
   constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
     this.cpt = 0;
@@ -28,46 +31,48 @@ export class ChoixCategorieComponent implements OnInit {
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
     this.getCategories();
-    this.getImages();
-    this.compteurPlus();
-    this.compteurReset();
+  }
+
+  getImages(){
+    
+    for(var categorie of this.var_categories){
+      // A CORRIGER PAR CEUX DU BACKEND!!!
+      if(categorie.libelle == "soinspersonnels"){
+        categorie.libelle = "soinspersonnnels"
+      }
+      this.api.getAllImagesByLibelle(categorie.libelle).subscribe(
+        data => {
+          for(var activite of data){
+            this.var_choix_images.push(activite)
+            // uniquement 1ere image nécessaire
+            break;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
       data => {
         this.var_categories = data;
+        this.getImages();
       },
       error => {
         console.log(error);
       }
-    )
-  }
-
-  getImages = () => {
-    this.api.getAllImages().subscribe(
-      data => {
-        this.var_images = data;
-      },
-      error => {
-        console.log(error);
-      }
+      
     )
   }
 
   getCat(cat){
-    this.cat_libelle=cat.libelle;
+    this.cat_libelle = cat.libelle;
     var cast = [this.cat_libelle];
     this.sharedService.setDataChoixCategorie(cast);
     this.router.navigate(['/categories']);
-  }
-
-  compteurPlus() {
-    this.cpt++;
-  }
-
-  compteurReset() {
-    this.cpt = 0;
   }
 
   onSubmit() {
