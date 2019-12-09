@@ -1,4 +1,4 @@
-
+<h5>{{error_connect_msg}}</h5>
 <div>
 <form class="form-signin" [formGroup]="connexion" (ngSubmit)="tryToConnect()">
     <h3>Connexion educateur</h3>
@@ -13,6 +13,7 @@
 <button class="btn btn-lg btn-primary btn-block" type='submit'>Se connecter</button>
 </form>
 <br>
+<h5>{{error_inscription_msg}}</h5>
 <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
     <h3>Inscription educateur</h3>
     <label>

@@ -17,14 +17,4 @@ export class EducateurUIComponent implements OnInit {
    console.log(this.kid_id);
   }
 
-  /*getSession{
-    this.api.connectUser(this.connexion.value).subscribe( 
-      data => {
-        
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }*/
 }
