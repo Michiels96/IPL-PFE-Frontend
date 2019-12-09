@@ -10,19 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./choix-categorie.component.css']
 })
 export class ChoixCategorieComponent implements OnInit {
-
-  
-  var_images;
-  cpt;
-  cat_libelle;
   var_nbActivites;
-
   var_categories = [];
-  var_choix_images = [];
+  var_images = [];
 
   constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
-    this.cpt = 0;
-    this.cat_libelle = "";
     this.var_nbActivites = 0;
   }
 
@@ -43,7 +35,7 @@ export class ChoixCategorieComponent implements OnInit {
       this.api.getAllImagesByLibelle(categorie.libelle).subscribe(
         data => {
           for(var activite of data){
-            this.var_choix_images.push(activite)
+            this.var_images.push(activite)
             // uniquement 1ere image nécessaire
             break;
           }
@@ -64,13 +56,11 @@ export class ChoixCategorieComponent implements OnInit {
       error => {
         console.log(error);
       }
-      
     )
   }
 
   getCat(cat){
-    this.cat_libelle = cat.libelle;
-    var cast = [this.cat_libelle];
+    var cast = [cat];
     this.sharedService.setDataChoixCategorie(cast);
     this.router.navigate(['/categories']);
   }

@@ -15,9 +15,10 @@
 
     <h3>Choisi la catégorie qui ressemble le plus à tes habitudes</h3>
     <div class="card-body">
-        <li *ngFor="let img of var_choix_images" style="list-style-type: none;">
+        <li *ngFor="let img of var_images" style="list-style-type: none;">
             <figure>
-                <strong><a style="background-color: beige;" (click)="$event.preventDefault();getCat(img.categorie_image)">
+                <strong>
+                    <a style="background-color: beige;" (click)="$event.preventDefault();getCat(img.categorie_image)">
                     <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
                     <figcaption>{{img.categorie_image}}</figcaption>
                 </a>
