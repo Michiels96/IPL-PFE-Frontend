@@ -15,11 +15,13 @@ export class ChoixCategorieComponent implements OnInit {
   var_images = [];
   kid_nomComplet;
 
-  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
+
+  constructor(private api: ApiService, private router:Router, private sharedService: SharedService, private route: ActivatedRoute) { 
     this.var_nbActivites = 0;
   }
 
   ngOnInit() {
+    this.kid_nomComplet= this.route.snapshot.paramMap.get('nom_enfant');
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
