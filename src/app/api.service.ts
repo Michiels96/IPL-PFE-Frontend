@@ -26,7 +26,9 @@ export class ApiService {
   getAllImagesByLibelle(libelle): Observable<any>{
     return this.http.get(this.baseurl + '/images/repertoire/'+libelle+'/', {headers:this.httpHeaders});
   }
-  
+  getAllSessions(): Observable<any>{
+    return this.http.get(this.baseurl + '/sessions/full_sessions/', {headers:this.httpHeaders});
+  }
   getAllEnfants(): Observable<any>{
     return this.http.get(this.baseurl + '/enfant/enfants/', {headers:this.httpHeaders});
   }
@@ -44,12 +46,14 @@ export class ApiService {
     let postContent=JSON.stringify(kid);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
     return this.http.post(this.baseurl + '/enfant/enfants/',postContent, {headers:this.httpHeaders});
   }
+  getUser(id): Observable<any>{
+    return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
+  }
   postUser(user): Observable<any>{
     let postContent=JSON.stringify(user);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
     return this.http.post(this.baseurl + '/prof/users/',postContent, {headers:this.httpHeaders});
   }
   delKid(id): Observable<any>{
-    
     return this.http.delete(this.baseurl + '/enfant/enfants/'+id+'/',{headers:this.httpHeaders});
   }
   connectUser(user): Observable<any>{
