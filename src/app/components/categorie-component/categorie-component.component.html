@@ -36,10 +36,11 @@
             </li>
         </table>
         <button class="btn btn-lg 50" id="buttonValider" type="submit" name="Valider">Valider</button>
-        <p *ngIf="rien_choisi == true">
-            <strong class="alert alert-danger">Attention ! Tu dois choisir au minimum 1 image !</strong>
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-        </p>
+        
+        <div class="alert alert-danger" role="alert" *ngIf="rien_choisi == true">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>Attention ! Pour continuer, il faut au minimum une image avec la valeur "OUI" !!</strong>
+        </div>
     </form>
 </div>
 </html>
