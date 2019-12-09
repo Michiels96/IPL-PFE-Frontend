@@ -132,6 +132,7 @@ export class CategorieComponentComponent implements OnInit {
     console.log("Choix images : ", this.var_choix_images);
     if(this.nbActivitesOui >= 1) {
       console.log("Je suis ici");
+      
       this.router.navigate(['/choixJaime']);
       this.rien_choisi = false;
     }
@@ -139,6 +140,7 @@ export class CategorieComponentComponent implements OnInit {
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
     }
+
   }
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
@@ -150,6 +152,7 @@ export class CategorieComponentComponent implements OnInit {
       }
     )
   }
+
   @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {

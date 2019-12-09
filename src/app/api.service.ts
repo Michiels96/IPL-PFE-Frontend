@@ -55,6 +55,9 @@ export class ApiService {
     let postContent=JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/',postContent, {headers:this.httpHeaders});
   }
+
+  
+
   getUser(id): Observable<any>{
     return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
   }
