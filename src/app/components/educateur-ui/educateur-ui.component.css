@@ -1,0 +1,16 @@
+table{
+ margin-left: 200px;
+}
+
+.table2{
+    margin-left: 0px;
+}
+
+th, td{
+    border: 3px solid gray;
+}
+
+html {
+    background-size: 100%;
+    background-color: beige;
+}

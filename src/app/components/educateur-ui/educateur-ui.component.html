@@ -1,3 +1,30 @@
-<p>educateur-ui works!</p>
-<br>
-<app-deconnexion-element></app-deconnexion-element>
+<html>
+    <div class="page">
+        <form>
+            <table class="table">
+                <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{q.img_description}}</td>
+                            <td>
+                                <table class="table2">
+                                    <tbody>
+                                        <tr><td><textarea (input)="setNote(q.question_id, 'note_aime', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aime" value="aime"></textarea></td></tr>
+                                        <tr><td><textarea (input)="setNote(q.question_id, 'note_aide', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aide" value="aide"></textarea></td></tr>
+                                        <tr><td><textarea (input)="setNote(q.question_id, 'note_satisfaction', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Content" value="content"></textarea></td></tr>  
+                                    </tbody>
+                                </table>
+                            </td>    
+                        </tr>
+                    </tbody>
+                </li>
+            </table>
+        </form>
+    </div>
+</html>
