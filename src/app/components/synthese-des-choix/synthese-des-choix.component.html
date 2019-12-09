@@ -1,16 +1,15 @@
 <html>
-    <table id="table">
+    <div>
+        <table id="table">
             <tr>
-                <th>N°</th>
-                <th>Intitulé</th>
+                <th rowspan="2">N°</th>
+                <th rowspan="2">Intitulé</th>
                 <th colspan="2">Valeur</th>
                 <th colspan="2">Aide</th>
                 <th colspan="2">Satisfaction</th>
-                <th>Habitude prioritaire</th>
+                <th rowspan="2">Habitude prioritaire</th>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
                 <td>
                     <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/jaime.png">
                 </td>
@@ -29,72 +28,36 @@
                 <td>
                     <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/pasContent.png">
                 </td>
-                <td></td>
             </tr>
-            <tr class="datarow">
-                <th>1</th>
-                <td>img.description</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
+            <tr class="datarow" *ngFor="let activite of var_reponsesQ3">
+                <th>{{var_numLigne}}{{numLignePlus()}}</th>
+                <td>
+                    <img style="max-width:35%;max-height:35%" class="img-thumbnail" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{activite.categorie_image}}/{{activite.nom_fichier}}">
+                    <br/>
+                    <span style="font-style:italic;font-weight:bold;">{{activite.description}}</span>
+                </td>
+                <td>
+                    <span *ngIf="activite.aime == true" style="font-style:italic;font-weight:bold;">X</span>
+                </td>
+                <td>
+                    <span *ngIf="activite.aime == false" style="font-style:italic;font-weight:bold;">X</span>
+                </td>
+                <td>
+                    <span *ngIf="activite.aide == true" style="font-style:italic;font-weight:bold;">X</span>
+                </td>
+                <td>
+                    <span *ngIf="activite.aide == false" style="font-style:italic;font-weight:bold;">X</span>
+                </td>
+                <td>
+                    <span *ngIf="activite.content == true" style="font-style:italic;font-weight:bold;">X</span>
+                </td>
+                <td>
+                    <span *ngIf="activite.content == false" style="font-style:italic;font-weight:bold;">X</span>
+                </td>
+                <td>
+                    ?
+                </td>
             </tr>
-            <tr class="datarow">
-                <th>2</th>
-                <td>img.description</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-            </tr>
-            <tr class="datarow">
-                <th>3</th>
-                <td>img.description</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-                <td>X</td>
-            </tr>
-                <tr class="datarow" *ngFor="let activite of var_reponsesQ3">
-                    <th>{{var_numLigne}}</th>
-                    <td>
-                        
-                        <img style="max-width:50%;max-height:50%" class="img-thumbnail" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{activite.categorie_image}}/{{activite.nom_fichier}}">
-                        <br/>
-                        
-                        <span style="font-style:italic;font-weight:bold;">{{activite.description}}</span>
-                    </td>
-                    <td>
-                        <span *ngIf="activite.aime == true" style="font-style:italic;font-weight:bold;">X</span>
-                    </td>
-                    <td>
-                        <span *ngIf="activite.aime == false" style="font-style:italic;font-weight:bold;">X</span>
-                    </td>
-                    <td>
-                        <span *ngIf="activite.aide == true" style="font-style:italic;font-weight:bold;">X</span>
-                    </td>
-                    <td>
-                        <span *ngIf="activite.aide == false" style="font-style:italic;font-weight:bold;">X</span>
-                    </td>
-                    <td>
-                        <span *ngIf="activite.content == true" style="font-style:italic;font-weight:bold;">X</span>
-                    </td>
-                    <td>
-                        <span *ngIf="activite.content == false" style="font-style:italic;font-weight:bold;">X</span>
-                    </td>
-                    <td>
-                        ?
-                    </td>
-                </tr>
         </table>
     </div>
 </html>
