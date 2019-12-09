@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth/auth.service';
@@ -17,14 +17,13 @@ export class AccueilComponent implements OnInit {
   constructor(private api: ApiService,public authService: AuthService, private route: Router) { }
 
   ngOnInit() {
-    
-  
-    if (localStorage.length > 0) {
-      if(localStorage.getItem('kid_connected')!=''){
-        this.deconnecterEnfant(JSON.parse(localStorage.getItem('kid_connected')));
+    this.ifExitApp();
+    if (sessionStorage.length > 0) {
+      if(sessionStorage.getItem('kid_connected')!=''){
+        this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
       }
     } 
-    localStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('kid_connected', '');
     this.api.getUnloggedEnfants().subscribe(
       data => {
         //console.log(data);
@@ -52,7 +51,7 @@ export class AccueilComponent implements OnInit {
           this.isNotConnected=false;
           this.authService.loginKid();
           console.log("connecté")
-          localStorage.setItem('kid_connected', JSON.stringify(this.kid_selected));
+          sessionStorage.setItem('kid_connected', JSON.stringify(this.kid_selected));
         }
         
       },
@@ -77,5 +76,15 @@ export class AccueilComponent implements OnInit {
     console.log("Nom Enfant : ", this.kid_selected.enfant_nom);
     this.route.navigate(['/choix-categorie', {nom_enfant:this.kid_nomComplet}]);
   }
-
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp() {
+    if (sessionStorage.length > 0) {
+      if(sessionStorage.getItem('kid_connected')!=''){
+        this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
+        
+      }
+    } 
+      //event.preventDefault();
+     //event.returnValue = false;
+  }
 }

@@ -57,6 +57,7 @@ export class AuthentificatedComponent implements OnInit {
         console.log(data);
         this.inscriptionEnfant.reset();
       // this.enfants.push(data);
+        this.error_inscription_msg="";
       },
       error => {
         console.log(error);
