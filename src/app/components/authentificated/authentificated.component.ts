@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms'
 })
 export class AuthentificatedComponent implements OnInit {
   error_inscription_msg;
+  error_inscription = false;
   whoIsConnected;
   listeEnfants;
   kid_selected;
@@ -21,12 +22,13 @@ export class AuthentificatedComponent implements OnInit {
     age: new FormControl(''),
     connecte: new FormControl(false)
   });
-  constructor(private api: ApiService,private route: ActivatedRoute,private router:Router) { }
+  constructor(private api: ApiService,private route: ActivatedRoute,private router:Router) {}
 
   ngOnInit() {
     this.whoIsConnected=this.route.snapshot.paramMap.get('nom');
     this.getEnfants();
     this.error_inscription_msg="";
+    this.error_inscription = false;
   }
   getEnfants = () => {
    
@@ -59,6 +61,7 @@ export class AuthentificatedComponent implements OnInit {
       error => {
         console.log(error);
         this.error_inscription_msg="Erreur lors de l'inscription de cet enfant, veuillez verifier tous les champs et recommencer";
+        this.error_inscription = true;
       }
     )
   }

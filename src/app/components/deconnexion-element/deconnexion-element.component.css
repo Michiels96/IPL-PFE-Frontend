@@ -1,11 +1,7 @@
-.btn-primary {
+.btn {
     color: #fff;
-    background-color:blue;
-    border-color:blue;
-}
-
-.btn-block {
-    display: inline-block;
-    width: 15%;
-    
+    background-color:#0062cc;
+    text-align: center;
+    position: relative;
+    margin: 25%;
 }

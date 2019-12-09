@@ -1,29 +1,55 @@
-    <h2>Bonjour {{whoIsConnected}} !</h2>
-    <p>
-     <app-deconnexion-element></app-deconnexion-element>
-    </p>
-    <p>
-     <select  [(ngModel)]="kid_selected">
-       <option *ngFor="let enfant of listeEnfants" [ngValue]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
-     </select>
-     </p>
-     <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
-     <br>
-     <h5>{{error_inscription_msg}}</h5>
-     <br>
-        <form class="form-signin" [formGroup]="inscriptionEnfant" (ngSubmit)="inscrireEnfant()">
-            <h3>Inscrire un enfant</h3>
-            <label>
-                Nom:
-                <input type="text" formControlName="nom">
-              </label> <br>
-            <label>
-                Prenom:
-                <input type="text" formControlName="prenom">
-              </label> <br>
-            <label>
-                Age:
-                <input type="text" formControlName="age">
-             </label> <br>
-        <button class="btn btn-lg btn-primary btn-block" type='submit'>Inscrire</button>
+<h2>Bonjour {{whoIsConnected}} !</h2>
 
+<div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
+    {{error_inscription_msg}}
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+</div>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>Choisissez un enfant</h3>
+            <div class="form-group">
+              <label> 
+                Enfant : 
+                <select  [(ngModel)]="kid_selected">
+                  <option style="color: #0062cc;" *ngFor="let enfant of listeEnfants" [ngValue]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
+            </div>
+            <div class="form-group">
+              <app-deconnexion-element></app-deconnexion-element>
+            </div>
+        </div>
+        
+        <div class="col-md-6 login-form-2">
+            <h3>Inscrire enfant</h3>
+            <form class="form-signin" [formGroup]="inscriptionEnfant" (ngSubmit)="inscrireEnfant()">
+                <div class="form-group">
+                    <label>
+                      <strong style="color: #fff;">Nom :</strong>
+                      <input type="text" style="color: #0062cc;" class="form-control" placeholder="Nom" value="" formControlName="nom">
+                    </label>
+                  </div>
+                  <div class="form-group">
+                      <label>
+                        <strong style="color: #fff;">Prénom :</strong>
+                        <input type="text" style="color: #0062cc;" class="form-control" placeholder="Prénom" value="" formControlName="prenom">
+                      </label>
+                  </div>
+                  <div class="form-group">
+                      <label>
+                        <strong style="color: #fff;">Age :</strong>
+                        <input type="text" style="color: #0062cc;" class="form-control" placeholder="Age" value="" formControlName="age">
+                      </label>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-lg btn-primary" type='submit'>Inscrire</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
