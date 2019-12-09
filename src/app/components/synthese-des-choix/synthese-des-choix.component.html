@@ -64,11 +64,13 @@
                 <td>X</td>
                 <td>X</td>
             </tr>
-                <tr *ngFor="let activite of var_reponsesQ3">
+                <tr class="datarow" *ngFor="let activite of var_reponsesQ3">
                     <th>{{var_numLigne}}</th>
                     <td>
+                        
                         <img style="max-width:50%;max-height:50%" class="img-thumbnail" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{activite.categorie_image}}/{{activite.nom_fichier}}">
                         <br/>
+                        
                         <span style="font-style:italic;font-weight:bold;">{{activite.description}}</span>
                     </td>
                     <td>
@@ -93,5 +95,7 @@
                         ?
                     </td>
                 </tr>
-    </table>
+        </table>
+    </div>
 </html>
+
