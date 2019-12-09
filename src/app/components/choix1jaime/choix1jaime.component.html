@@ -13,8 +13,6 @@
         <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>
         <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">non</button>
         <br/>
-        <button type="button" class="btn btn-info" (click)="$event.preventDefault();imgByPass()">je passe</button>
-        <br/>
         <button type="button" class="previous" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
     </p>
     <p *ngIf="var_pasComplet == true">
