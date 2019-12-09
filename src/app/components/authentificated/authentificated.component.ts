@@ -58,7 +58,7 @@ export class AuthentificatedComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.error_inscription_msg="Erreur lors de l'inscription de cet enfant, veuillez recommencer";
+        this.error_inscription_msg="Erreur lors de l'inscription de cet enfant, veuillez verifier tous les champs et recommencer";
       }
     )
   }

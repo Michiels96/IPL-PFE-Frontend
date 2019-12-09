@@ -29,6 +29,9 @@ export class ApiService {
   getAllSessions(): Observable<any>{
     return this.http.get(this.baseurl + '/sessions/full_sessions/', {headers:this.httpHeaders});
   }
+  getSessionsById(id): Observable<any>{
+    return this.http.get(this.baseurl + '/sessions/enfant_full_sessions/'+ id +'/', {headers:this.httpHeaders});
+  }
   getAllEnfants(): Observable<any>{
     return this.http.get(this.baseurl + '/enfant/enfants/', {headers:this.httpHeaders});
   }
