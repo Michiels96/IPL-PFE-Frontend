@@ -105,7 +105,7 @@ export class Choix1jaimeComponent implements OnInit {
       }
     )
   }
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

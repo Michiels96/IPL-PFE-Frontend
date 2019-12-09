@@ -104,7 +104,7 @@ export class Choix3contentComponent implements OnInit {
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
     this.router.navigate(['/syntheseDesChoix']);
   }
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
