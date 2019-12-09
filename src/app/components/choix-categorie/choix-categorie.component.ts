@@ -15,16 +15,17 @@ export class ChoixCategorieComponent implements OnInit {
   var_images;
   cpt;
   cat_libelle;
+  var_nbActivites;
 
   constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
     this.cpt = 0;
     this.cat_libelle = "";
+    this.var_nbActivites = 0;
   }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
       data => {
-        console.log(data);
         this.var_categories = data;
       },
       error => {
@@ -37,7 +38,6 @@ export class ChoixCategorieComponent implements OnInit {
     this.api.getAllImages().subscribe(
       data => {
         this.var_images = data;
-        console.log(data);
       },
       error => {
         console.log(error);
@@ -46,6 +46,9 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.sharedService.getNbChoixCategorie() > 0){
+      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
+    }
     this.getCategories();
     this.getImages();
     this.compteurPlus();
@@ -54,8 +57,6 @@ export class ChoixCategorieComponent implements OnInit {
 
   getCat(cat){
     this.cat_libelle=cat.libelle;
-    console.log("libelle:");
-    console.log(this.cat_libelle);
     var cast = [this.cat_libelle];
     this.sharedService.setDataChoixCategorie(cast);
     this.router.navigate(['/categories']);

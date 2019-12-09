@@ -1,3 +1,4 @@
+<html>
 <div class="page">
         <button class="previous" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
 
@@ -14,7 +15,7 @@
     
     <form (ngSubmit)="onSubmit()">
         <table class="table">
-            <li style="list-style-type: none;" *ngFor="let img of choix_images; let i = index">
+            <li style="list-style-type: none;" *ngFor="let img of var_choix_images; let i = index">
                 <thead>
                     <tr>
                         <th>Description image</th>
@@ -27,15 +28,16 @@
                         <td>{{img.description.toUpperCase()}}</td>
                         <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
                         <td>
-                            <button value="oui" (click)="setChoix(i, 'oui')">Oui</button>
-                            <button value="non" (click)="setChoix(i, 'non')">Non</button>
-                            <button value="jevoudrais" (click)="setChoix(i, 'je voudrais')">Je voudrais le faire</button>
+                            <button value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button>
+                            <button value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button>
+                            <button value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais')">Je voudrais le faire</button>
                             <p>Tu as choisi {{img.choix}}</p>
                         </td>
                     </tr>
                 </tbody>
             </li>
         </table>
-        <button type="submit" name="Valider">Valider</button>
+        <button class="btn btn-primary" id="buttonValider" type="submit" name="Valider">Valider</button>
     </form>
 </div>
+</html>

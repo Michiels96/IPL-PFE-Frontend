@@ -37,7 +37,7 @@ export class AuthentificatedComponent implements OnInit {
     console.log("enfant choisi");
     console.log(this.kid_selected);
     
-    this.router.navigate(['/ui',{id:this.kid_selected.id}]);
+    this.router.navigate(['/ui',{id:this.kid_selected}]);
     
     
   }

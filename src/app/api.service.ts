@@ -32,6 +32,12 @@ export class ApiService {
   getAllEnfants(): Observable<any>{
     return this.http.get(this.baseurl + '/enfant/enfants/', {headers:this.httpHeaders});
   }
+  getLoggedEnfants(): Observable<any>{
+    return this.http.get(this.baseurl + '/enfant/logged_enfant/', {headers:this.httpHeaders});
+  }
+  getUnloggedEnfants(): Observable<any>{
+    return this.http.get(this.baseurl + '/enfant/non_logged_enfant/', {headers:this.httpHeaders});
+  }
   getAllHandicaps(): Observable<any>{
     return this.http.get(this.baseurl + '/handicaps/', {headers:this.httpHeaders});
   }

@@ -8,13 +8,23 @@ import { AuthService } from '../../auth/auth/auth.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
+  kid_connected=null;
   listeEnfants;
   kid_selected;
   isNotConnected=true;
+  
   constructor(private api: ApiService,public authService: AuthService) { }
 
   ngOnInit() {
-    this.api.getAllEnfants().subscribe(
+    
+  
+    if (localStorage.length > 0) {
+      if(localStorage.getItem('kid_connected')!=''){
+        this.deconnecterEnfant(JSON.parse(localStorage.getItem('kid_connected')));
+      }
+    } 
+    localStorage.setItem('kid_connected', '');
+    this.api.getUnloggedEnfants().subscribe(
       data => {
         //console.log(data);
         this.listeEnfants =data;//Array.of(data);
@@ -27,7 +37,6 @@ export class AccueilComponent implements OnInit {
     )
   }
   connecterEnfant(){
-
     console.log("enfant a connecter");
     console.log(this.kid_selected.enfant_id);
     this.api.updateKid(this.kid_selected,true).subscribe(
@@ -38,6 +47,7 @@ export class AccueilComponent implements OnInit {
           this.isNotConnected=false;
           this.authService.loginKid();
           console.log("connecté")
+          localStorage.setItem('kid_connected', JSON.stringify(this.kid_selected));
         }
         
       },
@@ -46,6 +56,16 @@ export class AccueilComponent implements OnInit {
       }
     )
     
+  }
+  deconnecterEnfant(kid){
+    this.api.updateKid(kid,false).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }

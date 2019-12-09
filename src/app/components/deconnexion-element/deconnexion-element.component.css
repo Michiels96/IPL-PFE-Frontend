@@ -1,0 +1,11 @@
+.btn-primary {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}
+
+.btn-block {
+    display: inline-block;
+    width: 15%;
+    
+}

@@ -1,5 +1,6 @@
 .page {
-    background-color: bisque;
+    background-color: beige;
+    background-size: 100%;
 }
 /*
 Code Ruban
@@ -124,4 +125,16 @@ button:focus {
     border-color: dodgerblue;
     color: dodgerblue;
     background-color: floralwhite;
+}
+
+#buttonValider {
+    position: absolute;
+    background-color: chartreuse;
+    color: black;
+    right: 50%;
+}
+
+html {
+    background-size: 100%;
+    background-color: beige;
 }

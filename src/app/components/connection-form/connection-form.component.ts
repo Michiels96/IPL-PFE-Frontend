@@ -16,7 +16,7 @@ export class ConnectionFormComponent implements OnInit {
   isTokenForm=false;
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();*/
-  isTokenValid=false;
+  //isTokenValid=false;
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -32,12 +32,10 @@ export class ConnectionFormComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+    this.authService.logout();
   }
 
-  deconnexion(){
-    this.isTokenValid=false;
-  }
+ 
   tryToConnect() {
     console.log(this.connexion.value);
     //this.messageToEmit.emit(this.connexion);
@@ -49,11 +47,15 @@ export class ConnectionFormComponent implements OnInit {
         if(regex.test(data.token)){
           
           this.authService.login();
-          this.isTokenValid=true;
+          //this.isTokenValid=true;
+          this.inscription.reset();
           this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
+          this.connexion.reset();
         }
         else{
-          this.isTokenValid=false;
+          //this.isTokenValid=false;
+          this.inscription.reset();
+          this.connexion.reset();
           this.router.navigate(['/connexion']);
         }
       },
