@@ -146,4 +146,5 @@ export class CategorieComponentComponent implements OnInit {
       this.rien_choisi = true;
     }
   }
+
 }

@@ -19,7 +19,10 @@ export class ConnectionFormComponent implements OnInit {
   //isTokenValid=false;
   userToConnect;
   error_connect_msg;
+  error_connect = false;
   error_inscription_msg;
+  error_inscription = false;
+
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -38,6 +41,8 @@ export class ConnectionFormComponent implements OnInit {
     this.authService.logout();
     this.error_connect_msg="";
     this.error_inscription_msg=""
+    this.error_connect = false;
+    this.error_inscription = false;
   }
 
  
@@ -69,9 +74,10 @@ export class ConnectionFormComponent implements OnInit {
       error => {
         //console.log(error);
         this.error_connect_msg="Mot de passe ou nom incorrect";
+        this.error_connect = true;
       }
     )
-    
+    this.error_connect = false;
   }
   sendInscription(){
     console.log(this.inscription.value);
@@ -97,8 +103,10 @@ export class ConnectionFormComponent implements OnInit {
       error => {
         console.log(error);
         this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
+        this.error_inscription = true;
       }
     )
+    this.error_inscription = false;
   }
 
 }
