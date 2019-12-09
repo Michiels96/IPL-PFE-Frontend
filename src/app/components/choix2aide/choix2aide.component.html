@@ -8,6 +8,8 @@
         <span *ngIf="var_activiteCourante.aime == true">aimée</span>
         <span *ngIf="var_activiteCourante.aime == false">Pas aimée</span>
         nr°{{var_activiteCourante.image_id}}
+        <br/>
+        ({{var_activiteCourante.description}})
     </h4>
     <p>
         <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>

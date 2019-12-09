@@ -69,4 +69,7 @@ export class ApiService {
     let postContent=JSON.stringify(user);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
     return this.http.post(this.baseurl + '/prof/login/',postContent, {headers:this.httpHeaders});
   }
+  getSessionById(id): Observable<any>{
+    return this.http.get(this.baseurl + '/sessions/full_sessions/' + id + '/', {headers:this.httpHeaders});
+  }
 }
