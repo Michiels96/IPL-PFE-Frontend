@@ -1,6 +1,6 @@
 <html>
 <div class="text-align:center">
-        <button class="previous" [routerLink]="['/']" title="Précédent">Précédent</button>
+    <button class="btn btn-lg"  [routerLink]="['/']" title="Précédent">Précédent</button>
 
     <div id="fond"> 
         <div class="ruban">     
@@ -13,31 +13,25 @@
     <br/>
     <br />
 
-    <h3>Choisi la catégorie qui ressemble le plus à tes habitudes</h3>
+    <h2>Bienvenue {{kid_nomComplet}} </h2><br/>
+    <h4>Choisi la catégorie qui ressemble le plus à tes habitudes</h4>
 
     <div class="card-body">
-        <div *ngFor="let cat of var_categories">
-            <li style="list-style-type: none;" *ngFor="let img of var_images">
-                <div *ngIf="cat.libelle == img.categorie_image; else break">
-                    <div *ngIf="cpt == 0">
-                        {{compteurPlus()}}
-                        <figure>
-                            <strong><a style="background-color: beige;" (click)="$event.preventDefault();getCat(cat)">
-                                <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{cat.libelle}}/{{img.description}}.jpg">
-                                <figcaption>{{cat.libelle}}</figcaption>
-                            </a>
-                            </strong>
-                        </figure>
-                    </div>
-                </div>
-                <ng-template #break>
-                    {{compteurReset()}}
-                </ng-template>       
-            </li>
-        </div>
+        <li *ngFor="let img of var_images" style="list-style-type: none;">
+            <figure>
+                <strong>
+                    <a style="background-color: beige;" (click)="$event.preventDefault();getCat(img.categorie_image)">
+                    <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
+                    <figcaption>{{img.categorie_image}}</figcaption>
+                </a>
+                </strong>
+            </figure>    
+        </li>
     </div> 
     <h4 *ngIf="var_nbActivites > 0">
         Jusqu'à maintenant tu a répondu 'oui' à {{var_nbActivites}} activité<span *ngIf="var_nbActivites > 1">s</span>
+        <br/>
+        <button class="btn btn-primary" (click)="$event.preventDefault();onSubmit()">Valider</button>
     </h4>
 </div>
 </html>

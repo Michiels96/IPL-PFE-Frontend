@@ -116,25 +116,55 @@ button:focus {
     
 }
 
-.previous {
+.btn {
     right: 90%;
     margin: 40px;
     position: fixed; 
     border-style: ridge;
     border-radius: 50px;
-    border-color: dodgerblue;
-    color: dodgerblue;
+    border-color: orangered;
+    color: orangered;
     background-color: floralwhite;
 }
 
 #buttonValider {
     position: absolute;
-    background-color: chartreuse;
-    color: black;
-    right: 50%;
+    border-radius: 50px;
+    border-color: orangered;
+    color: orangered;
+    background-color: floralwhite;
+    right: 47%;
 }
 
 html {
     background-size: 100%;
     background-color: beige;
+}
+
+.alert {
+    padding: 25px;
+    background-color: red;
+    color: white;
+    size: 60%;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    margin: 40px; /* 40px sur le bouton*/
+    left: 28.5%;
+
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover  {
+    color: chartreuse;
 }

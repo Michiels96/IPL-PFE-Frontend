@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { SharedService } from 'src/app/SharedService';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,63 +10,60 @@ import { Router } from '@angular/router';
   styleUrls: ['./choix-categorie.component.css']
 })
 export class ChoixCategorieComponent implements OnInit {
-
-  var_categories;
-  var_images;
-  cpt;
-  cat_libelle;
   var_nbActivites;
+  var_categories = [];
+  var_images = [];
+  kid_nomComplet;
 
-  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
-    this.cpt = 0;
-    this.cat_libelle = "";
+
+  constructor(private api: ApiService, private router:Router, private sharedService: SharedService, private route: ActivatedRoute) { 
     this.var_nbActivites = 0;
+  }
+
+  ngOnInit() {
+    this.kid_nomComplet= this.route.snapshot.paramMap.get('nom_enfant');
+    if(this.sharedService.getNbChoixCategorie() > 0){
+      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
+    }
+    this.getCategories();
+  }
+
+  getImages(){
+    for(var categorie of this.var_categories){
+      this.api.getAllImagesByLibelle(categorie.libelle).subscribe(
+        data => {
+          for(var activite of data){
+            this.var_images.push(activite)
+            // uniquement 1ere image nécessaire
+            break;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
       data => {
         this.var_categories = data;
+        this.getImages();
       },
       error => {
         console.log(error);
       }
     )
-  }
-
-  getImages = () => {
-    this.api.getAllImages().subscribe(
-      data => {
-        this.var_images = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-
-  ngOnInit() {
-    if(this.sharedService.getNbChoixCategorie() > 0){
-      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
-    }
-    this.getCategories();
-    this.getImages();
-    this.compteurPlus();
-    this.compteurReset();
   }
 
   getCat(cat){
-    this.cat_libelle=cat.libelle;
-    var cast = [this.cat_libelle];
+    var cast = [cat];
     this.sharedService.setDataChoixCategorie(cast);
     this.router.navigate(['/categories']);
   }
 
-  compteurPlus() {
-    this.cpt++;
-  }
-
-  compteurReset() {
-    this.cpt = 0;
+  onSubmit() {
+    this.router.navigate(['/choixJaime']);
   }
 }

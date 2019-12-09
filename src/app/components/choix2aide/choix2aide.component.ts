@@ -28,10 +28,10 @@ export class Choix2aideComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.sharedService.getDataChoix1().length == null){
-      this.router.navigate(['/choixJaime']);
+    if(this.sharedService.getDataCategorie().length == undefined){
+      this.router.navigate(['/categories']);
     }
-    this.var_reponsesQ1 = this.sharedService.getDataChoix1();
+    this.var_reponsesQ1 = this.sharedService.getDataCategorie();
 
     for(var activite of this.var_reponsesQ1){
       this.var_listeQ2.push(activite);
@@ -87,17 +87,18 @@ export class Choix2aideComponent implements OnInit {
 
   question2Terminee(){
     console.log("terminé!");
-    /*
-    console.log("Aide demandee "+this.var_activitesBesoinDAide.length);
-    console.log("AIDE "+JSON.stringify(this.var_activitesBesoinDAide));
-
-    console.log("Aide Non demandee "+this.var_activitesPasBesoinDAide.length);
-    console.log("AIDE PAS "+JSON.stringify(this.var_activitesPasBesoinDAide));
-    */
-
-    console.log("CHOIX 2 "+JSON.stringify(this.var_activitesDAideEnregistres));
-
-    this.sharedService.setDataChoix2(this.var_activitesDAideEnregistres);
+    var imagesSelectionnes = this.sharedService.getDataCategorie();
+    var i = 0;
+    for(var activite of this.var_activitesDAideEnregistres){
+      for(var activiteSharedService of imagesSelectionnes){
+        if(activiteSharedService.image_id == activite.image_id){
+          this.var_activitesDAideEnregistres[i] = activiteSharedService;
+        }
+      }
+      i++;
+    }
+    this.sharedService.setDataCategorie(this.var_activitesDAideEnregistres);
+    console.log("CHOIX 2 "+JSON.stringify(this.sharedService.getDataCategorie()));
     this.router.navigate(['/choixContent']);
   }
 }

@@ -1,0 +1,19 @@
+html {
+    background-color: bisque;
+    text-align: center;
+}
+
+#table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    table-layout: auto;
+    width: 100%;  
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+.datarow:hover{
+    background-color: rgb(251, 193, 122);
+}

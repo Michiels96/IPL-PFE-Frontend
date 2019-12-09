@@ -17,6 +17,12 @@ export class ConnectionFormComponent implements OnInit {
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();*/
   //isTokenValid=false;
+  userToConnect;
+  error_connect_msg;
+  error_connect = false;
+  error_inscription_msg;
+  error_inscription = false;
+
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -33,6 +39,10 @@ export class ConnectionFormComponent implements OnInit {
 
   ngOnInit() {
     this.authService.logout();
+    this.error_connect_msg="";
+    this.error_inscription_msg=""
+    this.error_connect = false;
+    this.error_inscription = false;
   }
 
  
@@ -43,6 +53,8 @@ export class ConnectionFormComponent implements OnInit {
       data => {
         console.log("token");
         console.log(data);
+        this.error_connect_msg="";
+        this.error_inscription_msg=""
         let regex = /\d/;
         if(regex.test(data.token)){
           
@@ -60,10 +72,12 @@ export class ConnectionFormComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        //console.log(error);
+        this.error_connect_msg="Mot de passe ou nom incorrect";
+        this.error_connect = true;
       }
     )
-    
+    this.error_connect = false;
   }
   sendInscription(){
     console.log(this.inscription.value);
@@ -75,13 +89,24 @@ export class ConnectionFormComponent implements OnInit {
     this.api.postUser(this.inscription.value).subscribe( 
       data => {
         console.log(data);
-        
+        this.userToConnect=this.inscription.value
+        this.connexion.setValue({
+          username: this.userToConnect.username, 
+          password: this.userToConnect.password
+        });
+        console.log( this.connexion.value);
+        this.error_connect_msg="";
+        this.error_inscription_msg=""
+        this.tryToConnect();
       // this.enfants.push(data);
       },
       error => {
         console.log(error);
+        this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
+        this.error_inscription = true;
       }
     )
+    this.error_inscription = false;
   }
 
 }

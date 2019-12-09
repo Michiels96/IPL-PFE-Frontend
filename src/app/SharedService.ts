@@ -5,16 +5,11 @@ export class SharedService {
     dataChoixCategorie;
     nbChoixCategorie;
     dataCategorie;
-    dataChoix1;
-    dataChoix2;
     
-
     constructor(){
         this.dataChoixCategorie = {};
         this.nbChoixCategorie = 0;
         this.dataCategorie = {};
-        this.dataChoix1 = {};
-        this.dataChoix2 = {};
     }
 
     /* 
@@ -32,7 +27,7 @@ export class SharedService {
 
     /* 
     composants impliqués: 
-    - choix-categorie <==> categorie-component
+    - choix-categorie <== categorie-component
     */
     getNbChoixCategorie(){
         return this.nbChoixCategorie;
@@ -46,6 +41,8 @@ export class SharedService {
     /* 
     composants impliqués: 
     - categorie-component ==> choix1jaime
+    - choix1jaime ==> choix2aide
+    - choix2aide ==> choix3content
     */
     getDataCategorie(){
         return this.dataCategorie;
@@ -55,29 +52,4 @@ export class SharedService {
     }
     /*************************/
 
-    /* 
-    composants impliqués: 
-    - choix1jaime ==> choix2aide
-    */
-    getDataChoix1(){
-        return this.dataChoix1;
-    }
-
-    setDataChoix1(val: object){
-        this.dataChoix1 = val;
-    }
-    /*************************/
-
-    /* 
-    composants impliqués: 
-    - choix2aide ==> choix3content
-    */
-    getDataChoix2(){
-        return this.dataChoix2;
-    }
-
-    setDataChoix2(val: object){
-        this.dataChoix2 = val;
-    }
-    /*************************/
 }

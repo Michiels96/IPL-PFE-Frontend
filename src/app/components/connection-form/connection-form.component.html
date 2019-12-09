@@ -1,34 +1,61 @@
+<html>
 
-<div>
-<form class="form-signin" [formGroup]="connexion" (ngSubmit)="tryToConnect()">
-    <h3>Connexion educateur</h3>
-    <label>
-        Educateur:
-        <input type="text" formControlName="username">
-      </label> <br>
-    <label>
-        Mot de passe:
-        <input type="text" formControlName="password">
-      </label> <br>
-<button class="btn btn-lg btn-primary btn-block" type='submit'>Se connecter</button>
-</form>
-<br>
-<form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
-    <h3>Inscription educateur</h3>
-    <label>
-        Educateur:
-        <input type="text" formControlName="username">
-      </label> <br>
-    <label>
-        Mot de passe:
-        <input type="text" formControlName="password">
-      </label> <br>
-    <label>
-        Email:
-        <input type="text" formControlName="email">
-     </label> <br>
-<button class="btn btn-lg btn-primary btn-block" type='submit'>S'inscrire'</button>
-</form></div>
+<h2>Bienvenue dans la page de connection</h2>
 
+<div class="alert alert-warning" role="alert" *ngIf="error_connect == true">
+  {{error_connect_msg}}
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+</div>
 
+<div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
+    {{error_inscription_msg}}
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  </div>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>Connexion Educateur</h3>
+            <form class="form-signin" [formGroup]="connexion" (ngSubmit)="tryToConnect()">
+                <div class="form-group">
+                  <label>
+                    <strong style="color: #0062cc;">Educateur :</strong><br/>
+                    <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="username">
+                  </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <strong style="color: #0062cc;">Mot de passe : </strong>
+                        <input type="password" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" type='submit'>Login</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-md-6 login-form-2">
+            <h3>Inscrire Educateur</h3>
+            <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
+                <div class="form-group">
+                    <label>
+                        <strong style="color: #fff;">Educateur :</strong>
+                      <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="username">
+                    </label>
+                  </div>
+                  <div class="form-group">
+                      <label>
+                          <strong style="color: #fff;">Mot de passe :</strong>
+                          <input type="password" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
+                      </label>
+                  </div>
+                  <div class="form-group">
+                      <button class="btn btn-lg btn-primary btn-block" type='submit'>S'inscrire</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
 

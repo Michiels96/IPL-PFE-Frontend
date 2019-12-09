@@ -30,6 +30,8 @@ import { Choix3contentComponent } from './components/choix3content/choix3content
 import { SharedService } from './SharedService';
 import { AuthentificatedComponent } from './components/authentificated/authentificated.component';
 import { DeconnexionElementComponent } from './components/deconnexion-element/deconnexion-element.component';
+import { RecapComponent } from './components/recap/recap.component';
+import { SyntheseDesChoixComponent } from './components/synthese-des-choix/synthese-des-choix.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
     Choix3contentComponent,
     AuthentificatedComponent,
     DeconnexionElementComponent,
+    RecapComponent,
+    SyntheseDesChoixComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,7 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-
+    
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
       { path: '', component: AccueilComponent },
@@ -71,6 +75,7 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
       //{ path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard] },
       { path: 'categories', component: CategorieComponentComponent},
       { path: 'connexion', component: ConnectionFormComponent },
+      { path: 'recap', component: RecapComponent/*,canActivate: [AuthGuard] */},
       { path: 'auth', component: AuthentificatedComponent,canActivate: [AuthGuard] },
       //{ path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard] },
       { path: 'ui', component: EducateurUIComponent},
@@ -80,6 +85,8 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
       { path: 'choixAide', component: Choix2aideComponent,},
       //{ path: 'choixContent', component: Choix3contentComponent,canActivate: [KidAuthGuard] },
       { path: 'choixContent', component: Choix3contentComponent,},
+      //{ path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,canActivate: [KidAuthGuard] },
+      { path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,},
     ])
   ],
   providers: [SharedService],

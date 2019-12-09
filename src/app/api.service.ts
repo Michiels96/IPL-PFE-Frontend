@@ -24,10 +24,13 @@ export class ApiService {
   }
 
   getAllImagesByLibelle(libelle): Observable<any>{
-    return this.http.get(this.baseurl + '/images/repertoire/'+libelle+'/', {headers:this.httpHeaders});
+    return this.http.get(this.baseurl + '/images/'+libelle+'/', {headers:this.httpHeaders});
   }
   getAllSessions(): Observable<any>{
     return this.http.get(this.baseurl + '/sessions/full_sessions/', {headers:this.httpHeaders});
+  }
+  getSessionsById(id): Observable<any>{
+    return this.http.get(this.baseurl + '/sessions/enfant_full_sessions/'+ id +'/', {headers:this.httpHeaders});
   }
   getAllEnfants(): Observable<any>{
     return this.http.get(this.baseurl + '/enfant/enfants/', {headers:this.httpHeaders});
@@ -49,7 +52,7 @@ export class ApiService {
     return this.http.put(this.baseurl + '/enfant/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{
-    let postContent=JSON.stringify(kid);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
+    let postContent=JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/',postContent, {headers:this.httpHeaders});
   }
   getUser(id): Observable<any>{
