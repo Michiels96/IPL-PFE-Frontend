@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./categorie-component.component.css']
 })
 export class CategorieComponentComponent implements OnInit {
-  var_images;
   // libelle_categorie_selectionne: choix-categorie ==> categorie-component 
   libelle_categorie_selectionne;
   var_choix_images = [];
@@ -20,13 +19,11 @@ export class CategorieComponentComponent implements OnInit {
     this.libelle_categorie_selectionne = null;
   }
   
-
   ngOnInit() {
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
-
     this.initImages(this.libelle_categorie_selectionne);
   }
 
@@ -128,5 +125,4 @@ export class CategorieComponentComponent implements OnInit {
     console.log("Choix images : ", this.var_choix_images);
     this.router.navigate(['/choixJaime']);
   }
-
 }

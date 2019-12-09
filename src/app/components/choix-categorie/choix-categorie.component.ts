@@ -26,12 +26,7 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   getImages(){
-    
     for(var categorie of this.var_categories){
-      // A CORRIGER PAR CEUX DU BACKEND!!!
-      if(categorie.libelle == "soinspersonnels"){
-        categorie.libelle = "soinspersonnnels"
-      }
       this.api.getAllImagesByLibelle(categorie.libelle).subscribe(
         data => {
           for(var activite of data){
