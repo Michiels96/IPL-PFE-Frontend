@@ -1,12 +1,16 @@
 
 .btn-primary {
     color: #fff;
-    background-color: red;
-    border-color: red;
+    background-color:blue;
+    border-color: blue;
 }
 
 .btn-block {
     display: inline-block;
     width: 15%;
     
+}
+
+h5{
+    color: red;
 }

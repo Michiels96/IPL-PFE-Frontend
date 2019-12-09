@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth/auth.service';
+import { FormControl, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'app-authentificated',
@@ -10,14 +10,23 @@ import { AuthService } from 'src/app/auth/auth/auth.service';
   styleUrls: ['./authentificated.component.css']
 })
 export class AuthentificatedComponent implements OnInit {
+  error_inscription_msg;
   whoIsConnected;
   listeEnfants;
   kid_selected;
+  inscriptionEnfant=new FormGroup({
+    id:new FormControl(-1),
+    nom: new FormControl(''),
+    prenom: new FormControl(''),
+    age: new FormControl(''),
+    connecte: new FormControl(false)
+  });
   constructor(private api: ApiService,private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
     this.whoIsConnected=this.route.snapshot.paramMap.get('nom');
     this.getEnfants();
+    this.error_inscription_msg="";
   }
   getEnfants = () => {
    
@@ -38,8 +47,20 @@ export class AuthentificatedComponent implements OnInit {
     console.log(this.kid_selected);
     
     this.router.navigate(['/ui',{id:this.kid_selected}]);
-    
-    
+  }
+  inscrireEnfant(){
+    console.log(this.inscriptionEnfant.value);
+    this.api.postKid(this.inscriptionEnfant.value).subscribe( 
+      data => {
+        console.log(data);
+        this.inscriptionEnfant.reset();
+      // this.enfants.push(data);
+      },
+      error => {
+        console.log(error);
+        this.error_inscription_msg="Erreur lors de l'inscription de cet enfant, veuillez recommencer";
+      }
+    )
   }
   /*deconnexion(){
     this.authService.logout();

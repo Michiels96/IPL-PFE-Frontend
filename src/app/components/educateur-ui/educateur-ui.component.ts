@@ -16,5 +16,5 @@ export class EducateurUIComponent implements OnInit {
    this.kid_id= this.route.snapshot.paramMap.get('id');
    console.log(this.kid_id);
   }
-  
+
 }

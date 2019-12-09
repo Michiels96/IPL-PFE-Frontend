@@ -10,69 +10,58 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./choix-categorie.component.css']
 })
 export class ChoixCategorieComponent implements OnInit {
+  var_nbActivites;
+  var_categories = [];
+  var_images = [];
   kid_nomComplet;
 
-  var_categories;
-  var_images;
-  cpt;
-  cat_libelle;
-  var_nbActivites;
-
-  constructor(private api: ApiService, private router:Router, private sharedService: SharedService, private route: ActivatedRoute) { 
-    this.cpt = 0;
-    this.cat_libelle = "";
+  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
     this.var_nbActivites = 0;
+  }
+
+  ngOnInit() {
+    if(this.sharedService.getNbChoixCategorie() > 0){
+      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
+    }
+    this.getCategories();
+  }
+
+  getImages(){
+    for(var categorie of this.var_categories){
+      this.api.getAllImagesByLibelle(categorie.libelle).subscribe(
+        data => {
+          for(var activite of data){
+            this.var_images.push(activite)
+            // uniquement 1ere image nécessaire
+            break;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   getCategories = () => {
     this.api.getAllCategories().subscribe(
       data => {
         this.var_categories = data;
+        this.getImages();
       },
       error => {
         console.log(error);
       }
     )
-  }
-
-  getImages = () => {
-    this.api.getAllImages().subscribe(
-      data => {
-        this.var_images = data;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-
-  onSubmit() {
-    this.router.navigate(['/choixJaime']);
-  }
-
-  ngOnInit() {
-    this.kid_nomComplet= this.route.snapshot.paramMap.get('nom_enfant');
-    if(this.sharedService.getNbChoixCategorie() > 0){
-      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
-    }
-    this.getCategories();
-    this.getImages();
-    this.compteurPlus();
-    this.compteurReset();
   }
 
   getCat(cat){
-    this.cat_libelle=cat.libelle;
-    var cast = [this.cat_libelle];
+    var cast = [cat];
     this.sharedService.setDataChoixCategorie(cast);
     this.router.navigate(['/categories']);
   }
 
-  compteurPlus() {
-    this.cpt++;
-  }
-
-  compteurReset() {
-    this.cpt = 0;
+  onSubmit() {
+    this.router.navigate(['/choixJaime']);
   }
 }

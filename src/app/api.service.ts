@@ -49,7 +49,7 @@ export class ApiService {
     return this.http.put(this.baseurl + '/enfant/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{
-    let postContent=JSON.stringify(kid);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
+    let postContent=JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/',postContent, {headers:this.httpHeaders});
   }
   getUser(id): Observable<any>{
