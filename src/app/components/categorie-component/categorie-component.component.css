@@ -142,14 +142,21 @@ html {
 }
 
 .alert {
-    padding: 20px;
-    background-color: orange;
+    padding: 25px;
+    background-color: red;
     color: white;
+    size: 60%;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    margin: 40px; /* 40px sur le bouton*/
+    left: 28.5%;
+
 }
 
 .closebtn {
     margin-left: 15px;
-    color: white;
+    color: black;
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -159,5 +166,5 @@ html {
 }
 
 .closebtn:hover  {
-    color: black;
+    color: chartreuse;
 }

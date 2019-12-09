@@ -97,8 +97,8 @@ export class Choix2aideComponent implements OnInit {
       }
       i++;
     }
-    console.log("CHOIX 2 "+JSON.stringify(this.sharedService.getDataCategorie()));
     this.sharedService.setDataCategorie(this.var_activitesDAideEnregistres);
+    console.log("CHOIX 2 "+JSON.stringify(this.sharedService.getDataCategorie()));
     this.router.navigate(['/choixContent']);
   }
 }

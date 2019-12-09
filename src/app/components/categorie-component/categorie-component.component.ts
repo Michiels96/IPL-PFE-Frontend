@@ -14,10 +14,13 @@ export class CategorieComponentComponent implements OnInit {
   libelle_categorie_selectionne;
   var_choix_images = [];
   rien_choisi;
+  nbActivitesOui;
+
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
+    this.nbActivitesOui = 0;
   }
   
   ngOnInit() {
@@ -90,13 +93,19 @@ export class CategorieComponentComponent implements OnInit {
   */
   
   setChoix(i, value){
+    this.rien_choisi = false;
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
     if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-      this.rien_choisi = true;
-      console.log("rien_choisi", this.rien_choisi);
+     
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       for(var activite of this.var_choix_images){
+        if(activite.choix != "oui"){
+          this.nbActivitesOui--;
+        }
+        else{
+          this.nbActivitesOui++;
+        }
         //retrouver les images deja ajoutées
         if(choixImagesToChoix1.includes(activite)){
           // et mettre à jour
@@ -113,19 +122,28 @@ export class CategorieComponentComponent implements OnInit {
         choixImagesToChoix1.push(activite);
       }
     }
-    var nbActivitesOui = 0;
+    // this.nbActivitesOui = 0;
     for(var activite of choixImagesToChoix1){
       if(activite.choix == "oui"){
-        nbActivitesOui++;
+        this.nbActivitesOui++;
       }
     }
-    this.sharedService.setNbChoixCategorie(nbActivitesOui);
+    
+    this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
     this.sharedService.setDataCategorie(choixImagesToChoix1);
     console.log(choixImagesToChoix1);
   }
 
   onSubmit() {
     console.log("Choix images : ", this.var_choix_images);
-    this.router.navigate(['/choixJaime']);
+    console.log("nb oui : ", this.nbActivitesOui);
+    if(this.nbActivitesOui >= 1) {
+      this.router.navigate(['/choixJaime']);
+      this.rien_choisi = false;
+    }
+    else {
+      this.router.navigate(['/categories']);
+      this.rien_choisi = true;
+    }
   }
 }

@@ -99,6 +99,8 @@ export class Choix3contentComponent implements OnInit {
       }
       i++;
     }
+    this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    this.router.navigate(['/syntheseDesChoix']);
   }
 }
