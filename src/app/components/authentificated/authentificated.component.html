@@ -9,4 +9,22 @@
      </select>
      </p>
      <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
+     <br>
+     <h5>{{error_inscription_msg}}</h5>
+     <br>
+        <form class="form-signin" [formGroup]="inscriptionEnfant" (ngSubmit)="inscrireEnfant()">
+            <h3>Inscrire un enfant</h3>
+            <label>
+                Nom:
+                <input type="text" formControlName="nom">
+              </label> <br>
+            <label>
+                Prenom:
+                <input type="text" formControlName="prenom">
+              </label> <br>
+            <label>
+                Age:
+                <input type="text" formControlName="age">
+             </label> <br>
+        <button class="btn btn-lg btn-primary btn-block" type='submit'>Inscrire</button>
  
