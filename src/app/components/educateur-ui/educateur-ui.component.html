@@ -1,3 +1,18 @@
+<!-- <html>
+    <div class="card-body">
+        <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
+            <label>Description</label>
+            {{q.img_description}}
+            <label>Notes</label>
+            <div class="card-body2">
+                <textarea (input)="setNote(q.question_id, 'note_aime', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aime" value="aime"></textarea>
+                <textarea (input)="setNote(q.question_id, 'note_aide', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aide" value="aide"></textarea>
+                <textarea (input)="setNote(q.question_id, 'note_satisfaction', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Content" value="content"></textarea>
+            </div>
+        </li>
+    </div>
+</html> -->
+
 <html>
     <div class="page">
         <form>
@@ -26,5 +41,4 @@
                 </li>
             </table>
         </form>
-    </div>
-</html>
+</div>

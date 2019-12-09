@@ -1,5 +1,6 @@
 table{
  margin-left: 200px;
+ column-count: 3;
 }
 
 .table2{
@@ -11,6 +12,22 @@ th, td{
 }
 
 html {
-    background-size: 100%;
+    /* background-size: 100%; */
     background-color: beige;
+}
+
+.card-body {
+    column-count: 7;
+    position: absolute;
+}
+
+.card-body2 {
+    /* column-count: ; */
+    text-align: center;
+    position: relative;
+}
+
+.card {
+    column-count: 4;
+    position: absolute;
 }
