@@ -10,10 +10,11 @@
         nr°{{var_activiteCourante.image_id}}
         <span *ngIf="var_activiteCourante.aide == true"> avec laquelle j'ai besoin d'aide</span>
         <span *ngIf="var_activiteCourante.aide == false"> avec laquelle je n'ai pas besoin d'aide</span>
-        
+        <br/>
+        ({{var_activiteCourante.description}})
     </h4>
     <p>
-        <img style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
+        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
     </p>
     <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Content</button>
     <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas content</button>
