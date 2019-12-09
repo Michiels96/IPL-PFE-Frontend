@@ -15,7 +15,7 @@ export class SyntheseDesChoixComponent implements OnInit {
 
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
-    this.var_numLigne = 0;
+    this.var_numLigne = 1;
   }
 
   ngOnInit() {
