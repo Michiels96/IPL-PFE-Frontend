@@ -95,7 +95,6 @@ export class CategorieComponentComponent implements OnInit {
   */
   
   setChoix(i, value){
-    this.rien_choisi = false;
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
     if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
@@ -132,6 +131,7 @@ export class CategorieComponentComponent implements OnInit {
   onSubmit() {
     console.log("Choix images : ", this.var_choix_images);
     if(this.nbActivitesOui >= 1) {
+      console.log("Je suis ici");
       this.router.navigate(['/choixJaime']);
       this.rien_choisi = false;
     }

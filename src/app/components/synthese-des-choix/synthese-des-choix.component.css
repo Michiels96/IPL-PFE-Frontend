@@ -3,15 +3,17 @@ html {
     text-align: center;
 }
 
-#table{
+
+
+table{
     border-collapse: collapse;
-    border: 1px solid black;
-    table-layout: auto;
-    width: 100%;  
+    text-align: center;
+    position: relative;
 }
 
 th, td {
     border: 1px solid black;
+    vertical-align: top;
 }
 
 .datarow:hover{
