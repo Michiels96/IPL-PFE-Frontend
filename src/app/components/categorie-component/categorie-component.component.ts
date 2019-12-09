@@ -100,13 +100,16 @@ export class CategorieComponentComponent implements OnInit {
      
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       for(var activite of this.var_choix_images){
+        if(activite.choix != "oui"){
+          this.nbActivitesOui--;
+        }
+        else{
+          this.nbActivitesOui++;
+        }
         //retrouver les images deja ajoutées
         if(choixImagesToChoix1.includes(activite)){
           // et mettre à jour
           choixImagesToChoix1[choixImagesToChoix1.indexOf(activite)] = activite;
-          if(activite.choix != "oui"){
-            this.nbActivitesOui--;
-          }
         }
         else{
           // et ajouter les nouvelles
@@ -133,6 +136,7 @@ export class CategorieComponentComponent implements OnInit {
 
   onSubmit() {
     console.log("Choix images : ", this.var_choix_images);
+    console.log("nb oui : ", this.nbActivitesOui);
     if(this.nbActivitesOui >= 1) {
       this.router.navigate(['/choixJaime']);
       this.rien_choisi = false;
