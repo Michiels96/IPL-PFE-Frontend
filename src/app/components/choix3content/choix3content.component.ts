@@ -142,7 +142,7 @@ export class Choix3contentComponent implements OnInit {
     
     this.router.navigate(['/syntheseDesChoix']);
   }
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

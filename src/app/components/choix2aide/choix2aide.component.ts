@@ -103,7 +103,7 @@ export class Choix2aideComponent implements OnInit {
     this.router.navigate(['/choixContent']);
   }
 
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

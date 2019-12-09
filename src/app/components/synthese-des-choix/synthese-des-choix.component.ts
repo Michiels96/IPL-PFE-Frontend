@@ -15,7 +15,7 @@ export class SyntheseDesChoixComponent implements OnInit {
 
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
-    this.var_numLigne = 1;
+    this.var_numLigne = 0;
   }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   numLigneMoins(){
     this.var_numLigne--;
   }
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

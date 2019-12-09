@@ -29,7 +29,7 @@ kid_in_session;
     )
   }
    
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   sendDataBeforePageLeave() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

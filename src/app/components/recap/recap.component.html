@@ -1,11 +1,8 @@
 <app-deconnexion-element></app-deconnexion-element>
-<br>
 <select  [(ngModel)]="id_session">
         <option *ngFor="let session of sessions" [ngValue]="session.session_id"> {{session.date}}</option>
 </select>
 <button class="btn btn-lg btn-primary" (click)="confirmerSession()">Choisir cette session </button>
-<br>
-<br>
 <table border="1" class="table table-hover">
     <thead>
     <tr>
@@ -41,7 +38,6 @@
         </td>
         <td class="choix">
                 <ng-container *ngIf="habitude.aide=='O'; else pas_aide">X
-    
                 </ng-container>
         </td>
         <td class="choix">

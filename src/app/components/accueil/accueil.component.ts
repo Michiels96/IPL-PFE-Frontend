@@ -77,7 +77,7 @@ export class AccueilComponent implements OnInit {
     console.log("Nom Enfant : ", this.kid_selected.enfant_nom);
     this.route.navigate(['/choix-categorie', {nom_enfant:this.kid_nomComplet}]);
   }
-  @HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
