@@ -32,7 +32,7 @@ export class SharedService {
 
     /* 
     composants impliqués: 
-    - choix-categorie <==> categorie-component
+    - choix-categorie <== categorie-component
     */
     getNbChoixCategorie(){
         return this.nbChoixCategorie;

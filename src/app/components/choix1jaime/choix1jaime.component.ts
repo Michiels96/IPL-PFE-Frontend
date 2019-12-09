@@ -36,7 +36,6 @@ export class Choix1jaimeComponent implements OnInit {
       }
     }
     console.log(this.var_imagesCategorieDemandees);
-    this.renameDescriptionForUrl();
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
     //this.getAllImagesByLibelle("deplacements");
     //this.getAllImagesByLibelle();
@@ -45,7 +44,9 @@ export class Choix1jaimeComponent implements OnInit {
     
   renameDescriptionForUrl = () => {
     for(var key in this.var_imagesCategorieDemandees){
-      this.var_imagesCategorieDemandees[key].description = this.var_imagesCategorieDemandees[key].description+".jpg";
+      if(!this.var_imagesCategorieDemandees[key].description.includes('.jpg')){
+        this.var_imagesCategorieDemandees[key].description = this.var_imagesCategorieDemandees[key].description+".jpg";
+      }
     }
   }
 /*

@@ -45,6 +45,10 @@ export class ChoixCategorieComponent implements OnInit {
     )
   }
 
+  onSubmit() {
+    this.router.navigate(['/choixJaime']);
+  }
+
   ngOnInit() {
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
