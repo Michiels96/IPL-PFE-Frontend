@@ -16,11 +16,11 @@
                     </select>
                     <br />
                     <br />
-            <button class="btn btn-lg btn-primary" style="background-color: blue; " (click)="connecterEnfant()">C'est moi ! </button>
+            <button class="btn btn-lg btn-primary" style="background-color: blue;" (click)="connecterEnfant()">C'est moi ! </button>
             </div>
             <ng-template #not_connected>
                 <div class="ButtonJouer">
-                    <button class="btn btn-lg btn-primary" style="background-color: blue;" [routerLink]="['/choix-categorie']" >Jouer</button>
+                    <button class="btn btn-lg btn-primary" style="background-color: blue;" [routerLink]="['/choix-categorie',{nom_enfant:kid_nomComplet}]" (click)="jouer()">Jouer</button>
                 </div>
             </ng-template>
         </div>

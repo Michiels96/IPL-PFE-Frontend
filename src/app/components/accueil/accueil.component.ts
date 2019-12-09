@@ -12,8 +12,9 @@ export class AccueilComponent implements OnInit {
   listeEnfants;
   kid_selected;
   isNotConnected=true;
+  kid_nomComplet;
   
-  constructor(private api: ApiService,public authService: AuthService) { }
+  constructor(private api: ApiService,public authService: AuthService, private route: Router) { }
 
   ngOnInit() {
     
@@ -39,10 +40,14 @@ export class AccueilComponent implements OnInit {
   connecterEnfant(){
     console.log("enfant a connecter");
     console.log(this.kid_selected.enfant_id);
+    console.log(this.kid_selected.enfant_nom);
+
     this.api.updateKid(this.kid_selected,true).subscribe(
       data => {
         //console.log(data);
         this.kid_selected = data;
+        console.log("Data kid_selected : ", this.kid_selected);
+        this.kid_nomComplet = data.nom + " " + data.prenom;
         if(this.kid_selected.connecte==true){
           this.isNotConnected=false;
           this.authService.loginKid();
@@ -55,8 +60,8 @@ export class AccueilComponent implements OnInit {
         console.log(error);
       }
     )
-    
   }
+
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
@@ -66,6 +71,11 @@ export class AccueilComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  jouer() {
+    console.log("Nom Enfant : ", this.kid_selected.enfant_nom);
+    this.route.navigate(['/choix-categorie', {nom_enfant:this.kid_nomComplet}]);
   }
 
 }
