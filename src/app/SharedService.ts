@@ -5,16 +5,11 @@ export class SharedService {
     dataChoixCategorie;
     nbChoixCategorie;
     dataCategorie;
-    dataChoix1;
-    dataChoix2;
     
-
     constructor(){
         this.dataChoixCategorie = {};
         this.nbChoixCategorie = 0;
         this.dataCategorie = {};
-        this.dataChoix1 = {};
-        this.dataChoix2 = {};
     }
 
     /* 
