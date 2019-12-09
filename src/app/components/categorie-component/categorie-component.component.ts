@@ -64,38 +64,6 @@ export class CategorieComponentComponent implements OnInit {
       }
     )
   }
-
-  /*
-  initImages(categorie){
-    this.api.getAllImages().subscribe(
-      data => {
-        for(var activite of data){
-          if(activite.categorie_image == categorie){
-            activite['choix'] = null;
-            this.var_choix_images.push(activite);
-          }
-        }
-        console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
-        // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
-        if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-          var choixImagesToChoix1 = this.sharedService.getDataCategorie();
-          var i = 0;
-          for(var activite of this.var_choix_images){
-            for(var activiteSauvegardee of choixImagesToChoix1){
-              if(activiteSauvegardee.image_id == activite.image_id){
-                this.var_choix_images[i] = activiteSauvegardee;
-              }
-            }
-            i++;
-          }
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-  */
   
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
