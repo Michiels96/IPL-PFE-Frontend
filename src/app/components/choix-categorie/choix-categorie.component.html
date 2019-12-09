@@ -1,5 +1,5 @@
 <html>
-<div class="text-align:center">
+<div class="text-align:center;width: 50%;height: 50%;">
     <button class="btn btn-lg"  [routerLink]="['/']" title="Précédent">Précédent</button>
 
     <div id="fond"> 
@@ -18,10 +18,10 @@
 
     <div class="card-body">
         <li *ngFor="let img of var_images" style="list-style-type: none;">
-            <figure>
+            <figure style="max-width: 100%;height: auto;">
                 <strong>
                     <a style="background-color: beige;" (click)="$event.preventDefault();getCat(img.categorie_image)">
-                    <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
+                    <img style="max-width: inherit;height: inherit;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
                     <figcaption>{{img.categorie_image}}</figcaption>
                 </a>
                 </strong>
