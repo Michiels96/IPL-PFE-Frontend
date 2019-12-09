@@ -36,41 +36,10 @@ export class Choix1jaimeComponent implements OnInit {
       }
     }
     console.log(this.var_imagesCategorieDemandees);
-    this.renameDescriptionForUrl();
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
-    //this.getAllImagesByLibelle("deplacements");
-    //this.getAllImagesByLibelle();
   }
 
-    
-  renameDescriptionForUrl = () => {
-    for(var key in this.var_imagesCategorieDemandees){
-      this.var_imagesCategorieDemandees[key].description = this.var_imagesCategorieDemandees[key].description+".jpg";
-    }
-  }
-/*
-  getAllImagesByLibelle = (libelle) => {
-    this.api.getAllImagesByLibelle(libelle).subscribe(
-      data => {
-        var i = 1;
-        for(var key in data){
-          data[key].description = data[key].description+".jpg";
-          this.var_imagesCategorieDemandees.push(data[key]); 
-          if(i == 1){
-            this.var_activiteCourante = data[key];
-          }
-          i++;
-        }
-        console.log(JSON.stringify(this.var_imagesCategorieDemandees));
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-*/
   addImgToYes(activite){
-    console.log(this.var_imagesCategorieDemandees[this.var_i]);
     if(this.var_i < this.var_imagesCategorieDemandees.length){
       this.var_pasComplet = false;
       activite.aime = true;
@@ -96,17 +65,6 @@ export class Choix1jaimeComponent implements OnInit {
     }
   }
 
-  imgByPass(){
-    if(this.var_i < this.var_imagesCategorieDemandees.length){
-      this.var_pasComplet = false;
-      this.var_i++;
-      this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];  
-    }
-    else{
-      this.question1Terminee();
-    }
-  }
-
   backToChoixCategorie(){
     this.router.navigate(['/categories']);
   }
@@ -118,9 +76,20 @@ export class Choix1jaimeComponent implements OnInit {
       this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
     }
     else{
-      console.log("CHOIX 1 "+JSON.stringify(this.var_activitesEnregistres));
+      
       this.var_pasComplet = false;
-      this.sharedService.setDataChoix1(this.var_activitesEnregistres);
+      var imagesSelectionnes = this.sharedService.getDataCategorie();
+      var i = 0;
+      for(var activite of this.var_activitesEnregistres){
+        for(var activiteSharedService of imagesSelectionnes){
+          if(activiteSharedService.image_id == activite.image_id){
+            this.var_activitesEnregistres[i] = activiteSharedService;
+          }
+        }
+        i++;
+      }
+      console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
+      this.sharedService.setDataCategorie(this.var_activitesEnregistres);
       this.router.navigate(['/choixAide']);
     }
   }

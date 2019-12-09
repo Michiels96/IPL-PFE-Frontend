@@ -10,7 +10,7 @@
         nr°{{var_activiteCourante.image_id}}
     </h4>
     <p>
-        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.description}}"/>
+        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/deplacements/{{var_activiteCourante.nom_fichier}}"/>
     </p>
     <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Besoin d'aide</button>
     <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas besoin d'aide</button>

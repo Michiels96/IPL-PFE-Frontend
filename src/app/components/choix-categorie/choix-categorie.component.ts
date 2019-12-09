@@ -23,6 +23,16 @@ export class ChoixCategorieComponent implements OnInit {
     this.var_nbActivites = 0;
   }
 
+  ngOnInit() {
+    if(this.sharedService.getNbChoixCategorie() > 0){
+      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
+    }
+    this.getCategories();
+    this.getImages();
+    this.compteurPlus();
+    this.compteurReset();
+  }
+
   getCategories = () => {
     this.api.getAllCategories().subscribe(
       data => {
@@ -45,16 +55,6 @@ export class ChoixCategorieComponent implements OnInit {
     )
   }
 
-  ngOnInit() {
-    if(this.sharedService.getNbChoixCategorie() > 0){
-      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
-    }
-    this.getCategories();
-    this.getImages();
-    this.compteurPlus();
-    this.compteurReset();
-  }
-
   getCat(cat){
     this.cat_libelle=cat.libelle;
     var cast = [this.cat_libelle];
@@ -68,5 +68,9 @@ export class ChoixCategorieComponent implements OnInit {
 
   compteurReset() {
     this.cpt = 0;
+  }
+
+  onSubmit() {
+    this.router.navigate(['/choixJaime']);
   }
 }

@@ -29,10 +29,10 @@ export class Choix3contentComponent implements OnInit {
    }
 
   ngOnInit() {
-    if(this.sharedService.getDataChoix2().length == null){
-      this.router.navigate(['/choixAide']);
+    if(this.sharedService.getDataCategorie().length == undefined){
+      this.router.navigate(['/categories']);
     }
-    this.var_reponsesQ2 = this.sharedService.getDataChoix2();
+    this.var_reponsesQ2 = this.sharedService.getDataCategorie();
 
     for(var activite of this.var_reponsesQ2){
       this.var_listeQ3.push(activite);
@@ -89,7 +89,16 @@ export class Choix3contentComponent implements OnInit {
 
   question3Terminee(){
     console.log("terminé!");
-    console.log("CHOIX 3 "+this.var_activitesContentEnregistres);
+    var imagesSelectionnes = this.sharedService.getDataCategorie();
+    var i = 0;
+    for(var activite of this.var_activitesContentEnregistres){
+      for(var activiteSharedService of imagesSelectionnes){
+        if(activiteSharedService.image_id == activite.image_id){
+          this.var_activitesContentEnregistres[i] = activiteSharedService;
+        }
+      }
+      i++;
+    }
+    console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
   }
-
 }

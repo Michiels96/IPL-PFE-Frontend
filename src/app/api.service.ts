@@ -24,7 +24,7 @@ export class ApiService {
   }
 
   getAllImagesByLibelle(libelle): Observable<any>{
-    return this.http.get(this.baseurl + '/images/repertoire/'+libelle+'/', {headers:this.httpHeaders});
+    return this.http.get(this.baseurl + '/images/'+libelle+'/', {headers:this.httpHeaders});
   }
   getAllSessions(): Observable<any>{
     return this.http.get(this.baseurl + '/sessions/full_sessions/', {headers:this.httpHeaders});
