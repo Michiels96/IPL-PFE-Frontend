@@ -1,6 +1,7 @@
 <html>
 <div class="page">
-        <button class="previous" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
+        <button class="btn btn-lg" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
+
         <div id="fond"> 
             <div class="ruban">     
                 <h2>{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
@@ -27,14 +28,18 @@
                         <td>
                             <button value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button>
                             <button value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button>
-                            <button value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais')">Je voudrais le faire</button>
+                            <button value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais le faire')">Je voudrais le faire</button>
                             <p>Tu as choisi {{img.choix}}</p>
                         </td>
                     </tr>
                 </tbody>
             </li>
         </table>
-        <button class="btn btn-primary" id="buttonValider" type="submit" name="Valider">Valider</button>
+        <button class="btn btn-lg 50" id="buttonValider" type="submit" name="Valider">Valider</button>
+        <p *ngIf="rien_choisi == true">
+            <strong class="alert alert-danger">Attention ! Tu dois choisir au minimum 1 image !</strong>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        </p>
     </form>
 </div>
 </html>

@@ -1,6 +1,6 @@
 <html>
 <div class="text-align:center">
-        <button class="previous" [routerLink]="['/']" title="Précédent">Précédent</button>
+    <button class="btn btn-lg"  [routerLink]="['/']" title="Précédent">Précédent</button>
 
     <div id="fond"> 
         <div class="ruban">     
@@ -13,7 +13,9 @@
     <br/>
     <br />
 
-    <h3>Choisi la catégorie qui ressemble le plus à tes habitudes</h3>
+    <h2>Bienvenue {{kid_nomComplet}} </h2><br/>
+    <h4>Choisi la catégorie qui ressemble le plus à tes habitudes</h4>
+
     <div class="card-body">
         <li *ngFor="let img of var_images" style="list-style-type: none;">
             <figure>

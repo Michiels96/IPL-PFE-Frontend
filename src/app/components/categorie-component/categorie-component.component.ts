@@ -13,10 +13,11 @@ export class CategorieComponentComponent implements OnInit {
   // libelle_categorie_selectionne: choix-categorie ==> categorie-component 
   libelle_categorie_selectionne;
   var_choix_images = [];
+  rien_choisi;
 
-  
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.libelle_categorie_selectionne = null;
+    this.rien_choisi = false;
   }
   
   ngOnInit() {
@@ -92,6 +93,8 @@ export class CategorieComponentComponent implements OnInit {
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
     if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
+      this.rien_choisi = true;
+      console.log("rien_choisi", this.rien_choisi);
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       for(var activite of this.var_choix_images){
         //retrouver les images deja ajoutées

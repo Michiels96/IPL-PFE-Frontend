@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { SharedService } from 'src/app/SharedService';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,12 +13,15 @@ export class ChoixCategorieComponent implements OnInit {
   var_nbActivites;
   var_categories = [];
   var_images = [];
+  kid_nomComplet;
 
-  constructor(private api: ApiService, private router:Router, private sharedService: SharedService) { 
+
+  constructor(private api: ApiService, private router:Router, private sharedService: SharedService, private route: ActivatedRoute) { 
     this.var_nbActivites = 0;
   }
 
   ngOnInit() {
+    this.kid_nomComplet= this.route.snapshot.paramMap.get('nom_enfant');
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
