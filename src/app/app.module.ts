@@ -30,6 +30,7 @@ import { Choix3contentComponent } from './components/choix3content/choix3content
 import { SharedService } from './SharedService';
 import { AuthentificatedComponent } from './components/authentificated/authentificated.component';
 import { DeconnexionElementComponent } from './components/deconnexion-element/deconnexion-element.component';
+import { RecapComponent } from './components/recap/recap.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
     Choix3contentComponent,
     AuthentificatedComponent,
     DeconnexionElementComponent,
+    RecapComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-
+    
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
       { path: '', component: AccueilComponent },
@@ -71,6 +73,7 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
       //{ path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard] },
       { path: 'categories', component: CategorieComponentComponent},
       { path: 'connexion', component: ConnectionFormComponent },
+      { path: 'recap', component: RecapComponent/*,canActivate: [AuthGuard] */},
       { path: 'auth', component: AuthentificatedComponent,canActivate: [AuthGuard] },
       { path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard] },
       //{ path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard] },
