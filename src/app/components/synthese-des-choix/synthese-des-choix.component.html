@@ -1,15 +1,16 @@
 <html>
-    <div>
-        <table id="table">
+    <table id="table">
             <tr>
-                <th rowspan="2">N°</th>
-                <th rowspan="2">Intitulé</th>
+                <th>N°</th>
+                <th>Intitulé</th>
                 <th colspan="2">Valeur</th>
                 <th colspan="2">Aide</th>
                 <th colspan="2">Satisfaction</th>
-                <th rowspan="2">Habitude prioritaire</th>
+                <th>Habitude prioritaire</th>
             </tr>
             <tr>
+                <td></td>
+                <td></td>
                 <td>
                     <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/jaime.png">
                 </td>
@@ -28,6 +29,7 @@
                 <td>
                     <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/pasContent.png">
                 </td>
+                <td></td>
             </tr>
             <tr class="datarow">
                 <th>1</th>
@@ -62,8 +64,7 @@
                 <td>X</td>
                 <td>X</td>
             </tr>
-            <div *ngFor="let activite of var_reponsesQ3">
-                <tr class="datarow">
+                <tr *ngFor="let activite of var_reponsesQ3">
                     <th>{{var_numLigne}}</th>
                     <td>
                         <img style="max-width:50%;max-height:50%" class="img-thumbnail" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{activite.categorie_image}}/{{activite.nom_fichier}}">
@@ -92,8 +93,5 @@
                         ?
                     </td>
                 </tr>
-            </div>
-        </table>
-    </div>
+    </table>
 </html>
-
