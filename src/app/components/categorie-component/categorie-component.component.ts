@@ -25,6 +25,7 @@ export class CategorieComponentComponent implements OnInit {
   
   ngOnInit() {
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
+    this.nbActivitesOui = this.sharedService.getNbChoixCategorie();
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
