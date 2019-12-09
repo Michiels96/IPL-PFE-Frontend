@@ -17,6 +17,7 @@ export class ConnectionFormComponent implements OnInit {
   @Output()
   messageToEmit = new EventEmitter<FormGroup>();*/
   //isTokenValid=false;
+  userToConnect;
   error_connect_msg;
   error_inscription_msg;
   connexion=new FormGroup({
@@ -47,6 +48,8 @@ export class ConnectionFormComponent implements OnInit {
       data => {
         console.log("token");
         console.log(data);
+        this.error_connect_msg="";
+        this.error_inscription_msg=""
         let regex = /\d/;
         if(regex.test(data.token)){
           
@@ -80,7 +83,15 @@ export class ConnectionFormComponent implements OnInit {
     this.api.postUser(this.inscription.value).subscribe( 
       data => {
         console.log(data);
-        
+        this.userToConnect=this.inscription.value
+        this.connexion.setValue({
+          username: this.userToConnect.username, 
+          password: this.userToConnect.password
+        });
+        console.log( this.connexion.value);
+        this.error_connect_msg="";
+        this.error_inscription_msg=""
+        this.tryToConnect();
       // this.enfants.push(data);
       },
       error => {
