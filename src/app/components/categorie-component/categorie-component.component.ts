@@ -104,6 +104,9 @@ export class CategorieComponentComponent implements OnInit {
         if(choixImagesToChoix1.includes(activite)){
           // et mettre à jour
           choixImagesToChoix1[choixImagesToChoix1.indexOf(activite)] = activite;
+          if(activite.choix != "oui"){
+            this.nbActivitesOui--;
+          }
         }
         else{
           // et ajouter les nouvelles
