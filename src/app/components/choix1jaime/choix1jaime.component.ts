@@ -26,7 +26,7 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.ifExitApp();
+    
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -105,7 +105,7 @@ export class Choix1jaimeComponent implements OnInit {
       }
     )
   }
-  @HostListener('window:beforeunload', [])
+  @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

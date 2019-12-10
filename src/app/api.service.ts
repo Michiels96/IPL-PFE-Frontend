@@ -70,7 +70,7 @@ export class ApiService {
   }
   postUser(user): Observable<any>{
     let postContent={id: user.id,username:user.username,password:user.password,email:user.email}//JSON.stringify(user);
-    return this.http.post(this.baseurl + '/prof/users/',postContent, {headers:this.httpHeaders});
+    return this.http.post(this.baseurl + '/prof/professionnels/',postContent, {headers:this.httpHeaders});
   }
   postProf(prof,id_user): Observable<any>{
     let postContent={professionnel_id:-1,nom:prof.nom,prenom:prof.prenom,profession:prof.profession,autre_profession:"",telephone:prof.telephone,user:id_user};

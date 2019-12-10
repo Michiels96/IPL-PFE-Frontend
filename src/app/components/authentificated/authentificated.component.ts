@@ -22,6 +22,16 @@ export class AuthentificatedComponent implements OnInit {
     age: new FormControl(''),
     connecte: new FormControl(false)
   });
+  inscription=new FormGroup({
+    id:new FormControl(-1),
+    username: new FormControl(''),
+    nom: new FormControl(''),
+    prenom: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl(''),
+    telephone:new FormControl(''),
+    profession: new FormControl('') 
+  });
   constructor(private api: ApiService,private route: ActivatedRoute,private router:Router) {}
 
   ngOnInit() {
@@ -66,8 +76,33 @@ export class AuthentificatedComponent implements OnInit {
       }
     )
   }
-  /*deconnexion(){
-    this.authService.logout();
-    this.router.navigate(['/']);
-  }*/
+  sendInscription(){
+    console.log("form recu 2 ! "); 
+    console.log(this.inscription.value);
+    this.api.postUser(this.inscription.value).subscribe( 
+      data => {
+        console.log("user renvoyé");
+        console.log(data);
+        this.api.postProf(this.inscription.value,data.id).subscribe( 
+          data => {
+            this.inscription.reset();
+            console.log("prof renvoyé");
+            console.log(data);
+          },
+          error => {
+            console.log(error);
+            this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
+            this.error_inscription = true;
+          }
+        )
+      },
+      error => {
+        console.log(error);
+        this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
+        this.error_inscription = true;
+        
+      }
+    )
+    this.error_inscription = false;
+  }
 }

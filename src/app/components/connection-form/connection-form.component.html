@@ -7,10 +7,6 @@
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 </div>
 
-<div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
-    {{error_inscription_msg}}
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-</div>
 
 <div class="container login-container">
     <div class="row">
@@ -32,66 +28,6 @@
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block" type='submit'>Login</button>
                 </div>
-            </form>
-        </div>
-        
-        <div class="col-md-6 login-form-2">
-            <h3>Inscrire Educateur</h3>
-            <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
-                    <div class="form-group">
-                            <label>
-                                <strong style="color: #fff;">Username:</strong>
-                              <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="username">
-                            </label>
-                    </div>
-                  <div class="form-group">
-                    <label>
-                        <strong style="color: #fff;">Nom :</strong>
-                      <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="nom">
-                    </label>
-                  </div>
-                  <div class="form-group">
-                      <label>
-                          <strong style="color: #fff;">Prenom :</strong>
-                          <input type="text" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="prenom">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                    <label>
-                        <strong style="color: #fff;">Mot de passe :</strong>
-                        <input type="password" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
-                    </label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>
-                            <strong style="color: #fff;">E-mail :</strong>
-                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="email">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <strong style="color: #fff;">Telephone :</strong>
-                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="telephone">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label> 
-                            Profession : 
-                            <select  formControlName="profession">
-                              <option style="color: #0062cc;">Ergothérapeute</option>
-                              <option style="color: #0062cc;">Psychologue</option>
-                              <option style="color: #0062cc;">Educateur</option>
-                              <option style="color: #0062cc;">Kinésithérapeute</option>
-                              <option style="color: #0062cc;">Enseignant</option>
-                              <option style="color: #0062cc;">Autre</option>
-                            </select>
-                        </label>
-                    </div>
-
-                  <div class="form-group">
-                      <button class="btn btn-lg btn-primary btn-block" type='submit'>S'inscrire</button>
-                  </div>
             </form>
         </div>
     </div>
