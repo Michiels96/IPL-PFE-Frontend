@@ -1,4 +1,43 @@
 <html>
+    <h2>Bienvenue sur l'application APEH</h2>
+
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 login-form-1">
+                <h3>Enfant</h3>
+                <br />
+                <br />
+                <div *ngIf='isNotConnected; else not_connected'>
+                    <div class="form-group">
+                        Nom:   <select [(ngModel)]="kid_selected">
+                                    <option style="color: #0062cc;" *ngFor="let enfant of listeEnfants" [ngValue]="enfant"> {{enfant.nom}} {{enfant.prenom}}</option>
+                                </select>
+                    </div>
+                </div>
+                <br />
+                <ng-template #not_connected>
+                    <div class="form-group">
+                    <!-- <div class="ButtonJouer"> -->
+                        <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/choix-categorie',{nom_enfant:kid_nomComplet}]" (click)="jouer()">Jouer</button>
+                    </div>
+                </ng-template>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" (click)="connecterEnfant()">C'est moi ! </button>
+                </div>
+            </div>
+            <div class="col-md-6 login-form-2">
+                <h3>Educateur</h3>
+                <br />
+                <br />
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/connexion']" >Connexion</button>
+                </div>
+            </div>
+        </div> 
+    </div>
+</html>
+
+<!-- <html>
 <div class="page">
     <div style="text-align: center;">
         <h3><strong> Bienvenue sur l'application APEH</strong></h3>
@@ -36,7 +75,7 @@
         </div>
     </div>
 </div>
-</html>
+</html> -->
 
 
 <!-- <div style="text-align:center">

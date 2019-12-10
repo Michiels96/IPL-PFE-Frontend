@@ -31,7 +31,7 @@ export class EducateurUIComponent implements OnInit {
   }
 
   getQuestion = () => {
-    this.api.getSessionById(1).subscribe(
+    this.api.getSessionById(this.kid_id).subscribe(
       data => {
         this.questions = data.question_session;
         for(let q of this.questions){
