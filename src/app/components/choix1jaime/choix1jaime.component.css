@@ -1,6 +1,14 @@
+@font-face {
+    font-family: 'nunitoblack';
+    src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 button{
-    padding: 2%;
-    margin: 2%;
+    padding: 10%;
+    margin: 10%;
 }
 .page {
     padding: 1%;
@@ -14,4 +22,9 @@ button{
     border-color:rgb(3, 189, 3);
     color: rgb(0, 160, 21);
     background-color:bisque;
+}
+
+.police{
+    font-family: 'nunitoblack';
+    font-size: 50px;
 }

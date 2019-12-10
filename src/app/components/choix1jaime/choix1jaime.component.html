@@ -1,4 +1,5 @@
 <div class="page">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <div *ngIf="var_activiteCourante != null">
         <h3>Dis nous si tu aimes ou n'aimes pas cette activité</h3>
         <div class="alert alert-secondary" role="alert">
@@ -9,12 +10,16 @@
             ({{var_activiteCourante.description}})
         </h4>
         <p>
-            <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
+            <img class="img-thumbnail" style="max-width:35%;max-height:35%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
         </p>
     </div>
     <p>
-        <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">oui</button>
-        <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">non</button>
+        <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
+            <div class="police">oui</div>
+        </button>
+        <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
+            <div class="police">non</div>
+        </button>
         <br/>
         <button type="button" class="previous" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
     </p>

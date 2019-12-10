@@ -1,0 +1,71 @@
+<app-deconnexion-element></app-deconnexion-element>
+<select  [(ngModel)]="id_session">
+        <option *ngFor="let session of sessions" [ngValue]="session.session_id"> {{session.date}}</option>
+</select>
+<button class="btn btn-lg btn-primary" (click)="confirmerSession()">Choisir cette session </button>
+<table border="1" class="table table-hover">
+    <thead>
+    <tr>
+      <th rowspan=2>Intitulé</th>
+      <th colspan=2>Valeur</th>
+      <th colspan=2>Aide</th>
+      <th colspan=2>Satisfaction</th>
+      <th rowspan=2>Notes</th>
+    </tr>
+    <tr>
+        <th>Aime</th>
+        <th>N'aime pas</th>
+        <th>Sans aide</th>
+        <th>Avec aide</th>
+        <th>Content</th>
+        <th>Pas content</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let habitude of session_choisie">
+        <td>{{habitude.img_description}}</td>
+        <td class="choix">
+            <ng-container *ngIf="habitude.aime=='O'; else pas_aime">X
+
+            </ng-container>
+        </td>
+        <td class="choix">
+            <ng-template #pas_aime>
+                <ng-container *ngIf="habitude.aime=='N'; else null_aime">X
+                </ng-container>
+                <ng-template #null_aime></ng-template>
+            </ng-template>
+        </td>
+        <td class="choix">
+                <ng-container *ngIf="habitude.aide=='O'; else pas_aide">X
+                </ng-container>
+        </td>
+        <td class="choix">
+                <ng-template #pas_aide>
+                    <ng-container *ngIf="habitude.aide=='N'; else null_aide">X
+                    </ng-container>
+                    <ng-template #null_aide></ng-template>
+                </ng-template>
+        </td>
+        <td class="choix">
+                <ng-container *ngIf="habitude.content=='O'; else pas_content">X
+    
+                </ng-container>
+        </td>
+        <td class="choix">
+                <ng-template #pas_content>
+                    <ng-container *ngIf="habitude.content=='N'; else null_content">X
+                    </ng-container>
+                    <ng-template #null_content></ng-template>
+                </ng-template>
+        </td>
+        <td>
+            <div *ngIf="habitude.note!=null">
+            <div>{{habitude.note.note_aide}}</div>
+            <div>{{habitude.note.note_aime}}</div>
+            <div>{{habitude.note.note_satisfaction}}</div>
+            </div>
+        </td>
+    </tr>
+</tbody>
+</table>

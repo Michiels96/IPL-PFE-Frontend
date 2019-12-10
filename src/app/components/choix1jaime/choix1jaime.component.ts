@@ -27,9 +27,10 @@ export class Choix1jaimeComponent implements OnInit {
   
   ngOnInit() {
     this.ifExitApp();
+    /*
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
-    }
+    }*/
     // filtrage des images avec le champ 'choix' à 'oui'
     for(var activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
