@@ -38,12 +38,14 @@
     "html2canvas": "^1.0.0-rc.5",
     "https-serve": "^1.0.0",
     "jspdf": "^1.5.3",
+    "jspdf-autotable": "^3.2.11",
     "jspdf-html2canvas": "^1.1.0",
     "ngx-bootstrap": "^5.2.0",
     "path": "^0.12.7",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "typescript": "~3.5.3",
+    "webshot": "^0.18.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
