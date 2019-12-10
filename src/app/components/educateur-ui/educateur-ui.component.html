@@ -1,18 +1,3 @@
-<!-- <html>
-    <div class="card-body">
-        <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
-            <label>Description</label>
-            {{q.img_description}}
-            <label>Notes</label>
-            <div class="card-body2">
-                <textarea (input)="setNote(q.question_id, 'note_aime', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aime" value="aime"></textarea>
-                <textarea (input)="setNote(q.question_id, 'note_aide', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aide" value="aide"></textarea>
-                <textarea (input)="setNote(q.question_id, 'note_satisfaction', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Content" value="content"></textarea>
-            </div>
-        </li>
-    </div>
-</html> -->
-
 <html>
     <div class="page">
 
@@ -33,16 +18,16 @@
                 <option value="Autre">Autre<input value="autre_input"></option>
             </select>
             <br><br>
-            <input type="date" value="date" (input)="setMandataire('date', $event.target.value)">
+            <input type="date" value="date_demande" (input)="setMandataire('date_demande', $event.target.value)">
             <br><br>
             <div *ngIf="personne_mandataire['mandataire'] === 'Medecin' || personne_mandataire['mandataire'] === 'Autre Professionnel';">
                 <p>Nom : <input placeholder="nom" (input)="setMandataire('nom', $event.target.value)"></p>
                 <p>Prénom : <input placeholder="prenom" (input)="setMandataire('prenom', $event.target.value)"></p>
-                <p>Spécialité : <input placeholder="specialite" (input)="setMandataire('specialite', $event.target.value)"></p>
-                <p>Téléphone : <input placeholder="telephone" (input)="setMandataire('telephone', $event.target.value)"></p>
+                <p>Spécialité : <input placeholder="spécialité" (input)="setMandataire('spécialité', $event.target.value)"></p>
+                <p>Téléphone : <input placeholder="téléphone" (input)="setMandataire('téléphone', $event.target.value)"></p>
                 <p>Email : <input placeholder="email" (input)="setMandataire('email', $event.target.value)"></p>
             </div>
-            <div *ngIf="personne_mandataire['autre'] === 'Autre';">
+            <div *ngIf="personne_mandataire['autre_mandataire'] === 'Autre';">
                 <p>Autre : <input placeholder="Autre" (change)="selectMandataire($event.target.value)"></p>
             </div>
 
