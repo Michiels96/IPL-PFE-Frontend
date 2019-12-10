@@ -20,9 +20,8 @@ export class EducateurUIComponent implements OnInit {
   mandataire;
   personne_mandataire = {'mandataire': '','nom': '', 'prenom': '', 'specialite': '', 'telephone': '', 'email': '', 'date': '', 'objet': '','autre': ''};
   
-  note = {'question_id': '', 'aime': '', 'aide': '', 'content': '', 'professionnel_id': ''};
   notes = [];
-  question = [];
+  id = [];
 
   constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
@@ -50,12 +49,9 @@ export class EducateurUIComponent implements OnInit {
         this.questions = data.question_session;
         console.log(this.questions);
         for(let q of this.questions){
-          console.log(q);
-          //this.notes.push(q.note);
-          q['note'] = this.note;
+          var note = {'question_id': q.question_id, 'note_aime': '', 'note_aide': '', 'note_satisfaction': '', 'professionnel_id': ''};
+          q['note'] = note;
         }
-        console.log(this.questions);
-        console.log(this.notes);
       },
       error => {
         console.log(error);
@@ -77,13 +73,12 @@ export class EducateurUIComponent implements OnInit {
   }
 
   setNote(id, note, event){
-    console.log(id, note, event);
-    for(var i = 0; i < this.notes.length; i++){
-      console.log(this.notes[i]);
-      if(this.notes[i]['question_id'] == id){
-        this.notes[i][note] = event;
+    for(var i = 0; i < this.questions.length; i++){
+      if(this.questions[i]['question_id'] == id){
+        this.questions[i]['note'][note] = event;
       }
     }
+    console.log(this.questions);
   }
 
   onSubmitMandat(){
