@@ -47,10 +47,10 @@ export class ConnectionFormComponent implements OnInit {
         this.error_connect_msg="";
         let regex = /\d/;
         if(regex.test(data.token)){
-          
+         
           this.authService.login();
           //this.isTokenValid=true;
-          this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
+          this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value,id_prof:data.id}]);
           this.connexion.reset();
         }
         else{
