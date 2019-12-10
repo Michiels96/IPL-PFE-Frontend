@@ -11,12 +11,10 @@ import { SharedService } from 'src/app/SharedService';
 export class Choix3contentComponent implements OnInit {
   // var_reponsesQ2: choix2 ==> choix3 
   var_reponsesQ2 = [];
-
   var_listeQ3 = [];
 
   // var_activitesContentEnregistres: choix3 ==> ...
   var_activitesContentEnregistres = [];
-  
   
   var_i;
   imgBack;
@@ -105,6 +103,8 @@ export class Choix3contentComponent implements OnInit {
     // sauvegarde en db
     var session_id = this.sharedService.getDataSession().session_id;
     console.log("SHAREDSERVICE - DATASESSION "+JSON.stringify(this.sharedService.getDataSession()));
+    var nbQuestions = this.sharedService.getDataCategorie().length;
+    var i=0;
     for(var activite of this.sharedService.getDataCategorie()){
       var newQuestion = {};
       newQuestion['question_id'] = -1;
@@ -129,19 +129,19 @@ export class Choix3contentComponent implements OnInit {
       else{
         newQuestion['content'] = 'N';
       }
-      console.log("123 ");
-      console.log(newQuestion);
       this.api.createQuestion(newQuestion).subscribe(
         data => {
-          //console.log(data);
+          i++;
+          // ne seulement passer au composant suivant si toutes les questions ont été enregistrées en db
+          if(i == nbQuestions){
+            this.router.navigate(['/syntheseDesChoix']);
+          }
         },
         error => {
-          //console.log(error);
+          console.log(error);
         }
       )
     }
-    
-    this.router.navigate(['/syntheseDesChoix']);
   }
   @HostListener('window:beforeunload', [])
   ifExitApp() {

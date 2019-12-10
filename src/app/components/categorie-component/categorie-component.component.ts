@@ -111,7 +111,6 @@ export class CategorieComponentComponent implements OnInit {
       newSession['date'] = date_session;
       this.api.createSession(newSession).subscribe(
         data => {
-          console.log("7777"+JSON.stringify(data));
           this.sharedService.setDataSession(data);
         },
         error => {
@@ -125,8 +124,8 @@ export class CategorieComponentComponent implements OnInit {
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
     }
-
   }
+
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
