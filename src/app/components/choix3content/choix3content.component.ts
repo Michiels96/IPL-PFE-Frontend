@@ -89,7 +89,7 @@ export class Choix3contentComponent implements OnInit {
   }
 
   question3Terminee(){
-    console.log("terminé!");
+    //console.log("terminé!");
     var imagesSelectionnes = this.sharedService.getDataCategorie();
     var i = 0;
     for(var activite of this.var_activitesContentEnregistres){
@@ -104,7 +104,7 @@ export class Choix3contentComponent implements OnInit {
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
     // sauvegarde en db
     var session_id = this.sharedService.getDataSession().session_id;
-    console.log("9999 "+JSON.stringify(this.sharedService.getDataSession()));
+    console.log("SHAREDSERVICE - DATASESSION "+JSON.stringify(this.sharedService.getDataSession()));
     for(var activite of this.sharedService.getDataCategorie()){
       var newQuestion = {};
       newQuestion['question_id'] = -1;
@@ -133,10 +133,10 @@ export class Choix3contentComponent implements OnInit {
       console.log(newQuestion);
       this.api.createQuestion(newQuestion).subscribe(
         data => {
-          console.log(data);
+          //console.log(data);
         },
         error => {
-          console.log(error);
+          //console.log(error);
         }
       )
     }
@@ -157,10 +157,10 @@ export class Choix3contentComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
       },
       error => {
-        console.log(error);
+        //console.log(error);
       }
     )
   }

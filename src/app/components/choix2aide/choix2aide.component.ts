@@ -87,7 +87,7 @@ export class Choix2aideComponent implements OnInit {
   }
 
   question2Terminee(){
-    console.log("terminé!");
+    //console.log("terminé!");
     var imagesSelectionnes = this.sharedService.getDataCategorie();
     var i = 0;
     for(var activite of this.var_activitesDAideEnregistres){
@@ -117,10 +117,10 @@ export class Choix2aideComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
       },
       error => {
-        console.log(error);
+        //console.log(error);
       }
     )
   }
