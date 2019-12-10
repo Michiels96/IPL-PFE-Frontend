@@ -24,16 +24,10 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    
-   /* if(this.sharedService.getDataCategorie().length == undefined){
+    if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
-    }*/
-    // filtrage des images avec le champ 'choix' à 'oui'
-    for(var activite of this.sharedService.getDataCategorie()){
-      if(activite.choix == "oui"){
-        this.var_imagesCategorieDemandees.push(activite);
-      }
     }
+    this.var_imagesCategorieDemandees = this.sharedService.getDataCategorie();
     //console.log(this.var_imagesCategorieDemandees);
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
   }
@@ -87,6 +81,10 @@ export class Choix1jaimeComponent implements OnInit {
         }
         i++;
       }
+      console.log("var CHOIX 1");
+      console.log(this.var_activitesEnregistres);
+      console.log("var DATACATEGORIE");
+      console.log(this.sharedService.getDataCategorie());
       this.sharedService.setDataCategorie(this.var_activitesEnregistres);
       console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
       this.router.navigate(['/choixAide']);

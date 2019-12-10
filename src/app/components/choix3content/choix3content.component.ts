@@ -99,6 +99,14 @@ export class Choix3contentComponent implements OnInit {
     }
     this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    // filtrage des images avec le champ 'choix' à 'oui'
+    var activitesSelectionnes = [];
+    for(var activite of this.sharedService.getDataCategorie()){
+      if(activite.choix == "oui"){
+        activitesSelectionnes.push(activite);
+      }
+    }
+    this.sharedService.setDataCategorie(activitesSelectionnes);
     // sauvegarde en db
     var session_id = this.sharedService.getDataSession().session_id;
     console.log("SHAREDSERVICE - DATASESSION "+JSON.stringify(this.sharedService.getDataSession()));
