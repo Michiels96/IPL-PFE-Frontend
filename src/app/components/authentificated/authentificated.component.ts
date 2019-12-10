@@ -30,7 +30,8 @@ export class AuthentificatedComponent implements OnInit {
     password: new FormControl(''),
     email: new FormControl(''),
     telephone:new FormControl(''),
-    profession: new FormControl('') 
+    profession: new FormControl(''),
+    autre: new FormControl('')
   });
   constructor(private api: ApiService,private route: ActivatedRoute,private router:Router) {}
 

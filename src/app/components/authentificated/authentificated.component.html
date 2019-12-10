@@ -103,6 +103,11 @@
                               <option style="color: #0062cc;">Enseignant</option>
                               <option style="color: #0062cc;">Autre</option>
                             </select>
+                            <div *ngIf="inscription.value.profession=='Autre'">
+                              <textarea formControlName="autre" rows="5" cols="33">
+
+                              </textarea>
+                            </div>
                         </label>
                     </div>
 
