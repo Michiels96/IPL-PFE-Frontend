@@ -70,6 +70,7 @@ export class ChoixCategorieComponent implements OnInit {
   onSubmit() {
     this.router.navigate(['/choixJaime']);
   }
+  
   @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {
     if (sessionStorage.length > 0) {
