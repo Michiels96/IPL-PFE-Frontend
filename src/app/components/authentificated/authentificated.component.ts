@@ -13,6 +13,7 @@ export class AuthentificatedComponent implements OnInit {
   error_inscription_msg;
   error_inscription = false;
   whoIsConnected;
+  idFromWhoIsConnected;
   listeEnfants;
   kid_selected;
   inscriptionEnfant=new FormGroup({
@@ -24,7 +25,6 @@ export class AuthentificatedComponent implements OnInit {
   });
   inscription=new FormGroup({
     id:new FormControl(-1),
-    username: new FormControl(''),
     nom: new FormControl(''),
     prenom: new FormControl(''),
     password: new FormControl(''),
@@ -37,6 +37,9 @@ export class AuthentificatedComponent implements OnInit {
 
   ngOnInit() {
     this.whoIsConnected=this.route.snapshot.paramMap.get('nom');
+    this.idFromWhoIsConnected=this.route.snapshot.paramMap.get('id_prof');
+    console.log("id prof:");
+    console.log(this.idFromWhoIsConnected);
     this.getEnfants();
     this.error_inscription_msg="";
     this.error_inscription = false;
@@ -60,7 +63,7 @@ export class AuthentificatedComponent implements OnInit {
     console.log("enfant choisi");
     console.log(this.kid_selected);
     
-    this.router.navigate(['/ui',{id:this.kid_selected}]);
+    this.router.navigate(['/ui',{id:this.kid_selected,id_prof:this.idFromWhoIsConnected}]);
   }
   inscrireEnfant(){
     console.log(this.inscriptionEnfant.value);
