@@ -59,7 +59,11 @@ export class ApiService {
     return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
   }
   postUser(user): Observable<any>{
-    let postContent=JSON.stringify(user);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
+    let postContent={id: user.id,username:user.username,password:user.password,email:user.email}//JSON.stringify(user);
+    return this.http.post(this.baseurl + '/prof/users/',postContent, {headers:this.httpHeaders});
+  }
+  postProf(prof,id_user): Observable<any>{
+    let postContent={professionnel_id:-1,nom:prof.nom,prenom:prof.prenom,profession:prof.profession,autre_profession:"",telephone:prof.telephone,user:id_user};
     return this.http.post(this.baseurl + '/prof/users/',postContent, {headers:this.httpHeaders});
   }
   delKid(id): Observable<any>{

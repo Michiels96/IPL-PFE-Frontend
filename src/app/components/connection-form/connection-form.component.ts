@@ -30,8 +30,12 @@ export class ConnectionFormComponent implements OnInit {
   inscription=new FormGroup({
     id:new FormControl(-1),
     username: new FormControl(''),
+    nom: new FormControl(''),
+    prenom: new FormControl(''),
     password: new FormControl(''),
-    email: new FormControl('')
+    email: new FormControl(''),
+    telephone:new FormControl(''),
+    profession: new FormControl('') 
   });
   constructor(public authService: AuthService,private api: ApiService,private router:Router) { 
     
@@ -85,11 +89,22 @@ export class ConnectionFormComponent implements OnInit {
     
     console.log("form recu 2 ! "); 
     console.log(this.inscription.value);
-
     this.api.postUser(this.inscription.value).subscribe( 
       data => {
+        console.log("user renvoyé");
         console.log(data);
-        this.userToConnect=this.inscription.value
+        this.api.postProf(this.inscription.value,data.id).subscribe( 
+          data => {
+            console.log("prof renvoyé");
+            console.log(data);
+          },
+          error => {
+            console.log(error);
+            this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
+            this.error_inscription = true;
+          }
+        )
+        /*this.userToConnect=this.inscription.value
         this.connexion.setValue({
           username: this.userToConnect.username, 
           password: this.userToConnect.password
@@ -97,7 +112,7 @@ export class ConnectionFormComponent implements OnInit {
         console.log( this.connexion.value);
         this.error_connect_msg="";
         this.error_inscription_msg=""
-        this.tryToConnect();
+        this.tryToConnect();*/
       // this.enfants.push(data);
       },
       error => {
