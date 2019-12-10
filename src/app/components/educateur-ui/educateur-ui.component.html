@@ -15,6 +15,42 @@
 
 <html>
     <div class="page">
+
+        <form class="form" (ngSubmit)="onSubmitMandat()">
+            <h2>Le jeu est réalisé à la demande de : </h2>  
+            <select selected="selected" ng-model="mandataire" (change)="selectMandataire($event.target.value)">
+                <option value="">Choix mandataire</option>
+                <option value="Professionnel">Professionnel</option>
+                <optgroup value="famille" label="Famille">
+                    <option value="Parents">Parents</option>
+                    <option value="Père">Père</option>
+                    <option value="Mère">Mère</option>
+                </optgroup>
+                <option value="Tuteur">Tuteur</option>
+                <option value="Enfant">L'enfant</option>
+                <option value="Medecin">Médecin</option>
+                <option value="Autre Professionnel">Autre professionnel</option>
+                <option value="Autre">Autre<input value="autre_input"></option>
+            </select>
+            <br><br>
+            <input type="date" value="date" (input)="setMandataire('date', $event.target.value)">
+            <br><br>
+            <div *ngIf="personne_mandataire['mandataire'] === 'Medecin' || personne_mandataire['mandataire'] === 'Autre Professionnel';">
+                <p>Nom : <input placeholder="nom" (input)="setMandataire('nom', $event.target.value)"></p>
+                <p>Prénom : <input placeholder="prenom" (input)="setMandataire('prenom', $event.target.value)"></p>
+                <p>Spécialité : <input placeholder="specialite" (input)="setMandataire('specialite', $event.target.value)"></p>
+                <p>Téléphone : <input placeholder="telephone" (input)="setMandataire('telephone', $event.target.value)"></p>
+                <p>Email : <input placeholder="email" (input)="setMandataire('email', $event.target.value)"></p>
+            </div>
+            <div *ngIf="personne_mandataire['autre'] === 'Autre';">
+                <p>Autre : <input placeholder="Autre" (change)="selectMandataire($event.target.value)"></p>
+            </div>
+
+            <textarea value="objet" placeholder="Objet de la demande initiale" rows="8" cols="70" (input)="setMandataire('objet', $event.target.value)"></textarea>
+            <br>
+            <button type="submit" name="valider_mandat">Valider Mandat</button>
+        </form>
+
         <form>
             <table class="table">
                 <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
@@ -42,4 +78,5 @@
             </table>
         </form>
         <button class="btn btn-lg btn-primary" [routerLink]="['/recap',{id:kid_id}]" (click)="terminer()">Terminer</button>
-</div>
+    </div>
+</html>

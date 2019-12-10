@@ -6,11 +6,8 @@
     font-style: normal;
 }
 
-button{
-    padding: 10%;
-    margin: 10%;
-}
-.page {
+
+html{
     padding: 1%;
     background-color: bisque;
     text-align: center;
@@ -22,6 +19,10 @@ button{
     border-color:rgb(3, 189, 3);
     color: rgb(0, 160, 21);
     background-color:bisque;
+}
+
+.previous:hover{
+    background-color: rgb(251, 193, 122);
 }
 
 .police{

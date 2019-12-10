@@ -13,10 +13,8 @@ export class Choix1jaimeComponent implements OnInit {
   var_imagesCategorieDemandees = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
-
   var_activiteCourante;
   var_pasComplet;
-
   var_i;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
@@ -26,10 +24,9 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    
-   /* if(this.sharedService.getDataCategorie().length == undefined){
+    if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
-    }*/
+    }
     // filtrage des images avec le champ 'choix' à 'oui'
     for(var activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
@@ -77,19 +74,23 @@ export class Choix1jaimeComponent implements OnInit {
       this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
     }
     else{
-      
       this.var_pasComplet = false;
       var imagesSelectionnes = this.sharedService.getDataCategorie();
       var i = 0;
-      for(var activite of this.var_activitesEnregistres){
-        for(var activiteSharedService of imagesSelectionnes){
-          if(activiteSharedService.image_id == activite.image_id){
-            this.var_activitesEnregistres[i] = activiteSharedService;
+      for(var activiteSharedService of imagesSelectionnes){
+        for(var activite of this.var_activitesEnregistres){
+          if(activite.image_id == activiteSharedService.image_id){
+            imagesSelectionnes[i] = activite;
           }
         }
         i++;
       }
-      this.sharedService.setDataCategorie(this.var_activitesEnregistres);
+      console.log("var CHOIX 1");
+      console.log(this.var_activitesEnregistres);
+      console.log("var DATACATEGORIE");
+      console.log(this.sharedService.getDataCategorie());
+
+      this.sharedService.setDataCategorie(imagesSelectionnes);
       console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
       this.router.navigate(['/choixAide']);
     }

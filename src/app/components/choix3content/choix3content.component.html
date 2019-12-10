@@ -1,4 +1,5 @@
-<div *ngIf="var_activiteCourante != undefined"class="page">
+<html>
+<div *ngIf="var_activiteCourante != undefined">
     <h3>Pour terminer, <br/>dis nous si tu est content de la situation actuelle ou pas</h3>
     <div class="alert alert-secondary" role="alert">
         <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>
@@ -13,15 +14,26 @@
         <br/>
         ({{var_activiteCourante.description}})
     </h4>
-    <p>
-        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
-    </p>
-    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Content</button>
-    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas content</button>
-    <div *ngIf="imgBack == true">
-        <br/>
-        <button type="button" class="btn btn-info" (click)="$event.preventDefault();goImgBack()">Revenir à l'activité précédente</button>
-    </div>
+    <table style="margin-left:auto;margin-right:auto">
+        <tbody>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
+                        <div class="police">oui</div>
+                    </button>
+                </td>
+                <td>
+                    <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
+                        <div class="police">non</div>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <br/>
-    <button type="button" class="previous" (click)="$event.preventDefault();backToChoix2()">Retourner à la deuxième question</button>
+    <button type="button" class="previous police" (click)="$event.preventDefault();backToChoix2()">Retourner à la deuxième question</button>
 </div>
+</html>

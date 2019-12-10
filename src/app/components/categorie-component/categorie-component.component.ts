@@ -21,7 +21,6 @@ export class CategorieComponentComponent implements OnInit {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
     this.nbActivitesOui = 0;
-    this.dataEnfantConnecte = null;
   }
   ngOnInit() {
     
@@ -94,7 +93,7 @@ export class CategorieComponentComponent implements OnInit {
         this.nbActivitesOui++;
       }
     }
-    console.log("nb oui : ", this.nbActivitesOui);
+    //console.log("nb oui : ", this.nbActivitesOui);
     this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
   }
 

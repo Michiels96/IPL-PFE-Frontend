@@ -1,6 +1,6 @@
 <html>
     <div style="text-align: center;">
-        <table id="table" >
+        <table id="tableauDeSynthese">
             <tr>
                 <th rowspan="2">N°</th>
                 <th rowspan="2">Intitulé</th>
@@ -59,8 +59,9 @@
                 </td>
             </tr>
         </table>
+        <br/>
         <p>
-            Générer un fichier PDF
+            <button type="button" class="previous police" (click)="$event.preventDefault();generatePDF()">Générer un fichier PDF</button>
         </p>
     </div>
 </html>

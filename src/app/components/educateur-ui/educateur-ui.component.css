@@ -3,6 +3,10 @@ table{
  column-count: 3;
 }
 
+form{
+    margin-left: 200px;
+}
+
 .table2{
     margin-left: 0px;
 }
