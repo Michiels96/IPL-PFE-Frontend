@@ -24,7 +24,7 @@ export class CategorieComponentComponent implements OnInit {
     this.dataEnfantConnecte = null;
   }
   ngOnInit() {
-    this.ifExitApp();
+    
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
     this.nbActivitesOui = this.sharedService.getNbChoixCategorie();
     if(this.libelle_categorie_selectionne == null){
@@ -136,7 +136,7 @@ export class CategorieComponentComponent implements OnInit {
     )
   }
 
-  @HostListener('window:beforeunload', [])
+  @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

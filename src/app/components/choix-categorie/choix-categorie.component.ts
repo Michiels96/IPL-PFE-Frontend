@@ -21,7 +21,6 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ifExitApp();
     this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
     //console.log(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2);
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
@@ -71,12 +70,12 @@ export class ChoixCategorieComponent implements OnInit {
   onSubmit() {
     this.router.navigate(['/choixJaime']);
   }
-  @HostListener('window:beforeunload', [])
+  @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
-        
+        console.log("juste après avoir deco");
       }
     } 
       //event.preventDefault();
@@ -85,10 +84,10 @@ export class ChoixCategorieComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        //console.log(data);
+        console.log("encore deconnecté");
       },
       error => {
-        //console.log(error);
+        console.log(error);
       }
     )
   }

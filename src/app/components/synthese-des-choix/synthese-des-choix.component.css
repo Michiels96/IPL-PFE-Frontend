@@ -1,6 +1,5 @@
 html {
     background-color: bisque;
-    text-align: center;
 }
 
 
@@ -8,7 +7,8 @@ html {
 table{
     border-collapse: collapse;
     text-align: center;
-    position: relative;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 th, td {

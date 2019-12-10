@@ -19,7 +19,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ifExitApp();
+  
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -31,7 +31,7 @@ export class SyntheseDesChoixComponent implements OnInit {
     console.log(this.var_reponsesQ3);
   }
 
-  @HostListener('window:beforeunload', [])
+  @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){

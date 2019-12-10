@@ -18,7 +18,6 @@ export class AccueilComponent implements OnInit {
   constructor(private api: ApiService,public authService: AuthService, private route: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.ifExitApp();
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
@@ -78,7 +77,7 @@ export class AccueilComponent implements OnInit {
     console.log("Nom Enfant : ", this.kid_selected.enfant_nom);
     this.route.navigate(['/choix-categorie', {id_enfant:this.kid_id}]);
   }
-  @HostListener('window:beforeunload', [])
+  @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
