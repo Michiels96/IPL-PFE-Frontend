@@ -33,6 +33,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
  
   generatePDF(){
+    /*
     var nomEnfant = this.sharedService.getDataEnfantConnecte().nom;
     nomEnfant = nomEnfant.charAt(0).toUpperCase()+nomEnfant.substr(1, nomEnfant.length);
     var prenomEnfant = this.sharedService.getDataEnfantConnecte().prenom;
@@ -47,6 +48,7 @@ export class SyntheseDesChoixComponent implements OnInit {
         doc.save(nomFichier+'.pdf');
       });
     }
+    */
   }
 
   @HostListener('window:beforeunload', ['$event'])
