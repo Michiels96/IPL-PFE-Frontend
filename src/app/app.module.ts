@@ -59,7 +59,7 @@ import { SyntheseDesChoixComponent } from './components/synthese-des-choix/synth
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    //ServiceWorkerModule.register('ngsw-worker.js',{ enabled: environment.production}),
+    ServiceWorkerModule.register('ngsw-worker.js',{ enabled: environment.production}),
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
