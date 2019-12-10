@@ -13,6 +13,7 @@ export class ChoixCategorieComponent implements OnInit {
   var_nbActivites;
   var_categories = [];
   var_images = [];
+  kid_id;
   kid_nomComplet;
 
 
@@ -22,11 +23,15 @@ export class ChoixCategorieComponent implements OnInit {
 
   ngOnInit() {
     this.ifExitApp();
-    this.kid_nomComplet= this.route.snapshot.paramMap.get('nom_enfant');
+    this.kid_id = this.route.snapshot.paramMap.get('id_enfant');
+    // this.kid_id = this.route.snapshot.paramMap.get('kid_id');
+    console.log("kid_id", this.kid_id);
+    this.recupererEnfantConnecte();
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
     this.getCategories();
+
   }
 
   getImages(){
@@ -44,6 +49,18 @@ export class ChoixCategorieComponent implements OnInit {
         }
       )
     }
+  }
+
+  recupererEnfantConnecte() {
+    this.api.getOneKid(this.kid_id).subscribe(
+      data => {
+        this.kid_nomComplet = data.nom + " " + data.prenom;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   getCategories = () => {

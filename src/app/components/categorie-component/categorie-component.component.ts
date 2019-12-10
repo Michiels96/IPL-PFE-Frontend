@@ -16,13 +16,14 @@ export class CategorieComponentComponent implements OnInit {
   rien_choisi;
   nbActivitesOui;
   dataEnfantConnecte;
-
+  kid_id;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
     this.nbActivitesOui = 0;
     this.dataEnfantConnecte = null;
+    this.kid_id = null;
   }
   ngOnInit() {
     this.ifExitApp();
@@ -97,6 +98,12 @@ export class CategorieComponentComponent implements OnInit {
     }
     console.log("nb oui : ", this.nbActivitesOui);
     this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
+  }
+
+  renvoyerId() {
+    this.kid_id = this.dataEnfantConnecte.enfant_id;
+    console.log("kid_id", this.kid_id);
+    this.router.navigate(['/choix-categorie', {id:this.kid_id}]);
   }
 
   onSubmit() {

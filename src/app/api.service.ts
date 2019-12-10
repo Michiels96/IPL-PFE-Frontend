@@ -64,6 +64,9 @@ export class ApiService {
     return this.http.post(this.baseurl + '/sessions/questions/',postContent, {headers:this.httpHeaders});
   }
 
+  // getSession(session): Observable<any>{ 
+  //   return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
+  // }
 
   getUser(id): Observable<any>{
     return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
