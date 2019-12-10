@@ -75,11 +75,12 @@ img {
     /* table-layout: fixed;  */
 }
 th, td{
-    border: 3px solid gray;
+    border: 2px solid #7e9202;
     /* vertical-align: top; */
 }
 th {
-    font-size: 20px;
+    font-size: 15px;
+    /* color: #7e9202; */
     color: rgb(32, 210, 241);
 }
 td {
@@ -99,32 +100,19 @@ input[type=radio] {
     color: cyan; /* fonctionne pas*/
 }
 
-/* .oui:focus {
-    background-color: red;
-}
-
-.non:active {
-    background-color: red;
-}
-
-.voudrais:active {
-    background-color: red;
-} */
-
 button:focus {
     background-color: greenyellow;
     
 }
-
 .btn {
-    right: 90%;
-    margin: 40px;
+    left: 5%;
+    margin: 20px;
     position: fixed; 
     border-style: ridge;
     border-radius: 50px;
     border-color: orangered;
     color: orangered;
-    background-color: floralwhite;
+    background-color: beige;
 }
 
 #buttonValider {

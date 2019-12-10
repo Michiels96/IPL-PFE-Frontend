@@ -13,7 +13,7 @@ export class AccueilComponent implements OnInit {
   listeEnfants;
   kid_selected;
   isNotConnected=true;
-  kid_nomComplet;
+  kid_id;
   
   constructor(private api: ApiService,public authService: AuthService, private route: Router, private sharedService: SharedService) { }
 
@@ -46,7 +46,8 @@ export class AccueilComponent implements OnInit {
         //console.log(data);
         this.kid_selected = data;
         console.log("Data kid_selected : ", this.kid_selected);
-        this.kid_nomComplet = data.nom + " " + data.prenom;
+        // this.kid_nomComplet = data.nom + " " + data.prenom;
+        this.kid_id = data.enfant_id;
         if(this.kid_selected.connecte==true){
           this.isNotConnected=false;
           this.authService.loginKid();
@@ -74,7 +75,7 @@ export class AccueilComponent implements OnInit {
 
   jouer() {
     console.log("Nom Enfant : ", this.kid_selected.enfant_nom);
-    this.route.navigate(['/choix-categorie', {nom_enfant:this.kid_nomComplet}]);
+    this.route.navigate(['/choix-categorie', {id_enfant:this.kid_id}]);
   }
   @HostListener('window:beforeunload', ['$event'])
   ifExitApp() {

@@ -17,7 +17,6 @@ export class CategorieComponentComponent implements OnInit {
   nbActivitesOui;
   dataEnfantConnecte;
 
-
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;

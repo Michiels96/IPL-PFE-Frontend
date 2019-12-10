@@ -62,13 +62,13 @@ Code Ruban
 }
 
 figure {
-    border: 1px solid #333;
+    border: 1px solid #b1c70d;
     padding: 5px;
 }
 
 figcaption {
     background-color: RGBa(0,0,0,0.8);
-    color: #fff;
+    color: beige;
     text-align: center;
     font-style: italic;
 }
@@ -97,13 +97,13 @@ h2 {
 }
 
 .btn {
-    right: 90%;
-    margin: 40px;
+    left: 5%;
+    margin: 20px;
     position: fixed; 
     border-style: ridge;
     border-radius: 50px;
     border-color: orangered;
     color: orangered;
-    background-color: floralwhite;
+    background-color: beige;
 }
 

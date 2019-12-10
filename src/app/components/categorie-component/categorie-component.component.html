@@ -1,6 +1,6 @@
 <html>
 <div class="page">
-        <button class="btn btn-lg" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
+        <button class="btn btn-lg" [routerLink]="['/choix-categorie']" title="Précédent" (click)="renvoyerId()" >Précédent</button>
 
         <div id="fond"> 
             <div class="ruban">     
@@ -23,19 +23,21 @@
                 </thead>
                 <tbody>
                     <tr>   
-                        <td>{{img.description.toUpperCase()}}</td>
-                        <td><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
-                        <td>
+                        <td width="200">{{img.description.toUpperCase()}}</td>
+                        <td width="50"><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
+                        <td width="300">
                             <button value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button>
                             <button value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button>
                             <button value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais le faire')">Je voudrais le faire</button>
-                            <p>Tu as choisi {{img.choix}}</p>
+                            <br/>
+                            <br />
+                            <p>Choix : {{img.choix}}</p>
                         </td>
                     </tr>
                 </tbody>
             </li>
         </table>
-        <button class="btn btn-lg 50" id="buttonValider" type="submit" name="Valider">Valider</button>
+        <button style="left: 45%;" class="btn1 btn-lg" id="buttonValider" type="submit" name="Valider">Valider</button>
         
         <div class="alert alert-danger" role="alert" *ngIf="rien_choisi == true">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
