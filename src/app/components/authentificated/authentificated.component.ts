@@ -43,7 +43,8 @@ export class AuthentificatedComponent implements OnInit {
   }
   getEnfants = () => {
    
-    this.api.getAllEnfants().subscribe(
+    //this.api.getAllEnfants().subscribe(
+    this.api.getLoggedEnfants().subscribe(
       data => {
         //console.log(data);
         this.listeEnfants = data;
