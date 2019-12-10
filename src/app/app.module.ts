@@ -32,6 +32,7 @@ import { AuthentificatedComponent } from './components/authentificated/authentif
 import { DeconnexionElementComponent } from './components/deconnexion-element/deconnexion-element.component';
 import { RecapComponent } from './components/recap/recap.component';
 import { SyntheseDesChoixComponent } from './components/synthese-des-choix/synthese-des-choix.component';
+import { LivretComponent } from './components/livret/livret.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SyntheseDesChoixComponent } from './components/synthese-des-choix/synth
     DeconnexionElementComponent,
     RecapComponent,
     SyntheseDesChoixComponent,
+    LivretComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,8 @@ import { SyntheseDesChoixComponent } from './components/synthese-des-choix/synth
       { path: 'choixContent', component: Choix3contentComponent,},
       //{ path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,canActivate: [KidAuthGuard] },
       { path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,},
+
+      { path: 'livret', component: LivretComponent, },
     ])
   ],
   providers: [SharedService],
