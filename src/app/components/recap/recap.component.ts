@@ -15,10 +15,13 @@ export class RecapComponent implements OnInit {
   constructor(private api: ApiService,private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.id_kid = this.route.snapshot.paramMap.get('id');
+    console.log("id_kid", this.id_kid);
     this.getSession();
   }
+
   getSession(){
-    this.api. getSessionsById(3).subscribe( 
+    this.api. getSessionsById(this.id_kid).subscribe( 
       data => {
         console.log(data);
         this.sessions=data.session_enfant;
