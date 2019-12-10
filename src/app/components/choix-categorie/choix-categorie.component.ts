@@ -71,7 +71,7 @@ export class ChoixCategorieComponent implements OnInit {
     this.router.navigate(['/choixJaime']);
   }
   @HostListener('window:beforeunload', ['$event'])
-  ifExitApp() {
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));

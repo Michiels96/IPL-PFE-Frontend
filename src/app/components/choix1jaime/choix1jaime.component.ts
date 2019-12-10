@@ -106,7 +106,7 @@ export class Choix1jaimeComponent implements OnInit {
     )
   }
   @HostListener('window:beforeunload', ['$event'])
-  ifExitApp() {
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
