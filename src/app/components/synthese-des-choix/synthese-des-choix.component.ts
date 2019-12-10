@@ -31,10 +31,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   numLignePlus(){
     this.var_numLigne++;
   }
-
-  numLigneMoins(){
-    this.var_numLigne--;
-  }
+  
   @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {

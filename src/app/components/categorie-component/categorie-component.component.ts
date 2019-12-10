@@ -111,8 +111,8 @@ export class CategorieComponentComponent implements OnInit {
       newSession['date'] = date_session;
       this.api.createSession(newSession).subscribe(
         data => {
-          console.log(data);
-          this.sharedService.setDataSession(newSession);
+          console.log("7777"+JSON.stringify(data));
+          this.sharedService.setDataSession(data);
         },
         error => {
           console.log(error);

@@ -103,13 +103,14 @@ export class Choix3contentComponent implements OnInit {
     this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
     // sauvegarde en db
-    var session_id = this.sharedService.getDataSession();
+    var session_id = this.sharedService.getDataSession().session_id;
+    console.log("9999 "+JSON.stringify(this.sharedService.getDataSession()));
     for(var activite of this.sharedService.getDataCategorie()){
       var newQuestion = {};
       newQuestion['question_id'] = -1;
       newQuestion['session'] = session_id;
       newQuestion['image_correspondante'] = activite.image_id;
-      newQuestion['img_description'] = activite.description;
+      
       if(activite.aime == true){
         newQuestion['aime'] = 'O';
       }
