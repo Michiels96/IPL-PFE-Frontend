@@ -33,6 +33,11 @@ html {
     background-color: beige;
 }
 
+.position {
+    text-align: center;
+    left: 38%;
+}
+
 .login-container{
     margin-top: 5%;
     margin-bottom: 5%;
@@ -79,4 +84,11 @@ html {
 h2 {
     text-align: center;
     color: #0062cc;
+}
+
+.textintro {
+    text-align: center;
+    left: 38%;
+    color: white;
+    padding: -30%;
 }
