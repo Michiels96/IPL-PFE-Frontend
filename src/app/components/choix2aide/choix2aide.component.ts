@@ -9,9 +9,6 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix2aide.component.css']
 })
 export class Choix2aideComponent implements OnInit {
-  // var_reponsesQ1: choix1 ==> choix2
-  var_reponsesQ1 = [];
-
   var_listeQ2 = [];
 
   // var_activitesDAideEnregistres: JSON de choix2 ==> choix3
@@ -31,12 +28,13 @@ export class Choix2aideComponent implements OnInit {
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
-    this.var_reponsesQ1 = this.sharedService.getDataCategorie();
-
-    for(var activite of this.var_reponsesQ1){
-      this.var_listeQ2.push(activite);
+    // filtrage des images avec le champ 'choix' à 'oui'
+    for(var activite of this.sharedService.getDataCategorie()){
+      if(activite.choix == "oui"){
+        this.var_listeQ2.push(activite);
+      }
     }
-    this.var_activiteCourante = this.var_reponsesQ1[0];
+    this.var_activiteCourante = this.var_listeQ2[0];
   }
 
   addImgToYes(activite){
@@ -89,15 +87,15 @@ export class Choix2aideComponent implements OnInit {
     //console.log("terminé!");
     var imagesSelectionnes = this.sharedService.getDataCategorie();
     var i = 0;
-    for(var activite of this.var_activitesDAideEnregistres){
-      for(var activiteSharedService of imagesSelectionnes){
-        if(activiteSharedService.image_id == activite.image_id){
-          this.var_activitesDAideEnregistres[i] = activiteSharedService;
+    for(var activiteSharedService of imagesSelectionnes){
+      for(var activite of this.var_activitesDAideEnregistres){
+        if(activite.image_id == activiteSharedService.image_id){
+          imagesSelectionnes[i] = activite;
         }
       }
       i++;
     }
-    this.sharedService.setDataCategorie(this.var_activitesDAideEnregistres);
+  this.sharedService.setDataCategorie(imagesSelectionnes);
     console.log("CHOIX 2 "+JSON.stringify(this.sharedService.getDataCategorie()));
     this.router.navigate(['/choixContent']);
   }

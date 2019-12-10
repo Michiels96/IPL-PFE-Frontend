@@ -9,8 +9,6 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix3content.component.css']
 })
 export class Choix3contentComponent implements OnInit {
-  // var_reponsesQ2: choix2 ==> choix3 
-  var_reponsesQ2 = [];
   var_listeQ3 = [];
 
   // var_activitesContentEnregistres: choix3 ==> ...
@@ -30,12 +28,13 @@ export class Choix3contentComponent implements OnInit {
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
-    this.var_reponsesQ2 = this.sharedService.getDataCategorie();
-
-    for(var activite of this.var_reponsesQ2){
-      this.var_listeQ3.push(activite);
+    // filtrage des images avec le champ 'choix' à 'oui'
+    for(var activite of this.sharedService.getDataCategorie()){
+      if(activite.choix == "oui"){
+        this.var_listeQ3.push(activite);
+      }
     }
-    this.var_activiteCourante = this.var_reponsesQ2[0];
+    this.var_activiteCourante = this.var_listeQ3[0];
   }
 
 

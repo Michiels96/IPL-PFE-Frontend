@@ -93,7 +93,7 @@ export class CategorieComponentComponent implements OnInit {
         this.nbActivitesOui++;
       }
     }
-    console.log("nb oui : ", this.nbActivitesOui);
+    //console.log("nb oui : ", this.nbActivitesOui);
     this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
   }
 
