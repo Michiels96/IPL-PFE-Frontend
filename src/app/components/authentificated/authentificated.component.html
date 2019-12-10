@@ -1,120 +1,124 @@
-<h2>Bonjour {{whoIsConnected}} !</h2>
+<html>
 
-<div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
-    {{error_inscription_msg}}
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-</div>
+  <h2>Bonjour {{whoIsConnected}} !</h2>
 
-<div class="container login-container">
-    <div class="row">
-        <div class="col-md-6 login-form-1">
-            <h3>Choisissez un enfant</h3>
-            <div class="form-group">
-              <label> 
-                Enfant : 
-                <select  [(ngModel)]="kid_selected">
-                  <option style="color: #0062cc;" *ngFor="let enfant of listeEnfants" [ngValue]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
-                </select>
-              </label>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
-            </div>
-            <div class="form-group">
-              <app-deconnexion-element></app-deconnexion-element>
-            </div>
-        </div>
-        
-        <div class="col-md-6 login-form-2">
-            <h3>Inscrire enfant</h3>
-            <form class="form-signin" [formGroup]="inscriptionEnfant" (ngSubmit)="inscrireEnfant()">
-                <div class="form-group">
-                    <label>
-                      <strong style="color: #fff;">Nom :</strong>
-                      <input type="text" style="color: #0062cc;" class="form-control" placeholder="Nom" value="" formControlName="nom">
-                    </label>
-                  </div>
+  <app-deconnexion-element style="left: 35%; text-align: center;" ></app-deconnexion-element>
+
+  <div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
+      {{error_inscription_msg}}
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  </div>
+  
+  <div class="container login-container">
+      <div class="row">
+          <div class="col-md-4 login-form-1">
+              <h3>Choisissez un enfant</h3>
+              <div class="form-group">
+                <label> 
+                  Enfant : 
+                  <select  [(ngModel)]="kid_selected">
+                    <option style="color: #0062cc;" *ngFor="let enfant of listeEnfants" [ngValue]="enfant.enfant_id"> {{enfant.nom}} {{enfant.prenom}}</option>
+                  </select>
+                </label>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
+              </div>
+              <div class="form-group">
+              </div>
+          </div>
+          
+          <div class="col-md-4 login-form-2">
+              <h3>Inscrire enfant</h3>
+              <form class="form-signin" [formGroup]="inscriptionEnfant" (ngSubmit)="inscrireEnfant()">
                   <div class="form-group">
                       <label>
-                        <strong style="color: #fff;">Prénom :</strong>
-                        <input type="text" style="color: #0062cc;" class="form-control" placeholder="Prénom" value="" formControlName="prenom">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                      <label>
-                        <strong style="color: #fff;">Age :</strong>
-                        <input type="text" style="color: #0062cc;" class="form-control" placeholder="Age" value="" formControlName="age">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                    <button class="btn btn-lg btn-primary" type='submit'>Inscrire</button>
-                  </div>
-            </form>
-        </div>
-
-        <div class="col-md-6 login-form-2">
-            <h3 style="color: beige;">Inscrire Professionnel</h3>
-            <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
-                    <div class="form-group">
-                            <label style="color: beige;">
-                                <strong style="color: #fff;">Username:</strong>
-                              <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="username">
-                            </label>
-                    </div>
-                  <div class="form-group">
-                    <label style="color: beige;">
                         <strong style="color: #fff;">Nom :</strong>
-                      <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="nom">
-                    </label>
-                  </div>
-                  <div class="form-group">
-                      <label style="color: beige;">
-                          <strong style="color: #fff;">Prenom :</strong>
-                          <input type="text" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="prenom">
+                        <input type="text" style="color: #0062cc;" class="form-control" placeholder="Nom" value="" formControlName="nom">
                       </label>
-                  </div>
-                  <div class="form-group">
-                    <label style="color: beige;">
-                        <strong style="color: #fff;">Mot de passe :</strong>
-                        <input type="password" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
-                    </label>
                     </div>
-                    
+                    <div class="form-group">
+                        <label>
+                          <strong style="color: #fff;">Prénom :</strong>
+                          <input type="text" style="color: #0062cc;" class="form-control" placeholder="Prénom" value="" formControlName="prenom">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                          <strong style="color: #fff;">Age :</strong>
+                          <input type="text" style="color: #0062cc;" class="form-control" placeholder="Age" value="" formControlName="age">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                      <button style="background-color: beige; color: #0062cc;" class="btn btn-lg btn-primary" type='submit'>Inscrire</button>
+                    </div>
+              </form>
+          </div>
+  
+          <div class="col-md-4 login-form-2">
+              <h3 style="color: beige;">Inscrire Professionnel</h3>
+              <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
+                      <div class="form-group">
+                              <label style="color: beige;">
+                                  <strong style="color: #fff;">Username:</strong>
+                                <input type="text" style="color: #0062cc;" class="form-control" placeholder="Username" value="" formControlName="username">
+                              </label>
+                      </div>
+                    <div class="form-group">
+                      <label style="color: beige;">
+                          <strong style="color: #fff;">Nom :</strong>
+                        <input type="text" style="color: #0062cc;" class="form-control" placeholder="Nom" value="" formControlName="nom">
+                      </label>
+                    </div>
                     <div class="form-group">
                         <label style="color: beige;">
-                            <strong style="color: #fff;">E-mail :</strong>
-                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="email">
+                            <strong style="color: #fff;">Prenom :</strong>
+                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="Prenom" value="" formControlName="prenom">
                         </label>
                     </div>
                     <div class="form-group">
-                        <label style="color: beige;">
-                            <strong style="color: #fff;">Telephone :</strong>
-                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="telephone">
-                        </label>
-                    </div>
+                      <label style="color: beige;">
+                          <strong style="color: #fff;">Mot de passe :</strong>
+                          <input type="password" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
+                      </label>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label style="color: beige;">
+                              <strong style="color: #fff;">E-mail :</strong>
+                              <input type="text" style="color: #0062cc;" class="form-control" placeholder="Email" value="" formControlName="email">
+                          </label>
+                      </div>
+                      <div class="form-group">
+                          <label style="color: beige;">
+                              <strong style="color: #fff;">Telephone :</strong>
+                              <input type="text" style="color: #0062cc;" class="form-control" placeholder="Tel" value="" formControlName="telephone">
+                          </label>
+                      </div>
+                      <div class="form-group">
+                          <label style="color: beige;"> 
+                              Profession : 
+                              <select formControlName="profession">
+                                <option>Ergothérapeute</option>
+                                <option>Psychologue</option>
+                                <option>Educateur</option>
+                                <option>Kinésithérapeute</option>
+                                <option>Enseignant</option>
+                                <option>Autre</option>
+                              </select>
+                              <div *ngIf="inscription.value.profession=='Autre'">
+                                <textarea formControlName="autre" rows="5" cols="33">
+  
+                                </textarea>
+                              </div>
+                          </label>
+                      </div>
+  
                     <div class="form-group">
-                        <label style="color: beige;"> 
-                            Profession : 
-                            <select  formControlName="profession">
-                              <option style="color: #0062cc;">Ergothérapeute</option>
-                              <option style="color: #0062cc;">Psychologue</option>
-                              <option style="color: #0062cc;">Educateur</option>
-                              <option style="color: #0062cc;">Kinésithérapeute</option>
-                              <option style="color: #0062cc;">Enseignant</option>
-                              <option style="color: #0062cc;">Autre</option>
-                            </select>
-                            <div *ngIf="inscription.value.profession=='Autre'">
-                              <textarea formControlName="autre" rows="5" cols="33">
-
-                              </textarea>
-                            </div>
-                        </label>
+                        <button style="background-color: beige; color: #0062cc;" class="btn btn-lg btn-primary btn-block" type='submit'>Inscrire</button>
                     </div>
-
-                  <div class="form-group">
-                      <button class="btn btn-lg btn-primary btn-block" type='submit'>Inscrire</button>
-                  </div>
-            </form>
-        </div>
-    </div>
-</div>
+              </form>
+          </div>
+      </div>
+  </div>
+</html>

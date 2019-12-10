@@ -11,35 +11,50 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EducateurUIComponent implements OnInit {
 
   kid_id;
-  //q_id;
+  q_id;
   questions;
   aime;
   aide;
   content;
+
+  mandataire;
+  personne_mandataire = {'mandataire': '','nom': '', 'prenom': '', 'specialite': '', 'telephone': '', 'email': '', 'date': '', 'objet': '','autre': ''};
   
-  note = {'question_id': '', 'aime': '', 'aide': '', 'content': '', 'professionnel_id': '1'};
+  note = {'question_id': '', 'aime': '', 'aide': '', 'content': '', 'professionnel_id': ''};
   notes = [];
-  question_id = [];
+  question = [];
 
   constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.kid_id = this.route.snapshot.paramMap.get('id');
-    //this.q_id = this.route.snapshot.paramMap.get('');
     console.log(this.kid_id);
-    this.getQuestion();
+    this.getSession();
+  }
+
+  getSession = () => {
+    this.api.getSessionsById(this.kid_id).subscribe(
+      data => {
+        this.q_id = data.session_enfant[data.session_enfant.length-1].session_id;
+        this.getQuestion();
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   getQuestion = () => {
-    this.api.getSessionById(this.kid_id).subscribe(
+    this.api.getFullSessionById(this.q_id).subscribe(
       data => {
         this.questions = data.question_session;
+        console.log(this.questions);
         for(let q of this.questions){
-          //this.note['question_id'] = q.question_id;
-          //this.question_id.push(q.question_id);
-          this.notes.push(q.note);
+          console.log(q);
+          //this.notes.push(q.note);
+          q['note'] = this.note;
         }
-        //this.initNotes();
+        console.log(this.questions);
         console.log(this.notes);
       },
       error => {
@@ -48,22 +63,31 @@ export class EducateurUIComponent implements OnInit {
     )
   }
 
-  // initNotes(){
-  //   for(var i = 0; i < this.notes.length; i++){
-  //     this.notes[i]['question_id'] = this.question_id[i];
-  //   }
-  // }
+  selectMandataire(event){
+    if(event === 'Autre'){
+      this.personne_mandataire['autre'] = event;
+    }
+    this.personne_mandataire['mandataire'] = event;
+    console.log(this.personne_mandataire);
+  }
+
+  setMandataire(str, event){
+    this.personne_mandataire[str] = event;
+    console.log(this.personne_mandataire);
+  }
 
   setNote(id, note, event){
+    console.log(id, note, event);
     for(var i = 0; i < this.notes.length; i++){
       console.log(this.notes[i]);
       if(this.notes[i]['question_id'] == id){
-        // this.notes[i]['note_aime'] = this.aime;
-        // this.notes[i]['note_aide'] = this.aide;
-        // this.notes[i]['note_satisfaction'] = this.content;
         this.notes[i][note] = event;
       }
     }
+  }
+
+  onSubmitMandat(){
+    console.log(this.personne_mandataire);
   }
 
   terminer(){
