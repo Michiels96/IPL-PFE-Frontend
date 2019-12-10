@@ -81,10 +81,10 @@ export class ChoixCategorieComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
       },
       error => {
-        console.log(error);
+        //console.log(error);
       }
     )
   }

@@ -36,7 +36,7 @@ export class Choix1jaimeComponent implements OnInit {
         this.var_imagesCategorieDemandees.push(activite);
       }
     }
-    console.log(this.var_imagesCategorieDemandees);
+    //console.log(this.var_imagesCategorieDemandees);
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
   }
 
@@ -89,8 +89,8 @@ export class Choix1jaimeComponent implements OnInit {
         }
         i++;
       }
-      console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
       this.sharedService.setDataCategorie(this.var_activitesEnregistres);
+      console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
       this.router.navigate(['/choixAide']);
     }
   }
@@ -98,10 +98,10 @@ export class Choix1jaimeComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
       },
       error => {
-        console.log(error);
+        //console.log(error);
       }
     )
   }

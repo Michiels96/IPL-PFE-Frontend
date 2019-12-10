@@ -19,6 +19,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.var_numLigne = 0;
     this.ifExitApp();
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
@@ -29,9 +30,11 @@ export class SyntheseDesChoixComponent implements OnInit {
 
 
   numLignePlus(){
+    
     this.var_numLigne++;
+    console.log('ICI '+this.var_numLigne);
   }
-  
+
   @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {
