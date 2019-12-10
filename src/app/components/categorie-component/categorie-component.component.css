@@ -75,11 +75,12 @@ img {
     /* table-layout: fixed;  */
 }
 th, td{
-    border: 3px solid gray;
+    border: 2px solid #7e9202;
     /* vertical-align: top; */
 }
 th {
-    font-size: 20px;
+    font-size: 15px;
+    /* color: #7e9202; */
     color: rgb(32, 210, 241);
 }
 td {
@@ -98,7 +99,7 @@ input[type=radio] {
     height: 3em;
     color: cyan; /* fonctionne pas*/
 }
-/
+
 button:focus {
     background-color: greenyellow;
     
