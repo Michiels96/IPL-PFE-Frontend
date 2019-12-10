@@ -13,8 +13,7 @@ export class ChoixCategorieComponent implements OnInit {
   var_nbActivites;
   var_categories = [];
   var_images = [];
-  kid_id;
-  kid_nomComplet;
+  nomComplet_enfant;
 
 
   constructor(private api: ApiService, private router:Router, private sharedService: SharedService, private route: ActivatedRoute) { 
@@ -23,15 +22,15 @@ export class ChoixCategorieComponent implements OnInit {
 
   ngOnInit() {
     this.ifExitApp();
-    this.kid_id = this.route.snapshot.paramMap.get('id_enfant');
-    // this.kid_id = this.route.snapshot.paramMap.get('kid_id');
-    console.log("kid_id", this.kid_id);
-    this.recupererEnfantConnecte();
+    this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
+    //console.log(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2);
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      this.router.navigate(['/']);
+    }
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
     this.getCategories();
-
   }
 
   getImages(){
@@ -49,18 +48,6 @@ export class ChoixCategorieComponent implements OnInit {
         }
       )
     }
-  }
-
-  recupererEnfantConnecte() {
-    this.api.getOneKid(this.kid_id).subscribe(
-      data => {
-        this.kid_nomComplet = data.nom + " " + data.prenom;
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    )
   }
 
   getCategories = () => {
