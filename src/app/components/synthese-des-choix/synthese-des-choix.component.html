@@ -1,13 +1,12 @@
 <html>
     <div style="text-align: center;">
-        <table id="tableauDeSynthese">
+        <table>
             <tr>
                 <th rowspan="2">N°</th>
                 <th rowspan="2">Intitulé</th>
                 <th colspan="2">Aime/N'aime pas</th> <!--Valeur-->
                 <th colspan="2">Aide</th>
                 <th colspan="2">Satisfaction</th>
-                <th rowspan="2">Habitude prioritaire</th>
             </tr>
             <tr>
                 <td>
@@ -32,7 +31,7 @@
             <tr *ngFor="let activite of var_reponsesQ3" class="datarow">
                 <th>{{activite.indice}}</th>
                 <td>
-                    <img class="img-fluid img-thumbnail" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{activite.categorie_image}}/{{activite.nom_fichier}}">
+                    <img style="max-width:100%;max-height:100%" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{activite.categorie_image}}/{{activite.nom_fichier}}">
                     <br/>
                     <span style="font-style:italic;font-weight:bold;">{{activite.description}}</span>
                 </td>
@@ -53,9 +52,6 @@
                 </td>
                 <td>
                     <span *ngIf="activite.content == false" style="font-style:italic;font-weight:bold;">&#10007;</span>
-                </td>
-                <td>
-                    ?
                 </td>
             </tr>
         </table>
