@@ -24,9 +24,8 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.ifExitApp();
-    /*
-    if(this.sharedService.getDataCategorie().length == undefined){
+    
+   /* if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }*/
     // filtrage des images avec le champ 'choix' à 'oui'
@@ -104,8 +103,8 @@ export class Choix1jaimeComponent implements OnInit {
       }
     )
   }
-  @HostListener('window:beforeunload', [])
-  ifExitApp() {
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));

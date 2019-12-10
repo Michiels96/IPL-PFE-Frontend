@@ -1,6 +1,6 @@
 <html>
 <div class="page">
-        <button class="btn btn-lg" [routerLink]="['/choix-categorie']" title="Précédent" (click)="renvoyerId()" >Précédent</button>
+        <button class="btn btn-lg" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
 
         <div id="fond"> 
             <div class="ruban">     
@@ -11,6 +11,7 @@
         </div>
         <br/>
         <br />
+        
     <form (ngSubmit)="onSubmit()">
         <table class="table">
             <li *ngFor="let img of var_choix_images; let i = index" style="list-style-type: none;" >

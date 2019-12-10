@@ -20,18 +20,11 @@ export class ConnectionFormComponent implements OnInit {
   userToConnect;
   error_connect_msg;
   error_connect = false;
-  error_inscription_msg;
-  error_inscription = false;
+ 
 
   connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
-  });
-  inscription=new FormGroup({
-    id:new FormControl(-1),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    email: new FormControl('')
   });
   constructor(public authService: AuthService,private api: ApiService,private router:Router) { 
     
@@ -40,9 +33,7 @@ export class ConnectionFormComponent implements OnInit {
   ngOnInit() {
     this.authService.logout();
     this.error_connect_msg="";
-    this.error_inscription_msg=""
     this.error_connect = false;
-    this.error_inscription = false;
   }
 
  
@@ -54,19 +45,15 @@ export class ConnectionFormComponent implements OnInit {
         console.log("token");
         console.log(data);
         this.error_connect_msg="";
-        this.error_inscription_msg=""
         let regex = /\d/;
         if(regex.test(data.token)){
           
           this.authService.login();
           //this.isTokenValid=true;
-          this.inscription.reset();
           this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
           this.connexion.reset();
         }
         else{
-          //this.isTokenValid=false;
-          this.inscription.reset();
           this.connexion.reset();
           this.router.navigate(['/connexion']);
         }
@@ -78,35 +65,6 @@ export class ConnectionFormComponent implements OnInit {
       }
     )
     this.error_connect = false;
-  }
-  sendInscription(){
-    console.log(this.inscription.value);
-    //this.messageToEmit.emit(this.inscription);
-    
-    console.log("form recu 2 ! "); 
-    console.log(this.inscription.value);
-
-    this.api.postUser(this.inscription.value).subscribe( 
-      data => {
-        console.log(data);
-        this.userToConnect=this.inscription.value
-        this.connexion.setValue({
-          username: this.userToConnect.username, 
-          password: this.userToConnect.password
-        });
-        console.log( this.connexion.value);
-        this.error_connect_msg="";
-        this.error_inscription_msg=""
-        this.tryToConnect();
-      // this.enfants.push(data);
-      },
-      error => {
-        console.log(error);
-        this.error_inscription_msg="Inscription impossible, ce nom existe deja ou l'email n'est pas un email valide";
-        this.error_inscription = true;
-      }
-    )
-    this.error_inscription = false;
   }
 
 }

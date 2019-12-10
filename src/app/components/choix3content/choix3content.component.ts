@@ -27,7 +27,6 @@ export class Choix3contentComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.ifExitApp();
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -143,8 +142,8 @@ export class Choix3contentComponent implements OnInit {
       )
     }
   }
-  @HostListener('window:beforeunload', [])
-  ifExitApp() {
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));

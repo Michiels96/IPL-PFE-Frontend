@@ -7,7 +7,7 @@
                 <h3>Enfant</h3>
                 <br />
                
-                <div *ngIf='isNotConnected; else not_connected'>
+                <div *ngIf='isNotConnected; else connected'>
                     <div class="form-group">
                         <div class="position"> 
                             Nom: <select [(ngModel)]="kid_selected">
@@ -18,22 +18,22 @@
                     <button class="btn btn-lg btn-primary btn-block" (click)="connecterEnfant()">C'est moi ! </button>
                 </div>
                 <br />
-                <ng-template #not_connected>
+                <ng-template #connected>
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/choix-categorie',{id_enfant:kid_id}]" (click)="jouer()">Jouer</button>
                     </div>
                 </ng-template>
             </div>
             <div class="col-md-6 login-form-2">
-                <h3 style="color: beige;">Educateur</h3>
+                <h3 style="color: beige;">Professionnel</h3>
                 <br />
                 <div class="form-group">
-                    <div class="textintro">
+                   <!-- <div class="textintro">
                         Pour se connecter ou inscrire un éducateur
-                    </div>
+                    </div>-->
                 </div>
                 <div class="form-group">
-                    <button style="background-color: beige; color:#0062cc;" class="btn btn-lg btn-primary btn-block" [routerLink]="['/connexion']" >Partie éducateur</button>
+                    <button style="background-color: beige; color:#0062cc;" class="btn btn-lg btn-primary btn-block" [routerLink]="['/connexion']" >Connexion professionel</button>
                 </div>
             </div>
         </div> 
