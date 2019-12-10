@@ -14,6 +14,7 @@ export class ChoixCategorieComponent implements OnInit {
   var_categories = [];
   var_images = [];
   nomComplet_enfant;
+  dataEnfantConnecte;
 
 
   constructor(private api: ApiService, private router:Router, private sharedService: SharedService, private route: ActivatedRoute) { 
@@ -26,6 +27,7 @@ export class ChoixCategorieComponent implements OnInit {
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
       this.router.navigate(['/']);
     }
+    this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
@@ -68,6 +70,21 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   onSubmit() {
+    //création d'une session
+    var id_enfant = this.dataEnfantConnecte.enfant_id;
+    var date_session = new Date();
+    var newSession = {};
+    newSession['session_id'] = -1;
+    newSession['enfant'] = id_enfant;
+    newSession['date'] = date_session;
+    this.api.createSession(newSession).subscribe(
+      data => {
+        this.sharedService.setDataSession(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
     this.router.navigate(['/choixJaime']);
   }
   
