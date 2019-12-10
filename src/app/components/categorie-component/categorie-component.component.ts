@@ -15,14 +15,15 @@ export class CategorieComponentComponent implements OnInit {
   var_choix_images = [];
   rien_choisi;
   nbActivitesOui;
+  dataEnfantConnecte;
 
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
     this.nbActivitesOui = 0;
+    this.dataEnfantConnecte = null;
   }
-  
   ngOnInit() {
     this.ifExitApp();
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
@@ -30,6 +31,8 @@ export class CategorieComponentComponent implements OnInit {
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
+    this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
+    console.log("SHAREDSERVICE - DATA-ENFANTCONNECTE  "+JSON.stringify(this.dataEnfantConnecte));
     this.initImages(this.libelle_categorie_selectionne);
   }
 
@@ -41,7 +44,7 @@ export class CategorieComponentComponent implements OnInit {
           activite['nom_fichier'] = activite.description+".jpg";
           this.var_choix_images.push(activite);
         }
-        console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
+        //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
         // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
         if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
           var choixImagesToChoix1 = this.sharedService.getDataCategorie();
@@ -61,38 +64,6 @@ export class CategorieComponentComponent implements OnInit {
       }
     )
   }
-
-  /*
-  initImages(categorie){
-    this.api.getAllImages().subscribe(
-      data => {
-        for(var activite of data){
-          if(activite.categorie_image == categorie){
-            activite['choix'] = null;
-            this.var_choix_images.push(activite);
-          }
-        }
-        console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
-        // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
-        if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-          var choixImagesToChoix1 = this.sharedService.getDataCategorie();
-          var i = 0;
-          for(var activite of this.var_choix_images){
-            for(var activiteSauvegardee of choixImagesToChoix1){
-              if(activiteSauvegardee.image_id == activite.image_id){
-                this.var_choix_images[i] = activiteSauvegardee;
-              }
-            }
-            i++;
-          }
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-  */
   
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
@@ -129,9 +100,23 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Choix images : ", this.var_choix_images);
+    //console.log("Choix images : ", this.var_choix_images);
     if(this.nbActivitesOui >= 1) {
-      console.log("Je suis ici");
+      //création d'une session
+      var id_enfant = this.dataEnfantConnecte.enfant_id;
+      var date_session = new Date();
+      var newSession = {};
+      newSession['session_id'] = -1;
+      newSession['enfant'] = id_enfant;
+      newSession['date'] = date_session;
+      this.api.createSession(newSession).subscribe(
+        data => {
+          this.sharedService.setDataSession(data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
       this.router.navigate(['/choixJaime']);
       this.rien_choisi = false;
     }
@@ -140,6 +125,7 @@ export class CategorieComponentComponent implements OnInit {
       this.rien_choisi = true;
     }
   }
+
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
@@ -150,6 +136,7 @@ export class CategorieComponentComponent implements OnInit {
       }
     )
   }
+
   @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {

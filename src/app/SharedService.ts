@@ -5,11 +5,15 @@ export class SharedService {
     dataChoixCategorie;
     nbChoixCategorie;
     dataCategorie;
+    dataEnfantConnecte;
+    dataSession;
     
     constructor(){
         this.dataChoixCategorie = {};
         this.nbChoixCategorie = 0;
         this.dataCategorie = {};
+        this.dataEnfantConnecte = {};
+        this.dataSession = {};
     }
 
     /* 
@@ -49,6 +53,32 @@ export class SharedService {
     }
     setDataCategorie(val: object){
         this.dataCategorie = val;
+    }
+    /*************************/
+
+    /* 
+    composants impliqués: 
+    - accueil ==> categorie-component
+    */
+    getDataEnfantConnecte(){
+        return this.dataEnfantConnecte;
+    }
+
+    setDataEnfantConnecte(val: object){
+        this.dataEnfantConnecte = val;
+    }
+    /*************************/
+
+    /* 
+    composants impliqués: 
+    - categorie-component ==> choix3content
+    */
+    getDataSession(){
+        return this.dataSession;
+    }
+
+    setDataSession(val: object){
+        this.dataSession = val;
     }
     /*************************/
 

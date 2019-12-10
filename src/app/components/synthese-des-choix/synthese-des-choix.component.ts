@@ -15,7 +15,7 @@ export class SyntheseDesChoixComponent implements OnInit {
 
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
-    this.var_numLigne = 0;
+    this.var_numLigne = 1;
   }
 
   ngOnInit() {
@@ -24,17 +24,13 @@ export class SyntheseDesChoixComponent implements OnInit {
       this.router.navigate(['/categories']);
     }
     this.var_reponsesQ3 = this.sharedService.getDataCategorie();
+    for(var activite of this.var_reponsesQ3){
+      activite['indice'] = this.var_numLigne;
+      this.var_numLigne++;
+    }
     console.log(this.var_reponsesQ3);
   }
 
-
-  numLignePlus(){
-    this.var_numLigne++;
-  }
-
-  numLigneMoins(){
-    this.var_numLigne--;
-  }
   @HostListener('window:beforeunload', [])
   ifExitApp() {
     if (sessionStorage.length > 0) {

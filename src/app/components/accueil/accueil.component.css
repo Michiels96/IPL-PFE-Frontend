@@ -1,11 +1,11 @@
-html {
+ /* html {
     margin:0;
     padding:0;
     font-size: 90%;
     background-image: url(homeImage.jpg);
-    background-size: 100%; /* version standardisée */
-}
-.col-3 {
+    background-size: 100%;
+}  */
+/* .col-3 {
     left: 38%;
     text-align: center;
     position: relative;
@@ -22,4 +22,73 @@ h3:hover {
 
 button:hover {
     background-color: wheat;
+}  */
+
+h3 {
+    margin: 20px;
+    padding: 30px;
+}
+
+html {
+    background-color: beige;
+}
+
+.position {
+    text-align: center;
+    left: 38%;
+}
+
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #0062cc;
+}
+.login-form-2{
+    padding: 5%;
+    background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+}
+
+h2 {
+    text-align: center;
+    color: #0062cc;
+}
+
+.textintro {
+    text-align: center;
+    left: 38%;
+    color: white;
+    padding: -30%;
 }

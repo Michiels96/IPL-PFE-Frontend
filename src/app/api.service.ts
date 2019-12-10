@@ -53,8 +53,18 @@ export class ApiService {
   }
   postKid(kid): Observable<any>{
     let postContent=JSON.stringify(kid);
-    return this.http.post(this.baseurl + '/enfant/enfants/',postContent, {headers:this.httpHeaders});
+    return this.http.post(this.baseurl + '/enfant/enfants/', postContent, {headers:this.httpHeaders});
   }
+  createSession(session): Observable<any>{
+    let postContent = JSON.stringify(session);
+    return this.http.post(this.baseurl + '/sessions/sessions/',postContent, {headers:this.httpHeaders});
+  }
+  createQuestion(question): Observable<any>{
+    let postContent = JSON.stringify(question);
+    return this.http.post(this.baseurl + '/sessions/questions/',postContent, {headers:this.httpHeaders});
+  }
+
+
   getUser(id): Observable<any>{
     return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
   }

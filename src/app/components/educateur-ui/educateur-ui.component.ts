@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class EducateurUIComponent implements OnInit {
   notes = [];
   question_id = [];
 
-  constructor(private api: ApiService, private route: ActivatedRoute) { }
+  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.kid_id = this.route.snapshot.paramMap.get('id');
@@ -31,7 +31,7 @@ export class EducateurUIComponent implements OnInit {
   }
 
   getQuestion = () => {
-    this.api.getSessionById(1).subscribe(
+    this.api.getSessionById(this.kid_id).subscribe(
       data => {
         this.questions = data.question_session;
         for(let q of this.questions){
@@ -64,5 +64,9 @@ export class EducateurUIComponent implements OnInit {
         this.notes[i][note] = event;
       }
     }
+  }
+
+  terminer(){
+    this.router.navigate(['/recap', {id:this.kid_id}]);
   }
 }

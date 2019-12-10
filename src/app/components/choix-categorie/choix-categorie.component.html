@@ -1,5 +1,5 @@
 <html>
-<div class="text-align:center;width: 50%;height: 50%;">
+<div style="max-width: 100%;height: auto;">
     <button class="btn btn-lg"  [routerLink]="['/']" title="Précédent">Précédent</button>
 
     <div id="fond"> 
@@ -13,15 +13,15 @@
     <br/>
     <br />
 
-    <h2>Bienvenue {{kid_nomComplet}} </h2><br/>
+    <h2>Bienvenue {{nomComplet_enfant}} </h2><br/>
     <h4>Choisi la catégorie qui ressemble le plus à tes habitudes</h4>
 
     <div class="card-body">
-        <li *ngFor="let img of var_images" style="list-style-type: none;">
-            <figure style="max-width: 100%;height: auto;">
+        <li *ngFor="let img of var_images" style="list-style-type: none;display:inline">
+            <figure style="min-block-size: 150px;">
                 <strong>
                     <a style="background-color: beige;" (click)="$event.preventDefault();getCat(img.categorie_image)">
-                    <img style="max-width: inherit;height: inherit;" class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
+                    <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
                     <figcaption>{{img.categorie_image}}</figcaption>
                 </a>
                 </strong>

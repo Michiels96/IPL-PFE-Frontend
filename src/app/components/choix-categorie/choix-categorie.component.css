@@ -61,12 +61,6 @@ Code Ruban
     z-index: -1;
 }
 
-a {
-    background-color: beige; 
-    text-decoration-line: underline;
-}
-
-
 figure {
     border: 1px solid #333;
     padding: 5px;
@@ -77,6 +71,11 @@ figcaption {
     color: #fff;
     text-align: center;
     font-style: italic;
+}
+
+a {
+    background-color: beige; 
+    text-decoration-line: underline;
 }
 
 .card-body {

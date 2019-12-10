@@ -11,12 +11,10 @@ import { SharedService } from 'src/app/SharedService';
 export class Choix3contentComponent implements OnInit {
   // var_reponsesQ2: choix2 ==> choix3 
   var_reponsesQ2 = [];
-
   var_listeQ3 = [];
 
   // var_activitesContentEnregistres: choix3 ==> ...
   var_activitesContentEnregistres = [];
-  
   
   var_i;
   imgBack;
@@ -89,7 +87,7 @@ export class Choix3contentComponent implements OnInit {
   }
 
   question3Terminee(){
-    console.log("terminé!");
+    //console.log("terminé!");
     var imagesSelectionnes = this.sharedService.getDataCategorie();
     var i = 0;
     for(var activite of this.var_activitesContentEnregistres){
@@ -102,7 +100,48 @@ export class Choix3contentComponent implements OnInit {
     }
     this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
-    this.router.navigate(['/syntheseDesChoix']);
+    // sauvegarde en db
+    var session_id = this.sharedService.getDataSession().session_id;
+    console.log("SHAREDSERVICE - DATASESSION "+JSON.stringify(this.sharedService.getDataSession()));
+    var nbQuestions = this.sharedService.getDataCategorie().length;
+    var i=0;
+    for(var activite of this.sharedService.getDataCategorie()){
+      var newQuestion = {};
+      newQuestion['question_id'] = -1;
+      newQuestion['session'] = session_id;
+      newQuestion['image_correspondante'] = activite.image_id;
+      
+      if(activite.aime == true){
+        newQuestion['aime'] = 'O';
+      }
+      else{
+        newQuestion['aime'] = 'N';
+      }
+      if(activite.aide == true){
+        newQuestion['aide'] = 'O';
+      }
+      else{
+        newQuestion['aide'] = 'N';
+      }
+      if(activite.content == true){
+        newQuestion['content'] = 'O';
+      }
+      else{
+        newQuestion['content'] = 'N';
+      }
+      this.api.createQuestion(newQuestion).subscribe(
+        data => {
+          i++;
+          // ne seulement passer au composant suivant si toutes les questions ont été enregistrées en db
+          if(i == nbQuestions){
+            this.router.navigate(['/syntheseDesChoix']);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
   @HostListener('window:beforeunload', [])
   ifExitApp() {
@@ -118,10 +157,10 @@ export class Choix3contentComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
       },
       error => {
-        console.log(error);
+        //console.log(error);
       }
     )
   }
