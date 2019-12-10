@@ -1,4 +1,5 @@
-<div class="page">
+<html>
+<div>
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <div *ngIf="var_activiteCourante != null">
         <h3>Dis nous si tu aimes ou n'aimes pas cette activité</h3>
@@ -9,21 +10,30 @@
             <br/>
             ({{var_activiteCourante.description}})
         </h4>
-        <p>
-            <img class="img-thumbnail" style="max-width:35%;max-height:35%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
-        </p>
     </div>
-    <p>
-        <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
-            <div class="police">oui</div>
-        </button>
-        <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
-            <div class="police">non</div>
-        </button>
-        <br/>
-        <button type="button" class="previous" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
-    </p>
+    <table style="margin-left:auto;margin-right:auto">
+        <tbody>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
+                        <div class="police">oui</div>
+                    </button>
+                </td>
+                <td>
+                    <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
+                        <div class="police">non</div>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <button type="button" class="previous police" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
     <p *ngIf="var_pasComplet == true">
         <strong class="alert alert-danger" role="alert">Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
     </p>
 </div>
+</html>

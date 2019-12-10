@@ -13,10 +13,8 @@ export class Choix1jaimeComponent implements OnInit {
   var_imagesCategorieDemandees = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
-
   var_activiteCourante;
   var_pasComplet;
-
   var_i;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
@@ -106,7 +104,7 @@ export class Choix1jaimeComponent implements OnInit {
     )
   }
   @HostListener('window:beforeunload', ['$event'])
-  ifExitApp() {
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));

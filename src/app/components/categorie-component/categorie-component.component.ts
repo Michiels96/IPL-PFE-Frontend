@@ -108,8 +108,12 @@ export class CategorieComponentComponent implements OnInit {
       newSession['session_id'] = -1;
       newSession['enfant'] = id_enfant;
       newSession['date'] = date_session;
+      console.log("ICI");
+      console.log(newSession);
       this.api.createSession(newSession).subscribe(
         data => {
+          console.log("ICI");
+          console.log(data)
           this.sharedService.setDataSession(data);
         },
         error => {
@@ -137,7 +141,7 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   @HostListener('window:beforeunload', ['$event'])
-  ifExitApp() {
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
