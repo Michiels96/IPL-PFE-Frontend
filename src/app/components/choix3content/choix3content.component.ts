@@ -27,7 +27,6 @@ export class Choix3contentComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.ifExitApp();
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -100,6 +99,14 @@ export class Choix3contentComponent implements OnInit {
     }
     this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    // filtrage des images avec le champ 'choix' à 'oui'
+    var activitesSelectionnes = [];
+    for(var activite of this.sharedService.getDataCategorie()){
+      if(activite.choix == "oui"){
+        activitesSelectionnes.push(activite);
+      }
+    }
+    this.sharedService.setDataCategorie(activitesSelectionnes);
     // sauvegarde en db
     var session_id = this.sharedService.getDataSession().session_id;
     console.log("SHAREDSERVICE - DATASESSION "+JSON.stringify(this.sharedService.getDataSession()));
@@ -143,8 +150,8 @@ export class Choix3contentComponent implements OnInit {
       )
     }
   }
-  @HostListener('window:beforeunload', [])
-  ifExitApp() {
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));

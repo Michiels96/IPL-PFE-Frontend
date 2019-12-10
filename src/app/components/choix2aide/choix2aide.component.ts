@@ -28,7 +28,6 @@ export class Choix2aideComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ifExitApp();
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -103,8 +102,8 @@ export class Choix2aideComponent implements OnInit {
     this.router.navigate(['/choixContent']);
   }
 
-  @HostListener('window:beforeunload', [])
-  ifExitApp() {
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));

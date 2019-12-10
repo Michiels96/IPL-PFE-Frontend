@@ -13,10 +13,8 @@ export class Choix1jaimeComponent implements OnInit {
   var_imagesCategorieDemandees = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
-
   var_activiteCourante;
   var_pasComplet;
-
   var_i;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
@@ -26,17 +24,10 @@ export class Choix1jaimeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.ifExitApp();
-    /*
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
-    }*/
-    // filtrage des images avec le champ 'choix' à 'oui'
-    for(var activite of this.sharedService.getDataCategorie()){
-      if(activite.choix == "oui"){
-        this.var_imagesCategorieDemandees.push(activite);
-      }
     }
+    this.var_imagesCategorieDemandees = this.sharedService.getDataCategorie();
     //console.log(this.var_imagesCategorieDemandees);
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
   }
@@ -90,6 +81,10 @@ export class Choix1jaimeComponent implements OnInit {
         }
         i++;
       }
+      console.log("var CHOIX 1");
+      console.log(this.var_activitesEnregistres);
+      console.log("var DATACATEGORIE");
+      console.log(this.sharedService.getDataCategorie());
       this.sharedService.setDataCategorie(this.var_activitesEnregistres);
       console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
       this.router.navigate(['/choixAide']);
@@ -106,8 +101,8 @@ export class Choix1jaimeComponent implements OnInit {
       }
     )
   }
-  @HostListener('window:beforeunload', [])
-  ifExitApp() {
+  @HostListener('window:beforeunload', ['$event'])
+  ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
