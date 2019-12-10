@@ -27,7 +27,12 @@ export class Choix1jaimeComponent implements OnInit {
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
-    this.var_imagesCategorieDemandees = this.sharedService.getDataCategorie();
+    // filtrage des images avec le champ 'choix' à 'oui'
+    for(var activite of this.sharedService.getDataCategorie()){
+      if(activite.choix == "oui"){
+        this.var_imagesCategorieDemandees.push(activite);
+      }
+    }
     //console.log(this.var_imagesCategorieDemandees);
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
   }
@@ -69,14 +74,13 @@ export class Choix1jaimeComponent implements OnInit {
       this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
     }
     else{
-      
       this.var_pasComplet = false;
       var imagesSelectionnes = this.sharedService.getDataCategorie();
       var i = 0;
-      for(var activite of this.var_activitesEnregistres){
-        for(var activiteSharedService of imagesSelectionnes){
-          if(activiteSharedService.image_id == activite.image_id){
-            this.var_activitesEnregistres[i] = activiteSharedService;
+      for(var activiteSharedService of imagesSelectionnes){
+        for(var activite of this.var_activitesEnregistres){
+          if(activite.image_id == activiteSharedService.image_id){
+            imagesSelectionnes[i] = activite;
           }
         }
         i++;
@@ -85,7 +89,8 @@ export class Choix1jaimeComponent implements OnInit {
       console.log(this.var_activitesEnregistres);
       console.log("var DATACATEGORIE");
       console.log(this.sharedService.getDataCategorie());
-      this.sharedService.setDataCategorie(this.var_activitesEnregistres);
+
+      this.sharedService.setDataCategorie(imagesSelectionnes);
       console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
       this.router.navigate(['/choixAide']);
     }

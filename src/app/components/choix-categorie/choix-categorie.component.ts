@@ -28,6 +28,7 @@ export class ChoixCategorieComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
+    console.log(this.sharedService.getDataEnfantConnecte());
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
