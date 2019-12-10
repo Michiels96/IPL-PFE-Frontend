@@ -2,8 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/SharedService';
-import * as jsPDF from 'jspdf';
-import * as html2canvas from 'html2canvas';
+//import * as jsPDF from 'jspdf';
+//import * as html2canvas from 'html2canvas';
 
 
 @Component({

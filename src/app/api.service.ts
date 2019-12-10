@@ -72,7 +72,7 @@ export class ApiService {
     return this.http.post(this.baseurl + '/prof/users/',postContent, {headers:this.httpHeaders});
   }
   postProf(prof,id_user): Observable<any>{
-    let postContent={professionnel_id:-1,nom:prof.nom,prenom:prof.prenom,profession:prof.profession,autre_profession:prof.autre,telephone:prof.telephone,user:id_user};
+    let postContent={nom:prof.nom,prenom:prof.prenom,profession:prof.profession,autre_profession:prof.autre,telephone:prof.telephone,user:id_user};
     return this.http.post(this.baseurl + '/prof/professionnels/',postContent, {headers:this.httpHeaders});
   }
   delKid(id): Observable<any>{
