@@ -13,10 +13,8 @@ export class Choix1jaimeComponent implements OnInit {
   var_imagesCategorieDemandees = [];
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
-
   var_activiteCourante;
   var_pasComplet;
-
   var_i;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {

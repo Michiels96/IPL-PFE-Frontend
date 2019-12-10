@@ -29,9 +29,11 @@ export class Choix2aideComponent implements OnInit {
 
   ngOnInit() {
     this.ifExitApp();
+    /*
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
+    */
     this.var_reponsesQ1 = this.sharedService.getDataCategorie();
 
     for(var activite of this.var_reponsesQ1){

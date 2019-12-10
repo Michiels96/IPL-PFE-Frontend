@@ -1,25 +1,37 @@
-<div class="page">
-    <h3>Maintenant par rapport à ces activités, <br/>dis nous si tu a besoin d'aide pour celles-ci ou pas</h3>
-    <div class="alert alert-secondary" role="alert">
-        <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>    
-    </div>
-    <h4>
-        Activité 
-        <span *ngIf="var_activiteCourante.aime == true">aimée</span>
-        <span *ngIf="var_activiteCourante.aime == false">Pas aimée</span>
-        nr°{{var_activiteCourante.image_id}}
+<html>
+    <div>
+        <h3>Maintenant par rapport à ces activités, <br/>dis nous si tu a besoin d'aide pour celles-ci ou pas</h3>
+        <div class="alert alert-secondary" role="alert">
+            <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>    
+        </div>
+        <h4>
+            Activité 
+            <span *ngIf="var_activiteCourante.aime == true">aimée</span>
+            <span *ngIf="var_activiteCourante.aime == false">Pas aimée</span>
+            nr°{{var_activiteCourante.image_id}}
+            <br/>
+            ({{var_activiteCourante.description}})
+        </h4>
+        <table style="margin-left:auto;margin-right:auto">
+            <tbody>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
+                            <div class="police">oui</div>
+                        </button>
+                    </td>
+                    <td>
+                        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
+                            <div class="police">non</div>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <br/>
-        ({{var_activiteCourante.description}})
-    </h4>
-    <p>
-        <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
-    </p>
-    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">Besoin d'aide</button>
-    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">Pas besoin d'aide</button>
-    <div *ngIf="imgBack == true">
-        <br/>
-        <button type="button" class="btn btn-info" (click)="$event.preventDefault();goImgBack()">Revenir à l'activité précédente</button>
+        <button type="button" class="previous police" (click)="$event.preventDefault();backToChoix1()">Retourner à la première question</button>
     </div>
-    <br/>
-    <button type="button" class="previous" (click)="$event.preventDefault();backToChoix1()">Retourner à la première question</button>
-</div>
+</html>
