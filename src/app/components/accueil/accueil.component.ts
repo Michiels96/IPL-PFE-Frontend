@@ -73,9 +73,11 @@ export class AccueilComponent implements OnInit {
 
   destroyUserCache(){
     sessionStorage.setItem('kid_connected', '');
-    sessionStorage.setItem('kid_libelle_categorie', '');
     sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
     sessionStorage.setItem('kid_session_info', '');
+    sessionStorage.setItem('dataCategorie', '');
+
   }
 
 

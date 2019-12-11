@@ -31,12 +31,15 @@ export class ChoixCategorieComponent implements OnInit {
   
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     //console.log(this.sharedService.getDataEnfantConnecte());
+    console.log(sessionStorage.getItem('nb_choix_categorie'));
     if(sessionStorage.getItem('nb_choix_categorie') != ''){
       this.var_nbActivites = +sessionStorage.getItem('nb_choix_categorie');
     }
+    /*
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
+    */
     this.getCategories();
   }
 
@@ -87,12 +90,12 @@ export class ChoixCategorieComponent implements OnInit {
       data => {
         //this.sharedService.setDataSession(data);
         sessionStorage.setItem('kid_session_info', JSON.stringify(data));
+        this.router.navigate(['/choixJaime']);
       },
       error => {
         console.log(error);
       }
     )
-    this.router.navigate(['/choixJaime']);
   }
 
   getKidInfo(){
