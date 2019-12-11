@@ -1,46 +1,44 @@
 <html>
 
     <!-- <h3>Le jeu est réalisé à la demande de : </h3>   -->
-    <h3>Identification du professionnel</h3>
+    <h3>Identification du mandataire</h3>
     <br />
     <br />
     <div class="formulaire">
         <form class="form" (ngSubmit)="onSubmitMandat()">
-            <!-- <fieldset> -->
-            <!-- <legend>Identification du professionnel</legend> -->
                 <div class="form-group">
                     <label>
-                        Choix mandataire :  
+                        Sur l'initiative de :  
                         <select selected="selected" ng-model="mandataire" (change)="selectMandataire($event.target.value)">
-                            <option value="">Choisi</option>
-                            <option value="Professionnel">Professionnel</option>
+                            <option value="">Choix mandataire</option>
+                            <option value="P">Professionnel</option>
                             <optgroup value="famille" label="Famille">
-                                <option value="Parents">Parents</option>
-                                <option value="Père">Père</option>
-                                <option value="Mère">Mère</option>
+                                <option value="P">Parents</option>
+                                <option value="PE">Père</option>
+                                <option value="ME">Mère</option>
                             </optgroup>
-                            <option value="Tuteur">Tuteur</option>
-                            <option value="Enfant">L'enfant</option>
-                            <option value="Medecin">Médecin</option>
-                            <option value="Autre Professionnel">Autre professionnel</option>
-                            <option value="Autre">Autre<input value="autre_input"></option>
+                            <option value="T">Tuteur</option>
+                            <option value="E">L'enfant</option>
+                            <option value="M">Médecin</option>
+                            <option value="AP">Autre professionnel</option>
+                            <option value="A">Autre</option>
                         </select>
                     </label>
                 </div>
 
                 <div class="form-group">
-                    <input type="date" value="date" (input)="setMandataire('date', $event.target.value)">
+                    Date du mandat : <input type="date" value="date_demande" (input)="setMandataire('date_demande', $event.target.value)">
                 </div>
 
-                <div class="form-group" *ngIf="personne_mandataire['mandataire'] === 'Medecin' || personne_mandataire['mandataire'] === 'Autre Professionnel';">
+                <div class="form-group" *ngIf="personne_mandataire['mandataire'] === 'M' || personne_mandataire['mandataire'] === 'AP';">
                     <p>Nom : <input placeholder="nom" (input)="setMandataire('nom', $event.target.value)"></p>
                     <p>Prénom : <input placeholder="prenom" (input)="setMandataire('prenom', $event.target.value)"></p>
-                    <p>Spécialité : <input placeholder="specialite" (input)="setMandataire('specialite', $event.target.value)"></p>
-                    <p>Téléphone : <input placeholder="telephone" (input)="setMandataire('telephone', $event.target.value)"></p>
+                    <p>Spécialité : <input placeholder="specialite" (input)="setMandataire('spécialité', $event.target.value)"></p>
+                    <p>Téléphone : <input placeholder="telephone" (input)="setMandataire('téléphone', $event.target.value)"></p>
                     <p>Email : <input placeholder="email" (input)="setMandataire('email', $event.target.value)"></p>
                 </div>
-                <div class="form-group" *ngIf="personne_mandataire['autre'] === 'Autre';">
-                    <p>Autre : <input placeholder="Autre" (change)="selectMandataire($event.target.value)"></p>
+                <div class="form-group" *ngIf="personne_mandataire['mandataire'] === 'A';">
+                    <p>Autre : <input placeholder="Autre" (change)="setMandataire('autre_mandataire',$event.target.value)"></p>
                 </div>
 
                 <div class="form-group">
@@ -50,7 +48,6 @@
                 <div class="form-group">
                     <button style="background-color: green; border-color: green; border-radius: 10px; font-size: 100%;" class="btn btn-lg btn-primary" type="submit" name="valider_mandat">Valider Mandat</button>
                 </div>
-            <!-- </fieldset> -->
         </form>
     </div>
 

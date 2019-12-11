@@ -1,4 +1,4 @@
-<h2>Bonjour!</h2>
+<h2>Bonjour {{whoIsConnected}} </h2>
 
 <div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
     {{error_inscription_msg}}
@@ -18,7 +18,8 @@
               </label>
             </div>
             <div class="form-group">
-              <button class="btn btn-lg btn-primary" [routerLink]="['/ui',{id:kid_selected}]" (click)="confirmer()">Valider </button>
+                <!-- [routerLink]="['/ui',{id:kid_selected}]" -->
+              <button class="btn btn-lg btn-primary" (click)="confirmer()">Valider</button>
             </div>
             <div class="form-group">
               <app-deconnexion-element></app-deconnexion-element>

@@ -19,7 +19,7 @@ export class EducateurUIComponent implements OnInit {
   content;
 
   mandataire;
-  personne_mandataire = {'mandataire': '','nom': '', 'prenom': '', 'spécialité': '', 'téléphone': '', 'email': '', 'date_demande': '', 'objet': '','autre_mandataire': ''};
+  personne_mandataire = {'mandataire_id': -1, 'mandataire': null, 'autre_mandataire': 'aucun', 'nom': null, 'prenom': null, 'spécialité': null, 'téléphone': null, 'email': null, 'date_demande': null, 'objet': null};
   
   notes = [];
   id = [];
@@ -29,8 +29,6 @@ export class EducateurUIComponent implements OnInit {
   ngOnInit() {
     this.kid_id = this.route.snapshot.paramMap.get('id');
     this.prof_id = this.route.snapshot.paramMap.get('prof_id');
-    console.log(this.kid_id);
-    console.log(this.prof_id);
     this.getSession();
   }
 
@@ -51,7 +49,7 @@ export class EducateurUIComponent implements OnInit {
       data => {
         this.questions = data.question_session;
         for(let q of this.questions){
-          var note = {'question_id': q.question_id, 'note_aime': '', 'note_aide': '', 'note_satisfaction': '', 'professionnel_id': this.prof_id};
+          var note = {'note_id': -1, 'professionnel_id': Number(this.prof_id), 'question_id': q.question_id, 'note_aime': null, 'note_aide': null, 'note_satisfaction': null};
           q['note'] = note;
         }
       },
@@ -62,10 +60,9 @@ export class EducateurUIComponent implements OnInit {
   }
 
   selectMandataire(event){
-    if(event === 'Autre'){
-      this.personne_mandataire['autre_mandataire'] = event;
-    }
+    console.log(event);
     this.personne_mandataire['mandataire'] = event;
+    console.log(this.personne_mandataire);
   }
 
   setMandataire(str, event){
@@ -82,7 +79,7 @@ export class EducateurUIComponent implements OnInit {
 
   onSubmitMandat(){
     console.log(this.personne_mandataire);
-
+  
     this.api.postMandataire(this.personne_mandataire).subscribe(
       data => {
         console.log(data);
@@ -95,11 +92,7 @@ export class EducateurUIComponent implements OnInit {
 
   terminer(){
     for(let q of this.questions){
-      var note = q['note'];
-      note['note_id'] = -1;
-      console.log(note);
-
-      this.api.postNote(note).subscribe(
+      this.api.postNote(q['note']).subscribe(
         data => {
           console.log(data);
           //this.router.navigate(['/recap', {id:this.kid_id}]);
