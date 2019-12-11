@@ -107,7 +107,9 @@ export class AuthentificatedComponent implements OnInit {
    this.api.postKid(this.inscriptionEnfant.value).subscribe( 
       data => {
         console.log(data);
-        this.id_kid_just_subcribed=data.id;
+        console.log(data.id);
+        this.id_kid_just_subcribed=data.enfant_id;
+        console.log( this.id_kid_just_subcribed);
         this.api.postInfosKid(this.inscriptionEnfant.value,this.id_kid_just_subcribed).subscribe(
           data => {
             //console.log(data);
