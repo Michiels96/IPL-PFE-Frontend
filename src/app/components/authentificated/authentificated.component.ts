@@ -18,6 +18,8 @@ export class AuthentificatedComponent implements OnInit {
   error_select_enfant;
   error_select = false;
 
+  success_inscrire;
+  success_inscrire_personne = false;
 
   whoIsConnected;
   idFromWhoIsConnected;
@@ -69,6 +71,8 @@ export class AuthentificatedComponent implements OnInit {
     this.error_inscription = false;
     this.error_select_enfant="";
     this.error_select = false; 
+    this.success_inscrire = "";
+    this.success_inscrire_personne = false;
   }
   getEnfants = () => {
    
@@ -106,8 +110,10 @@ export class AuthentificatedComponent implements OnInit {
         this.id_kid_just_subcribed=data.id;
         this.inscriptionEnfant.reset();
       // this.enfants.push(data);
-        this.error_inscription_msg="Inscription reussie";
-        this.error_inscription_msg="";
+        this.success_inscrire = "Inscription réussie";
+        this.success_inscrire_personne = true;
+        // this.error_inscription_msg="Inscription reussie";
+        // this.error_inscription_msg="";
         this.compteur=0;
       },
       error => {
@@ -116,6 +122,7 @@ export class AuthentificatedComponent implements OnInit {
         this.error_inscription = true;
       }
     )
+    this.success_inscrire_personne = false;
   }
   sendInscription(){
     console.log("form recu 2 ! "); 
@@ -129,6 +136,8 @@ export class AuthentificatedComponent implements OnInit {
             this.inscription.reset();
             console.log("prof renvoyé");
             console.log(data);
+            this.success_inscrire = "Inscription réussie";
+            this.success_inscrire_personne = true;
           },
           error => {
             console.log(error);
@@ -145,6 +154,7 @@ export class AuthentificatedComponent implements OnInit {
       }
     )
     this.error_inscription = false;
+    this.success_inscrire_personne = false;
   }
   getAge(){
    
@@ -160,20 +170,21 @@ export class AuthentificatedComponent implements OnInit {
   inscriptionTuteur(){
     if(this.id_kid_just_subcribed==-1){
       this.error_inscription_msg="vous n'avez pas encore inscrit d'enfant";
+      this.error_inscription = true;
       return;
     }
     if(this.compteur==3){
       this.error_inscription_msg="vous avez deja inscrit 3 personnes de contact pour cet enfant";
+      this.error_inscription = true;
       return;
     }
-    this.api. postContact(this.tuteur.value,this.id_kid_just_subcribed).subscribe( 
+    this.api.postContact(this.tuteur.value,this.id_kid_just_subcribed).subscribe( 
       data => {
         console.log(data);
-        
         this.tuteur.reset();
         this.compteur+=1;
-        this.error_inscription_msg="Inscription reussie";
-        this.error_inscription_msg="";
+        this.success_inscrire = "Inscription réussie Personne de contact";
+        this.success_inscrire_personne = true;
       },
       error => {
         console.log(error);
@@ -181,5 +192,6 @@ export class AuthentificatedComponent implements OnInit {
         this.error_inscription = true;
       }
     )
+    this.success_inscrire_personne = false;
   }
 }

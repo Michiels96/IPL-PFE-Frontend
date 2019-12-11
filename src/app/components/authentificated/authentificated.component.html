@@ -10,6 +10,11 @@
       {{error_select_enfant}}
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="success_inscrire_personne == true">
+      {{success_inscrire}}
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  </div>
   
   <div class="container login-container">
       <div class="row">
@@ -158,7 +163,7 @@
                   <div class="form-group">
                       <label style="color: beige;">
                           <strong style="color: #fff;">Telephone :</strong>
-                        <input type="text" class="form-control" placeholder="Telephone" value="" formControlName="tel">
+                        <input type="number" class="form-control" placeholder="Telephone" value="" formControlName="tel">
                       </label>
                   </div>
                   <div class="form-group">
@@ -209,13 +214,13 @@
                       <div class="form-group">
                           <label style="color: #0062cc;">
                               <strong style="color: #0062ccff;">E-mail :</strong>
-                              <input type="text" class="form-control" placeholder="Email" value="" formControlName="email">
+                              <input type="email" class="form-control" placeholder="Email" value="" formControlName="email">
                           </label>
                       </div>
                       <div class="form-group">
                           <label style="color: #0062cc;">
                               <strong style="color: #0062cc;">Telephone :</strong>
-                              <input type="text" class="form-control" placeholder="Tel" value="" formControlName="telephone">
+                              <input type="number" class="form-control" placeholder="Tel" value="" formControlName="telephone">
                           </label>
                       </div>
                       <div class="form-group">
