@@ -22,22 +22,18 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getKidInfo();
-    this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
-    //console.log(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2);
-    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
-      sessionStorage.setItem('lastPage', '');
-      this.router.navigate(['/']);
-    }
+    console.log("ICI");
+    console.log(sessionStorage.getItem('lastPage'));
     if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'choix-categorie'){
       this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
     }
     else{
       sessionStorage.setItem('lastPage', 'choix-categorie');
     }
+    this.getKidInfo();
+    this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
-    //console.log(this.sharedService.getDataEnfantConnecte());
-    //console.log(sessionStorage.getItem('nb_choix_categorie'));
+
     if(sessionStorage.getItem('nb_choix_categorie') != ''){
       this.var_nbActivites = +sessionStorage.getItem('nb_choix_categorie');
     }
@@ -110,10 +106,29 @@ export class ChoixCategorieComponent implements OnInit {
     console.log(sessionStorage.getItem('kid_connected'));
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+      this.getKidSessionInfo();
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
+      this.router.navigate(['/']);
+    }
+  }
+
+  getKidSessionInfo(){
+    if(sessionStorage.getItem('kid_session_info') != ''){
+      this.sharedService.setDataSession(JSON.parse(sessionStorage.getItem('kid_session_info')));
+      this.getDataCategorie();
+    }
+  }
+
+  getDataCategorie(){
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
     }
   }
 
   deconnexion(){
+    this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
   }

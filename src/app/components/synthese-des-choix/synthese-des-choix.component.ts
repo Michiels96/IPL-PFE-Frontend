@@ -15,8 +15,6 @@ export class SyntheseDesChoixComponent implements OnInit {
   var_reponsesQ3 = [];
   var_numLigne;
   
-
-
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
     this.var_numLigne = 1;
   }
@@ -92,7 +90,7 @@ export class SyntheseDesChoixComponent implements OnInit {
     const date: Date = new Date(dateSession);
 
     doc.text("réponses du test de "+nomComplet+
-    "\nle "+date.getUTCDate()+"-"+ (date.getUTCMonth()+1)+"-"+date.getUTCFullYear()+
+    "\nle "+ (date.getUTCMonth()+1)+"-"+ date.getUTCDate()+"-"+date.getUTCFullYear()+
     " à "+ (date.getUTCHours()+2) + ":"+date.getUTCMinutes(),10, 285);
     var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
     doc.save(nomFichier+'.pdf');
@@ -144,6 +142,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
 
   deconnexion(){
+    this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
   }
