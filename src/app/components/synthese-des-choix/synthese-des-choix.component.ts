@@ -80,11 +80,11 @@ export class SyntheseDesChoixComponent implements OnInit {
     });
     //let finalY = doc.autoTable; // The y position on the page
     //var date = new Date();
-    const date: Date = new Date();
-    console.log(date);
+    const date: Date = new Date(dateSession);
+
     doc.text("réponses du test de "+nomComplet+
-    "\nle "+date.getDay()+"-"+date.getMonth()+"-"+date.getFullYear()+
-    " à "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(), 10, 285);
+    "\nle "+date.getUTCDate()+"-"+ (date.getUTCMonth()+1)+"-"+date.getUTCFullYear()+
+    " à "+ (date.getUTCHours()+2) + ":"+date.getUTCMinutes(),10, 285);
     var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
     doc.save(nomFichier+'.pdf');
   }
