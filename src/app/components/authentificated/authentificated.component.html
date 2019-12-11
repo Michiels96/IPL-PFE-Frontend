@@ -1,12 +1,12 @@
 <html>
   <h2>Bonjour {{whoIsConnected}} </h2>
   
-  <div class="alert alert-warning" role="alert" *ngIf="error_inscription == true">
+  <div class="alert alert-danger" role="alert" *ngIf="error_inscription == true">
       {{error_inscription_msg}}
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   </div>
   
-  <div class="alert alert-warning" role="alert" *ngIf="error_select == true">
+  <div class="alert alert-danger" role="alert" *ngIf="error_select == true">
       {{error_select_enfant}}
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   </div>
