@@ -102,7 +102,7 @@ input[type=radio] {
 }
 
 button:focus {
-    background-color: magenta;
+    background-color: rgba(224, 221, 221, 0.993);
     
 }
 .btn {
@@ -197,8 +197,8 @@ html {
 	background-color:beige;
 	/* font:bold 13px Arial; */
 	border-radius:45%;
-    border-color: orange;
-	color:orange;
+    border-color: blue;
+	color:blue;
 }
 
 .originalQualityFont{
