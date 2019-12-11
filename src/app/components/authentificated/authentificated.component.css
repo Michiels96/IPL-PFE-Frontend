@@ -83,3 +83,34 @@ h2 {
 option {
     color: #0062cc;
 }
+@font-face {
+    font-family: 'nunitoblack';
+    src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html{
+    padding: 1%;
+    background-color: bisque;
+    text-align: center;
+}
+
+.previous {
+    border-style: ridge;
+    border-radius: 50px;
+    border-color:rgb(3, 189, 3);
+    color: rgb(0, 160, 21);
+    background-color:bisque;
+}
+
+.previous:hover{
+    background-color: rgb(251, 193, 122);
+}
+
+.police{
+    font-family: 'nunitoblack';
+    font-size: 50px;
+}
