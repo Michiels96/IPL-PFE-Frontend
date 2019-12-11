@@ -85,4 +85,12 @@ export class ApiService {
   getFullSessionById(id): Observable<any>{
     return this.http.get(this.baseurl + '/sessions/full_sessions/' + id + '/', {headers:this.httpHeaders});
   }
+  postNote(note): Observable<any>{
+    let postContent = JSON.stringify(note);
+    return this.http.post(this.baseurl + '/sessions/notes/',postContent, {headers:this.httpHeaders});
+  }
+  postMandataire(mandataire): Observable<any>{
+    let postContent = JSON.stringify(mandataire);
+    return this.http.post(this.baseurl + '/sessions/mandataires/',postContent, {headers:this.httpHeaders});
+  }
 }

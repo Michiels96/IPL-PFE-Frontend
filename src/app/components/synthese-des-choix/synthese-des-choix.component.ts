@@ -1,10 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/SharedService';
-//import * as jsPDF from 'jspdf';
-//import * as html2canvas from 'html2canvas';
-
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { autoTable as AutoTable } from 'jspdf-autotable';
 
 @Component({
   selector: 'app-synthese-des-choix',
@@ -14,6 +14,7 @@ import { SharedService } from 'src/app/SharedService';
 export class SyntheseDesChoixComponent implements OnInit {
   var_reponsesQ3 = [];
   var_numLigne;
+  
 
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
@@ -29,26 +30,63 @@ export class SyntheseDesChoixComponent implements OnInit {
       activite['indice'] = this.var_numLigne;
       this.var_numLigne++;
     }
-    console.log(this.var_reponsesQ3);
   }
  
   generatePDF(){
-    /*
     var nomEnfant = this.sharedService.getDataEnfantConnecte().nom;
     nomEnfant = nomEnfant.charAt(0).toUpperCase()+nomEnfant.substr(1, nomEnfant.length);
     var prenomEnfant = this.sharedService.getDataEnfantConnecte().prenom;
     var dateSession = this.sharedService.getDataSession().date;
+    var head = [['N°', 
+    'Intitulé', 
+    'Aime/N\'aime pas', 
+    'Besoin d\'aide/Pas besoin d\'aide',
+    'Satisfaction'
+    ]];
 
-    if(document.getElementById('tableauDeSynthese')){
-      html2canvas(document.getElementById('tableauDeSynthese')).then(function(canvas) {
-        var img = canvas.toDataURL("image/png");
-        const doc = new jsPDF();
-        doc.addImage(img,'PNG',5,20);
-        var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
-        doc.save(nomFichier+'.pdf');
-      });
+    var data = [[]];
+    for(var i = 0; i <  this.var_reponsesQ3.length; i++){
+      data[i] = [];
     }
-    */
+    for(var i = 0; i < this.var_reponsesQ3.length;i++){
+      data[i][0] = this.var_reponsesQ3[i].indice;
+      data[i][1] = this.var_reponsesQ3[i].description;
+      if(this.var_reponsesQ3[i].aime){
+        data[i][2] = 'aime';
+      }
+      else{
+        data[i][2] = 'n\'aime pas';
+      }
+      if(this.var_reponsesQ3[i].aide){
+        data[i][3] = 'a besoin d\'aide';
+      }
+      else{
+        data[i][3] = 'n\'a pas besoin d\'aide';
+      }
+      if(this.var_reponsesQ3[i].content){
+        data[i][4] = 'est satisfait';
+      }
+      else{
+        data[i][4] = 'n\'est pas satisfait';
+      }
+    }
+    const doc = new jsPDF();
+    
+    var nomComplet = prenomEnfant.toUpperCase()+" "+nomEnfant.toUpperCase();
+    ((doc as any).autoTable as AutoTable)({
+        head: head,
+        body: data,
+        didDrawCell: data => {},
+    });
+    //let finalY = doc.autoTable; // The y position on the page
+    //var date = new Date();
+    const date: Date = new Date();
+    console.log(date);
+    doc.text("réponses du test de "+nomComplet+
+    "\nle "+date.getDay()+"-"+date.getMonth()+"-"+date.getFullYear()+
+    " à "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(), 10, 285);
+    var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
+    doc.save(nomFichier+'.pdf');
   }
 
   @HostListener('window:beforeunload', ['$event'])
