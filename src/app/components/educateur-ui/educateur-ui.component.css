@@ -1,6 +1,10 @@
 table{
- margin-left: 200px;
+ margin-left: 25%;
  column-count: 3;
+}
+
+.page{
+    margin-left: 500px;
 }
 
 form{
@@ -16,7 +20,6 @@ th, td{
 }
 
 html {
-    /* background-size: 100%; */
     background-color: beige;
 }
 
