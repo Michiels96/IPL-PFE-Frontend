@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth/auth.service';
 @Component({
   selector: 'app-connection-form',
   templateUrl: './connection-form.component.html',
-  styleUrls: ['./connection-form.component.css']
+  styleUrls: ['./connection-form.component.css'],
 })
 export class ConnectionFormComponent implements OnInit {
  /* @Input()

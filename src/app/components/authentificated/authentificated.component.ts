@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms'
 @Component({
   selector: 'app-authentificated',
   templateUrl: './authentificated.component.html',
-  styleUrls: ['./authentificated.component.css']
+  styleUrls: ['./authentificated.component.css'],
 })
 export class AuthentificatedComponent implements OnInit {
   error_inscription_msg;
