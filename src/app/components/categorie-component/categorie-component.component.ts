@@ -156,6 +156,11 @@ export class CategorieComponentComponent implements OnInit {
     }
   }
 
+  backToChoix(){
+    sessionStorage.setItem('lastPage', 'choix-categorie');
+    this.router.navigate(['/choix-categorie']);
+  }
+
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {

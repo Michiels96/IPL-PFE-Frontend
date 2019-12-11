@@ -37,7 +37,7 @@ export class ChoixCategorieComponent implements OnInit {
     }
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     //console.log(this.sharedService.getDataEnfantConnecte());
-    console.log(sessionStorage.getItem('nb_choix_categorie'));
+    //console.log(sessionStorage.getItem('nb_choix_categorie'));
     if(sessionStorage.getItem('nb_choix_categorie') != ''){
       this.var_nbActivites = +sessionStorage.getItem('nb_choix_categorie');
     }
@@ -111,6 +111,11 @@ export class ChoixCategorieComponent implements OnInit {
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
     }
+  }
+
+  deconnexion(){
+    sessionStorage.setItem('lastPage', '');
+    this.router.navigate(['/']);
   }
 
   @HostListener('window:beforeunload', ['$event'])
