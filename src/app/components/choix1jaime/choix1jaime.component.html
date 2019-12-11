@@ -31,9 +31,6 @@
         </tbody>
     </table>
     <br/>
-    <button type="button" class="previous police" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
-    <p *ngIf="var_pasComplet == true">
-        <strong class="alert alert-danger" role="alert">Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
-    </p>
+    <button type="button" class="previous" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
 </div>
 </html>

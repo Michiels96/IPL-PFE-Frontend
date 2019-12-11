@@ -14,11 +14,9 @@ export class Choix1jaimeComponent implements OnInit {
   // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
   var_activiteCourante;
-  var_pasComplet;
   var_i;
 
   constructor(private api: ApiService, private router: Router, private sharedService: SharedService) {
-    this.var_pasComplet = false;
     this.var_activiteCourante = null;
     this.var_i = 0;
   }
@@ -39,7 +37,6 @@ export class Choix1jaimeComponent implements OnInit {
 
   addImgToYes(activite){
     if(this.var_i < this.var_imagesCategorieDemandees.length){
-      this.var_pasComplet = false;
       activite.aime = true;
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
@@ -52,7 +49,6 @@ export class Choix1jaimeComponent implements OnInit {
 
   addImgToNo(activite){
     if(this.var_i <= this.var_imagesCategorieDemandees.length){
-      this.var_pasComplet = false;
       activite.aime = false;
       this.var_activitesEnregistres.push(activite);
       this.var_i++;
@@ -68,32 +64,25 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
   question1Terminee(){
-    if(this.var_activitesEnregistres.length == 0){
-      this.var_pasComplet = true;
-      this.var_i = 0;
-      this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
-    }
-    else{
-      this.var_pasComplet = false;
-      var imagesSelectionnes = this.sharedService.getDataCategorie();
-      var i = 0;
-      for(var activiteSharedService of imagesSelectionnes){
-        for(var activite of this.var_activitesEnregistres){
-          if(activite.image_id == activiteSharedService.image_id){
-            imagesSelectionnes[i] = activite;
-          }
+    var imagesSelectionnes = this.sharedService.getDataCategorie();
+    var i = 0;
+    for(var activiteSharedService of imagesSelectionnes){
+      for(var activite of this.var_activitesEnregistres){
+        if(activite.image_id == activiteSharedService.image_id){
+          imagesSelectionnes[i] = activite;
         }
-        i++;
       }
-      console.log("var CHOIX 1");
-      console.log(this.var_activitesEnregistres);
-      console.log("var DATACATEGORIE");
-      console.log(this.sharedService.getDataCategorie());
-
-      this.sharedService.setDataCategorie(imagesSelectionnes);
-      console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
-      this.router.navigate(['/choixAide']);
+      i++;
     }
+    console.log("var CHOIX 1");
+    console.log(this.var_activitesEnregistres);
+    console.log("var DATACATEGORIE");
+    console.log(this.sharedService.getDataCategorie());
+
+    this.sharedService.setDataCategorie(imagesSelectionnes);
+    console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    this.router.navigate(['/choixAide']);
+    
   }
 
   deconnecterEnfant(kid){
