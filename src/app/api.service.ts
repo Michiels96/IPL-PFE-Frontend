@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +52,7 @@ export class ApiService {
     return this.http.put(this.baseurl + '/enfant/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{
-    let postContent=JSON.stringify(kid);
+    let postContent={id:kid.id,nom:kid.nom,prenom:kid.prenom,date_naissance:kid.date_naissance,age:kid.age,connecte:kid.connecte,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/', postContent, {headers:this.httpHeaders});
   }
   createSession(session): Observable<any>{

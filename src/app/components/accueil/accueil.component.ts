@@ -3,6 +3,8 @@ import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth/auth.service';
 import { SharedService } from 'src/app/SharedService';
+//import { Observable,interval, timer } from 'rxjs';
+
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
@@ -14,7 +16,6 @@ export class AccueilComponent implements OnInit {
   kid_selected;
   isNotConnected=true;
   kid_id;
-  
   constructor(private api: ApiService,public authService: AuthService, private route: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
@@ -24,17 +25,17 @@ export class AccueilComponent implements OnInit {
       }
     } 
     sessionStorage.setItem('kid_connected', '');
-    this.api.getUnloggedEnfants().subscribe(
-      data => {
-        //console.log(data);
-        this.listeEnfants =data;//Array.of(data);
-        console.log("enfant");
-        console.log(this.listeEnfants);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+      this.api.getUnloggedEnfants().subscribe(
+        data => {
+          //console.log(data);
+          this.listeEnfants =data;//Array.of(data);
+          console.log("enfant");
+          console.log(this.listeEnfants);
+        },
+        error => {
+          console.log(error);
+        }
+      )
   }
   connecterEnfant(){
     console.log("enfant a connecter");

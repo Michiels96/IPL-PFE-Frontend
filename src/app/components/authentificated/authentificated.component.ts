@@ -20,8 +20,16 @@ export class AuthentificatedComponent implements OnInit {
     id:new FormControl(-1),
     nom: new FormControl(''),
     prenom: new FormControl(''),
+    date_naissance: new FormControl(''),
     age: new FormControl(''),
-    connecte: new FormControl(false)
+    connecte: new FormControl(false),
+    langue: new FormControl(''),
+    dominance: new FormControl(''),
+    scolarite: new FormControl(''),
+    type: new FormControl(''),
+    niveau: new FormControl(''),
+    besoin_particulier: new FormControl(''),
+    autre_besoin_particulier: new FormControl('/')
   });
   inscription=new FormGroup({
     id:new FormControl(-1),
@@ -67,7 +75,7 @@ export class AuthentificatedComponent implements OnInit {
   }
   inscrireEnfant(){
     console.log(this.inscriptionEnfant.value);
-    this.api.postKid(this.inscriptionEnfant.value).subscribe( 
+   this.api.postKid(this.inscriptionEnfant.value).subscribe( 
       data => {
         console.log(data);
         this.inscriptionEnfant.reset();
@@ -109,5 +117,11 @@ export class AuthentificatedComponent implements OnInit {
       }
     )
     this.error_inscription = false;
+  }
+  getAge(){
+    let timeDiff = Math.abs(Date.now() - this.inscriptionEnfant.value.date_naissance.getTime());
+    let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    this.inscriptionEnfant.patchValue({age: age});
+    console.log( this.inscriptionEnfant.value.age);
   }
 }

@@ -1,5 +1,5 @@
 <html>
-    <div style="text-align: center;">
+    <div class="page">
         <table>
             <tr>
                 <th rowspan="2">N°</th>
@@ -57,14 +57,11 @@
         </table>
         <br/>
         <p>
-            <button type="button" class="previous police" (click)="$event.preventDefault();generatePDF()">Générer un fichier PDF</button>
+            <button type="button" class="previous" (click)="$event.preventDefault();generatePDF()">Générer un fichier PDF</button>
         </p>
     </div>
-
-    <br />
-    <br />
-
-    <button type="button" class="previous police" [routerLink]="['/livret']" >Livret Session</button>
-
+    <br/>
+    <br/>
+    <button type="button" class="previous" [routerLink]="['/livret']" >Livret Session</button>
 </html>
 
