@@ -75,7 +75,7 @@ export class ApiService {
     return this.http.put(this.baseurl + '/enfant/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{
-    let postContent={id:kid.id,nom:kid.nom,prenom:kid.prenom,age:kid.age,connecte:false}//JSON.stringify(kid);
+    let postContent={enfant_id:kid.id,nom:kid.nom,prenom:kid.prenom,age:kid.age,connecte:false}//JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/', postContent, {headers:this.httpHeaders});
   }
   postInfosKid(kid,id): Observable<any>{
