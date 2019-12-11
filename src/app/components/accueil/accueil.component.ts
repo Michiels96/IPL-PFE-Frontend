@@ -25,9 +25,9 @@ export class AccueilComponent implements OnInit {
         this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
       }
     } 
-    // on déconnecte tout enfant revenant à la page d'accueil
-    sessionStorage.setItem('kid_connected', '');
-
+    // on détruit les données en cache
+    this.destroyUserCache();
+    
     this.api.getUnloggedEnfants().subscribe(
       data => {
         //console.log(data);
@@ -71,7 +71,12 @@ export class AccueilComponent implements OnInit {
   }
 
 
-
+  destroyUserCache(){
+    sessionStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
+    sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_session_info', '');
+  }
 
 
 
