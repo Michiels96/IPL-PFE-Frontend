@@ -62,8 +62,14 @@ export class AuthentificatedComponent implements OnInit {
   confirmer(){
     console.log("enfant choisi");
     console.log(this.kid_selected);
+
+    if(this.kid_selected == null) {
+      console.log("enfant choisi vide");
+    }
+    else {
+      this.router.navigate(['/ui',{id:this.kid_selected,id_prof:this.idFromWhoIsConnected}]);
+    }
     
-    this.router.navigate(['/ui',{id:this.kid_selected,id_prof:this.idFromWhoIsConnected}]);
   }
   inscrireEnfant(){
     console.log(this.inscriptionEnfant.value);

@@ -83,7 +83,7 @@ h2 {
 option {
     color: #0062cc;
 }
-@font-face {
+/* @font-face {
     font-family: 'nunitoblack';
     src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
          url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
@@ -113,4 +113,4 @@ html{
 .police{
     font-family: 'nunitoblack';
     font-size: 50px;
-}
+} */

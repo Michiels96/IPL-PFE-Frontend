@@ -7,7 +7,7 @@ table {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    background-color: gold;
+    background-color: beige;
 
 }
 
@@ -21,9 +21,17 @@ th, td {
 th {
     color: blue;
     font-weight: bold;
+    font-size: 20px;
 }
 
 td {
-    color: brown;
+    color: saddlebrown;
+    font-size: 20px;
 }
 
+h2 {
+    left: 35%;
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+}
