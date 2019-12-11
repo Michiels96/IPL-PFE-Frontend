@@ -19,6 +19,7 @@ export class LivretComponent implements OnInit {
   constructor(private api: ApiService,private route: ActivatedRoute, private router:Router, private sharedService: SharedService) {}
 
   ngOnInit() {
+    this.getKidInfo();
     this.kid_id = this.sharedService.getDataEnfantConnecte().enfant_id;
     this.kid_nom = this.sharedService.getDataEnfantConnecte().prenom + " " + this.sharedService.getDataEnfantConnecte().nom;
     console.log("kid_nom" + this.kid_nom);
@@ -37,8 +38,40 @@ export class LivretComponent implements OnInit {
     sessionStorage.setItem('kid_libelle_categorie', '');
     sessionStorage.setItem('kid_session_info', '');
     sessionStorage.setItem('dataCategorie', '');
+    sessionStorage.setItem('lastPage', 'choix-categorie');
   }
 
+  getKidInfo(){
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+      this.getKidSessionInfo();
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
+      this.router.navigate(['/']);
+    }
+  }
+
+  getKidSessionInfo(){
+    if(sessionStorage.getItem('kid_session_info') != ''){
+      this.sharedService.setDataSession(JSON.parse(sessionStorage.getItem('kid_session_info')));
+      this.getDataCategorie();
+    }
+    else{
+      this.destroyUserCache();
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
+
+  getDataCategorie(){
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+    }
+    else{
+      this.destroyUserCache();
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
 
   getSession(){
     this.api.getSessionsById(this.kid_id).subscribe( 

@@ -25,7 +25,14 @@ export class SyntheseDesChoixComponent implements OnInit {
     this.getKidInfo();
 
     if(this.sharedService.getDataCategorie().length == undefined){
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
+    }
+    if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'syntheseDesChoix'){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
+    else{
+      sessionStorage.setItem('lastPage', 'syntheseDesChoix');
     }
     this.var_reponsesQ3 = this.sharedService.getDataCategorie();
     for(var activite of this.var_reponsesQ3){
@@ -82,11 +89,11 @@ export class SyntheseDesChoixComponent implements OnInit {
     });
     //let finalY = doc.autoTable; // The y position on the page
     //var date = new Date();
-    const date: Date = new Date();
-    console.log(date);
+    const date: Date = new Date(dateSession);
+
     doc.text("réponses du test de "+nomComplet+
-    "\nle "+date.getDay()+"-"+date.getMonth()+"-"+date.getFullYear()+
-    " à "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(), 10, 285);
+    "\nle "+date.getUTCDate()+"-"+ (date.getUTCMonth()+1)+"-"+date.getUTCFullYear()+
+    " à "+ (date.getUTCHours()+2) + ":"+date.getUTCMinutes(),10, 285);
     var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
     doc.save(nomFichier+'.pdf');
   }
@@ -97,6 +104,7 @@ export class SyntheseDesChoixComponent implements OnInit {
       this.getKidSessionInfo();
     }
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
       this.router.navigate(['/']);
     }
   }
@@ -111,6 +119,7 @@ export class SyntheseDesChoixComponent implements OnInit {
       sessionStorage.setItem('kid_libelle_categorie', '');
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
     }
   }
@@ -124,8 +133,14 @@ export class SyntheseDesChoixComponent implements OnInit {
       sessionStorage.setItem('kid_libelle_categorie', '');
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
     }
+  }
+
+  goToLivret(){
+    sessionStorage.setItem('lastPage', 'livret');
+    this.router.navigate(['/livret']);
   }
 
   @HostListener('window:beforeunload', ['$event'])

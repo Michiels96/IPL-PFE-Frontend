@@ -89,7 +89,6 @@ import { LivretComponent } from './components/livret/livret.component';
       { path: 'choixContent', component: Choix3contentComponent,},
       //{ path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,canActivate: [KidAuthGuard] },
       { path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,},
-
       { path: 'livret', component: LivretComponent, },
     ])
   ],

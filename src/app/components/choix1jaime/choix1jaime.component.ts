@@ -25,7 +25,14 @@ export class Choix1jaimeComponent implements OnInit {
     this.getKidInfo();
   
     if(this.sharedService.getDataCategorie().length == undefined){
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
+    }
+    if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'choixJaime'){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
+    else{
+      sessionStorage.setItem('lastPage', 'choixJaime');
     }
     // filtrage des images avec le champ 'choix' à 'oui'
     for(var activite of this.sharedService.getDataCategorie()){
@@ -62,6 +69,7 @@ export class Choix1jaimeComponent implements OnInit {
   }
 
   backToChoixCategorie(){
+    sessionStorage.setItem('lastPage', 'categories');
     this.router.navigate(['/categories']);
   }
 
@@ -83,8 +91,8 @@ export class Choix1jaimeComponent implements OnInit {
     sessionStorage.setItem('dataCategorie', JSON.stringify(imagesSelectionnes));
     this.sharedService.setDataCategorie(imagesSelectionnes);
     console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    sessionStorage.setItem('lastPage', 'choixAide');
     this.router.navigate(['/choixAide']);
-    
   }
 
   getKidInfo(){
@@ -94,6 +102,7 @@ export class Choix1jaimeComponent implements OnInit {
       this.getKidSessionInfo();
     }
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
       this.router.navigate(['/']);
     }
   }
@@ -108,6 +117,7 @@ export class Choix1jaimeComponent implements OnInit {
       sessionStorage.setItem('kid_libelle_categorie', '');
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
     }
   }
@@ -121,6 +131,7 @@ export class Choix1jaimeComponent implements OnInit {
       sessionStorage.setItem('kid_libelle_categorie', '');
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
     }
   }
