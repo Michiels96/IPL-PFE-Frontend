@@ -1,12 +1,3 @@
-@font-face {
-    font-family: 'nunitoblack';
-    src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
-         url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
 html {
     background-color: beige;
 }
@@ -60,4 +51,18 @@ p{
 
 .newGame:hover{
     background-color: rgb(251, 193, 122);
+}
+
+.btnLogout {
+    font-family: 'nunitoblack';
+    font-size: 25px;
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: orangered;
+    color: orangered;
+    background-color: beige;
+    top: -0.5%;
+    right: 5%;
+    margin: 20px;
+    position: fixed; 
 }

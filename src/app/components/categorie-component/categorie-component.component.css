@@ -1,11 +1,3 @@
-@font-face {
-    font-family: 'original_quality_demoregular';
-    src: url('../../../assets/fonts/Original_quality/original_quality_demo-webfont.woff2') format('woff2'),
-         url('../../../assets/fonts/Original_quality/original_quality_demo-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .page {
     background-color: beige;
     background-size: 100%;
@@ -125,6 +117,7 @@ button:focus {
 }
 
 #buttonValider {
+    font-family: 'nunitoblack';
     position: absolute;
     border-radius: 50px;
     border-color: orangered;
@@ -210,4 +203,23 @@ html {
 
 .originalQualityFont{
     font-family: 'original_quality_demoregular';
+}
+
+.precedent{
+    font-family: 'nunitoblack';
+    font-size: 30px;
+}
+
+.btnLogout {
+    font-family: 'nunitoblack';
+    font-size: 30px;
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: orangered;
+    color: orangered;
+    background-color: beige;
+    right: 5%;
+    margin: 20px;
+    position: fixed; 
+    padding: 10px;
 }

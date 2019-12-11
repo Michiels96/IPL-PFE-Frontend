@@ -104,9 +104,16 @@ h2 {
     background-color: beige;
 }
 
-.btnBack {
-    left: 5%;
+.btnLogout {
+    font-family: 'nunitoblack';
+    font-size: 25px;
+    right: 5%;
     margin: 20px;
     position: fixed; 
+}
+
+.btnValider{
+    font-family: 'nunitoblack';
+    font-size: 30px;
 }
 

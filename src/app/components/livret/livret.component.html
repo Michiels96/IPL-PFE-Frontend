@@ -1,65 +1,63 @@
 <html>
-    <h2>Historique de sessions de {{kid_nom}}</h2>
-        
-        <label>
-            Session : 
-            <select [(ngModel)]="id_session" (change)="changerSession($event.target.value)">
-                    <option *ngFor="let session of sessions" [ngValue]="session.session_id"> {{session.date}}</option>
-            </select>
-        </label>
-    
-
-    <table border="1" class="table table-hover">
-            <!-- <thead> -->
-            <tr>
-              <th rowspan=2>Intitulé</th>
-              <th colspan=2>Valeur</th>
-              <th colspan=2>Aide</th>
-              <th colspan=2>Satisfaction</th>
-            </tr>
-            <tr>
-                <th>
-                    <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/jaime.png">
-                </th>
-                <th>
-                    <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/jaimePas.png">
-                </th>
-                <th>
-                    <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/besoinDAide.png">
-                </th>
-                <th>
-                    <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/pasBesoinDAide.png">
-                </th>
-                <th>
-                    <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/content.png">
-                </th>
-                <th>
-                    <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/pasContent.png">
-                </th>
-            </tr>
-        <!-- </thead> -->
-        <!-- <tbody> -->
-            <tr *ngFor="let habitude of session_choisie">
-                <td>{{habitude.img_description}}</td>
-                <td>
-                    <span *ngIf="habitude.aime == 'O'" style="font-style:italic;font-weight:bold; color: green" >&#10004;</span>
-                </td>
-                <td>
-                    <span *ngIf="habitude.aime == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
-                </td>
-                <td>
-                    <span *ngIf="habitude.aide == 'O'" style="font-style:italic;font-weight:bold; color: green">&#10004;</span>
-                </td>
-                <td>
-                    <span *ngIf="habitude.aide == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
-                </td>
-                <td>
-                    <span *ngIf="habitude.content == 'O'" style="font-style:italic;font-weight:bold; color: green">&#10004;</span>
-                </td>
-                <td>
-                    <span *ngIf="habitude.content == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
-                </td>
-            </tr>
+    <h2>Historique de sessions de {{kid_nom}}</h2>    
+    <label>
+        Session : 
+        <select [(ngModel)]="id_session" (change)="changerSession($event.target.value)">
+                <option *ngFor="let session of sessions" [ngValue]="session.session_id"> {{session.date}}</option>
+        </select>
+    </label>
+    <button class="btn btn-lg btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
+    <table class="table table-hover">
+        <!-- <thead> -->
+        <tr>
+            <th rowspan=2>Intitulé</th>
+            <th colspan=2>Valeur</th>
+            <th colspan=2>Aide</th>
+            <th colspan=2>Satisfaction</th>
+        </tr>
+        <tr>
+            <th>
+                <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/jaime.png">
+            </th>
+            <th>
+                <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/jaimePas.png">
+            </th>
+            <th>
+                <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/besoinDAide.png">
+            </th>
+            <th>
+                <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/pasBesoinDAide.png">
+            </th>
+            <th>
+                <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/content.png">
+            </th>
+            <th>
+                <img style="max-width:100%;max-height:100%" class="img-thumbnail" src="../../../assets/icons/pasContent.png">
+            </th>
+        </tr>
+    <!-- </thead> -->
+    <!-- <tbody> -->
+        <tr *ngFor="let habitude of session_choisie">
+            <td>{{habitude.img_description}}</td>
+            <td>
+                <span *ngIf="habitude.aime == 'O'" style="font-style:italic;font-weight:bold; color: green" >&#10004;</span>
+            </td>
+            <td>
+                <span *ngIf="habitude.aime == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
+            </td>
+            <td>
+                <span *ngIf="habitude.aide == 'O'" style="font-style:italic;font-weight:bold; color: green">&#10004;</span>
+            </td>
+            <td>
+                <span *ngIf="habitude.aide == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
+            </td>
+            <td>
+                <span *ngIf="habitude.content == 'O'" style="font-style:italic;font-weight:bold; color: green">&#10004;</span>
+            </td>
+            <td>
+                <span *ngIf="habitude.content == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
+            </td>
+        </tr>
         <!-- </tbody> -->
     </table>
     <p>

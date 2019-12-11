@@ -161,6 +161,11 @@ export class CategorieComponentComponent implements OnInit {
     this.router.navigate(['/choix-categorie']);
   }
 
+  deconnexion(){
+    sessionStorage.setItem('lastPage', '');
+    this.router.navigate(['/']);
+  }
+
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {

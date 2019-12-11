@@ -85,6 +85,11 @@ export class LivretComponent implements OnInit {
     )
   }
 
+  deconnexion(){
+    sessionStorage.setItem('lastPage', '');
+    this.router.navigate(['/']);
+  }
+
   changerSession(event) {
     if(this.id_session != -1) {
       for(let i=0;i<this.sessions.length;i++){
@@ -94,5 +99,4 @@ export class LivretComponent implements OnInit {
       }
     }
   }
-
 }

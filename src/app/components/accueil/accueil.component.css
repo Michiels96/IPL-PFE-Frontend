@@ -67,10 +67,3 @@ h2 {
     color: beige;
     padding: -30%;
 }
-@font-face {
-    font-family: 'nunitoblack';
-    src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
-         url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
