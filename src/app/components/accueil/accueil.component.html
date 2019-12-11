@@ -1,68 +1,67 @@
 <!-- <html> -->
 
 <div class="register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="Hello"/>
-                <h2>Bienvenue</h2>
-                <br />
-                <br />
-                <h3>Bienvenue sur l'application APEH ! <br />Bon amusement ! </h3>
-            </div>
-            <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <div *ngIf="kidChecked == true">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" style="cursor:default" aria-selected="true">Enfant</a>
-                        </div>
-                        <div *ngIf="kidChecked == false">
-                                <a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" style="cursor:pointer" (click)="$event.preventDefault();switchToOtherProfile()" aria-selected="false">Enfant</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div *ngIf="kidChecked == false">
-                                <a class="nav-link active" id="profile-tab" style="width: 115px;" data-toggle="tab" role="tab" aria-controls="profile" style="cursor:default" aria-selected="true">Professionnel</a>
-                        </div>
-                        <div *ngIf="kidChecked == true">
-                            <a class="nav-link" id="profile-tab" style="width: 115px;" data-toggle="tab" role="tab" aria-controls="profile" style="cursor:pointer" (click)="$event.preventDefault();switchToOtherProfile()" aria-selected="false">Professionnel</a>
-                        </div>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="Hello"/>
+            <h2>Bienvenue</h2>
+            <br />
+            <br />
+            <h3>Bienvenue sur l'application APEH ! <br />Bon amusement ! </h3>
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
                     <div *ngIf="kidChecked == true">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div *ngIf="kidChecked">
-                                <h3 class="register-heading">Connexion Enfant</h3>
-                                <div class="row register-form">
-                                    <div style="left: 65%" class="col-md-4">
-                                        <div *ngIf='isNotConnected; else connected'>
-                                            <div class="form-group">
-                                                <div class="position"> 
-                                                    Nom: <select [(ngModel)]="kid_selected">
-                                                            <option style="color: #0062cc;" *ngFor="let enfant of listeEnfants" [ngValue]="enfant"> {{enfant.nom}} {{enfant.prenom}}</option>
-                                                        </select>
-                                                </div>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" style="cursor:default" aria-selected="true">Enfant</a>
+                    </div>
+                    <div *ngIf="kidChecked == false">
+                            <a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" style="cursor:pointer" (click)="$event.preventDefault();switchToOtherProfile()" aria-selected="false">Enfant</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div *ngIf="kidChecked == false">
+                            <a class="nav-link active" id="profile-tab" style="width: 115px;" data-toggle="tab" role="tab" aria-controls="profile" style="cursor:default" aria-selected="true">Professionnel</a>
+                    </div>
+                    <div *ngIf="kidChecked == true">
+                        <a class="nav-link" id="profile-tab" style="width: 115px;" data-toggle="tab" role="tab" aria-controls="profile" style="cursor:pointer" (click)="$event.preventDefault();switchToOtherProfile()" aria-selected="false">Professionnel</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div *ngIf="kidChecked == true">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div *ngIf="kidChecked">
+                            <h3 class="register-heading">Connexion Enfant</h3>
+                            <div class="row register-form">
+                                <div style="left: 65%" class="col-md-4">
+                                    <div *ngIf='isNotConnected; else connected'>
+                                        <div class="form-group">
+                                            <div class="position"> 
+                                                Nom: <select [(ngModel)]="kid_selected">
+                                                        <option style="color: #0062cc;" *ngFor="let enfant of listeEnfants" [ngValue]="enfant"> {{enfant.nom}} {{enfant.prenom}}</option>
+                                                    </select>
                                             </div>
-                                            <button class="btn btn-lg btn-primary btn-block" (click)="connecterEnfant()">C'est moi ! </button>
                                         </div>
-                                        <br />
-                                        <ng-template #connected>
-                                            <div class="form-group">
-                                                <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/choix-categorie']" (click)="jouer()">Jouer</button>
-                                            </div>
-                                        </ng-template>
+                                        <button class="btn btn-lg btn-primary btn-block" (click)="connecterEnfant()">C'est moi ! </button>
                                     </div>
+                                    <br />
+                                    <ng-template #connected>
+                                        <div class="form-group">
+                                            <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/choix-categorie']" (click)="jouer()">Jouer</button>
+                                        </div>
+                                    </ng-template>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="kidChecked == false">
-                        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <h3  class="register-heading">Connexion Professionnel</h3>
-                            <div class="row register-form">
-                                <div style="left: 65%"  class="col-md-4">
-                                    <button style="background-color: beige; color:#0062cc;" class="btn btn-lg btn-primary btn-block" [routerLink]="['/connexion']" >Connexion professionel</button>
-                                </div>
+                </div>
+                <div *ngIf="kidChecked == false">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <h3  class="register-heading">Connexion Professionnel</h3>
+                        <div class="row register-form">
+                            <div style="left: 65%"  class="col-md-4">
+                                <button style="background-color: beige; color:#0062cc;" class="btn btn-lg btn-primary btn-block" [routerLink]="['/connexion']" >Connexion professionel</button>
                             </div>
                         </div>
                     </div>
@@ -70,3 +69,4 @@
             </div>
         </div>
     </div>
+</div>
