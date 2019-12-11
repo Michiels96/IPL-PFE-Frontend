@@ -62,7 +62,7 @@ export class EducateurUIComponent implements OnInit {
   }
 
   selectMandataire(event){
-    if(event === 'Autre'){
+    if(event === 'A'){
       this.personne_mandataire['autre_mandataire'] = event;
     }
     this.personne_mandataire['mandataire'] = event;
