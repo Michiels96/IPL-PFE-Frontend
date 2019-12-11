@@ -33,7 +33,6 @@ export class LivretComponent implements OnInit {
   }
 
   destroyUserCache(){
-    sessionStorage.setItem('kid_connected', '');
     sessionStorage.setItem('nb_choix_categorie', '');
     sessionStorage.setItem('kid_libelle_categorie', '');
     sessionStorage.setItem('kid_session_info', '');
@@ -86,6 +85,7 @@ export class LivretComponent implements OnInit {
   }
 
   deconnexion(){
+    this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
   }
@@ -98,5 +98,16 @@ export class LivretComponent implements OnInit {
         }
       }
     }
+  }
+
+  deconnecterEnfant(kid){
+    this.api.updateKid(kid,false).subscribe(
+      data => {
+        console.log("encore deconnecté");
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }

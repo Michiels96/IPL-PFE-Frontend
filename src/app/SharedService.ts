@@ -82,4 +82,14 @@ export class SharedService {
     }
     /*************************/
 
+
+
+    deleteAllData(){
+        this.dataChoixCategorie = "";
+        this.nbChoixCategorie = 0;
+        this.dataCategorie = {};
+        this.dataEnfantConnecte = {};
+        this.dataSession = {};
+    }
+
 }
