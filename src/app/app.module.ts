@@ -78,7 +78,7 @@ import { LivretComponent } from './components/livret/livret.component';
       { path: 'categories', component: CategorieComponentComponent},
       { path: 'connexion', component: ConnectionFormComponent,},
       { path: 'recap', component: RecapComponent/*,canActivate: [AuthGuard] */},
-      { path: 'auth', component: AuthentificatedComponent,canActivate: [AuthGuard] },
+      { path: 'auth', component: AuthentificatedComponent,/*canActivate: [AuthGuard]*/ },
       //{ path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard] },
       { path: 'ui', component: EducateurUIComponent},
       //{ path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard] },
