@@ -52,6 +52,13 @@ html{
 	color:red;
 }
 
+.oui:hover {
+    background-color: rgb(251, 193, 122);;
+}
+
+.non:hover {
+    background-color: rgb(251, 193, 122);;
+}
 
 .police{
     font-family: 'nunitoblack';

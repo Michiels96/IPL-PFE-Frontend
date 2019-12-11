@@ -14,6 +14,11 @@ export class AuthentificatedComponent implements OnInit {
   id_kid_just_subcribed=-1;
   error_inscription_msg;
   error_inscription = false;
+
+  error_select_enfant;
+  error_select = false;
+
+
   whoIsConnected;
   idFromWhoIsConnected;
   listeEnfants;
@@ -62,6 +67,8 @@ export class AuthentificatedComponent implements OnInit {
     this.getEnfants();
     this.error_inscription_msg="";
     this.error_inscription = false;
+    this.error_select_enfant="";
+    this.error_select = false; 
   }
   getEnfants = () => {
    
@@ -83,7 +90,8 @@ export class AuthentificatedComponent implements OnInit {
     console.log(this.kid_selected);
 
     if(this.kid_selected == null) {
-      console.log("enfant choisi vide");
+      this.error_select_enfant = "Veuillez selectionner un enfant";
+      this.error_select = true;
     }
     else {
       this.router.navigate(['/ui',{id:this.kid_selected,id_prof:this.idFromWhoIsConnected}]);
