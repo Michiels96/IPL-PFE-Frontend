@@ -33,7 +33,14 @@ export class CategorieComponentComponent implements OnInit {
     }
     this.nbActivitesOui = this.sharedService.getNbChoixCategorie();
     if(this.libelle_categorie_selectionne == null){
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
+    }
+    if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'categories'){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
+    else{
+      sessionStorage.setItem('lastPage', 'categories');
     }
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     console.log("SHAREDSERVICE - DATA-ENFANTCONNECTE  "+JSON.stringify(this.dataEnfantConnecte));
@@ -49,6 +56,9 @@ export class CategorieComponentComponent implements OnInit {
           this.var_choix_images.push(activite);
         }
         //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
+        if(sessionStorage.getItem('dataCategorie') != ''){
+          this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+        }
         // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
         if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
           var choixImagesToChoix1 = this.sharedService.getDataCategorie();
@@ -93,6 +103,7 @@ export class CategorieComponentComponent implements OnInit {
       }
     }
     sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
+    console.log(JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
     this.nbActivitesOui = 0;
     for(var activite of this.sharedService.getDataCategorie()){
@@ -120,6 +131,7 @@ export class CategorieComponentComponent implements OnInit {
           this.sharedService.setDataSession(data);
           this.rien_choisi = false;
           sessionStorage.setItem('kid_session_info', JSON.stringify(data));
+          sessionStorage.setItem('lastPage', 'choixJaime');
           this.router.navigate(['/choixJaime']);
         },
         error => {
@@ -139,6 +151,7 @@ export class CategorieComponentComponent implements OnInit {
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
     }
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
       this.router.navigate(['/']);
     }
   }

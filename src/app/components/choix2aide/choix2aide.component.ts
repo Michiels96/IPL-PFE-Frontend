@@ -28,7 +28,14 @@ export class Choix2aideComponent implements OnInit {
     this.getKidInfo();
   
     if(this.sharedService.getDataCategorie().length == undefined){
-      this.router.navigate(['/categories']);
+      sessionStorage.setItem('lastPage', 'choix-categorie');
+      this.router.navigate(['/choix-categorie']);
+    }
+    if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'choixAide'){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
+    else{
+      sessionStorage.setItem('lastPage', 'choixAide');
     }
     // filtrage des images avec le champ 'choix' à 'oui'
     for(var activite of this.sharedService.getDataCategorie()){
@@ -81,6 +88,7 @@ export class Choix2aideComponent implements OnInit {
     //alert('Attention tes réponses à la question 1 et 2 vont être perdues!');
     var demande = prompt('Attention tes réponses à la question 1 et 2 vont être perdues! Est tu sur? (oui/non)');
     if(demande == "o" || demande == "oui" || demande == "O" || demande == "Oui" || demande == "OUI" || demande == ""){
+      sessionStorage.setItem('lastPage', 'choixJaime');
       this.router.navigate(['/choixJaime']);
     }
   }
@@ -100,6 +108,7 @@ export class Choix2aideComponent implements OnInit {
     sessionStorage.setItem('dataCategorie', JSON.stringify(imagesSelectionnes));
     this.sharedService.setDataCategorie(imagesSelectionnes);
     console.log("CHOIX 2 "+JSON.stringify(this.sharedService.getDataCategorie()));
+    sessionStorage.setItem('lastPage', 'choixContent');
     this.router.navigate(['/choixContent']);
   }
 
@@ -110,6 +119,7 @@ export class Choix2aideComponent implements OnInit {
       this.getKidSessionInfo();
     }
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
       this.router.navigate(['/']);
     }
   }
@@ -124,6 +134,7 @@ export class Choix2aideComponent implements OnInit {
       sessionStorage.setItem('kid_libelle_categorie', '');
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
     }
   }
@@ -137,6 +148,7 @@ export class Choix2aideComponent implements OnInit {
       sessionStorage.setItem('kid_libelle_categorie', '');
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
     }
   }

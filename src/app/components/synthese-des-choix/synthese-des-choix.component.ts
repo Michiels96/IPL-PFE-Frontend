@@ -22,8 +22,17 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getKidInfo();
+
     if(this.sharedService.getDataCategorie().length == undefined){
-      this.router.navigate(['/categories']);
+      sessionStorage.setItem('lastPage', 'choix-categorie');
+      this.router.navigate(['/choix-categorie']);
+    }
+    if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'syntheseDesChoix'){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
+    else{
+      sessionStorage.setItem('lastPage', 'syntheseDesChoix');
     }
     this.var_reponsesQ3 = this.sharedService.getDataCategorie();
     for(var activite of this.var_reponsesQ3){
@@ -87,6 +96,51 @@ export class SyntheseDesChoixComponent implements OnInit {
     " à "+ (date.getUTCHours()+2) + ":"+date.getUTCMinutes(),10, 285);
     var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
     doc.save(nomFichier+'.pdf');
+  }
+
+  getKidInfo(){
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+      this.getKidSessionInfo();
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
+      this.router.navigate(['/']);
+    }
+  }
+
+  getKidSessionInfo(){
+    if(sessionStorage.getItem('kid_session_info') != ''){
+      this.sharedService.setDataSession(JSON.parse(sessionStorage.getItem('kid_session_info')));
+      this.getDataCategorie();
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', '');
+      sessionStorage.setItem('kid_libelle_categorie', '');
+      sessionStorage.setItem('kid_session_info', '');
+      sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
+
+  getDataCategorie(){
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', '');
+      sessionStorage.setItem('kid_libelle_categorie', '');
+      sessionStorage.setItem('kid_session_info', '');
+      sessionStorage.setItem('dataCategorie', '');
+      sessionStorage.setItem('lastPage', 'choix-categorie');
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
+
+  goToLivret(){
+    sessionStorage.setItem('lastPage', 'livret');
+    this.router.navigate(['/livret']);
   }
 
   @HostListener('window:beforeunload', ['$event'])
