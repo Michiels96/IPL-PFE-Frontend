@@ -142,6 +142,7 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
 
   deconnexion(){
+    this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
   }

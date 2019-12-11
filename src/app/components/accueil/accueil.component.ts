@@ -23,18 +23,24 @@ export class AccueilComponent implements OnInit {
    }
 
   ngOnInit() {
+    /*
     if(sessionStorage.length > 0){
       // si enfant deja connecté et revient à l'accueil, alors on le déconnecte en db
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
       }
     } 
-    if(sessionStorage.getItem('lastPage') != ''){
-      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    */
+    if(sessionStorage.length > 0){
+      if(sessionStorage.getItem('lastPage') != ''){
+        this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+      }
+      else{
+        console.log("supprimé");
+        // on détruit les données en cache
+        this.destroyUserCache();
+      }
     }
-    // on détruit les données en cache
-    this.destroyUserCache();
-    
     this.api.getUnloggedEnfants().subscribe(
       data => {
         //console.log(data);
@@ -45,7 +51,9 @@ export class AccueilComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
+      
+    
   }
 
   connecterEnfant(){
@@ -72,7 +80,7 @@ export class AccueilComponent implements OnInit {
     )
   }
 
-  jouer() {
+  jouer(){
     console.log("Nom Enfant : ", this.kid_selected.nom);
     sessionStorage.setItem('lastPage', 'choix-categorie');
     this.router.navigate(['/choix-categorie']);
@@ -86,6 +94,7 @@ export class AccueilComponent implements OnInit {
     sessionStorage.setItem('kid_session_info', '');
     sessionStorage.setItem('dataCategorie', '');
     sessionStorage.setItem('lastPage', '');
+    this.sharedService.deleteAllData();
   }
 
 
