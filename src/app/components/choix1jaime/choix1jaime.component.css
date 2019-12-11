@@ -5,7 +5,13 @@
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'original_quality_demoregular';
+    src: url('../../../assets/fonts/Original_quality/original_quality_demo-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/Original_quality/original_quality_demo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html{
     padding: 1%;
@@ -57,7 +63,12 @@ html{
     background-color: rgb(251, 193, 122);
 }
 
-.police{
+.nunitoFont{
     font-family: 'nunitoblack';
     font-size:40px;
+}
+
+.originalQualityFont{
+    font-family: 'original_quality_demoregular';
+    font-size: 40px;
 }
