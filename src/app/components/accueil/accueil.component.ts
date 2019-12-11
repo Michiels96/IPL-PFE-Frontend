@@ -16,7 +16,11 @@ export class AccueilComponent implements OnInit {
   kid_selected;
   isNotConnected=true;
   kid_id;
-  constructor(private api: ApiService,public authService: AuthService, private route: Router, private sharedService: SharedService) { }
+  kidChecked;
+
+  constructor(private api: ApiService, private router: Router, public authService: AuthService, private sharedService: SharedService) {
+    this.kidChecked = true;
+   }
 
   ngOnInit() {
     if(sessionStorage.length > 0){
@@ -25,6 +29,9 @@ export class AccueilComponent implements OnInit {
         this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
       }
     } 
+    if(sessionStorage.getItem('lastPage') != ''){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
     // on détruit les données en cache
     this.destroyUserCache();
     
@@ -68,7 +75,7 @@ export class AccueilComponent implements OnInit {
   jouer() {
     console.log("Nom Enfant : ", this.kid_selected.nom);
     sessionStorage.setItem('lastPage', 'choix-categorie');
-    this.route.navigate(['/choix-categorie']);
+    this.router.navigate(['/choix-categorie']);
   }
 
 
@@ -81,6 +88,10 @@ export class AccueilComponent implements OnInit {
     sessionStorage.setItem('lastPage', '');
   }
 
+
+  switchToOtherProfile(){
+    this.kidChecked = !this.kidChecked;
+  }
 
 
   deconnecterEnfant(kid){

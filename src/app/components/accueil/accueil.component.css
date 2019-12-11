@@ -174,7 +174,7 @@ h2 {
     border: none;
 }
 .register .nav-tabs .nav-link.active{
-    width: 100px;
+    width: 150px;
     color: #0062cc;
     border: 2px solid #0062cc;
     border-top-left-radius: 1.5rem;

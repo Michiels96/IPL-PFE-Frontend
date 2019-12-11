@@ -102,7 +102,7 @@ input[type=radio] {
 }
 
 button:focus {
-    background-color: magenta;
+    background-color: rgba(224, 221, 221, 0.993);
     
 }
 .btn {

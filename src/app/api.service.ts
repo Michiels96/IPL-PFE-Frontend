@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpBackend, HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable} from 'rxjs';
 
-/*export const InterceptorSkipHeader = 'X-Skip-Interceptor';
 
-@Injectable()
-export class SkippableInterceptor implements HttpInterceptor {
+Injectable()
+export class HttpRequestInterceptor implements HttpInterceptor {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.headers.has(InterceptorSkipHeader)) {
-      const headers = req.headers.delete(InterceptorSkipHeader);
-      return next.handle(req.clone({ headers }));
-    }
-
+  intercept(req: HttpRequest<any>, next: HttpHandler):
+    Observable<HttpEvent<any>> {
     
+      // console.log("interceptor: " + req.url);
+      req = req.clone({
+        withCredentials: true
+      });
+      
+      return next.handle(req);
   }
-
-}*/
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +32,7 @@ export class ApiService {
  /*,'Access-Control-Allow-Credentials': 'true',
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'OPTIONS, GET, POST',
-'Access-Control-Allow-Headers': '*','withCredentials': 'true' */});
+'Access-Control-Allow-Headers': '*',/'withCredentials': 'true' */});
   private http: HttpClient;
   constructor(/*private http: HttpClient*/ handler: HttpBackend) {
     this.http = new HttpClient(handler);

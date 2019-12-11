@@ -33,7 +33,8 @@ import { DeconnexionElementComponent } from './components/deconnexion-element/de
 import { RecapComponent } from './components/recap/recap.component';
 import { SyntheseDesChoixComponent } from './components/synthese-des-choix/synthese-des-choix.component';
 import { LivretComponent } from './components/livret/livret.component';
-
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpRequestInterceptor } from './api.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,7 @@ import { LivretComponent } from './components/livret/livret.component';
       { path: 'livret', component: LivretComponent, },
     ])
   ],
-  providers: [SharedService],
+  providers: [SharedService,{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
