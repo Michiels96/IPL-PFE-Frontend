@@ -28,6 +28,9 @@ export class CategorieComponentComponent implements OnInit {
       this.sharedService.setDataChoixCategorie(sessionStorage.getItem('kid_libelle_categorie'));
     }
     this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie();
+    if(sessionStorage.getItem('nb_choix_categorie') != ''){
+      this.sharedService.setNbChoixCategorie(+sessionStorage.getItem('nb_choix_categorie'));
+    }
     this.nbActivitesOui = this.sharedService.getNbChoixCategorie();
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
@@ -89,6 +92,7 @@ export class CategorieComponentComponent implements OnInit {
         choixImagesToChoix1.push(activite);
       }
     }
+    sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
     this.nbActivitesOui = 0;
     for(var activite of this.sharedService.getDataCategorie()){
@@ -97,12 +101,7 @@ export class CategorieComponentComponent implements OnInit {
       }
     }
     //console.log("nb oui : ", this.nbActivitesOui);
-    if(sessionStorage.getItem('nb_choix_categorie') != ''){
-      sessionStorage.setItem('nb_choix_categorie', JSON.stringify(sessionStorage.getItem('nb_choix_categorie')+this.nbActivitesOui));
-    }
-    else{
-      sessionStorage.setItem('nb_choix_categorie', JSON.stringify(this.nbActivitesOui));
-    }
+    sessionStorage.setItem('nb_choix_categorie', JSON.stringify(this.nbActivitesOui));
     this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
   }
 
@@ -128,7 +127,7 @@ export class CategorieComponentComponent implements OnInit {
         }
       )
     }
-    else {
+    else{
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
     }
@@ -160,7 +159,6 @@ export class CategorieComponentComponent implements OnInit {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
-        
       }
     } 
       //event.preventDefault();
