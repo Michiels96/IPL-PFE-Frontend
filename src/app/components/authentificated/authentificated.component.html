@@ -149,10 +149,10 @@
                       </label>
                   </div>
                   <div class="form-group">
-                    <label>
-                      <strong style="color: #fff;">Prénom :</strong>
-                      <input type="text" style="color: #0062cc;" class="form-control" placeholder="Prenom" value="" formControlName="prenom">
-                    </label>
+                      <label style="color: beige;">
+                          <strong style="color: #fff;">Prenom :</strong>
+                        <input type="text" class="form-control" placeholder="Prenom" value="" formControlName="prenom">
+                      </label>
                   </div>
                   <div class="form-group">
                       <label style="color: beige;">
@@ -199,17 +199,49 @@
                       </label>
                     </div>
                     <div class="form-group">
-                        <label style="color: beige;">
-                            <strong style="color: #fff;">E-mail :</strong>
-                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="E-mail" value="" formControlName="email">
+                        <label style="color: #0062cc;">
+                            <strong style="color: #0062cc;">Prenom :</strong>
+                            <input type="text"class="form-control" placeholder="Prenom" value="" formControlName="prenom">
                         </label>
                     </div>
                     <div class="form-group">
-                        <label style="color: beige;">
-                            <strong style="color: #fff;">Telephone :</strong>
-                            <input type="text" style="color: #0062cc;" class="form-control" placeholder="Telephone" value="" formControlName="telephone">
-                        </label>
-                    </div>
+                      <label style="color: #0062cc;">
+                          <strong style="color: #0062cc;">Mot de passe :</strong>
+                          <input type="password" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
+                      </label>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label style="color: #0062cc;">
+                              <strong style="color: #0062ccff;">E-mail :</strong>
+                              <input type="email" class="form-control" placeholder="Email" value="" formControlName="email">
+                          </label>
+                      </div>
+                      <div class="form-group">
+                          <label style="color: #0062cc;">
+                              <strong style="color: #0062cc;">Telephone :</strong>
+                              <input type="number" class="form-control" placeholder="Tel" value="" formControlName="telephone">
+                          </label>
+                      </div>
+                      <div class="form-group">
+                          <label style="color: #0062cc;"> 
+                              Profession : 
+                              <select  formControlName="profession">
+                                <option value="Erg">Ergothérapeute</option>
+                                <option value="Psy">Psychologue</option>
+                                <option value="Ed">Educateur</option>
+                                <option value="Ki">Kinésithérapeute</option>
+                                <option value="En">Enseignant</option>
+                                <option value="Au">Autre</option>
+                              </select>
+                              <div *ngIf="inscription.value.profession=='Autre'">
+                                <textarea formControlName="autre" rows="5" cols="33">
+  
+                                </textarea>
+                              </div>
+                          </label>
+                      </div>
+  
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block" type='submit'>Inscrire</button>
                     </div>
