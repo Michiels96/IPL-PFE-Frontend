@@ -27,9 +27,9 @@
                         <td width="200">{{img.description.toUpperCase()}}</td>
                         <td width="50"><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
                         <td width="300">
-                            <button value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button>
-                            <button value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button>
-                            <button value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais le faire')">Je voudrais le faire</button>
+                            <button class="oui" value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button><br /><br />
+                            <button class="non" value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button><br /><br />
+                            <button class="jevoudrais" value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais le faire')">Je voudrais le faire</button>                            
                             <br/>
                             <br />
                             <p>Choix : {{img.choix}}</p>
