@@ -1,7 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpBackend, HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable} from 'rxjs';
 
+/*export const InterceptorSkipHeader = 'X-Skip-Interceptor';
+
+@Injectable()
+export class SkippableInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.headers.has(InterceptorSkipHeader)) {
+      const headers = req.headers.delete(InterceptorSkipHeader);
+      return next.handle(req.clone({ headers }));
+    }
+
+    
+  }
+
+}*/
 @Injectable({
   providedIn: 'root'
 })
@@ -11,9 +26,17 @@ export class ApiService {
   // baseurl = "http://127.0.0.1:8000";
   // connexion backend en ligne (heroku)
   baseurl ="https://pfe-back-dev.herokuapp.com";
-  httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
-
-  constructor(private http: HttpClient) { }
+ // httpHeaders = new HttpHeaders().set(InterceptorSkipHeader, '');/*
+ 
+ httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'
+ /*,'Access-Control-Allow-Credentials': 'true',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'OPTIONS, GET, POST',
+'Access-Control-Allow-Headers': '*','withCredentials': 'true' */});
+  private http: HttpClient;
+  constructor(/*private http: HttpClient*/ handler: HttpBackend) {
+    this.http = new HttpClient(handler);
+   }
   
   getAllCategories(): Observable<any>{
     return this.http.get(this.baseurl + '/images/categories/', {headers:this.httpHeaders});
@@ -84,7 +107,7 @@ export class ApiService {
   }
   connectUser(user): Observable<any>{
     let postContent=JSON.stringify(user);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
-    return this.http.post(this.baseurl + '/prof/login/',postContent, {headers:this.httpHeaders,withCredentials: false});
+    return this.http.post(this.baseurl + '/prof/login/',postContent, {headers:this.httpHeaders});
   }
   getFullSessionById(id): Observable<any>{
     return this.http.get(this.baseurl + '/sessions/full_sessions/' + id + '/', {headers:this.httpHeaders});

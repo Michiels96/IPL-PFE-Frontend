@@ -143,6 +143,11 @@ export class SyntheseDesChoixComponent implements OnInit {
     this.router.navigate(['/livret']);
   }
 
+  deconnexion(){
+    sessionStorage.setItem('lastPage', '');
+    this.router.navigate(['/']);
+  }
+
   @HostListener('window:beforeunload', ['$event'])
   ifExitApp(event) {
     if (sessionStorage.length > 0) {

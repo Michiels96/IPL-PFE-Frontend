@@ -19,7 +19,7 @@ export class LivretComponent implements OnInit {
   constructor(private api: ApiService,private route: ActivatedRoute, private router:Router, private sharedService: SharedService) {}
 
   ngOnInit() {
-    
+    this.getKidInfo();
     this.kid_id = this.sharedService.getDataEnfantConnecte().enfant_id;
     this.kid_nom = this.sharedService.getDataEnfantConnecte().prenom + " " + this.sharedService.getDataEnfantConnecte().nom;
     console.log("kid_nom" + this.kid_nom);
@@ -85,6 +85,11 @@ export class LivretComponent implements OnInit {
     )
   }
 
+  deconnexion(){
+    sessionStorage.setItem('lastPage', '');
+    this.router.navigate(['/']);
+  }
+
   changerSession(event) {
     if(this.id_session != -1) {
       for(let i=0;i<this.sessions.length;i++){
@@ -94,5 +99,4 @@ export class LivretComponent implements OnInit {
       }
     }
   }
-
 }

@@ -1,11 +1,3 @@
-@font-face {
-    font-family: 'nunitoblack';
-    src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
-         url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 html{
     background-color: beige;
 }
@@ -35,7 +27,7 @@ th, td{
     background-color: rgb(251, 193, 122);
 }
 
-.previous{
+.pdfButton{
     font-family: 'nunitoblack';
     border-style: ridge;
     border-radius: 50px;
@@ -52,9 +44,6 @@ th, td{
     border-color:brown;
     color:brown;
     background-color:beige;
-    left: 46%;
-    text-align: center;
-    position: fixed;
     font-size: 25px;
 } 
 
@@ -67,4 +56,17 @@ h2{
     text-align: center;
     font-weight: bold;
     color: brown;    
+}
+
+.btnLogout {
+    font-family: 'nunitoblack';
+    font-size: 25px;
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: orangered;
+    color: orangered;
+    background-color: beige;
+    right: 5%;
+    margin: 20px;
+    position: fixed; 
 }

@@ -1,7 +1,7 @@
 <html>
 <div class="page">
-        <button class="btn btn-lg" [routerLink]="['/choix-categorie']" title="Précédent">Précédent</button>
-
+        <button class="btn btn-lg precedent" (click)="$event.preventDefault();backToChoix()" title="Précédent">Précédent</button>
+        <button class="btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
         <div id="fond"> 
             <div class="ruban">     
                 <h2 class="originalQualityFont">{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
@@ -39,10 +39,9 @@
             </li>
         </table>
         <button style="left: 45%;" class="btn1 btn-lg" id="buttonValider" type="submit" name="Valider">Valider</button>
-        
         <div class="alert alert-danger" role="alert" *ngIf="rien_choisi == true">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                <strong>Attention ! Pour continuer, il faut au minimum une image avec la valeur "OUI" !!</strong>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>Attention ! Pour continuer, il faut au minimum une image avec la valeur "OUI" !!</strong>
         </div>
     </form>
 </div>

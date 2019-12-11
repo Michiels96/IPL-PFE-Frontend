@@ -1,7 +1,7 @@
 <html>
-    <br />
+    <br/>
     <h2>Voici tes résultats : </h2>
-    
+    <button class="btn btn-lg btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
     <div class="page">
         <table>
             <tr>
@@ -60,11 +60,10 @@
         </table>
         <br/>
         <p>
-            <button type="button" class="previous" (click)="$event.preventDefault();generatePDF()">Générer un fichier PDF</button>
+            <button type="button" class="pdfButton" (click)="$event.preventDefault();generatePDF()">Générer un fichier PDF</button>
         </p>
+        <br/>
+        <button type="button" class="livret" (click)="$event.preventDefault();goToLivret()" >Livret Session</button>
     </div>
-    <br/>
-    <br/>
-    <button type="button" class="livret" (click)="$event.preventDefault();goToLivret()" >Livret Session</button>
 </html>
 
