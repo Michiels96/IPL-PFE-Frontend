@@ -58,7 +58,7 @@ th, td{
     font-size: 25px;
 } 
 
-.previous:hover{
+.previous:hover, .livret:hover{
     background-color: rgb(251, 193, 122);
 }
 
