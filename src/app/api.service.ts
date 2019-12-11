@@ -75,6 +75,10 @@ export class ApiService {
     let postContent={nom:prof.nom,prenom:prof.prenom,profession:prof.profession,autre_profession:prof.autre,telephone:prof.telephone,user:id_user};
     return this.http.post(this.baseurl + '/prof/professionnels/',postContent, {headers:this.httpHeaders});
   }
+  postContact(tuteur,id_enfant): Observable<any>{
+    let postContent={personne_id:-1,prenom:tuteur.prenom,nom:tuteur.nom,email:tuteur.email,telephone:tuteur.tel,relation:tuteur.statut,enfant:id_enfant};
+    return this.http.post(this.baseurl + '/prof/professionnels/',postContent, {headers:this.httpHeaders});
+  }
   delKid(id): Observable<any>{
     return this.http.delete(this.baseurl + '/enfant/enfants/'+id+'/',{headers:this.httpHeaders});
   }

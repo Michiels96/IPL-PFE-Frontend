@@ -23,8 +23,11 @@ export class CategorieComponentComponent implements OnInit {
     this.nbActivitesOui = 0;
   }
   ngOnInit() {
-    
-    this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
+    this.getKidInfo();
+    if(sessionStorage.getItem('kid_libelle_categorie') != ''){
+      this.sharedService.setDataChoixCategorie(sessionStorage.getItem('kid_libelle_categorie'));
+    }
+    this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie();
     this.nbActivitesOui = this.sharedService.getNbChoixCategorie();
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
@@ -94,6 +97,12 @@ export class CategorieComponentComponent implements OnInit {
       }
     }
     //console.log("nb oui : ", this.nbActivitesOui);
+    if(sessionStorage.getItem('nb_choix_categorie') != ''){
+      sessionStorage.setItem('nb_choix_categorie', JSON.stringify(sessionStorage.getItem('nb_choix_categorie')+this.nbActivitesOui));
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', JSON.stringify(this.nbActivitesOui));
+    }
     this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
   }
 
@@ -110,17 +119,28 @@ export class CategorieComponentComponent implements OnInit {
       this.api.createSession(newSession).subscribe(
         data => {
           this.sharedService.setDataSession(data);
+          this.rien_choisi = false;
+          sessionStorage.setItem('kid_session_info', JSON.stringify(data));
+          this.router.navigate(['/choixJaime']);
         },
         error => {
           console.log(error);
         }
       )
-      this.router.navigate(['/choixJaime']);
-      this.rien_choisi = false;
     }
     else {
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
+    }
+  }
+
+  getKidInfo(){
+    console.log(sessionStorage.getItem('kid_connected'));
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      this.router.navigate(['/']);
     }
   }
 

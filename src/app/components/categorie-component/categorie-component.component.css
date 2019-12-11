@@ -81,7 +81,8 @@ th, td{
 th {
     font-size: 15px;
     /* color: #7e9202; */
-    color: rgb(32, 210, 241);
+    color: #7f8d19;
+    font-weight: bold;
 }
 td {
     color:red;
@@ -101,7 +102,7 @@ input[type=radio] {
 }
 
 button:focus {
-    background-color: greenyellow;
+    background-color: magenta;
     
 }
 .btn {
@@ -155,4 +156,46 @@ html {
 
 .closebtn:hover  {
     color: chartreuse;
+}
+
+.oui {
+    width:50px;
+	height:50px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+    border-color: green;
+	color:green;
+}
+
+.oui:hover {
+    background-color: lemonchiffon;
+}
+
+.non:hover {
+    background-color: lemonchiffon;
+}
+
+.jevoudrais:hover {
+    background-color: lemonchiffon;
+}
+
+.non {
+    width:50px;
+	height:50px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+    border-color: red;
+	color:red;
+}
+
+.jevoudrais {
+    width:100px;
+	height:50px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+    border-color: orange;
+	color:orange;
 }

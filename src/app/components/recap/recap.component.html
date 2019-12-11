@@ -28,45 +28,24 @@
     <!-- <tbody> -->
         <tr *ngFor="let habitude of session_choisie">
             <td>{{habitude.img_description}}</td>
-            <td class="choix">
-                <ng-container *ngIf="habitude.aime=='O'; else pas_aime">
-                    <div style="color: green;"> &#10004;</div>
-                </ng-container>
-            </td>
-            <td class="choix">
-                <ng-template #pas_aime>
-                    <ng-container *ngIf="habitude.aime=='N'; else null_aime">
-                        <div style="color: red;">&#10007;</div>
-                    </ng-container>
-                    <ng-template #null_aime></ng-template>
-                </ng-template>
-            </td>
-            <td class="choix">
-                <ng-container *ngIf="habitude.aide=='O'; else pas_aide">
-                    <div style="color: green;"> &#10004;</div>
-                </ng-container>
-            </td>
-            <td class="choix">
-                <ng-template #pas_aide>
-                    <ng-container *ngIf="habitude.aide=='N'; else null_aide">
-                        <div style="color: red;">&#10007;</div>
-                    </ng-container>
-                    <ng-template #null_aide></ng-template>
-                </ng-template>
-            </td>
-            <td class="choix">
-                <ng-container *ngIf="habitude.content=='O'; else pas_content">
-                    <div style="color: green;"> &#10004;</div>
-                </ng-container>
-            </td>
-            <td class="choix">
-                <ng-template #pas_content>
-                    <ng-container *ngIf="habitude.content=='N'; else null_content">
-                        <div style="color: red;">&#10007;</div>
-                    </ng-container>
-                    <ng-template #null_content></ng-template>
-                </ng-template>
-            </td>
+            <td>
+                    <span *ngIf="habitude.aime == 'O'" style="font-style:italic;font-weight:bold; color: green" >&#10004;</span>
+                </td>
+                <td>
+                    <span *ngIf="habitude.aime == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
+                </td>
+                <td>
+                    <span *ngIf="habitude.aide == 'O'" style="font-style:italic;font-weight:bold; color: green">&#10004;</span>
+                </td>
+                <td>
+                    <span *ngIf="habitude.aide == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
+                </td>
+                <td>
+                    <span *ngIf="habitude.content == 'O'" style="font-style:italic;font-weight:bold; color: green">&#10004;</span>
+                </td>
+                <td>
+                    <span *ngIf="habitude.content == 'N'" style="font-style:italic;font-weight:bold; color: red">&#10007;</span>
+                </td>
             <td>
                 <div *ngIf="habitude.note!=null">
                     <div>{{habitude.note.note_aide}}</div>
