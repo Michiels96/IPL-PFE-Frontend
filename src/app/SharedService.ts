@@ -9,7 +9,7 @@ export class SharedService {
     dataSession;
     
     constructor(){
-        this.dataChoixCategorie = {};
+        this.dataChoixCategorie = "";
         this.nbChoixCategorie = 0;
         this.dataCategorie = {};
         this.dataEnfantConnecte = {};
@@ -24,7 +24,7 @@ export class SharedService {
         return this.dataChoixCategorie;
     }
 
-    setDataChoixCategorie(val: object){
+    setDataChoixCategorie(val: string){
         this.dataChoixCategorie = val;
     }
     /*************************/

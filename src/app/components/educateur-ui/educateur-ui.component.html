@@ -1,7 +1,12 @@
 <html>
+    <div id="fond"> 
+        <div class="ruban">     
+            <h2>Identification du mandataire</h2>     
+        </div>     
+        <div class="ruban_gauche"></div>
+        <div class="ruban_droit"></div>
+    </div>
 
-    <!-- <h3>Le jeu est réalisé à la demande de : </h3>   -->
-    <h3>Identification du mandataire</h3>
     <br />
     <br />
     <div class="formulaire">
@@ -51,6 +56,7 @@
         </form>
     </div>
 
+    <div class="center">
     <form>
         <table class="table">
             <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
@@ -78,4 +84,5 @@
         </table>
     </form>
     <button style="text-align: center; left: 36%; font-size: 100%; position: relative; background-color: green; border-color: green; border-radius: 10px;" class="btn btn-lg btn-primary" [routerLink]="['/recap',{id:kid_id}]" (click)="terminer()">Terminer</button>
+    </div>
 </html>
