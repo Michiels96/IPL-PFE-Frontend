@@ -81,7 +81,8 @@ th, td{
 th {
     font-size: 15px;
     /* color: #7e9202; */
-    color: rgb(32, 210, 241);
+    color: #7f8d19;
+    font-weight: bold;
 }
 td {
     color:red;
