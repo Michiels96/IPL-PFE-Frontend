@@ -28,13 +28,14 @@ export class ApiService {
   baseurl ="https://pfe-back-dev.herokuapp.com";
  // httpHeaders = new HttpHeaders().set(InterceptorSkipHeader, '');/*
  
- httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'/*,'Access-Control-Allow-Credentials': 'true',
+ httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'
+ /*,'Access-Control-Allow-Credentials': 'true',
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'OPTIONS, GET, POST',
 'Access-Control-Allow-Headers': '*','withCredentials': 'true' */});
-  //private http: HttpClient;
-  constructor(private http: HttpClient/* handler: HttpBackend*/) {
-    //this.http = new HttpClient(handler);
+  private http: HttpClient;
+  constructor(/*private http: HttpClient*/ handler: HttpBackend) {
+    this.http = new HttpClient(handler);
    }
   
   getAllCategories(): Observable<any>{
