@@ -35,3 +35,39 @@ html {
     column-count: 4;
     position: absolute;
 }
+
+/* .login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: absolute;
+    left: 10%;
+} */
+
+.formulaire { 
+    border-width: 2px;
+}
+
+.form {
+
+    left: 22.5%;
+    position: relative;
+    /* box-shadow:
+     0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19); */
+    /* text-align: center; */
+}
+
+h3 {
+    text-align: center;
+    color: green;
+}
+
+legend {
+    color: green;
+    padding: 3px;
+}
+
+fieldset {
+    border: 2px gre;
+    border-color: brown;
+    
+}

@@ -1,67 +1,81 @@
 <html>
-    <div class="page">
 
+    <!-- <h3>Le jeu est réalisé à la demande de : </h3>   -->
+    <h3>Identification du mandataire</h3>
+    <br />
+    <br />
+    <div class="formulaire">
         <form class="form" (ngSubmit)="onSubmitMandat()">
-            <h2>Le jeu est réalisé à la demande de : </h2>  
-            <select selected="selected" ng-model="mandataire" (change)="selectMandataire($event.target.value)">
-                <option value="">Choix mandataire</option>
-                <option value="Prof">Professionnel</option>
-                <optgroup value="famille" label="Famille">
-                    <option value="P">Parents</option>
-                    <option value="PE">Père</option>
-                    <option value="ME">Mère</option>
-                </optgroup>
-                <option value="T">Tuteur</option>
-                <option value="E">L'enfant</option>
-                <option value="M">Médecin</option>
-                <option value="AP">Autre professionnel</option>
-                <option value="A">Autre<input value="autre_input"></option>
-            </select>
-            <br><br>
-            <input type="date" value="date_demande" (input)="setMandataire('date_demande', $event.target.value)">
-            <br><br>
-            <div *ngIf="personne_mandataire['mandataire'] === 'M' || personne_mandataire['mandataire'] === 'AP';">
-                <p>Nom : <input placeholder="nom" (input)="setMandataire('nom', $event.target.value)"></p>
-                <p>Prénom : <input placeholder="prenom" (input)="setMandataire('prenom', $event.target.value)"></p>
-                <p>Spécialité : <input placeholder="spécialité" (input)="setMandataire('spécialité', $event.target.value)"></p>
-                <p>Téléphone : <input placeholder="téléphone" (input)="setMandataire('téléphone', $event.target.value)"></p>
-                <p>Email : <input placeholder="email" (input)="setMandataire('email', $event.target.value)"></p>
-            </div>
-            <div *ngIf="personne_mandataire['autre_mandataire'] === 'A';">
-                <p>Autre : <input placeholder="Autre" (change)="selectMandataire($event.target.value)"></p>
-            </div>
+                <div class="form-group">
+                    <label>
+                        Sur l'initiative de :  
+                        <select selected="selected" ng-model="mandataire" (change)="selectMandataire($event.target.value)">
+                            <option value="">Choix mandataire</option>
+                            <option value="P">Professionnel</option>
+                            <optgroup value="famille" label="Famille">
+                                <option value="P">Parents</option>
+                                <option value="PE">Père</option>
+                                <option value="ME">Mère</option>
+                            </optgroup>
+                            <option value="T">Tuteur</option>
+                            <option value="E">L'enfant</option>
+                            <option value="M">Médecin</option>
+                            <option value="AP">Autre professionnel</option>
+                            <option value="A">Autre</option>
+                        </select>
+                    </label>
+                </div>
 
-            <textarea value="objet" placeholder="Objet de la demande initiale" rows="8" cols="70" (input)="setMandataire('objet', $event.target.value)"></textarea>
-            <br>
-            <button type="submit" name="valider_mandat">Valider Mandat</button>
-        </form>
+                <div class="form-group">
+                    Date du mandat : <input type="date" value="date_demande" (input)="setMandataire('date_demande', $event.target.value)">
+                </div>
 
-        <form>
-            <table class="table">
-                <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{q.img_description}}</td>
-                            <td>
-                                <table class="table2">
-                                    <tbody>
-                                        <tr><td><textarea (input)="setNote(q.question_id, 'note_aime', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aime" value="aime"></textarea></td></tr>
-                                        <tr><td><textarea (input)="setNote(q.question_id, 'note_aide', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aide" value="aide"></textarea></td></tr>
-                                        <tr><td><textarea (input)="setNote(q.question_id, 'note_satisfaction', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Content" value="content"></textarea></td></tr>  
-                                    </tbody>
-                                </table>
-                            </td>    
-                        </tr>
-                    </tbody>
-                </li>
-            </table>
+                <div class="form-group" *ngIf="personne_mandataire['mandataire'] === 'M' || personne_mandataire['mandataire'] === 'AP';">
+                    <p>Nom : <input placeholder="nom" (input)="setMandataire('nom', $event.target.value)"></p>
+                    <p>Prénom : <input placeholder="prenom" (input)="setMandataire('prenom', $event.target.value)"></p>
+                    <p>Spécialité : <input placeholder="specialite" (input)="setMandataire('spécialité', $event.target.value)"></p>
+                    <p>Téléphone : <input placeholder="telephone" (input)="setMandataire('téléphone', $event.target.value)"></p>
+                    <p>Email : <input placeholder="email" (input)="setMandataire('email', $event.target.value)"></p>
+                </div>
+                <div class="form-group" *ngIf="personne_mandataire['mandataire'] === 'A';">
+                    <p>Autre : <input placeholder="Autre" (change)="setMandataire('autre_mandataire',$event.target.value)"></p>
+                </div>
+
+                <div class="form-group">
+                    <textarea value="objet" placeholder="Objet de la demande initiale" rows="8" cols="70" (input)="setMandataire('objet', $event.target.value)"></textarea>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <button style="background-color: green; border-color: green; border-radius: 10px; font-size: 100%;" class="btn btn-lg btn-primary" type="submit" name="valider_mandat">Valider Mandat</button>
+                </div>
         </form>
-        <button class="btn btn-lg btn-primary" [routerLink]="['/recap',{id:kid_id}]" (click)="terminer()">Terminer</button>
     </div>
+
+    <form>
+        <table class="table">
+            <li style="list-style-type: none;" *ngFor="let q of questions; let i = index">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{q.img_description}}</td>
+                        <td>
+                            <table class="table2">
+                                <tbody>
+                                    <tr><td><textarea (input)="setNote(q.question_id, 'note_aime', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aime" value="aime"></textarea></td></tr>
+                                    <tr><td><textarea (input)="setNote(q.question_id, 'note_aide', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Aide" value="aide"></textarea></td></tr>
+                                    <tr><td><textarea (input)="setNote(q.question_id, 'note_satisfaction', $event.target.value)" class="form-control" rows="2" cols="40" placeholder="Content" value="content"></textarea></td></tr>  
+                                </tbody>
+                            </table>
+                        </td>    
+                    </tr>
+                </tbody>
+            </li>
+        </table>
+    </form>
+    <button style="text-align: center; left: 36%; font-size: 100%; position: relative; background-color: green; border-color: green; border-radius: 10px;" class="btn btn-lg btn-primary" [routerLink]="['/recap',{id:kid_id}]" (click)="terminer()">Terminer</button>
 </html>

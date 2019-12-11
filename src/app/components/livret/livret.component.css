@@ -8,6 +8,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     background-color: gold;
+
 }
 
 th, td {
@@ -23,12 +24,6 @@ th {
 }
 
 td {
-    color: saddlebrown;
+    color: brown;
 }
 
-h2 {
-    left: 35%;
-    text-align: center;
-    font-weight: bold;
-    color: blue;
-}

@@ -38,7 +38,7 @@ Code Ruban
 }
      
 .ruban_gauche {
-    border-color: transparent #7e9202 transparent transparent;
+    border-color: transparent #b1c70d transparent transparent;
     border-style:solid;
     border-width:15px;
     height:0px;
@@ -50,7 +50,7 @@ Code Ruban
 }
     
 .ruban_droit {
-    border-color: transparent transparent transparent #7e9202;
+    border-color: transparent transparent transparent #b1c70d;
     border-style:solid;
     border-width:15px;
     height:0px;
@@ -75,7 +75,7 @@ img {
     /* table-layout: fixed;  */
 }
 th, td{
-    border: 2px solid #7e9202;
+    border: 2px solid #b1c70d;
     /* vertical-align: top; */
 }
 th {
