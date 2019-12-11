@@ -108,13 +108,23 @@ export class AuthentificatedComponent implements OnInit {
       data => {
         console.log(data);
         this.id_kid_just_subcribed=data.id;
-        this.inscriptionEnfant.reset();
-      // this.enfants.push(data);
-        this.success_inscrire = "Inscription réussie";
-        this.success_inscrire_personne = true;
-        // this.error_inscription_msg="Inscription reussie";
-        // this.error_inscription_msg="";
-        this.compteur=0;
+        this.api.postInfosKid(this.inscriptionEnfant.value,this.id_kid_just_subcribed).subscribe(
+          data => {
+            //console.log(data);
+            this.inscriptionEnfant.reset();
+            this.success_inscrire = "Inscription réussie";
+            this.success_inscrire_personne = true;
+            this.compteur=0;
+          },
+          error => {
+            console.log(error);
+            console.log(error);
+            this.error_inscription_msg="Erreur lors de l'inscription de cet enfant, veuillez verifier tous les champs et recommencer";
+            this.error_inscription = true;
+            this.success_inscrire_personne = false;
+          }
+        )
+      
       },
       error => {
         console.log(error);

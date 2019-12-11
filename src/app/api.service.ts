@@ -75,9 +75,14 @@ export class ApiService {
     return this.http.put(this.baseurl + '/enfant/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{
-    let postContent={id:kid.id,nom:kid.nom,prenom:kid.prenom,date_naissance:kid.date_naissance,age:kid.age,connecte:false,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
+    let postContent={id:kid.id,nom:kid.nom,prenom:kid.prenom,age:kid.age,connecte:false}//JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/', postContent, {headers:this.httpHeaders});
   }
+  postInfosKid(kid,id): Observable<any>{
+    let postContent={id:id,date_naissance:kid.date_naissance,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
+    return this.http.post(this.baseurl + '/enfant/info_supplementaire/', postContent, {headers:this.httpHeaders});
+  }
+  //date_naissance:kid.date_naissance,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier
   createSession(session): Observable<any>{
     let postContent = JSON.stringify(session);
     return this.http.post(this.baseurl + '/sessions/sessions/',postContent, {headers:this.httpHeaders});
@@ -100,7 +105,7 @@ export class ApiService {
   }
   postContact(tuteur,id_enfant): Observable<any>{
     let postContent={personne_id:-1,prenom:tuteur.prenom,nom:tuteur.nom,email:tuteur.email,telephone:tuteur.tel,relation:tuteur.statut,enfant:id_enfant};
-    return this.http.post(this.baseurl + '/prof/professionnels/',postContent, {headers:this.httpHeaders});
+    return this.http.post(this.baseurl + '/enfant/personneContact/',postContent, {headers:this.httpHeaders});
   }
   delKid(id): Observable<any>{
     return this.http.delete(this.baseurl + '/enfant/enfants/'+id+'/',{headers:this.httpHeaders});
