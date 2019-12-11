@@ -16,7 +16,11 @@ export class AccueilComponent implements OnInit {
   kid_selected;
   isNotConnected=true;
   kid_id;
-  constructor(private api: ApiService, private router: Router, public authService: AuthService, private sharedService: SharedService) { }
+  kidChecked;
+
+  constructor(private api: ApiService, private router: Router, public authService: AuthService, private sharedService: SharedService) {
+    this.kidChecked = true;
+   }
 
   ngOnInit() {
     if(sessionStorage.length > 0){
@@ -84,6 +88,10 @@ export class AccueilComponent implements OnInit {
     sessionStorage.setItem('lastPage', '');
   }
 
+
+  switchToOtherProfile(){
+    this.kidChecked = !this.kidChecked;
+  }
 
 
   deconnecterEnfant(kid){
