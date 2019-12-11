@@ -15,7 +15,7 @@
         <tbody>
             <tr>
                 <td>
-                    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
+                    <button type="button" class="oui" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
                         <div class="police">oui</div>
                     </button>
                 </td>
@@ -23,7 +23,7 @@
                     <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
+                    <button type="button" class="non" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
                         <div class="police">non</div>
                     </button>
                 </td>
@@ -31,9 +31,6 @@
         </tbody>
     </table>
     <br/>
-    <button type="button" class="previous police" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>où tu choisis la catégorie</button>        
-    <p *ngIf="var_pasComplet == true">
-        <strong class="alert alert-danger" role="alert">Tu n'a choisis aucune activité, recommence s'il te plaît!</strong>
-    </p>
+    <button type="button" class="previous" (click)="$event.preventDefault();backToChoixCategorie()">Retourner à la page <br/>Choix Catégorie</button>        
 </div>
 </html>

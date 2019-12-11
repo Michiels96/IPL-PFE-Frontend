@@ -18,7 +18,7 @@
         <tbody>
             <tr>
                 <td>
-                    <button type="button" class="btn btn-success" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
+                    <button type="button" class="oui" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
                         <div class="police">oui</div>
                     </button>
                 </td>
@@ -26,7 +26,7 @@
                     <img class="img-thumbnail" style="max-width:50%;max-height:50%;" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{var_activiteCourante.categorie_image}}/{{var_activiteCourante.nom_fichier}}"/>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
+                    <button type="button" class="non" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
                         <div class="police">non</div>
                     </button>
                 </td>
@@ -34,6 +34,6 @@
         </tbody>
     </table>
     <br/>
-    <button type="button" class="previous police" (click)="$event.preventDefault();backToChoix2()">Retourner à la deuxième question</button>
+    <button type="button" class="previous" (click)="$event.preventDefault();backToChoix2()">Retourner à la deuxième question</button>
 </div>
 </html>

@@ -1,6 +1,6 @@
 <html>
 <div style="max-width: 100%;height: auto;">
-    <button class="btn btn-lg" [routerLink]="['/']" title="Précédent">Précédent</button>
+    <button class="btn btn-lg btnBack" [routerLink]="['/']" title="Précédent">Précédent</button>
 
     <div id="fond"> 
         <div class="ruban">     
@@ -28,10 +28,12 @@
             </figure>    
         </li>
     </div> 
-    <h4 *ngIf="var_nbActivites > 0">
-        Jusqu'à maintenant tu a répondu 'oui' à {{var_nbActivites}} activité<span *ngIf="var_nbActivites > 1">s</span>
+    <div *ngIf="var_nbActivites > 0" class="sectionValider">
+        <h4>
+            Jusqu'à maintenant tu a répondu 'oui' à {{var_nbActivites}} activité<span *ngIf="var_nbActivites > 1">s</span>
+        </h4>
         <br/>
-        <button class="btn btn-primary" (click)="$event.preventDefault();onSubmit()">Valider</button>
-    </h4>
+        <button class="btn btn-primary btnValider" (click)="$event.preventDefault();onSubmit()">Valider</button>
+    </div>
 </div>
 </html>

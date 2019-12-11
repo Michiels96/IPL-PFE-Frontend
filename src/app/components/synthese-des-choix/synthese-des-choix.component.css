@@ -6,8 +6,13 @@
     font-style: normal;
 }
 
-html {
+html{
     background-color: beige;
+}
+
+.page{
+    text-align: center;
+    padding-top: 2%;
 }
 
 table{
@@ -15,9 +20,11 @@ table{
     text-align: center;
     margin-left:auto;
     margin-right:auto;
+    width: 50%;
+    height: 50%;
 }
 
-th, td {
+th, td{
     border: 1px solid black;
     vertical-align: top;
     text-align: center;
@@ -28,19 +35,36 @@ th, td {
     background-color: rgb(251, 193, 122);
 }
 
-.previous {
+.previous{
+    font-family: 'nunitoblack';
     border-style: ridge;
     border-radius: 50px;
-    border-color:rgb(3, 189, 3);
-    color: rgb(0, 160, 21);
-    background-color:bisque;
+    border-color:brown;
+    color:brown;
+    background-color:beige;
+    font-size: 25px;
 }
+
+.livret {
+    font-family: 'nunitoblack';
+    border-style: ridge;
+    border-radius: 50px;
+    border-color:brown;
+    color:brown;
+    background-color:beige;
+    left: 46%;
+    text-align: center;
+    position: fixed;
+    font-size: 25px;
+} 
 
 .previous:hover{
     background-color: rgb(251, 193, 122);
 }
 
-.police{
-    font-family: 'nunitoblack';
-    font-size: 35px;
+h2{
+    left: 35%;
+    text-align: center;
+    font-weight: bold;
+    color: brown;    
 }

@@ -84,9 +84,9 @@ a {
     position: relative;
 }
 
-h4 {
+h4, .sectionValider{
     text-align: center;
-    font-weight: bolder;
+    font-weight: bold;
     color: black;
 }
 
@@ -97,13 +97,16 @@ h2 {
 }
 
 .btn {
-    left: 5%;
-    margin: 20px;
-    position: fixed; 
     border-style: ridge;
     border-radius: 50px;
     border-color: orangered;
     color: orangered;
     background-color: beige;
+}
+
+.btnBack {
+    left: 5%;
+    margin: 20px;
+    position: fixed; 
 }
 

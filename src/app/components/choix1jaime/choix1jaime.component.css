@@ -14,12 +14,35 @@ html{
 }
 
 .previous {
+    font-family: 'nunitoblack';
     border-style: ridge;
-    border-radius: 50px;
-    border-color:rgb(3, 189, 3);
-    color: rgb(0, 160, 21);
+    border-radius: 100px;
+    border-color:brown;
+    color: brown;
     background-color:bisque;
+    font-size: 25px;
 }
+
+.oui {
+    width:250px;
+	height:250px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+    border-color: green;
+	color:green;
+}
+
+.non {
+    width:250px;
+	height:250px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+	border-color: red;
+	color:red;
+}
+
 
 .previous:hover{
     background-color: rgb(251, 193, 122);
@@ -27,5 +50,5 @@ html{
 
 .police{
     font-family: 'nunitoblack';
-    font-size: 50px;
+    font-size:40px;
 }

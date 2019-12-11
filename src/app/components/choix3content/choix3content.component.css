@@ -14,11 +14,13 @@ html{
 }
 
 .previous {
+    font-family: 'nunitoblack';
     border-style: ridge;
     border-radius: 50px;
-    border-color:rgb(3, 189, 3);
-    color: rgb(0, 160, 21);
-    background-color:bisque;
+    border-color:brown;
+    color: brown;
+    background-color:beige;
+    font-size: 25px;
 }
 
 .previous:hover{
@@ -27,6 +29,26 @@ html{
 
 .boutonsOuiNon{
     padding: 50%;
+}
+
+.oui {
+    width:250px;
+	height:250px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+    border-color: green;
+	color:green;
+}
+
+.non {
+    width:250px;
+	height:250px;
+	background-color:beige;
+	/* font:bold 13px Arial; */
+	border-radius:45%;
+	border-color: red;
+	color:red;
 }
 
 
