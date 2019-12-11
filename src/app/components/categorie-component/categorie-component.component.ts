@@ -35,6 +35,7 @@ export class CategorieComponentComponent implements OnInit {
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
+    
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     console.log("SHAREDSERVICE - DATA-ENFANTCONNECTE  "+JSON.stringify(this.dataEnfantConnecte));
     this.initImages(this.libelle_categorie_selectionne);
@@ -49,6 +50,9 @@ export class CategorieComponentComponent implements OnInit {
           this.var_choix_images.push(activite);
         }
         //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
+        if(sessionStorage.getItem('dataCategorie') != ''){
+          this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+        }
         // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
         if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
           var choixImagesToChoix1 = this.sharedService.getDataCategorie();
@@ -93,6 +97,7 @@ export class CategorieComponentComponent implements OnInit {
       }
     }
     sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
+    console.log(JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
     this.nbActivitesOui = 0;
     for(var activite of this.sharedService.getDataCategorie()){
