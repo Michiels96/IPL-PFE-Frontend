@@ -22,13 +22,18 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(sessionStorage.getItem('kid_connected'));
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+    }
     this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
     //console.log(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2);
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
       this.router.navigate(['/']);
     }
+  
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
-    console.log(this.sharedService.getDataEnfantConnecte());
+    //console.log(this.sharedService.getDataEnfantConnecte());
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
