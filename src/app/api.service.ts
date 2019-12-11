@@ -52,7 +52,7 @@ export class ApiService {
     return this.http.put(this.baseurl + '/enfant/enfants/'+ kid.enfant_id +'/',updateContent, {headers:this.httpHeaders});
   }
   postKid(kid): Observable<any>{
-    let postContent={id:kid.id,nom:kid.nom,prenom:kid.prenom,date_naissance:kid.date_naissance,age:kid.age,connecte:kid.connecte,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
+    let postContent={id:kid.id,nom:kid.nom,prenom:kid.prenom,date_naissance:kid.date_naissance,age:kid.age,connecte:false,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
     return this.http.post(this.baseurl + '/enfant/enfants/', postContent, {headers:this.httpHeaders});
   }
   createSession(session): Observable<any>{
@@ -84,7 +84,7 @@ export class ApiService {
   }
   connectUser(user): Observable<any>{
     let postContent=JSON.stringify(user);//{age:kid.age ,enfant_id:5,handicap:1,/*handicaps:kid.handicaps,*/nom:kid.nom,prenom:kid.prenom};
-    return this.http.post(this.baseurl + '/prof/login/',postContent, {headers:this.httpHeaders});
+    return this.http.post(this.baseurl + '/prof/login/',postContent, {headers:this.httpHeaders,withCredentials: true});
   }
   getFullSessionById(id): Observable<any>{
     return this.http.get(this.baseurl + '/sessions/full_sessions/' + id + '/', {headers:this.httpHeaders});
