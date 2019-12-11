@@ -1,7 +1,7 @@
 <html>
 <div class="page">
-        <button class="btn btn-lg" (click)="$event.preventDefault();backToChoix()" title="Précédent">Précédent</button>
-
+        <button class="btn btn-lg precedent" (click)="$event.preventDefault();backToChoix()" title="Précédent">Précédent</button>
+        <button class="btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
         <div id="fond"> 
             <div class="ruban">     
                 <h2 class="originalQualityFont">{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
