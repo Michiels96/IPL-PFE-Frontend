@@ -1,12 +1,12 @@
 <html>
 <div>
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-    <div *ngIf="var_activiteCourante != null">
-        <h3>Dis nous si tu aimes ou n'aimes pas cette activité</h3>
+    <div *ngIf="var_activiteCourante != null" >
+        <h3 class="originalQualityFont">Dis nous si tu aimes ou n'aimes pas cette activité</h3>
         <div class="alert alert-secondary" role="alert">
-            <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>
+            <h4 class="originalQualityFont">Catégorie: {{var_activiteCourante.categorie_image}}</h4>
         </div>
-        <h4>Activité nr°{{var_activiteCourante.image_id}}
+        <h4 class="originalQualityFont">Activité nr°{{var_activiteCourante.image_id}}
             <br/>
             ({{var_activiteCourante.description}})
         </h4>
@@ -16,7 +16,7 @@
             <tr>
                 <td>
                     <button type="button" class="oui" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
-                        <div class="police">oui</div>
+                        <div class="nunitoFont">oui</div>
                     </button>
                 </td>
                 <td>
@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <button type="button" class="non" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
-                        <div class="police">non</div>
+                        <div class="nunitoFont">non</div>
                     </button>
                 </td>
             </tr>

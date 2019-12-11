@@ -19,42 +19,44 @@ export class AccueilComponent implements OnInit {
   constructor(private api: ApiService,public authService: AuthService, private route: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
-    if (sessionStorage.length > 0) {
+    if(sessionStorage.length > 0){
+      // si enfant deja connecté et revient à l'accueil, alors on le déconnecte en db
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
       }
     } 
-    sessionStorage.setItem('kid_connected', '');
-      this.api.getUnloggedEnfants().subscribe(
-        data => {
-          //console.log(data);
-          this.listeEnfants =data;//Array.of(data);
-          console.log("enfant");
-          console.log(this.listeEnfants);
-        },
-        error => {
-          console.log(error);
-        }
-      )
+    // on détruit les données en cache
+    this.destroyUserCache();
+    
+    this.api.getUnloggedEnfants().subscribe(
+      data => {
+        //console.log(data);
+        this.listeEnfants =data;//Array.of(data);
+        console.log("enfant");
+        console.log(this.listeEnfants);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
+
   connecterEnfant(){
     console.log("enfant a connecter");
     console.log(this.kid_selected.enfant_id);
-    console.log(this.kid_selected.enfant_nom);
+    console.log(this.kid_selected.nom);
 
-    this.api.updateKid(this.kid_selected,true).subscribe(
+    this.api.updateKid(this.kid_selected, true).subscribe(
       data => {
         //console.log(data);
         this.kid_selected = data;
-        console.log("Data kid_selected : ", this.kid_selected);
-        // this.kid_nomComplet = data.nom + " " + data.prenom;
+        //console.log("Data kid_selected : ", this.kid_selected);
         this.kid_id = data.enfant_id;
         if(this.kid_selected.connecte==true){
           this.isNotConnected=false;
           this.authService.loginKid();
           console.log("connecté")
           sessionStorage.setItem('kid_connected', JSON.stringify(this.kid_selected));
-          this.sharedService.setDataEnfantConnecte(this.kid_selected);
         }
       },
       error => {
@@ -62,6 +64,23 @@ export class AccueilComponent implements OnInit {
       }
     )
   }
+
+  jouer() {
+    console.log("Nom Enfant : ", this.kid_selected.nom);
+    this.route.navigate(['/choix-categorie']);
+  }
+
+
+  destroyUserCache(){
+    sessionStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
+    sessionStorage.setItem('kid_session_info', '');
+    sessionStorage.setItem('dataCategorie', '');
+
+  }
+
+
 
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
@@ -74,16 +93,11 @@ export class AccueilComponent implements OnInit {
     )
   }
 
-  jouer() {
-    console.log("Nom Enfant : ", this.kid_selected.enfant_nom);
-    this.route.navigate(['/choix-categorie', {id_enfant:this.kid_id}]);
-  }
   @HostListener('window:beforeunload', ['$event'])
   ifExitApp(event) {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
-        
       }
     } 
       //event.preventDefault();

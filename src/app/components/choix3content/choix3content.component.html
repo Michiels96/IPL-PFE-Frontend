@@ -1,10 +1,10 @@
 <html>
 <div *ngIf="var_activiteCourante != undefined">
-    <h3>Pour terminer, <br/>dis nous si tu est content de la situation actuelle ou pas</h3>
+    <h3 class="originalQualityFont">Pour terminer, <br/>dis nous si tu est content de la situation actuelle ou pas</h3>
     <div class="alert alert-secondary" role="alert">
-        <h4>Catégorie: {{var_activiteCourante.categorie_image}}</h4>
+        <h4 class="originalQualityFont">Catégorie: {{var_activiteCourante.categorie_image}}</h4>
     </div>
-    <h4>
+    <h4 class="originalQualityFont">
         Activité 
         <span *ngIf="var_activiteCourante.aime == true">aimée </span>
         <span *ngIf="var_activiteCourante.aime == false">Pas aimée </span>
@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <button type="button" class="oui" (click)="$event.preventDefault();addImgToYes(var_activiteCourante)">
-                        <div class="police">oui</div>
+                        <div class="nunitoFont">oui</div>
                     </button>
                 </td>
                 <td>
@@ -27,7 +27,7 @@
                 </td>
                 <td>
                     <button type="button" class="non" (click)="$event.preventDefault();addImgToNo(var_activiteCourante)">
-                        <div class="police">non</div>
+                        <div class="nunitoFont">non</div>
                     </button>
                 </td>
             </tr>

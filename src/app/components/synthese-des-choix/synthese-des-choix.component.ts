@@ -22,8 +22,10 @@ export class SyntheseDesChoixComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getKidInfo();
+
     if(this.sharedService.getDataCategorie().length == undefined){
-      this.router.navigate(['/categories']);
+      this.router.navigate(['/choix-categorie']);
     }
     this.var_reponsesQ3 = this.sharedService.getDataCategorie();
     for(var activite of this.var_reponsesQ3){
@@ -87,6 +89,43 @@ export class SyntheseDesChoixComponent implements OnInit {
     " à "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(), 10, 285);
     var nomFichier = "resulat-"+prenomEnfant+nomEnfant+"_"+dateSession;
     doc.save(nomFichier+'.pdf');
+  }
+
+  getKidInfo(){
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+      this.getKidSessionInfo();
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      this.router.navigate(['/']);
+    }
+  }
+
+  getKidSessionInfo(){
+    if(sessionStorage.getItem('kid_session_info') != ''){
+      this.sharedService.setDataSession(JSON.parse(sessionStorage.getItem('kid_session_info')));
+      this.getDataCategorie();
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', '');
+      sessionStorage.setItem('kid_libelle_categorie', '');
+      sessionStorage.setItem('kid_session_info', '');
+      sessionStorage.setItem('dataCategorie', '');
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
+
+  getDataCategorie(){
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', '');
+      sessionStorage.setItem('kid_libelle_categorie', '');
+      sessionStorage.setItem('kid_session_info', '');
+      sessionStorage.setItem('dataCategorie', '');
+      this.router.navigate(['/choix-categorie']);
+    }
   }
 
   @HostListener('window:beforeunload', ['$event'])

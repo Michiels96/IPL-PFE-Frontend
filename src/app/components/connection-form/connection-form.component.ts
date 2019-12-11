@@ -60,7 +60,7 @@ export class ConnectionFormComponent implements OnInit {
       },
       error => {
         //console.log(error);
-        this.error_connect_msg="Mot de passe ou nom incorrect";
+        this.error_connect_msg="Mot de passe ou email incorrect";
         this.error_connect = true;
       }
     )

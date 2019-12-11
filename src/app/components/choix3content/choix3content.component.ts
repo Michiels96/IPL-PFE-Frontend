@@ -25,6 +25,8 @@ export class Choix3contentComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.getKidInfo();
+  
     if(this.sharedService.getDataCategorie().length == undefined){
       this.router.navigate(['/categories']);
     }
@@ -96,6 +98,7 @@ export class Choix3contentComponent implements OnInit {
       }
       i++;
     }
+    sessionStorage.setItem('dataCategorie', JSON.stringify(activitesSelectionnes));
     this.sharedService.setDataCategorie(this.var_activitesContentEnregistres);
     console.log("CHOIX 3 "+JSON.stringify(this.sharedService.getDataCategorie()));
     // filtrage des images avec le champ 'choix' à 'oui'
@@ -105,6 +108,7 @@ export class Choix3contentComponent implements OnInit {
         activitesSelectionnes.push(activite);
       }
     }
+    sessionStorage.setItem('dataCategorie', JSON.stringify(activitesSelectionnes));
     this.sharedService.setDataCategorie(activitesSelectionnes);
     // sauvegarde en db
     var session_id = this.sharedService.getDataSession().session_id;
@@ -149,6 +153,46 @@ export class Choix3contentComponent implements OnInit {
       )
     }
   }
+
+  getKidInfo(){
+    console.log(sessionStorage.getItem('kid_connected'));
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+      this.getKidSessionInfo();
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      this.router.navigate(['/']);
+    }
+  }
+
+  getKidSessionInfo(){
+    if(sessionStorage.getItem('kid_session_info') != ''){
+      this.sharedService.setDataSession(JSON.parse(sessionStorage.getItem('kid_session_info')));
+      this.getDataCategorie();
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', '');
+      sessionStorage.setItem('kid_libelle_categorie', '');
+      sessionStorage.setItem('kid_session_info', '');
+      sessionStorage.setItem('dataCategorie', '');
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
+
+  getDataCategorie(){
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+    }
+    else{
+      sessionStorage.setItem('nb_choix_categorie', '');
+      sessionStorage.setItem('kid_libelle_categorie', '');
+      sessionStorage.setItem('kid_session_info', '');
+      sessionStorage.setItem('dataCategorie', '');
+      this.router.navigate(['/choix-categorie']);
+    }
+  }
+
+
   @HostListener('window:beforeunload', ['$event'])
   ifExitApp(event) {
     if (sessionStorage.length > 0) {

@@ -27,7 +27,16 @@ export class LivretComponent implements OnInit {
   }
 
   newGame(){
-    this.router.navigate(['/']);
+    this.destroyUserCache();
+    this.router.navigate(['/choix-categorie']);
+  }
+
+  destroyUserCache(){
+    sessionStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
+    sessionStorage.setItem('kid_session_info', '');
+    sessionStorage.setItem('dataCategorie', '');
   }
 
 

@@ -22,16 +22,24 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getKidInfo();
     this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
     //console.log(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2);
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
       this.router.navigate(['/']);
     }
+  
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
-    console.log(this.sharedService.getDataEnfantConnecte());
+    //console.log(this.sharedService.getDataEnfantConnecte());
+    console.log(sessionStorage.getItem('nb_choix_categorie'));
+    if(sessionStorage.getItem('nb_choix_categorie') != ''){
+      this.var_nbActivites = +sessionStorage.getItem('nb_choix_categorie');
+    }
+    /*
     if(this.sharedService.getNbChoixCategorie() > 0){
       this.var_nbActivites = this.sharedService.getNbChoixCategorie();
     }
+    */
     this.getCategories();
   }
 
@@ -65,8 +73,8 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   getCat(cat){
-    var cast = [cat];
-    this.sharedService.setDataChoixCategorie(cast);
+    this.sharedService.setDataChoixCategorie(cat);
+    sessionStorage.setItem('kid_libelle_categorie', cat);
     this.router.navigate(['/categories']);
   }
 
@@ -80,13 +88,21 @@ export class ChoixCategorieComponent implements OnInit {
     newSession['date'] = date_session;
     this.api.createSession(newSession).subscribe(
       data => {
-        this.sharedService.setDataSession(data);
+        //this.sharedService.setDataSession(data);
+        sessionStorage.setItem('kid_session_info', JSON.stringify(data));
+        this.router.navigate(['/choixJaime']);
       },
       error => {
         console.log(error);
       }
     )
-    this.router.navigate(['/choixJaime']);
+  }
+
+  getKidInfo(){
+    console.log(sessionStorage.getItem('kid_connected'));
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+    }
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -94,6 +110,7 @@ export class ChoixCategorieComponent implements OnInit {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
+        sessionStorage.setItem('kid_session_info', '');
         console.log("juste après avoir deco");
       }
     } 

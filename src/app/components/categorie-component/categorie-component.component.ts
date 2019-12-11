@@ -23,12 +23,19 @@ export class CategorieComponentComponent implements OnInit {
     this.nbActivitesOui = 0;
   }
   ngOnInit() {
-    
-    this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie()[0];
+    this.getKidInfo();
+    if(sessionStorage.getItem('kid_libelle_categorie') != ''){
+      this.sharedService.setDataChoixCategorie(sessionStorage.getItem('kid_libelle_categorie'));
+    }
+    this.libelle_categorie_selectionne = this.sharedService.getDataChoixCategorie();
+    if(sessionStorage.getItem('nb_choix_categorie') != ''){
+      this.sharedService.setNbChoixCategorie(+sessionStorage.getItem('nb_choix_categorie'));
+    }
     this.nbActivitesOui = this.sharedService.getNbChoixCategorie();
     if(this.libelle_categorie_selectionne == null){
       this.router.navigate(['/choix-categorie']);
     }
+    
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     console.log("SHAREDSERVICE - DATA-ENFANTCONNECTE  "+JSON.stringify(this.dataEnfantConnecte));
     this.initImages(this.libelle_categorie_selectionne);
@@ -43,6 +50,9 @@ export class CategorieComponentComponent implements OnInit {
           this.var_choix_images.push(activite);
         }
         //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
+        if(sessionStorage.getItem('dataCategorie') != ''){
+          this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+        }
         // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
         if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
           var choixImagesToChoix1 = this.sharedService.getDataCategorie();
@@ -86,6 +96,8 @@ export class CategorieComponentComponent implements OnInit {
         choixImagesToChoix1.push(activite);
       }
     }
+    sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
+    console.log(JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
     this.nbActivitesOui = 0;
     for(var activite of this.sharedService.getDataCategorie()){
@@ -94,6 +106,7 @@ export class CategorieComponentComponent implements OnInit {
       }
     }
     //console.log("nb oui : ", this.nbActivitesOui);
+    sessionStorage.setItem('nb_choix_categorie', JSON.stringify(this.nbActivitesOui));
     this.sharedService.setNbChoixCategorie(this.nbActivitesOui);
   }
 
@@ -110,17 +123,28 @@ export class CategorieComponentComponent implements OnInit {
       this.api.createSession(newSession).subscribe(
         data => {
           this.sharedService.setDataSession(data);
+          this.rien_choisi = false;
+          sessionStorage.setItem('kid_session_info', JSON.stringify(data));
+          this.router.navigate(['/choixJaime']);
         },
         error => {
           console.log(error);
         }
       )
-      this.router.navigate(['/choixJaime']);
-      this.rien_choisi = false;
     }
-    else {
+    else{
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
+    }
+  }
+
+  getKidInfo(){
+    console.log(sessionStorage.getItem('kid_connected'));
+    if(sessionStorage.getItem('kid_connected') != ''){
+      this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
+    }
+    if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      this.router.navigate(['/']);
     }
   }
 
@@ -140,7 +164,6 @@ export class CategorieComponentComponent implements OnInit {
     if (sessionStorage.length > 0) {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
-        
       }
     } 
       //event.preventDefault();
