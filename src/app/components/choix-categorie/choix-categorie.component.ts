@@ -26,9 +26,15 @@ export class ChoixCategorieComponent implements OnInit {
     this.nomComplet_enfant = this.sharedService.getDataEnfantConnecte().prenom+" "+this.sharedService.getDataEnfantConnecte().nom;
     //console.log(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2);
     if(JSON.stringify(this.sharedService.getDataEnfantConnecte()).length == 2){
+      sessionStorage.setItem('lastPage', '');
       this.router.navigate(['/']);
     }
-  
+    if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'choix-categorie'){
+      this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
+    }
+    else{
+      sessionStorage.setItem('lastPage', 'choix-categorie');
+    }
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     //console.log(this.sharedService.getDataEnfantConnecte());
     console.log(sessionStorage.getItem('nb_choix_categorie'));
@@ -75,6 +81,7 @@ export class ChoixCategorieComponent implements OnInit {
   getCat(cat){
     this.sharedService.setDataChoixCategorie(cat);
     sessionStorage.setItem('kid_libelle_categorie', cat);
+    sessionStorage.setItem('lastPage', 'categories');
     this.router.navigate(['/categories']);
   }
 
@@ -90,6 +97,7 @@ export class ChoixCategorieComponent implements OnInit {
       data => {
         //this.sharedService.setDataSession(data);
         sessionStorage.setItem('kid_session_info', JSON.stringify(data));
+        sessionStorage.setItem('lastPage', 'choixJaime');
         this.router.navigate(['/choixJaime']);
       },
       error => {

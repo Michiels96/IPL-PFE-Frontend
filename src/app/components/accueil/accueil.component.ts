@@ -67,6 +67,7 @@ export class AccueilComponent implements OnInit {
 
   jouer() {
     console.log("Nom Enfant : ", this.kid_selected.nom);
+    sessionStorage.setItem('lastPage', 'choix-categorie');
     this.route.navigate(['/choix-categorie']);
   }
 
@@ -77,7 +78,7 @@ export class AccueilComponent implements OnInit {
     sessionStorage.setItem('kid_libelle_categorie', '');
     sessionStorage.setItem('kid_session_info', '');
     sessionStorage.setItem('dataCategorie', '');
-
+    sessionStorage.setItem('lastPage', '');
   }
 
 

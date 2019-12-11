@@ -65,6 +65,6 @@
     </div>
     <br/>
     <br/>
-    <button type="button" class="livret" [routerLink]="['/livret']" >Livret Session</button>
+    <button type="button" class="livret" (click)="$event.preventDefault();goToLivret()" >Livret Session</button>
 </html>
 
