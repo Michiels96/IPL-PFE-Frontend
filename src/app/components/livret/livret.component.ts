@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/SharedService';
 import { ApiService } from 'src/app/api.service';
 
@@ -16,14 +16,18 @@ export class LivretComponent implements OnInit {
   session_choisie;
   id_session=-1;
 
-  constructor(private api: ApiService,private route: ActivatedRoute, private sharedService: SharedService) {
-   }
+  constructor(private api: ApiService,private route: ActivatedRoute, private router:Router, private sharedService: SharedService) {}
 
   ngOnInit() {
     this.kid_id = this.sharedService.getDataEnfantConnecte().enfant_id;
     this.kid_nom = this.sharedService.getDataEnfantConnecte().prenom + " " + this.sharedService.getDataEnfantConnecte().nom;
     console.log("kid_nom" + this.kid_nom);
     this.getSession();
+    console.log(this.sessions);
+  }
+
+  newGame(){
+    this.router.navigate(['/']);
   }
 
 
