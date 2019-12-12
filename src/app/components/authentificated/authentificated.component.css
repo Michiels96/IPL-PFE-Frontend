@@ -16,11 +16,11 @@ select{
 }
 .login-form-1 h3{
     text-align: center;
-    color: orangered;
+    color: rgb(11, 199, 11);
 }
 .login-form-2{
     padding: 5%;
-    background: rgb(122, 236, 69);
+    background: rgb(11, 199, 11);
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -54,7 +54,7 @@ h2 {
     margin: 25px;
     text-align: center;
     font-weight: bold;
-    color: orangered;
+    color: rgb(11, 199, 11);
 }
 /* Alert */
 
@@ -71,7 +71,7 @@ h2 {
 
 .closebtn {
     margin-left: 15px;
-    color: orangered;
+    color: rgb(11, 199, 11);;
     font-weight: bold;
     float: right;
     font-size: 22px;

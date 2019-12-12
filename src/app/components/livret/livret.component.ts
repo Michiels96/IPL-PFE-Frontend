@@ -22,9 +22,7 @@ export class LivretComponent implements OnInit {
     this.getKidInfo();
     this.kid_id = this.sharedService.getDataEnfantConnecte().enfant_id;
     this.kid_nom = this.sharedService.getDataEnfantConnecte().prenom + " " + this.sharedService.getDataEnfantConnecte().nom;
-    console.log("kid_nom" + this.kid_nom);
     this.getSession();
-    console.log(this.sessions);
   }
 
   newGame(){
@@ -94,8 +92,6 @@ export class LivretComponent implements OnInit {
   changerSession(event) {
     if(this.id_session != -1) {
       for(let i=0;i<this.sessions.length;i++){
-        console.log(this.sessions[i].question_session);
-        console.log(this.sessions[i].question_session.aide == null);
         if(this.id_session==this.sessions[i].session_id){
           this.session_choisie=this.sessions[i].question_session;
           this.triSession();
@@ -114,7 +110,6 @@ export class LivretComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        console.log("encore deconnecté");
       },
       error => {
         console.log(error);

@@ -64,9 +64,6 @@ export class AuthentificatedComponent implements OnInit {
   ngOnInit() {
     this.compteur=0;
     this.whoIsConnected=this.route.snapshot.paramMap.get('nom');
-   // this.idFromWhoIsConnected=this.route.snapshot.paramMap.get('id_prof');
-    console.log("id prof:");
-    console.log(this.idFromWhoIsConnected);
     this.getEnfants();
     this.error_inscription_msg="";
     this.error_inscription = false;
@@ -78,13 +75,9 @@ export class AuthentificatedComponent implements OnInit {
   }
   getEnfants = () => {
    
-    //this.api.getAllEnfants().subscribe(
     this.api.getLoggedEnfants().subscribe(
       data => {
-        //console.log(data);
         this.listeEnfants = data;
-        console.log("enfant");
-        console.log(this.listeEnfants);
       },
       error => {
         console.log(error);
@@ -92,32 +85,23 @@ export class AuthentificatedComponent implements OnInit {
     )
   }
   confirmer(){
-    console.log("enfant choisi");
-    console.log(this.kid_selected);
-
     if(this.kid_selected == null) {
       this.error_select_enfant = "Veuillez selectionner un enfant";
       this.error_select = true;
     }
     else {
       this.router.navigate(['/ui']);
-      //this.sharedService.set_enfant_id(this.kid_selected)
       sessionStorage.setItem('kid_selected', JSON.stringify(this.kid_selected));
     }
     
   }
   inscrireEnfant(){
-    console.log(this.inscriptionEnfant.value);
    this.api.postKid(this.inscriptionEnfant.value).subscribe( 
       data => {
-        console.log(data);
-        console.log(data.id);
         this.id_kid_just_subcribed=data.enfant_id;
-        console.log( this.id_kid_just_subcribed);
         
         this.api.postInfosKid(this.inscriptionEnfant.value,this.id_kid_just_subcribed).subscribe(
           data => {
-            //console.log(data);
             this.inscriptionEnfant.reset();
             this.success_inscrire = "Inscription réussie";
             this.success_inscrire_personne = true;
@@ -125,8 +109,6 @@ export class AuthentificatedComponent implements OnInit {
             this.isInscrit=true;
           },
           error => {
-            console.log(error);
-            console.log(error);
             this.error_inscription_msg="Erreur lors de l'inscription de cet enfant, veuillez verifier tous les champs et recommencer";
             this.error_inscription = true;
             this.success_inscrire_personne = false;
@@ -143,17 +125,12 @@ export class AuthentificatedComponent implements OnInit {
     this.success_inscrire_personne = false;
   }
   sendInscription(){
-    console.log("form recu 2 ! "); 
-    console.log(this.inscription.value);
+
     this.api.postUser(this.inscription.value).subscribe( 
       data => {
-        console.log("user renvoyé");
-        console.log(data);
         this.api.postProf(this.inscription.value,data.id).subscribe( 
           data => {
             this.inscription.reset();
-            console.log("prof renvoyé");
-            console.log(data);
             this.success_inscrire = "Inscription réussie";
             this.success_inscrire_personne = true;
           },
@@ -177,13 +154,9 @@ export class AuthentificatedComponent implements OnInit {
   getAge(){
    
     let date=new Date(this.inscriptionEnfant.value.date_naissance);
-    console.log(date.getTime());
-    console.log( Date.now());
     let timeDiff = Math.abs(Date.now() - date.getTime());
     let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
-    this.inscriptionEnfant.patchValue({age: age});
-    console.log(age);
-    
+    this.inscriptionEnfant.patchValue({age: age});    
   }
   inscriptionTuteur(){
     if(this.id_kid_just_subcribed==-1){
@@ -198,7 +171,6 @@ export class AuthentificatedComponent implements OnInit {
     }
     this.api.postContact(this.tuteur.value,this.id_kid_just_subcribed).subscribe( 
       data => {
-        console.log(data);
         this.tuteur.reset();
         this.compteur+=1;
         this.success_inscrire = "Inscription réussie Personne de contact";

@@ -12,7 +12,6 @@ export class AppComponent {
  
   kid_in_session;
   constructor(private api: ApiService){
-    //this.getEnfants();
    
   }
   ngOnInit() {

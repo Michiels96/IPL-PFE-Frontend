@@ -19,7 +19,6 @@ html{
     width:250px;
 	height:250px;
 	background-color:beige;
-	/* font:bold 13px Arial; */
 	border-radius:45%;
     border-color: green;
     color:green;
@@ -37,7 +36,6 @@ html{
     width:250px;
 	height:250px;
 	background-color:beige;
-	/* font:bold 13px Arial; */
 	border-radius:45%;
 	border-color: red;
 	color:red;
