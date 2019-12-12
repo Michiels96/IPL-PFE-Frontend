@@ -43,7 +43,7 @@ export class RecapComponent implements OnInit {
         if(this.id_session==this.sessions[i].session_id){
           
           this.session_choisie=this.sessions[i].question_session;
-          this.tab=this.sessions[i].question_session;
+         
           console.log(this.session_choisie);
         }
       }
