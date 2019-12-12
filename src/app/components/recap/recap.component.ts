@@ -23,6 +23,7 @@ export class RecapComponent implements OnInit {
 
     this.id_kid = this.route.snapshot.paramMap.get('id');
     this.getSession(); 
+    this.list=[];
   }
   
   getSession(){
