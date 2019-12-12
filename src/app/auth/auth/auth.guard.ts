@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):
      boolean
      {
-        if (this.authService.isLoggedin) {
+        if (sessionStorage.getItem("guard")=="true") {
             
             return true;
         } else {

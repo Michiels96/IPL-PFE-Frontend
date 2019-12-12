@@ -10,7 +10,7 @@ import { ApiService } from './api.service';
 })
 export class AppComponent {
  
-kid_in_session;
+  kid_in_session;
   constructor(private api: ApiService){
     //this.getEnfants();
    
