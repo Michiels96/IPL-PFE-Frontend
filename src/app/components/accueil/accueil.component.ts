@@ -52,8 +52,6 @@ export class AccueilComponent implements OnInit {
         console.log(error);
       }
     );
-      
-    
   }
 
   connecterEnfant(){

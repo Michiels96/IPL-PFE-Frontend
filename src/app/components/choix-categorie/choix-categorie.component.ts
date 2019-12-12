@@ -129,8 +129,19 @@ export class ChoixCategorieComponent implements OnInit {
 
   deconnexion(){
     this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
+    this.destroyUserCache();
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
+  }
+
+  destroyUserCache(){
+    sessionStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
+    sessionStorage.setItem('kid_session_info', '');
+    sessionStorage.setItem('dataCategorie', '');
+    sessionStorage.setItem('lastPage', '');
+    this.sharedService.deleteAllData();
   }
 
   @HostListener('window:beforeunload', ['$event'])

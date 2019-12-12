@@ -37,6 +37,7 @@ export class LivretComponent implements OnInit {
     sessionStorage.setItem('kid_libelle_categorie', '');
     sessionStorage.setItem('kid_session_info', '');
     sessionStorage.setItem('dataCategorie', '');
+    this.sharedService.deleteAllData();
     sessionStorage.setItem('lastPage', 'choix-categorie');
   }
 

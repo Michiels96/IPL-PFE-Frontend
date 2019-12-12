@@ -59,18 +59,18 @@ export class CategorieComponentComponent implements OnInit {
         //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
         if(sessionStorage.getItem('dataCategorie') != ''){
           this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
-        }
-        // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
-        if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-          var choixImagesToChoix1 = this.sharedService.getDataCategorie();
-          var i = 0;
-          for(var activite of this.var_choix_images){
-            for(var activiteSauvegardee of choixImagesToChoix1){
-              if(activiteSauvegardee.image_id == activite.image_id){
-                this.var_choix_images[i] = activiteSauvegardee;
+          // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
+          if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
+            var choixImagesToChoix1 = this.sharedService.getDataCategorie();
+            var i = 0;
+            for(var activite of this.var_choix_images){
+              for(var activiteSauvegardee of choixImagesToChoix1){
+                if(activiteSauvegardee.image_id == activite.image_id){
+                  this.var_choix_images[i] = activiteSauvegardee;
+                }
               }
+              i++;
             }
-            i++;
           }
         }
       },
@@ -83,8 +83,8 @@ export class CategorieComponentComponent implements OnInit {
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
-    if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-     
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       for(var activite of this.var_choix_images){
         //retrouver les images deja ajoutées
@@ -139,6 +139,7 @@ export class CategorieComponentComponent implements OnInit {
       )
     }
     else{
+      console.log("Error");
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
     }
@@ -176,8 +177,19 @@ export class CategorieComponentComponent implements OnInit {
 
   deconnexion(){
     this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
+    this.destroyUserCache();
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
+  }
+
+  destroyUserCache(){
+    sessionStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
+    sessionStorage.setItem('kid_session_info', '');
+    sessionStorage.setItem('dataCategorie', '');
+    sessionStorage.setItem('lastPage', '');
+    this.sharedService.deleteAllData();
   }
 
   deconnecterEnfant(kid){
