@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SharedService } from 'src/app/SharedService';
 
 
 @Component({
@@ -24,11 +25,14 @@ export class EducateurUIComponent implements OnInit {
   notes = [];
   id = [];
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router,private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.kid_id = this.route.snapshot.paramMap.get('id');
-    this.prof_id = this.route.snapshot.paramMap.get('prof_id');
+    this.kid_id = this.sharedService.get_enfant_id();//this.route.snapshot.paramMap.get('id');
+    this.prof_id = this.sharedService.get_prof_id();//this.route.snapshot.paramMap.get('prof_id');
+    console.log("prof id:");
+    console.log(this.prof_id);
+    console.log(this.kid_id)
     this.getSession();
   }
 
@@ -45,6 +49,8 @@ export class EducateurUIComponent implements OnInit {
   }
 
   getQuestion = () => {
+    console.log("prof id:")
+    console.log(this.prof_id);
     this.api.getFullSessionById(this.q_id).subscribe(
       data => {
         this.questions = data.question_session;

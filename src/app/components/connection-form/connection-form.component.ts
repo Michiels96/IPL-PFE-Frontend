@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms'
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth/auth.service';
+import { SharedService } from 'src/app/SharedService';
 
 
 
@@ -26,7 +27,7 @@ export class ConnectionFormComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
-  constructor(public authService: AuthService,private api: ApiService,private router:Router) { 
+  constructor(public authService: AuthService,private api: ApiService,private router:Router,private sharedService: SharedService) { 
     
   }
 
@@ -50,7 +51,8 @@ export class ConnectionFormComponent implements OnInit {
          
           this.authService.login();
           //this.isTokenValid=true;
-          this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value,id_prof:data.id}]);
+          this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
+          this.sharedService.set_prof_id(data.id);
           this.connexion.reset();
         }
         else{

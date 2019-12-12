@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms'
+import { SharedService } from 'src/app/SharedService';
 
 @Component({
   selector: 'app-authentificated',
@@ -58,12 +59,12 @@ export class AuthentificatedComponent implements OnInit {
     profession: new FormControl(''),
     autre: new FormControl("/")
   });
-  constructor(private api: ApiService,private route: ActivatedRoute,private router:Router) {}
+  constructor(private api: ApiService,private route: ActivatedRoute,private router:Router, private sharedService: SharedService) {}
 
   ngOnInit() {
     this.compteur=0;
     this.whoIsConnected=this.route.snapshot.paramMap.get('nom');
-    this.idFromWhoIsConnected=this.route.snapshot.paramMap.get('id_prof');
+   // this.idFromWhoIsConnected=this.route.snapshot.paramMap.get('id_prof');
     console.log("id prof:");
     console.log(this.idFromWhoIsConnected);
     this.getEnfants();
@@ -98,7 +99,8 @@ export class AuthentificatedComponent implements OnInit {
       this.error_select = true;
     }
     else {
-      this.router.navigate(['/ui',{id:this.kid_selected,id_prof:this.idFromWhoIsConnected}]);
+      this.router.navigate(['/ui']);
+      this.sharedService.set_enfant_id(this.kid_selected)
     }
     
   }

@@ -7,6 +7,8 @@ export class SharedService {
     dataCategorie;
     dataEnfantConnecte;
     dataSession;
+    id_enfant_session;
+    id_prof_session;
     
     constructor(){
         this.dataChoixCategorie = "";
@@ -28,7 +30,18 @@ export class SharedService {
         this.dataChoixCategorie = val;
     }
     /*************************/
-
+    get_enfant_id(){
+        return this.id_enfant_session;
+    }
+    set_enfant_id(nb){
+        this.id_enfant_session=nb;
+    }
+    get_prof_id(){
+        return this.id_prof_session;
+    }
+    set_prof_id(nb){
+        this.id_prof_session=nb;
+    } 
     /* 
     composants impliqués: 
     - choix-categorie <== categorie-component
