@@ -74,7 +74,7 @@ import { HttpRequestInterceptor } from './api.service';
     RouterModule.forRoot ([
       { path: '', component: AccueilComponent },
       //{ path: 'choix-categorie', component: ChoixCategorieComponent,canActivate: [KidAuthGuard] },
-      { path: 'choix-categorie', component: ChoixCategorieComponent,canActivate: [KidAuthGuard]},
+      { path: 'choix-categorie', component: ChoixCategorieComponent},
       //{ path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard] },
       { path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard]},
       { path: 'connexion', component: ConnectionFormComponent,canActivate: [AuthGuard]},

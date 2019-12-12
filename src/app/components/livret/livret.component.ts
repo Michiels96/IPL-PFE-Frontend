@@ -94,11 +94,21 @@ export class LivretComponent implements OnInit {
   changerSession(event) {
     if(this.id_session != -1) {
       for(let i=0;i<this.sessions.length;i++){
+        console.log(this.sessions[i].question_session);
+        console.log(this.sessions[i].question_session.aide == null);
         if(this.id_session==this.sessions[i].session_id){
           this.session_choisie=this.sessions[i].question_session;
+          this.tri();
         }
       }
     }
+  }
+
+
+  tri(){
+    this.session_choisie = this.session_choisie.filter(function(value, index, arr){
+      return value.aime != null;
+    });
   }
 
   deconnecterEnfant(kid){
