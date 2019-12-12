@@ -21,6 +21,7 @@ export class CategorieComponentComponent implements OnInit {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
     this.nbActivitesOui = 0;
+    this.dataEnfantConnecte = null;
   }
   ngOnInit() {
     this.getKidInfo();
