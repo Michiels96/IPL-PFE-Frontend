@@ -52,7 +52,8 @@ export class ConnectionFormComponent implements OnInit {
           this.authService.login();
           //this.isTokenValid=true;
           this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
-          this.sharedService.set_prof_id(data.id);
+          //this.sharedService.set_prof_id(data.id);
+          sessionStorage.setItem('prof_id', JSON.stringify(data.id));
           this.connexion.reset();
         }
         else{

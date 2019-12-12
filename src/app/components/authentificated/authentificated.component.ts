@@ -21,7 +21,7 @@ export class AuthentificatedComponent implements OnInit {
 
   success_inscrire;
   success_inscrire_personne = false;
-
+  isInscrit;
   whoIsConnected;
   idFromWhoIsConnected;
   listeEnfants;
@@ -36,7 +36,7 @@ export class AuthentificatedComponent implements OnInit {
     langue: new FormControl(''),
     dominance: new FormControl(''),
     scolarite: new FormControl(''),
-    type: new FormControl(''),
+    type: new FormControl('/'),
     niveau: new FormControl(''),
     besoin_particulier: new FormControl(''),
     autre_besoin_particulier: new FormControl('/')
@@ -74,6 +74,7 @@ export class AuthentificatedComponent implements OnInit {
     this.error_select = false; 
     this.success_inscrire = "";
     this.success_inscrire_personne = false;
+    this.isInscrit=false;
   }
   getEnfants = () => {
    
@@ -100,7 +101,8 @@ export class AuthentificatedComponent implements OnInit {
     }
     else {
       this.router.navigate(['/ui']);
-      this.sharedService.set_enfant_id(this.kid_selected)
+      //this.sharedService.set_enfant_id(this.kid_selected)
+      sessionStorage.setItem('kid_selected', JSON.stringify(this.kid_selected));
     }
     
   }
@@ -112,6 +114,7 @@ export class AuthentificatedComponent implements OnInit {
         console.log(data.id);
         this.id_kid_just_subcribed=data.enfant_id;
         console.log( this.id_kid_just_subcribed);
+        
         this.api.postInfosKid(this.inscriptionEnfant.value,this.id_kid_just_subcribed).subscribe(
           data => {
             //console.log(data);
@@ -119,6 +122,7 @@ export class AuthentificatedComponent implements OnInit {
             this.success_inscrire = "Inscription réussie";
             this.success_inscrire_personne = true;
             this.compteur=0;
+            this.isInscrit=true;
           },
           error => {
             console.log(error);

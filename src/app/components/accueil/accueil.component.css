@@ -17,8 +17,9 @@
 
 
 h3 {
-    margin: 20px;
-    padding: 30px;
+    margin:5%; 
+    padding: 5%;
+    text-align: center;
 }
 
 html {
@@ -110,10 +111,6 @@ Code Ruban
     z-index: 10;
     height:110px;
 }
-     
-
-     
-
 
 figure {
     border: 1px solid #b1c70d;
@@ -154,17 +151,17 @@ h2 {
     
     color: orangered;
 }
-.position{
+/* .position{
     float: right;
 
     position: relative;
     left: -180%;
-}
+} */
 .btn {
     float: right;
     margin-top: 5%;
-    position: relative;
-    left: -112%; 
+    /* position: relative; */
+    left: -200%; 
     border-style: ridge;
     border-radius: 50px;
     border-color: green;
@@ -173,7 +170,6 @@ h2 {
 }
 
 .btnLogout {
-    
     font-size: 25px;
     right: 5%;
     margin: 20px;
