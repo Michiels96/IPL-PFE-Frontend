@@ -139,6 +139,7 @@ export class CategorieComponentComponent implements OnInit {
       )
     }
     else{
+      console.log("Error");
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
     }
