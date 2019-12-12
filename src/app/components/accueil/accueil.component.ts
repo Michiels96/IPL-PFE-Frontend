@@ -61,7 +61,7 @@ export class AccueilComponent implements OnInit {
     console.log("enfant a connecter");
     console.log(this.kid_selected.enfant_id);
     console.log(this.kid_selected.nom);
-
+    this.destroyUserCache();
     this.api.updateKid(this.kid_selected, true).subscribe(
       data => {
         //console.log(data);

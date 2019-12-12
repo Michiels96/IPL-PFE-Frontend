@@ -84,19 +84,13 @@ export class CategorieComponentComponent implements OnInit {
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
-
-
-
-    console.log(sessionStorage.getItem('dataCategorie') == '');
     if(sessionStorage.getItem('dataCategorie') != ''){
-      console.log(JSON.parse(sessionStorage.getItem('dataCategorie')));
-      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+      
 
-      for(var acti of JSON.parse(sessionStorage.getItem('dataCategorie'))){
-        choixImagesToChoix1.push(acti);
-      }
-      console.log("HERE");
-      console.log(choixImagesToChoix1);
+
+
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+      choixImagesToChoix1 = this.sharedService.getDataCategorie();
       var numPresents = [];
       // mettre a jour celles deja présentes
       for(var activite of this.var_choix_images){
@@ -113,21 +107,19 @@ export class CategorieComponentComponent implements OnInit {
           choixImagesToChoix1.push(activite);
         }
       }
+      
     }
     else{
-      console.log("ok");
       for(var activite of this.var_choix_images){
         choixImagesToChoix1.push(activite);
       }
     }
-    console.log(choixImagesToChoix1);
     sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
 
 
 
     this.nbActivitesOui = 0;
-    
     for(var activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
         this.nbActivitesOui++;
