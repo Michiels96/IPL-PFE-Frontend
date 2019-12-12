@@ -139,54 +139,7 @@
           </div>
   
           
-          <div class="col-md-6 login-form-2">
-              <h3 style="color: beige;">Inscrire une personne de contact pour l'enfant: {{inscriptionEnfant.value.prenom}} {{inscriptionEnfant.value.nom}}</h3>
-              <form class="form-signin" [formGroup]="tuteur" (ngSubmit)="inscriptionTuteur()">
-                  <div class="form-group">
-                      <label style="color: beige;">
-                          <strong style="color: beige;">Nom :</strong>
-                        <input type="text" class="form-control" placeholder="Nom" value="" formControlName="nom">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                      <label style="color: beige;">
-                          <strong style="color: beige;">Prenom :</strong>
-                        <input type="text" class="form-control" placeholder="Prenom" value="" formControlName="prenom">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                      <label style="color: beige;">
-                          <strong style="color: beige;">Email :</strong>
-                        <input type="text" class="form-control" placeholder="Email" value="" formControlName="email">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                      <label style="color: beige;">
-                          <strong style="color: beige;">Telephone :</strong>
-                        <input type="number" class="form-control" placeholder="Telephone" value="" formControlName="tel">
-                      </label>
-                  </div>
-                  <div class="form-group">
-                      <label style="color: beige;"> 
-                          Statut : 
-                          <select formControlName="statut">
-                            <option value="P">Père</option>
-                            <option value="M">Mère</option>
-                            <option value="T">Tuteur</option>
-                            <option value="F">Frère (majeur)</option>
-                            <option value="S">Sœur (majeur)</option>
-                            <option value="A">Autre</option>
-                          </select>
-                      </label>
-                  </div>
-                  <div *ngIf="tuteur.value.statut=='A'">
-                      <input type="text" class="form-control" placeholder="Type" value="" formControlName="autre">
-                  </div>
-                  <div class="form-group">
-                      <button style="background-color: beige; color: #0062cc;" class="btn btn-lg btn-primary btn-block" type='submit'>Valider</button>
-                  </div>
-              </form>
-          </div>
+          
   
   
           <div class="col-md-6 login-form-1">
@@ -245,8 +198,59 @@
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block" style="background-color: orangered;" type='submit'>Inscrire</button>
                     </div>
+                    
               </form>
           </div>
+          <div *ngIf="id_kid_just_subcribed!=-1">
+          <div class="col-md-6 login-form-2">
+            <h3 style="color: beige;">Inscrire une personne de contact pour l'enfant: {{inscriptionEnfant.value.prenom}} {{inscriptionEnfant.value.nom}}</h3>
+            <form class="form-signin" [formGroup]="tuteur" (ngSubmit)="inscriptionTuteur()">
+                <div class="form-group">
+                    <label style="color: beige;">
+                        <strong style="color: beige;">Nom :</strong>
+                      <input type="text" class="form-control" placeholder="Nom" value="" formControlName="nom">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label style="color: beige;">
+                        <strong style="color: beige;">Prenom :</strong>
+                      <input type="text" class="form-control" placeholder="Prenom" value="" formControlName="prenom">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label style="color: beige;">
+                        <strong style="color: beige;">Email :</strong>
+                      <input type="text" class="form-control" placeholder="Email" value="" formControlName="email">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label style="color: beige;">
+                        <strong style="color: beige;">Telephone :</strong>
+                      <input type="number" class="form-control" placeholder="Telephone" value="" formControlName="tel">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label style="color: beige;"> 
+                        Statut : 
+                        <select formControlName="statut">
+                          <option value="P">Père</option>
+                          <option value="M">Mère</option>
+                          <option value="T">Tuteur</option>
+                          <option value="F">Frère (majeur)</option>
+                          <option value="S">Sœur (majeur)</option>
+                          <option value="A">Autre</option>
+                        </select>
+                    </label>
+                </div>
+                <div *ngIf="tuteur.value.statut=='A'">
+                    <input type="text" class="form-control" placeholder="Type" value="" formControlName="autre">
+                </div>
+                <div class="form-group">
+                    <button style="background-color: beige; color: #0062cc;" class="btn btn-lg btn-primary btn-block" type='submit'>Valider</button>
+                </div>
+            </form>
+        </div>
+      </div>
       </div>
   </div>
 </html>
