@@ -118,6 +118,7 @@ export class SyntheseDesChoixComponent implements OnInit {
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
       sessionStorage.setItem('lastPage', 'choix-categorie');
+      this.sharedService.deleteAllData();
       this.router.navigate(['/choix-categorie']);
     }
   }
@@ -132,6 +133,7 @@ export class SyntheseDesChoixComponent implements OnInit {
       sessionStorage.setItem('kid_session_info', '');
       sessionStorage.setItem('dataCategorie', '');
       sessionStorage.setItem('lastPage', 'choix-categorie');
+      this.sharedService.deleteAllData();
       this.router.navigate(['/choix-categorie']);
     }
   }
