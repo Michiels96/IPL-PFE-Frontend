@@ -103,6 +103,11 @@ export class AccueilComponent implements OnInit {
     this.kidChecked = !this.kidChecked;
   }
 
+  loginProfessionnel(){
+    console.log("helloo");
+    this.router.navigate(['/connexion']);
+  }
+
 
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
