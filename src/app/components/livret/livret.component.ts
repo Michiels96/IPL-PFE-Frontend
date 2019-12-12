@@ -98,14 +98,14 @@ export class LivretComponent implements OnInit {
         console.log(this.sessions[i].question_session.aide == null);
         if(this.id_session==this.sessions[i].session_id){
           this.session_choisie=this.sessions[i].question_session;
-          this.tri();
+          this.triSession();
         }
       }
     }
   }
 
 
-  tri(){
+  triSession(){
     this.session_choisie = this.session_choisie.filter(function(value, index, arr){
       return value.aime != null;
     });
