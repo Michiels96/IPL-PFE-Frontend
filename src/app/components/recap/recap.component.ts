@@ -15,6 +15,7 @@ export class RecapComponent implements OnInit {
   id_session=-1;
   session_choisie;
   isThereNotes=false;
+  list: any[]=[];
 
   constructor(private api: ApiService,private route: ActivatedRoute, private sharedService: SharedService) { }
 
@@ -42,18 +43,23 @@ export class RecapComponent implements OnInit {
         if(this.id_session==this.sessions[i].session_id){
           
           this.session_choisie=this.sessions[i].question_session;
+          this.tab=this.sessions[i].question_session;
           console.log(this.session_choisie);
         }
       }
       
-     /* let c=0;
-      for(let k=0;k< this.session_choisie.lenght;k++){
+     let c=0;
+     let list: any[]=[]
+      for(let k=0;k< this.session_choisie.length;k++){
+        //console.log("c");
         if(this.session_choisie[k].habitude=='O'){
+          console.log("truc");
           console.log(this.session_choisie[k]);
-          this.session_choisie[c]=this.session_choisie[k];
+          this.list[c]=this.session_choisie[k];
           c++;
         }
-      }*/
+       // this.session_choisie=this.tab;
+      }
       
     }
   }
