@@ -10,6 +10,7 @@ import { SharedService } from 'src/app/SharedService';
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
 })
+
 export class AccueilComponent implements OnInit {
   kid_connected=null;
   listeEnfants;
