@@ -83,8 +83,8 @@ export class CategorieComponentComponent implements OnInit {
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
-    if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-     
+    if(sessionStorage.getItem('dataCategorie') != ''){
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       for(var activite of this.var_choix_images){
         //retrouver les images deja ajoutées
@@ -177,8 +177,19 @@ export class CategorieComponentComponent implements OnInit {
 
   deconnexion(){
     this.deconnecterEnfant((JSON.parse(sessionStorage.getItem('kid_connected'))));
+    this.destroyUserCache();
     sessionStorage.setItem('lastPage', '');
     this.router.navigate(['/']);
+  }
+
+  destroyUserCache(){
+    sessionStorage.setItem('kid_connected', '');
+    sessionStorage.setItem('nb_choix_categorie', '');
+    sessionStorage.setItem('kid_libelle_categorie', '');
+    sessionStorage.setItem('kid_session_info', '');
+    sessionStorage.setItem('dataCategorie', '');
+    sessionStorage.setItem('lastPage', '');
+    this.sharedService.deleteAllData();
   }
 
   deconnecterEnfant(kid){
