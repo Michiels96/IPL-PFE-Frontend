@@ -45,6 +45,7 @@ export class CategorieComponentComponent implements OnInit {
     }
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
     this.initImages(this.libelle_categorie_selectionne);
+    
   }
 
   initImages(categorie){
