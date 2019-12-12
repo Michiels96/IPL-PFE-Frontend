@@ -118,17 +118,31 @@ export class Choix3contentComponent implements OnInit {
     }
     sessionStorage.setItem('dataCategorie', JSON.stringify(activitesSelectionnes));
     this.sharedService.setDataCategorie(activitesSelectionnes);
-    // sauvegarde en db
+
+    // upgrade question en db
     var session_id = this.sharedService.getDataSession().session_id;
     console.log("SHAREDSERVICE - DATASESSION "+JSON.stringify(this.sharedService.getDataSession()));
     var nbQuestions = this.sharedService.getDataCategorie().length;
     var i=0;
     for(var activite of this.sharedService.getDataCategorie()){
       var newQuestion = {};
-      newQuestion['question_id'] = -1;
+      newQuestion['question_id'] = activite.question_id;
+
       newQuestion['session'] = session_id;
       newQuestion['image_correspondante'] = activite.image_id;
-      
+      if(activite.choix == "oui"){
+        newQuestion['habitude'] = 'O';
+      }
+      else if(activite.choix == "non"){
+        newQuestion['habitude'] = 'N';
+      }
+      else if(activite.choix == "je voudrais le faire"){
+        newQuestion['habitude'] = 'V';
+      }
+
+
+
+
       if(activite.aime == true){
         newQuestion['aime'] = 'O';
       }
@@ -147,7 +161,7 @@ export class Choix3contentComponent implements OnInit {
       else{
         newQuestion['content'] = 'N';
       }
-      this.api.createQuestion(newQuestion).subscribe(
+      this.api.updateQuestion(newQuestion).subscribe(
         data => {
           i++;
           // ne seulement passer au composant suivant si toutes les questions ont été enregistrées en db

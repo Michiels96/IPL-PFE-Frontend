@@ -28,8 +28,8 @@ export class EducateurUIComponent implements OnInit {
   constructor(private api: ApiService, private route: ActivatedRoute, private router: Router,private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.kid_id = this.sharedService.get_enfant_id();//this.route.snapshot.paramMap.get('id');
-    this.prof_id = this.sharedService.get_prof_id();//this.route.snapshot.paramMap.get('prof_id');
+    this.kid_id = JSON.parse(sessionStorage.getItem('kid_selected'));//this.route.snapshot.paramMap.get('id');
+    this.prof_id = JSON.parse(sessionStorage.getItem('prof_id'))//this.sharedService.get_prof_id();//this.route.snapshot.paramMap.get('prof_id');
     console.log("prof id:");
     console.log(this.prof_id);
     console.log(this.kid_id)

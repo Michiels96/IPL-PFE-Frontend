@@ -79,8 +79,10 @@ export class ApiService {
     return this.http.post(this.baseurl + '/enfant/enfants/', postContent, {headers:this.httpHeaders});
   }
   postInfosKid(kid,id): Observable<any>{
-    let postContent={info_supp_id:-1,enfant:id,date_naissance:kid.date_naissance,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type_enseignement:kid.type, niveau_scolaire:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
-    return this.http.post(this.baseurl + '/enfant/info_supplementaire/'+ id +'/', postContent, {headers:this.httpHeaders});
+    let postContent={enfant:id,date_naissance:kid.date_naissance,langue:kid.langue,
+      dominance:kid.dominance,scolarite:kid.scolarite,type_enseignement:kid.type, 
+      niveau_scolaire:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
+    return this.http.post(this.baseurl + '/enfant/info_supplementaire/', postContent, {headers:this.httpHeaders});
   }
   //date_naissance:kid.date_naissance,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier
   createSession(session): Observable<any>{
@@ -91,6 +93,22 @@ export class ApiService {
     let postContent = JSON.stringify(question);
     return this.http.post(this.baseurl + '/sessions/questions/',postContent, {headers:this.httpHeaders});
   }
+  getQuestionById(id): Observable<any>{
+    return this.http.get(this.baseurl + '/sessions/questions/'+ id +'/', {headers:this.httpHeaders});
+  }
+  updateQuestion(question): Observable<any>{
+    let updateContent={
+      question_id:question.question_id,
+      session:question.session,
+      image_correspondante:question.image_correspondante,
+      habitude:question.habitude,
+      aime:question.aime,
+      aide:question.aide,
+      content:question.content
+    };
+    return this.http.put(this.baseurl + '/sessions/questions/'+ question.question_id +'/',updateContent, {headers:this.httpHeaders});
+  }
+  
 
   getUser(id): Observable<any>{
     return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
@@ -105,7 +123,7 @@ export class ApiService {
   }
   postContact(tuteur,id_enfant): Observable<any>{
     let postContent={personne_id:-1,prenom:tuteur.prenom,nom:tuteur.nom,email:tuteur.email,telephone:tuteur.tel,relation:tuteur.statut,enfant:id_enfant};
-    return this.http.post(this.baseurl + '/enfant/personneContact/',postContent, {headers:this.httpHeaders});
+    return this.http.post(this.baseurl + '/enfant/personne_contact/',postContent, {headers:this.httpHeaders});
   }
   delKid(id): Observable<any>{
     return this.http.delete(this.baseurl + '/enfant/enfants/'+id+'/',{headers:this.httpHeaders});

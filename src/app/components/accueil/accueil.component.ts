@@ -123,4 +123,8 @@ export class AccueilComponent implements OnInit {
       //event.preventDefault();
      //event.returnValue = false;
   }
+  connect(){
+    this.authService.login();
+    console.log("desactive")
+  }
 }
