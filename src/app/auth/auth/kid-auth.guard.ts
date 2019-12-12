@@ -11,9 +11,9 @@ export class KidAuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):
      boolean
      {
-        if (this.authService.isKidLoggedin) {
+      if (sessionStorage.getItem("guard")=="true") {
             
-            return true;
+        return true;
         } else {
             this.router.navigate(['/']);
             return false;
