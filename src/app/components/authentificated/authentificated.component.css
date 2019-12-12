@@ -16,11 +16,11 @@ select{
 }
 .login-form-1 h3{
     text-align: center;
-    color: #0062cc;
+    color: orangered;
 }
 .login-form-2{
     padding: 5%;
-    background: #0062cc;
+    background: rgb(122, 236, 69);
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -42,11 +42,11 @@ select{
 .login-form-1 .btnSubmit{
     font-weight: 600;
     color: #fff;
-    background-color: #0062cc;
+    background-color: green;
 }
 .login-form-2 .btnSubmit{
     font-weight: 600;
-    color: #0062cc;
+    color: green;
     background-color: #fff;
 }
 
@@ -54,7 +54,7 @@ h2 {
     margin: 25px;
     text-align: center;
     font-weight: bold;
-    color: #0062cc;
+    color: orangered;
 }
 /* Alert */
 
@@ -81,14 +81,14 @@ h2 {
 }
 
 .closebtn:hover  {
-    color: #0062cc;
+    color: green;
 }
 
 option {
-    color: #0062cc;
+    color: green;
 }
 
 input {
-    color: #0062cc;
+    color: green;
 }
 

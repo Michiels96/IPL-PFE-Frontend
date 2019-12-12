@@ -29,7 +29,7 @@
                 </label>
               </div>
               <div class="form-group">
-                <button class="btn btn-lg btn-primary" (click)="confirmer()">Valider</button>
+                <button style="background-color: orangered;" class="btn btn-lg btn-primary" (click)="confirmer()">Valider</button>
               </div>
               <div class="form-group">
                 <app-deconnexion-element></app-deconnexion-element>
@@ -190,41 +190,41 @@
   
   
           <div class="col-md-6 login-form-1">
-              <h3 style="color: #0062cc;">Inscrire Professionnel</h3>
+              <h3 style="color: orangered;">Inscrire Professionnel</h3>
               <form class="form-signin" [formGroup]="inscription" (ngSubmit)="sendInscription()">
                     <div class="form-group">
-                      <label style="color: #0062cc;">
-                          <strong style="color: #0062cc;">Nom :</strong>
+                      <label style="color: orangered;">
+                          <strong style="color: orangered;">Nom :</strong>
                         <input type="text" class="form-control" placeholder="Nom" value="" formControlName="nom">
                       </label>
                     </div>
                     <div class="form-group">
-                        <label style="color: #0062cc;">
-                            <strong style="color: #0062cc;">Prenom :</strong>
+                        <label style="color: orangered;">
+                            <strong style="color: orangered;">Prenom :</strong>
                             <input type="text"class="form-control" placeholder="Prenom" value="" formControlName="prenom">
                         </label>
                     </div>
                     <div class="form-group">
-                      <label style="color: #0062cc;">
-                          <strong style="color: #0062cc;">Mot de passe :</strong>
+                      <label style="color: orangered;">
+                          <strong style="color: orangered;">Mot de passe :</strong>
                           <input type="password" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
                       </label>
                       </div>
                       
                       <div class="form-group">
-                          <label style="color: #0062cc;">
-                              <strong style="color: #0062ccff;">E-mail :</strong>
+                          <label style="color: orangered;">
+                              <strong style="color: orangered;">E-mail :</strong>
                               <input type="email" class="form-control" placeholder="Email" value="" formControlName="email">
                           </label>
                       </div>
                       <div class="form-group">
-                          <label style="color: #0062cc;">
-                              <strong style="color: #0062cc;">Telephone :</strong>
+                          <label style="color: orangered;">
+                              <strong style="color: orangered;">Telephone :</strong>
                               <input type="number" class="form-control" placeholder="Tel" value="" formControlName="telephone">
                           </label>
                       </div>
                       <div class="form-group">
-                          <label style="color: #0062cc;"> 
+                          <label style="color: orangered;"> 
                               Profession : 
                               <select  formControlName="profession">
                                 <option value="Erg">Ergothérapeute</option>
@@ -243,7 +243,7 @@
                       </div>
   
                     <div class="form-group">
-                        <button class="btn btn-lg btn-primary btn-block" type='submit'>Inscrire</button>
+                        <button class="btn btn-lg btn-primary btn-block" style="background-color: orangered;" type='submit'>Inscrire</button>
                     </div>
               </form>
           </div>

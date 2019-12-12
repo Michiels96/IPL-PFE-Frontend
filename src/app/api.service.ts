@@ -80,7 +80,7 @@ export class ApiService {
   }
   postInfosKid(kid,id): Observable<any>{
     let postContent={info_supp_id:-1,enfant:id,date_naissance:kid.date_naissance,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type_enseignement:kid.type, niveau_scolaire:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier}//JSON.stringify(kid);
-    return this.http.post(this.baseurl + '/enfant/info_supplementaire/', postContent, {headers:this.httpHeaders});
+    return this.http.post(this.baseurl + '/enfant/info_supplementaire/'+ id +'/', postContent, {headers:this.httpHeaders});
   }
   //date_naissance:kid.date_naissance,langue:kid.langue,dominance:kid.dominance,scolarite:kid.scolarite,type:kid.type, niveau:kid.niveau,besoin_particulier:kid.besoin_particulier, autre_besoin_particulier:kid.autre_besoin_particulier
   createSession(session): Observable<any>{

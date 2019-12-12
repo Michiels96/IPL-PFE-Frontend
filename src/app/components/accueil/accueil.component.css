@@ -1,4 +1,22 @@
-/* h3 {
+.register .nav-tabs{
+
+    background:  green;
+
+}
+.register .nav-tabs .nav-link{
+
+    color: green;
+
+}
+
+.register .nav-tabs .nav-link.active{
+    color: green
+   
+}
+
+
+
+h3 {
     margin: 20px;
     padding: 30px;
 }
@@ -6,8 +24,13 @@
 html {
     padding: 1%;
     background-color: beige;
+    font-family: 'nunitoblack';
 }
-
+.nav-item{
+    border-color: green;
+    color:green;
+    background-color:greenyellow;
+}
 .position {
     text-align: center;
     left: 38%;
@@ -32,7 +55,7 @@ html {
 }
 .login-form-2 h3{
     text-align: center;
-    color: #fff;
+    color: beige;
 }
 .login-container form{
     padding: 10%;
@@ -47,13 +70,13 @@ html {
 }
 .login-form-1 .btnSubmit{
     font-weight: 600;
-    color: #fff;
+    color: beige;
     background-color: #0062cc;
 }
 .login-form-2 .btnSubmit{
     font-weight: 600;
     color: #0062cc;
-    background-color: #fff;
+    background-color: beige;
 }
 
 h2 {
@@ -67,15 +90,100 @@ h2 {
     color: beige;
     padding: -30%;
 }
-@font-face {
-    font-family: 'nunitoblack';
-    src: url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff2'),
-         url('../../../assets/fonts/Nunito/nunito-black-webfont.woff2') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
- */
 
+ 
+html {
+    background-color: beige;
+}
+
+/*
+Code Ruban
+*/
+
+#fond {
+    position: relative;
+    margin: 0px auto;
+    width: 350px;
+    background: beige;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+    z-index: 10;
+    height:110px;
+}
+     
+
+     
+
+
+figure {
+    border: 1px solid #b1c70d;
+    padding: 5px;
+}
+
+figcaption {
+    background-color: RGBa(0,0,0,0.8);
+    color: beige;
+    text-align: center;
+    font-style: italic;
+}
+
+a {
+    background-color: beige; 
+    text-decoration-line: underline;
+}
+
+.card-body {
+    column-count: 4;
+    text-align: center;
+    position: relative;
+}
+
+h4, .sectionValider{
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+h2 {
+    text-align: center;
+    font-weight: bolder;
+    color: orangered;
+}
+.register-heading{
+    text-align: center;
+    
+    color: orangered;
+}
+.position{
+    float: right;
+
+    position: relative;
+    left: -180%;
+}
+.btn {
+    float: right;
+    margin-top: 30%;
+    position: relative;
+    left: -112%; 
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: green;
+    color: green;
+    background-color: beige;
+}
+
+.btnLogout {
+    
+    font-size: 25px;
+    right: 5%;
+    margin: 20px;
+    position: fixed; 
+}
+
+.btnValider{
+   
+    font-size: 30px;
+}
 
 
 
@@ -85,11 +193,11 @@ h2 {
 /* .container {
     
 } */
-
+/*cSS avec la fusee nulle a partir d'ici
 .register{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 
-    /* background: -webkit-linear-gradient(left, #3931af, #00c6ff, chartreuse, orange, yellow, beige); */
+    /* background: -webkit-linear-gradient(left, #3931af, #00c6ff, chartreuse, orange, yellow, beige); 
     margin-top: 2%;
     padding: 2%;  
     width: 100%; 
@@ -186,3 +294,4 @@ h2 {
     margin-bottom: -15%;
     color: #495057;
 }
+*/

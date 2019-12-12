@@ -10,18 +10,18 @@
 
 <div class="container login-container">
         <div class="col-md-6 login-form-1">
-            <h3>Connexion</h3>
+            <h3 style="color: orangered; ">Connexion</h3>
             <form class="form-signin" [formGroup]="connexion" (ngSubmit)="tryToConnect()">
                 <div class="form-group">
                   <label>
-                    <strong style="color: #0062cc;">E-mail :</strong><br/>
+                    <strong style="color: orangered;">E-mail :</strong><br/>
                     <input type="text" style="color: #0062cc;" class="form-control" placeholder="e-mail" value="" formControlName="username">
                   </label>
                 </div>
                 <div class="form-group">
                     <label>
-                        <strong style="color: #0062cc;">Mot de passe : </strong>
-                        <input type="password" style="color: #0062cc;" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
+                        <strong style="color: orangered;">Mot de passe : </strong>
+                        <input type="password" class="form-control" placeholder="Mot de passe" value="" formControlName="password">
                       </label>
                 </div>
                 <div class="form-group">

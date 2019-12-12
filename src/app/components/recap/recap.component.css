@@ -15,10 +15,11 @@ th, td {
     vertical-align: top;
     text-align: center;
     width: 100px;
+    color:green;
 }
 
 th {
-    color: blue;
+    color: rgb(122, 236, 69);
     font-weight: bold;
 }
 
@@ -30,5 +31,5 @@ h2 {
     left: 35%;
     text-align: center;
     font-weight: bold;
-    color: blue;
+    color: rgb(122, 236, 69);
 }
