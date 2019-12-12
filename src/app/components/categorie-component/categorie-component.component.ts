@@ -59,18 +59,18 @@ export class CategorieComponentComponent implements OnInit {
         //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
         if(sessionStorage.getItem('dataCategorie') != ''){
           this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
-        }
-        // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
-        if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
-          var choixImagesToChoix1 = this.sharedService.getDataCategorie();
-          var i = 0;
-          for(var activite of this.var_choix_images){
-            for(var activiteSauvegardee of choixImagesToChoix1){
-              if(activiteSauvegardee.image_id == activite.image_id){
-                this.var_choix_images[i] = activiteSauvegardee;
+          // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
+          if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
+            var choixImagesToChoix1 = this.sharedService.getDataCategorie();
+            var i = 0;
+            for(var activite of this.var_choix_images){
+              for(var activiteSauvegardee of choixImagesToChoix1){
+                if(activiteSauvegardee.image_id == activite.image_id){
+                  this.var_choix_images[i] = activiteSauvegardee;
+                }
               }
+              i++;
             }
-            i++;
           }
         }
       },
