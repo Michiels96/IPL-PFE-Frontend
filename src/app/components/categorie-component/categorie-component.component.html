@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-6">
-                <div id="fond"> 
+                <div id="fond" *ngIf="libelle_categorie_selectionne != null"> 
                     <div class="ruban"><h2 class="originalQualityFont">{{libelle_categorie_selectionne.toUpperCase()}}</h2></div>     
                 </div>
             </div>

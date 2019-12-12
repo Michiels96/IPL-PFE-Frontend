@@ -21,6 +21,7 @@ export class CategorieComponentComponent implements OnInit {
     this.libelle_categorie_selectionne = null;
     this.rien_choisi = false;
     this.nbActivitesOui = 0;
+    this.dataEnfantConnecte = null;
   }
   ngOnInit() {
     this.getKidInfo();
@@ -83,13 +84,18 @@ export class CategorieComponentComponent implements OnInit {
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
+
+
+
+
     if(sessionStorage.getItem('dataCategorie') != ''){
-      
-
-
-
       this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
-      choixImagesToChoix1 = this.sharedService.getDataCategorie();
+
+      for(var acti of this.sharedService.getDataCategorie()){
+        choixImagesToChoix1.push(acti);
+      }
+      console.log("HERE");
+      console.log(choixImagesToChoix1);
       var numPresents = [];
       // mettre a jour celles deja présentes
       for(var activite of this.var_choix_images){
@@ -119,6 +125,7 @@ export class CategorieComponentComponent implements OnInit {
 
 
     this.nbActivitesOui = 0;
+    console.log()
     for(var activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
         this.nbActivitesOui++;
