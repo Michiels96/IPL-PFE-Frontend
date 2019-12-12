@@ -45,7 +45,7 @@ export class AccueilComponent implements OnInit {
   }
 
   connecterEnfant(){
-
+    this.destroyUserCache();
     this.api.updateKid(this.kid_selected, true).subscribe(
       data => {
         this.kid_selected = data;

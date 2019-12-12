@@ -87,13 +87,13 @@ export class CategorieComponentComponent implements OnInit {
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
-
     if(sessionStorage.getItem('dataCategorie') != ''){
-      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+      
 
-      for(var acti of JSON.parse(sessionStorage.getItem('dataCategorie'))){
-        choixImagesToChoix1.push(acti);
-      }
+
+
+      this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
+      choixImagesToChoix1 = this.sharedService.getDataCategorie();
       var numPresents = [];
       // mettre a jour celles deja présentes
       for(var activite of this.var_choix_images){
@@ -110,6 +110,7 @@ export class CategorieComponentComponent implements OnInit {
           choixImagesToChoix1.push(activite);
         }
       }
+      
     }
     else{
       for(var activite of this.var_choix_images){
@@ -122,7 +123,6 @@ export class CategorieComponentComponent implements OnInit {
 
 
     this.nbActivitesOui = 0;
-    
     for(var activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
         this.nbActivitesOui++;
