@@ -67,8 +67,8 @@ export class CategorieComponentComponent implements OnInit {
           if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
             var choixImagesToChoix1 = this.sharedService.getDataCategorie();
             var i = 0;
-            for(var activite of this.var_choix_images){
-              for(var activiteSauvegardee of choixImagesToChoix1){
+            for(let activite of this.var_choix_images){
+              for(let activiteSauvegardee of choixImagesToChoix1){
                 if(activiteSauvegardee.image_id == activite.image_id){
                   this.var_choix_images[i] = activiteSauvegardee;
                 }
@@ -96,8 +96,8 @@ export class CategorieComponentComponent implements OnInit {
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       var numPresents = [];
       // mettre a jour celles deja présentes
-      for(var activite of this.var_choix_images){
-        for(var activiteEnregistree of choixImagesToChoix1){
+      for(let activite of this.var_choix_images){
+        for(let activiteEnregistree of choixImagesToChoix1){
           if(activiteEnregistree.image_id == activite.image_id){
             choixImagesToChoix1[choixImagesToChoix1.indexOf(activiteEnregistree)] = activite;
             numPresents.push(activiteEnregistree.image_id);
@@ -105,7 +105,7 @@ export class CategorieComponentComponent implements OnInit {
         }
       }
       // ajouter les nouvelles
-      for(var activite of this.var_choix_images){
+      for(let activite of this.var_choix_images){
         if(numPresents.indexOf(activite.image_id) == -1){
           choixImagesToChoix1.push(activite);
         }
@@ -113,7 +113,7 @@ export class CategorieComponentComponent implements OnInit {
       
     }
     else{
-      for(var activite of this.var_choix_images){
+      for(let activite of this.var_choix_images){
         choixImagesToChoix1.push(activite);
       }
     }
@@ -123,7 +123,7 @@ export class CategorieComponentComponent implements OnInit {
 
 
     this.nbActivitesOui = 0;
-    for(var activite of this.sharedService.getDataCategorie()){
+    for(let activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
         this.nbActivitesOui++;
       }
@@ -152,7 +152,7 @@ export class CategorieComponentComponent implements OnInit {
           var session_id = this.sharedService.getDataSession().session_id;
           var nbQuestions = this.sharedService.getDataCategorie().length;
           var i=0;
-          for(var activite of this.sharedService.getDataCategorie()){
+          for(let activite of this.sharedService.getDataCategorie()){
             var newQuestion = {};
             newQuestion['question_id'] = -1;
             newQuestion['session'] = session_id;
@@ -172,7 +172,7 @@ export class CategorieComponentComponent implements OnInit {
                 i++;
                 // ajouter l'id de la question venant de la db, pour l'update a la fin du choix3
                 var activites = this.sharedService.getDataCategorie();
-                for(var activite of activites){
+                for(let activite of activites){
                   if(activite.image_id == data.image_correspondante){
                     activite['question_id'] = data.question_id;
                   }
