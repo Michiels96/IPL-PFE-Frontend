@@ -87,11 +87,12 @@ export class CategorieComponentComponent implements OnInit {
 
 
 
-
+    console.log(sessionStorage.getItem('dataCategorie') == '');
     if(sessionStorage.getItem('dataCategorie') != ''){
+      console.log(JSON.parse(sessionStorage.getItem('dataCategorie')));
       this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
 
-      for(var acti of this.sharedService.getDataCategorie()){
+      for(var acti of JSON.parse(sessionStorage.getItem('dataCategorie'))){
         choixImagesToChoix1.push(acti);
       }
       console.log("HERE");
@@ -112,20 +113,21 @@ export class CategorieComponentComponent implements OnInit {
           choixImagesToChoix1.push(activite);
         }
       }
-      
     }
     else{
+      console.log("ok");
       for(var activite of this.var_choix_images){
         choixImagesToChoix1.push(activite);
       }
     }
+    console.log(choixImagesToChoix1);
     sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
 
 
 
     this.nbActivitesOui = 0;
-    console.log()
+    
     for(var activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
         this.nbActivitesOui++;
