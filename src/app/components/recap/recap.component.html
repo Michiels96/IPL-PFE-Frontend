@@ -29,7 +29,7 @@
     <!-- </thead> -->
     <!-- <tbody> -->
         <tr *ngFor="let habitude of session_choisie">
-            <div *ngIf="habitude.habitude == 'O'">
+          
             <td>{{habitude.img_description}}</td>
             <td>
                     <span *ngIf="habitude.aime == 'O'" style="font-style:italic;font-weight:bold; color: green" >&#10004;</span>
@@ -56,8 +56,8 @@
                     <div>{{habitude.note.note_satisfaction}}</div>
                 </div>
             </td>
+            
         </tr>
-    </div>
     <!-- </tbody> -->
     </table>
     </div>
