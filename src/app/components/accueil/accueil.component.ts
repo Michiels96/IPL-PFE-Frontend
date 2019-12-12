@@ -3,7 +3,6 @@ import { ApiService } from 'src/app/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth/auth.service';
 import { SharedService } from 'src/app/SharedService';
-//import { Observable,interval, timer } from 'rxjs';
 
 @Component({
   selector: 'app-accueil',
@@ -26,30 +25,18 @@ export class AccueilComponent implements OnInit {
   ngOnInit() {
     this.authService.logout();
     this.authService.logoutKid();
-    /*
-    if(sessionStorage.length > 0){
-      // si enfant deja connecté et revient à l'accueil, alors on le déconnecte en db
-      if(sessionStorage.getItem('kid_connected')!=''){
-        this.deconnecterEnfant(JSON.parse(sessionStorage.getItem('kid_connected')));
-      }
-    } 
-    */
+  
     if(sessionStorage.length > 0){
       if(sessionStorage.getItem('lastPage') != ''){
         this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
       }
       else{
-        console.log("supprimé");
-        // on détruit les données en cache
         this.destroyUserCache();
       }
     }
     this.api.getUnloggedEnfants().subscribe(
       data => {
-        //console.log(data);
-        this.listeEnfants =data;//Array.of(data);
-        console.log("enfant");
-        console.log(this.listeEnfants);
+        this.listeEnfants = data;//Array.of(data);
       },
       error => {
         console.log(error);
@@ -58,20 +45,14 @@ export class AccueilComponent implements OnInit {
   }
 
   connecterEnfant(){
-    console.log("enfant a connecter");
-    console.log(this.kid_selected.enfant_id);
-    console.log(this.kid_selected.nom);
-
+    this.destroyUserCache();
     this.api.updateKid(this.kid_selected, true).subscribe(
       data => {
-        //console.log(data);
         this.kid_selected = data;
-        //console.log("Data kid_selected : ", this.kid_selected);
         this.kid_id = data.enfant_id;
         if(this.kid_selected.connecte==true){
           this.isNotConnected=false;
           this.authService.loginKid();
-          console.log("connecté")
           sessionStorage.setItem('kid_connected', JSON.stringify(this.kid_selected));
         }
       },
@@ -82,7 +63,6 @@ export class AccueilComponent implements OnInit {
   }
 
   jouer(){
-    console.log("Nom Enfant : ", this.kid_selected.nom);
     sessionStorage.setItem('lastPage', 'choix-categorie');
     this.router.navigate(['/choix-categorie']);
   }
@@ -104,7 +84,6 @@ export class AccueilComponent implements OnInit {
   }
 
   loginProfessionnel(){
-    console.log("helloo");
     this.router.navigate(['/connexion']);
   }
 
@@ -127,8 +106,6 @@ export class AccueilComponent implements OnInit {
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
   }
   connect(){
     this.authService.login();

@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./categorie-component.component.css']
 })
 export class CategorieComponentComponent implements OnInit {
-  // libelle_categorie_selectionne: choix-categorie ==> categorie-component 
   libelle_categorie_selectionne;
   var_choix_images = [];
   rien_choisi;
@@ -25,6 +24,7 @@ export class CategorieComponentComponent implements OnInit {
   }
   ngOnInit() {
     this.getKidInfo();
+    
     if(sessionStorage.getItem('kid_libelle_categorie') != ''){
       this.sharedService.setDataChoixCategorie(sessionStorage.getItem('kid_libelle_categorie'));
     }
@@ -44,8 +44,9 @@ export class CategorieComponentComponent implements OnInit {
     else{
       sessionStorage.setItem('lastPage', 'categories');
     }
+
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
-    console.log("SHAREDSERVICE - DATA-ENFANTCONNECTE  "+JSON.stringify(this.dataEnfantConnecte));
+
     this.initImages(this.libelle_categorie_selectionne);
   }
 
@@ -57,15 +58,14 @@ export class CategorieComponentComponent implements OnInit {
           activite['nom_fichier'] = activite.description+".jpg";
           this.var_choix_images.push(activite);
         }
-        //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
         if(sessionStorage.getItem('dataCategorie') != ''){
           this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
           // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
           if(JSON.stringify(this.sharedService.getDataCategorie()).length != 2){
             var choixImagesToChoix1 = this.sharedService.getDataCategorie();
             var i = 0;
-            for(var activite of this.var_choix_images){
-              for(var activiteSauvegardee of choixImagesToChoix1){
+            for(let activite of this.var_choix_images){
+              for(let activiteSauvegardee of choixImagesToChoix1){
                 if(activiteSauvegardee.image_id == activite.image_id){
                   this.var_choix_images[i] = activiteSauvegardee;
                 }
@@ -84,22 +84,14 @@ export class CategorieComponentComponent implements OnInit {
   setChoix(i, value){
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
-
-
-
-
     if(sessionStorage.getItem('dataCategorie') != ''){
+    
       this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
-
-      for(var acti of this.sharedService.getDataCategorie()){
-        choixImagesToChoix1.push(acti);
-      }
-      console.log("HERE");
-      console.log(choixImagesToChoix1);
+      choixImagesToChoix1 = this.sharedService.getDataCategorie();
       var numPresents = [];
       // mettre a jour celles deja présentes
-      for(var activite of this.var_choix_images){
-        for(var activiteEnregistree of choixImagesToChoix1){
+      for(let activite of this.var_choix_images){
+        for(let activiteEnregistree of choixImagesToChoix1){
           if(activiteEnregistree.image_id == activite.image_id){
             choixImagesToChoix1[choixImagesToChoix1.indexOf(activiteEnregistree)] = activite;
             numPresents.push(activiteEnregistree.image_id);
@@ -107,7 +99,7 @@ export class CategorieComponentComponent implements OnInit {
         }
       }
       // ajouter les nouvelles
-      for(var activite of this.var_choix_images){
+      for(let activite of this.var_choix_images){
         if(numPresents.indexOf(activite.image_id) == -1){
           choixImagesToChoix1.push(activite);
         }
@@ -115,7 +107,7 @@ export class CategorieComponentComponent implements OnInit {
       
     }
     else{
-      for(var activite of this.var_choix_images){
+      for(let activite of this.var_choix_images){
         choixImagesToChoix1.push(activite);
       }
     }
@@ -125,8 +117,7 @@ export class CategorieComponentComponent implements OnInit {
 
 
     this.nbActivitesOui = 0;
-    console.log()
-    for(var activite of this.sharedService.getDataCategorie()){
+    for(let activite of this.sharedService.getDataCategorie()){
       if(activite.choix == "oui"){
         this.nbActivitesOui++;
       }
@@ -136,8 +127,6 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("ICIIII");
-    console.log(JSON.parse(sessionStorage.getItem('dataCategorie')));
     if(this.nbActivitesOui >= 1) {
       //création d'une session en db
       var id_enfant = this.dataEnfantConnecte.enfant_id;
@@ -153,13 +142,11 @@ export class CategorieComponentComponent implements OnInit {
           this.rien_choisi = false;
           sessionStorage.setItem('kid_session_info', JSON.stringify(data));
 
-
-
           // création question en db
           var session_id = this.sharedService.getDataSession().session_id;
           var nbQuestions = this.sharedService.getDataCategorie().length;
           var i=0;
-          for(var activite of this.sharedService.getDataCategorie()){
+          for(let activite of this.sharedService.getDataCategorie()){
             var newQuestion = {};
             newQuestion['question_id'] = -1;
             newQuestion['session'] = session_id;
@@ -179,7 +166,7 @@ export class CategorieComponentComponent implements OnInit {
                 i++;
                 // ajouter l'id de la question venant de la db, pour l'update a la fin du choix3
                 var activites = this.sharedService.getDataCategorie();
-                for(var activite of activites){
+                for(let activite of activites){
                   if(activite.image_id == data.image_correspondante){
                     activite['question_id'] = data.question_id;
                   }
@@ -204,7 +191,6 @@ export class CategorieComponentComponent implements OnInit {
       );
     }
     else{
-      console.log("Error");
       sessionStorage.setItem('lastPage', 'categories');
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
@@ -212,7 +198,6 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   getKidInfo(){
-    console.log(sessionStorage.getItem('kid_connected'));
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
       this.getKidSessionInfo();
@@ -276,7 +261,5 @@ export class CategorieComponentComponent implements OnInit {
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
   }
 }

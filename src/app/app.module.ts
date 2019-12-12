@@ -73,22 +73,15 @@ import { HttpRequestInterceptor } from './api.service';
     // Permet de faire les differents routerLink 
     RouterModule.forRoot ([
       { path: '', component: AccueilComponent },
-      //{ path: 'choix-categorie', component: ChoixCategorieComponent,canActivate: [KidAuthGuard] },
       { path: 'choix-categorie', component: ChoixCategorieComponent},
-      //{ path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard] },
       { path: 'categories', component: CategorieComponentComponent,canActivate: [KidAuthGuard]},
       { path: 'connexion', component: ConnectionFormComponent,canActivate: [AuthGuard]},
       { path: 'recap', component: RecapComponent,canActivate: [AuthGuard] },
       { path: 'auth', component: AuthentificatedComponent,canActivate: [AuthGuard]},
-      //{ path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard] },
       { path: 'ui', component: EducateurUIComponent,canActivate: [AuthGuard]},
-      //{ path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard] },
       { path: 'choixJaime', component: Choix1jaimeComponent,canActivate: [KidAuthGuard]},
-      //{ path: 'choixAide', component: Choix2aideComponent,canActivate: [KidAuthGuard] },
       { path: 'choixAide', component: Choix2aideComponent,canActivate: [KidAuthGuard]},
-      //{ path: 'choixContent', component: Choix3contentComponent,canActivate: [KidAuthGuard] },
       { path: 'choixContent', component: Choix3contentComponent,canActivate: [KidAuthGuard]},
-      //{ path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,canActivate: [KidAuthGuard] },
       { path: 'syntheseDesChoix', component: SyntheseDesChoixComponent,canActivate: [KidAuthGuard]},
       { path: 'livret', component: LivretComponent,canActivate: [KidAuthGuard] },
     ])

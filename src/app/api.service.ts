@@ -8,9 +8,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    
-      // console.log("interceptor: " + req.url);
-      req = req.clone({
+        req = req.clone({
         withCredentials: true
       });
       
@@ -23,7 +21,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 export class ApiService {
 
   // connexion backend local
-  // baseurl = "http://127.0.0.1:8000";
+  // baseurl = "http://127.0.0.1:8000"; //locahost:4200
   // connexion backend en ligne (heroku)
   baseurl ="https://pfe-back-dev.herokuapp.com";
  // httpHeaders = new HttpHeaders().set(InterceptorSkipHeader, '');/*

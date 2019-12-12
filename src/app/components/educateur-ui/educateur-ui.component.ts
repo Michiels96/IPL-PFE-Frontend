@@ -30,9 +30,6 @@ export class EducateurUIComponent implements OnInit {
   ngOnInit() {
     this.kid_id = JSON.parse(sessionStorage.getItem('kid_selected'));//this.route.snapshot.paramMap.get('id');
     this.prof_id = JSON.parse(sessionStorage.getItem('prof_id'))//this.sharedService.get_prof_id();//this.route.snapshot.paramMap.get('prof_id');
-    console.log("prof id:");
-    console.log(this.prof_id);
-    console.log(this.kid_id)
     this.getSession();
   }
 
@@ -49,8 +46,6 @@ export class EducateurUIComponent implements OnInit {
   }
 
   getQuestion = () => {
-    console.log("prof id:")
-    console.log(this.prof_id);
     this.api.getFullSessionById(this.q_id).subscribe(
       data => {
         this.questions = data.question_session;
@@ -66,9 +61,7 @@ export class EducateurUIComponent implements OnInit {
   }
 
   selectMandataire(event){
-    console.log(event);
     this.personne_mandataire['mandataire'] = event;
-    console.log(this.personne_mandataire);
   }
 
   setMandataire(str, event){
@@ -84,7 +77,6 @@ export class EducateurUIComponent implements OnInit {
   }
 
   onSubmitMandat(){
-    console.log(this.personne_mandataire);
   
     this.api.postMandataire(this.personne_mandataire).subscribe(
       data => {
@@ -101,7 +93,6 @@ export class EducateurUIComponent implements OnInit {
       this.api.postNote(q['note']).subscribe(
         data => {
           console.log(data);
-          //this.router.navigate(['/recap', {id:this.kid_id}]);
         },
         error => {
           console.log(error);
