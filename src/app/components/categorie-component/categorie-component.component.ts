@@ -37,8 +37,6 @@ export class CategorieComponentComponent implements OnInit {
     if(this.libelle_categorie_selectionne == null){
       sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
-      console.log("Ici1");
-
     }
     else if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'categories'){
       this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
@@ -88,10 +86,7 @@ export class CategorieComponentComponent implements OnInit {
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
     if(sessionStorage.getItem('dataCategorie') != ''){
-      
-
-
-
+    
       this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
       choixImagesToChoix1 = this.sharedService.getDataCategorie();
       var numPresents = [];
