@@ -39,6 +39,7 @@ export class RecapComponent implements OnInit {
   }
   
   confirmerSession(){
+    this.list=[];
     if(this.id_session!=-1){
       for(let i=0;i<this.sessions.length;i++){
         if(this.id_session==this.sessions[i].session_id){
@@ -47,7 +48,7 @@ export class RecapComponent implements OnInit {
       }
       
      let c=0;
-     let list: any[]=[]
+     
       for(let k=0;k< this.session_choisie.length;k++){
         if(this.session_choisie[k].habitude=='O'){
           this.list[c]=this.session_choisie[k];
