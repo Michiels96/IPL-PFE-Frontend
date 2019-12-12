@@ -9,9 +9,7 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./choix1jaime.component.css']
 })
 export class Choix1jaimeComponent implements OnInit {
-  // var_imagesCategorieDemandees: categorie-component ==> choix1
   var_imagesCategorieDemandees = [];
-  // var_activitesEnregistres: JSON de choix1 ==> choix2
   var_activitesEnregistres = [];
   var_activiteCourante;
   var_i;
@@ -40,7 +38,6 @@ export class Choix1jaimeComponent implements OnInit {
         this.var_imagesCategorieDemandees.push(activite);
       }
     }
-    //console.log(this.var_imagesCategorieDemandees);
     this.var_activiteCourante = this.var_imagesCategorieDemandees[this.var_i];
   }
 
@@ -84,19 +81,14 @@ export class Choix1jaimeComponent implements OnInit {
       }
       i++;
     }
-    console.log("var CHOIX 1");
-    console.log(this.var_activitesEnregistres);
-    console.log("var DATACATEGORIE");
-    console.log(this.sharedService.getDataCategorie());
+
     sessionStorage.setItem('dataCategorie', JSON.stringify(imagesSelectionnes));
     this.sharedService.setDataCategorie(imagesSelectionnes);
-    console.log("CHOIX 1 "+JSON.stringify(this.sharedService.getDataCategorie()));
     sessionStorage.setItem('lastPage', 'choixAide');
     this.router.navigate(['/choixAide']);
   }
 
   getKidInfo(){
-    console.log(sessionStorage.getItem('kid_connected'));
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
       this.getKidSessionInfo();
@@ -139,10 +131,8 @@ export class Choix1jaimeComponent implements OnInit {
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        //console.log(data);
       },
       error => {
-        //console.log(error);
       }
     )
   }
@@ -154,7 +144,5 @@ export class Choix1jaimeComponent implements OnInit {
         
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
   }
 }

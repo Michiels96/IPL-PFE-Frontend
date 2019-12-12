@@ -13,17 +13,13 @@ import { SharedService } from 'src/app/SharedService';
   styleUrls: ['./connection-form.component.css'],
 })
 export class ConnectionFormComponent implements OnInit {
- /* @Input()
-  isTokenForm=false;
-  @Output()
-  messageToEmit = new EventEmitter<FormGroup>();*/
-  //isTokenValid=false;
+
   userToConnect;
   error_connect_msg;
   error_connect = false;
  
 
-  connexion=new FormGroup({
+    connexion=new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
@@ -39,20 +35,16 @@ export class ConnectionFormComponent implements OnInit {
 
  
   tryToConnect() {
-    console.log(this.connexion.value);
-    //this.messageToEmit.emit(this.connexion);
+ 
     this.api.connectUser(this.connexion.value).subscribe( 
       data => {
-        console.log("token");
-        console.log(data);
+  
         this.error_connect_msg="";
         let regex = /\d/;
         if(regex.test(data.token)){
          
           this.authService.login();
-          //this.isTokenValid=true;
           this.router.navigate(['/auth',{nom:this.connexion.controls["username"].value}]);
-          //this.sharedService.set_prof_id(data.id);
           sessionStorage.setItem('prof_id', JSON.stringify(data.id));
           this.connexion.reset();
         }
@@ -62,7 +54,6 @@ export class ConnectionFormComponent implements OnInit {
         }
       },
       error => {
-        //console.log(error);
         this.error_connect_msg="Mot de passe ou email incorrect";
         this.error_connect = true;
       }

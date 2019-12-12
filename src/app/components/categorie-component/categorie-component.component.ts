@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./categorie-component.component.css']
 })
 export class CategorieComponentComponent implements OnInit {
-  // libelle_categorie_selectionne: choix-categorie ==> categorie-component 
   libelle_categorie_selectionne;
   var_choix_images = [];
   rien_choisi;
@@ -45,7 +44,6 @@ export class CategorieComponentComponent implements OnInit {
       sessionStorage.setItem('lastPage', 'categories');
     }
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
-    console.log("SHAREDSERVICE - DATA-ENFANTCONNECTE  "+JSON.stringify(this.dataEnfantConnecte));
     this.initImages(this.libelle_categorie_selectionne);
   }
 
@@ -57,7 +55,6 @@ export class CategorieComponentComponent implements OnInit {
           activite['nom_fichier'] = activite.description+".jpg";
           this.var_choix_images.push(activite);
         }
-        //console.log("77 "+JSON.stringify(this.sharedService.getDataCategorie()));
         if(sessionStorage.getItem('dataCategorie') != ''){
           this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
           // si l'enfant reviens sur une catégorie, il faut rétablir ses choix
@@ -130,8 +127,6 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("ICIIII");
-    console.log(JSON.parse(sessionStorage.getItem('dataCategorie')));
     if(this.nbActivitesOui >= 1) {
       //création d'une session en db
       var id_enfant = this.dataEnfantConnecte.enfant_id;
@@ -146,8 +141,6 @@ export class CategorieComponentComponent implements OnInit {
           this.sharedService.setDataSession(data);
           this.rien_choisi = false;
           sessionStorage.setItem('kid_session_info', JSON.stringify(data));
-
-
 
           // création question en db
           var session_id = this.sharedService.getDataSession().session_id;
@@ -198,7 +191,6 @@ export class CategorieComponentComponent implements OnInit {
       );
     }
     else{
-      console.log("Error");
       sessionStorage.setItem('lastPage', 'categories');
       this.router.navigate(['/categories']);
       this.rien_choisi = true;
@@ -206,7 +198,6 @@ export class CategorieComponentComponent implements OnInit {
   }
 
   getKidInfo(){
-    console.log(sessionStorage.getItem('kid_connected'));
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
       this.getKidSessionInfo();
@@ -270,7 +261,5 @@ export class CategorieComponentComponent implements OnInit {
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
   }
 }

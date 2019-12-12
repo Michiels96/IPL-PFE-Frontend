@@ -10,8 +10,6 @@ import { SharedService } from 'src/app/SharedService';
 })
 export class Choix2aideComponent implements OnInit {
   var_listeQ2 = [];
-
-  // var_activitesDAideEnregistres: JSON de choix2 ==> choix3
   var_activitesDAideEnregistres = [];
 
   var_i;
@@ -85,7 +83,6 @@ export class Choix2aideComponent implements OnInit {
   }
 
   backToChoix1(){
-    //alert('Attention tes réponses à la question 1 et 2 vont être perdues!');
     var demande = prompt('Attention tes réponses à la question 1 et 2 vont être perdues! Est tu sur? (oui/non)');
     if(demande == "o" || demande == "oui" || demande == "O" || demande == "Oui" || demande == "OUI" || demande == ""){
       sessionStorage.setItem('lastPage', 'choixJaime');
@@ -94,7 +91,6 @@ export class Choix2aideComponent implements OnInit {
   }
 
   question2Terminee(){
-    //console.log("terminé!");
     var imagesSelectionnes = this.sharedService.getDataCategorie();
     var i = 0;
     for(var activiteSharedService of imagesSelectionnes){
@@ -107,13 +103,11 @@ export class Choix2aideComponent implements OnInit {
     }
     sessionStorage.setItem('dataCategorie', JSON.stringify(imagesSelectionnes));
     this.sharedService.setDataCategorie(imagesSelectionnes);
-    console.log("CHOIX 2 "+JSON.stringify(this.sharedService.getDataCategorie()));
     sessionStorage.setItem('lastPage', 'choixContent');
     this.router.navigate(['/choixContent']);
   }
 
   getKidInfo(){
-    console.log(sessionStorage.getItem('kid_connected'));
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
       this.getKidSessionInfo();
@@ -161,16 +155,12 @@ export class Choix2aideComponent implements OnInit {
         
       }
     } 
-    //event.preventDefault();
-    //event.returnValue = false;
   }
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
       data => {
-        //console.log(data);
       },
       error => {
-        //console.log(error);
       }
     )
   }

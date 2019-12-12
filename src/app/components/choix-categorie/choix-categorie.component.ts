@@ -138,7 +138,6 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   getKidInfo(){
-    console.log(sessionStorage.getItem('kid_connected'));
     if(sessionStorage.getItem('kid_connected') != ''){
       this.sharedService.setDataEnfantConnecte(JSON.parse(sessionStorage.getItem('kid_connected')));
       this.getKidSessionInfo();
@@ -185,7 +184,6 @@ export class ChoixCategorieComponent implements OnInit {
       if(sessionStorage.getItem('kid_connected')!=''){
         this.deconnecterEnfant( (JSON.parse(sessionStorage.getItem('kid_connected'))));
         sessionStorage.setItem('kid_session_info', '');
-        console.log("juste après avoir deco");
       }
     } 
       //event.preventDefault();

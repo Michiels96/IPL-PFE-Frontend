@@ -157,8 +157,6 @@ export class SyntheseDesChoixComponent implements OnInit {
         
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
   }
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(

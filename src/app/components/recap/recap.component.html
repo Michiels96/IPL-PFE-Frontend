@@ -10,7 +10,6 @@
         </select>
     </label>
     <table border="1" class="table table-hover">
-        <!-- <thead> -->
         <tr>
           <th rowspan=2>Intitulé</th>
           <th colspan=2>Valeur</th>
@@ -26,8 +25,6 @@
             <th>Content</th>
             <th>Pas content</th>
         </tr>
-    <!-- </thead> -->
-    <!-- <tbody> -->
         <tr *ngFor="let habitude of session_choisie">
           
             <td>{{habitude.img_description}}</td>
@@ -58,10 +55,9 @@
             </td>
             
         </tr>
-    <!-- </tbody> -->
     </table>
     </div>
     <br />
     
-    <app-deconnexion-element style="left: 35%; text-align: center; background-color:green;" ></app-deconnexion-element>
+    <app-deconnexion-element style="left: 35%; text-align: center; background-color:rgb(11, 199, 11);" ></app-deconnexion-element>
 </html>

@@ -40,21 +40,9 @@ export class RecapComponent implements OnInit {
     if(this.id_session!=-1){
       for(let i=0;i<this.sessions.length;i++){
         if(this.id_session==this.sessions[i].session_id){
-          
           this.session_choisie=this.sessions[i].question_session;
-          console.log(this.session_choisie);
         }
-      }
-      
-     /* let c=0;
-      for(let k=0;k< this.session_choisie.lenght;k++){
-        if(this.session_choisie[k].habitude=='O'){
-          console.log(this.session_choisie[k]);
-          this.session_choisie[c]=this.session_choisie[k];
-          c++;
-        }
-      }*/
-      
+      }  
     }
   }
 }
