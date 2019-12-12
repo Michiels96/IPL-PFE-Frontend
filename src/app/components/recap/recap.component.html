@@ -1,6 +1,8 @@
 <html>
     <h2>Historique des sessions</h2>
     <br />
+
+    <div class="container">
     <label>
         Session : 
         <select [(ngModel)]="id_session" (change)="confirmerSession()">
@@ -56,6 +58,7 @@
         </tr>
     <!-- </tbody> -->
     </table>
+    </div>
     <br />
     
     <app-deconnexion-element style="left: 35%; text-align: center; background-color:green;" ></app-deconnexion-element>

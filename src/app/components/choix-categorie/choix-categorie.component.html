@@ -1,6 +1,4 @@
 <html>
-<div style="max-width: 100%;height: auto;">
-    <button class="btn btn-lg btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
     <div id="fond"> 
         <div class="ruban">     
             <h2>Catégorie</h2>     
@@ -8,19 +6,32 @@
         <div class="ruban_gauche"></div>
         <div class="ruban_droit"></div>
     </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2"> 
+                <button class="btn btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">
+                        Déconnexion    
+                    <!--<img src="logout.png" width="50" height="50"> -->
+                </button>
+            </div>
+        </div>
+    </div>
+
     <br/>
     <br />
     <h2>Bienvenue {{nomComplet_enfant}} </h2><br/>
     <h4>Choisi la catégorie qui ressemble le plus à tes habitudes</h4>
     <div class="card-body">
         <li *ngFor="let img of var_images" style="list-style-type: none;display:inline">
-            <figure style="width: 80%; height: 80%;">
-                <strong>
+            <figure style="width: 100%; height: 100%;">
+              
                     <a style="background-color: beige;" (click)="$event.preventDefault();getCat(img.categorie_image)">
                     <img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{img.categorie_image}}/{{img.description}}.jpg">
-                    <figcaption style="width: 100%; height: 100%;">{{img.categorie_image}}</figcaption>
-                </a>
-                </strong>
+                    <figcaption>{{img.categorie_image}}</figcaption>
+                    </a>
+               
             </figure>    
         </li>
     </div> 
@@ -31,5 +42,5 @@
         <br/>
         <button class="btn btn-primary btnValider" (click)="$event.preventDefault();onSubmit()">Valider</button>
     </div>
-</div>
+
 </html>

@@ -1,43 +1,23 @@
 table{
- margin-left: 25%;
  column-count: 3;
  text-align: center;
-}
-
-.page{
-    margin-left: 500px;
-}
-
-form{
-    margin-left: 200px;
 }
 
 .table2{
     margin-left: 0px;
 }
 
-th, td{
-    border: 3px solid gray;
+th{
+    border: 3px solid black;
+    width: 50px;
+}
+td{
+    border: 3px solid black;
+    width: 300px;
 }
 
 html {
     background-color: beige;
-}
-
-.card-body {
-    column-count: 7;
-    position: absolute;
-}
-
-.card-body2 {
-    /* column-count: ; */
-    text-align: center;
-    position: relative;
-}
-
-.card {
-    column-count: 4;
-    position: absolute;
 }
 
 /* .login-container{
@@ -47,19 +27,6 @@ html {
     left: 10%;
 } */
 
-.formulaire { 
-    border-width: 2px;
-}
-
-.form {
-
-    left: 22.5%;
-    position: relative;
-    /* box-shadow:
-     0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19); */
-    /* text-align: center; */
-}
-
 h3 {
     text-align: center;
     color: green;
@@ -68,12 +35,6 @@ h3 {
 legend {
     color: green;
     padding: 3px;
-}
-
-fieldset {
-    border: 2px gre;
-    border-color: brown;
-    
 }
 
 #fond {

@@ -7,9 +7,9 @@ Code Ruban
 */
 
 #fond {
-    position: relative;
+    
     margin: 0px auto;
-    width: 350px;
+    width: 66%;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
@@ -20,9 +20,9 @@ Code Ruban
 .ruban {
     background: rgb(122, 236, 69);
     height: 50px;
-    width: 380px;
+    width: 110%;
     position: relative;
-    left:-15px;
+    left:-5%;
     top: 30px;
     float: left;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
@@ -36,30 +36,6 @@ Code Ruban
     text-align: center;
     margin:10px;
 }
-     
-.ruban_gauche {
-    border-color: transparent #b1c70d transparent transparent;
-    border-style:solid;
-    border-width:15px;
-    height:0px;
-    width:0px;
-    position: relative;
-    left: -30px;
-    top: 65px;
-    z-index: -1;  /*s'affichera sous le rectangle  */
-}
-    
-.ruban_droit {
-    border-color: transparent transparent transparent #b1c70d;
-    border-style:solid;
-    border-width:15px;
-    height:0px;
-    width:0px;
-    position: relative;
-    left: 350px;
-    top: 35px;
-    z-index: -1;
-}
 
 img {
     width: 300px;
@@ -69,9 +45,7 @@ img {
 .table{
     border-collapse: collapse;
     text-align: center;
-    position: relative;
-    left: 50%;
-    margin-left: -400px; /* - moitié de la largeur */
+    /* position: relative; */
     /* table-layout: fixed;  */
 }
 th, td{
@@ -95,25 +69,14 @@ td {
     hyphens: auto;
 }
 
-input[type=radio] {
+/* input[type=radio] {
     width: 18px;
     height: 3em;
-    color: cyan; /* fonctionne pas*/
-}
+    color: cyan;
+} */
 
 button:focus {
     background-color: rgba(224, 221, 221, 0.993);
-    
-}
-.btn {
-    left: 5%;
-    margin: 20px;
-    position: fixed; 
-    border-style: ridge;
-    border-radius: 50px;
-    border-color: orangered;
-    color: orangered;
-    background-color: beige;
 }
 
 #buttonValider {
@@ -157,6 +120,36 @@ html {
 
 .closebtn:hover  {
     color: chartreuse;
+}
+
+.precedent{
+    font-family: 'nunitoblack';
+    font-size: 150%;
+}
+
+.btn {
+    /* left: 5%;
+    margin: 20px; */
+    /* position: fixed;  */
+    border-style: ridge;
+    border-radius: 50px;
+    border-color: orangered;
+    color: orangered;
+    background-color: beige;
+}
+
+.btnLogout {
+    font-family: 'nunitoblack';
+    font-size: 150%;
+    /* border-style: ridge;
+    border-radius: 50px;
+    border-color: orangered;
+    color: orangered;
+    background-color: beige; */
+    /* right: 5%; */
+    /* margin: 20px;
+    position: fixed;
+    padding: 10px; */
 }
 
 .oui {
@@ -203,23 +196,4 @@ html {
 
 .originalQualityFont{
     font-family: 'original_quality_demoregular';
-}
-
-.precedent{
-    font-family: 'nunitoblack';
-    font-size: 30px;
-}
-
-.btnLogout {
-    font-family: 'nunitoblack';
-    font-size: 30px;
-    border-style: ridge;
-    border-radius: 50px;
-    border-color: orangered;
-    color: orangered;
-    background-color: beige;
-    right: 5%;
-    margin: 20px;
-    position: fixed; 
-    padding: 10px;
 }
