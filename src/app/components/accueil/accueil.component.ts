@@ -24,6 +24,8 @@ export class AccueilComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.authService.logout();
+    this.authService.logoutKid();
     /*
     if(sessionStorage.length > 0){
       // si enfant deja connecté et revient à l'accueil, alors on le déconnecte en db
@@ -122,5 +124,9 @@ export class AccueilComponent implements OnInit {
     } 
       //event.preventDefault();
      //event.returnValue = false;
+  }
+  connect(){
+    this.authService.login();
+    
   }
 }

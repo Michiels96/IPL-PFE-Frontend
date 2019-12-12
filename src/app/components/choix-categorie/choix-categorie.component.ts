@@ -22,8 +22,6 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("ICI");
-    console.log(sessionStorage.getItem('lastPage'));
     if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'choix-categorie'){
       this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
     }
@@ -37,11 +35,6 @@ export class ChoixCategorieComponent implements OnInit {
     if(sessionStorage.getItem('nb_choix_categorie') != ''){
       this.var_nbActivites = +sessionStorage.getItem('nb_choix_categorie');
     }
-    /*
-    if(this.sharedService.getNbChoixCategorie() > 0){
-      this.var_nbActivites = this.sharedService.getNbChoixCategorie();
-    }
-    */
     this.getCategories();
   }
 
@@ -82,7 +75,7 @@ export class ChoixCategorieComponent implements OnInit {
   }
 
   onSubmit() {
-    //création d'une session
+    //création d'une session en db
     var id_enfant = this.dataEnfantConnecte.enfant_id;
     var date_session = new Date();
     var newSession = {};
@@ -91,10 +84,52 @@ export class ChoixCategorieComponent implements OnInit {
     newSession['date'] = date_session;
     this.api.createSession(newSession).subscribe(
       data => {
-        //this.sharedService.setDataSession(data);
         sessionStorage.setItem('kid_session_info', JSON.stringify(data));
-        sessionStorage.setItem('lastPage', 'choixJaime');
-        this.router.navigate(['/choixJaime']);
+        this.sharedService.setDataSession(data);
+
+
+        // création question en db
+        var session_id = this.sharedService.getDataSession().session_id;
+        var nbQuestions = this.sharedService.getDataCategorie().length;
+        var i=0;
+        for(var activite of this.sharedService.getDataCategorie()){
+          var newQuestion = {};
+          newQuestion['question_id'] = -1;
+          newQuestion['session'] = session_id;
+          newQuestion['image_correspondante'] = activite.image_id;
+          if(activite.choix == "oui"){
+            newQuestion['habitude'] = 'O';
+          }
+          else if(activite.choix == "non"){
+            newQuestion['habitude'] = 'N';
+          }
+          else if(activite.choix == "je voudrais le faire"){
+            newQuestion['habitude'] = 'V';
+          }
+          
+          this.api.createQuestion(newQuestion).subscribe(
+            data => {
+              i++;
+              // ajouter l'id de la question venant de la db, pour l'update a la fin du choix3
+              var activites = this.sharedService.getDataCategorie();
+              for(var activite of activites){
+                if(activite.image_id == data.image_correspondante){
+                  activite['question_id'] = data.question_id;
+                }
+              }
+              sessionStorage.setItem('dataCategorie', JSON.stringify(activites));
+              this.sharedService.setDataCategorie(activites);
+              // ne seulement passer au composant suivant si toutes les questions ont été enregistrées en db
+              if(i == nbQuestions){
+                sessionStorage.setItem('lastPage', 'choixJaime');
+                this.router.navigate(['/choixJaime']);
+              }
+            },
+            error => {
+              console.log(error);
+            }
+          )
+        }
       },
       error => {
         console.log(error);
