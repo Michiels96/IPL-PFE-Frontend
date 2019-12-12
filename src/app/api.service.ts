@@ -93,6 +93,22 @@ export class ApiService {
     let postContent = JSON.stringify(question);
     return this.http.post(this.baseurl + '/sessions/questions/',postContent, {headers:this.httpHeaders});
   }
+  getQuestionById(id): Observable<any>{
+    return this.http.get(this.baseurl + '/sessions/questions/'+ id +'/', {headers:this.httpHeaders});
+  }
+  updateQuestion(question): Observable<any>{
+    let updateContent={
+      question_id:question.question_id,
+      session:question.session,
+      image_correspondante:question.image_correspondante,
+      habitude:question.habitude,
+      aime:question.aime,
+      aide:question.aide,
+      content:question.content
+    };
+    return this.http.put(this.baseurl + '/sessions/questions/'+ question.question_id +'/',updateContent, {headers:this.httpHeaders});
+  }
+  
 
   getUser(id): Observable<any>{
     return this.http.get(this.baseurl + '/prof/users/' + id +'/', {headers:this.httpHeaders});
