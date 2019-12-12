@@ -60,13 +60,13 @@ h2{
 
 .btnLogout {
     font-family: 'nunitoblack';
-    font-size: 25px;
+    font-size: 100%;
     border-style: ridge;
     border-radius: 50px;
     border-color: orangered;
     color: orangered;
     background-color: beige;
     right: 5%;
-    margin: 20px;
-    position: fixed; 
+    /* margin: 20px; */
+    /* position: fixed;  */
 }

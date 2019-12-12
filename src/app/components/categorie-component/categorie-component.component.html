@@ -1,48 +1,72 @@
 <html>
 <div class="page">
-        <button class="btn btn-lg precedent" (click)="$event.preventDefault();backToChoix()" title="Précédent">Précédent</button>
-        <button class="btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
-        <div id="fond"> 
-            <div class="ruban">     
-                <h2 class="originalQualityFont">{{libelle_categorie_selectionne.toUpperCase()}}</h2>     
-            </div>     
-            <div class="ruban_gauche"></div>
-            <div class="ruban_droit"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                <div id="fond"> 
+                    <div class="ruban"><h2 class="originalQualityFont">{{libelle_categorie_selectionne.toUpperCase()}}</h2></div>     
+                </div>
+            </div>
+            <div class="col"></div>
         </div>
-        <br/>
-        <br />
-        
-    <form (ngSubmit)="onSubmit()">
-        <table class="table">
-            <li *ngFor="let img of var_choix_images; let i = index" style="list-style-type: none;" >
-                <thead>
-                    <tr>
-                        <th>Description image</th>
-                        <th>Image</th>
-                        <th>Choix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>   
-                        <td width="200">{{img.description.toUpperCase()}}</td>
-                        <td width="50"><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
-                        <td width="300">
-                            <button class="oui" value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button><br /><br />
-                            <button class="non" value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button><br /><br />
-                            <button class="jevoudrais" value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais le faire')">Je voudrais le faire</button>                            
-                            <br/>
-                            <br />
-                            <p>Choix : {{img.choix}}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </li>
-        </table>
-        <button style="left: 45%;" class="btn1 btn-lg" id="buttonValider" type="submit" name="Valider">Valider</button>
-        <div class="alert alert-danger" role="alert" *ngIf="rien_choisi == true">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>Attention ! Pour continuer, il faut au minimum une image avec la valeur "OUI" !!</strong>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+        <div class="col-1">
+            <button class="btn precedent" (click)="$event.preventDefault();backToChoix()" title="Précédent">précédent</button>
         </div>
-    </form>
+        <div class="col-8"></div>
+        <div class="col-1">
+            <button class="btn btnLogout" (click)="$event.preventDefault();deconnexion()" title="Déconnexion">déconnexion</button>
+        </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="col"></div>
+    <div class="container">
+        <div class="row justify-content-lg-center">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <form (ngSubmit)="onSubmit()">
+                    <table class="table">
+                        <li *ngFor="let img of var_choix_images; let i = index" style="list-style-type: none;" >
+                            <thead>
+                                <tr>
+                                    <th>Description image</th>
+                                    <th>Image</th>
+                                    <th>Choix</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>   
+                                    <td width="200">{{img.description.toUpperCase()}}</td>
+                                    <td width="50"><img class="card-img-top" src="https://pfe-back-dev.herokuapp.com/images/repertoire/{{libelle_categorie_selectionne}}/{{img.description}}.jpg"></td>
+                                    <td width="300">
+                                        <button class="oui" value="oui" (click)="$event.preventDefault();setChoix(i, 'oui')">Oui</button><br /><br />
+                                        <button class="non" value="non" (click)="$event.preventDefault();setChoix(i, 'non')">Non</button><br /><br />
+                                        <button class="jevoudrais" value="jevoudrais" (click)="$event.preventDefault();setChoix(i, 'je voudrais le faire')">Je voudrais le faire</button>                            
+                                        <br/>
+                                        <br />
+                                        <p>Choix : {{img.choix}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </li>
+                    </table>
+                    <button style="text-align: center;" class="btn1 btn-lg" id="buttonValider" type="submit" name="Valider">Valider</button>
+                    <div class="alert alert-danger" role="alert" *ngIf="rien_choisi == true">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Attention ! Pour continuer, il faut au minimum une image avec la valeur "OUI" !!</strong>
+                </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <div class="col"></div>
 </div>
 </html>
