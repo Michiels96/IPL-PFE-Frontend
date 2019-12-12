@@ -7,14 +7,14 @@ html {
     background-color: beige;
 }
 .btn{
-   background-color: rgb(122, 236, 69);
-   border-color: rgb(122, 236, 69); 
+   background-color: rgb(11, 199, 11);
+   border-color: rgb(11, 199, 11);
 }
 
 .h2, .h3{
-    color: rgb(122, 236, 69);
+    color: rgb(11, 199, 11);
 }
 
 .navbar{
-    background-color: rgb(122, 236, 69);
+    background-color: rgb(11, 199, 11);
 }
