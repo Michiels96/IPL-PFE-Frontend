@@ -24,6 +24,7 @@ export class CategorieComponentComponent implements OnInit {
   }
   ngOnInit() {
     this.getKidInfo();
+    
     if(sessionStorage.getItem('kid_libelle_categorie') != ''){
       this.sharedService.setDataChoixCategorie(sessionStorage.getItem('kid_libelle_categorie'));
     }
@@ -36,6 +37,8 @@ export class CategorieComponentComponent implements OnInit {
     if(this.libelle_categorie_selectionne == null){
       sessionStorage.setItem('lastPage', 'choix-categorie');
       this.router.navigate(['/choix-categorie']);
+      console.log("Ici1");
+
     }
     else if(sessionStorage.getItem('lastPage') != '' && sessionStorage.getItem('lastPage') != 'categories'){
       this.router.navigate(['/'+sessionStorage.getItem('lastPage')]);
@@ -43,8 +46,11 @@ export class CategorieComponentComponent implements OnInit {
     else{
       sessionStorage.setItem('lastPage', 'categories');
     }
+
     this.dataEnfantConnecte = this.sharedService.getDataEnfantConnecte();
+
     this.initImages(this.libelle_categorie_selectionne);
+
   }
 
   initImages(categorie){
@@ -82,18 +88,12 @@ export class CategorieComponentComponent implements OnInit {
     this.var_choix_images[i]['choix'] = value;
     var choixImagesToChoix1 = [];
 
-
-
-    console.log(sessionStorage.getItem('dataCategorie') == '');
     if(sessionStorage.getItem('dataCategorie') != ''){
-      console.log(JSON.parse(sessionStorage.getItem('dataCategorie')));
       this.sharedService.setDataCategorie(JSON.parse(sessionStorage.getItem('dataCategorie')));
 
       for(var acti of JSON.parse(sessionStorage.getItem('dataCategorie'))){
         choixImagesToChoix1.push(acti);
       }
-      console.log("HERE");
-      console.log(choixImagesToChoix1);
       var numPresents = [];
       // mettre a jour celles deja présentes
       for(var activite of this.var_choix_images){
@@ -112,12 +112,10 @@ export class CategorieComponentComponent implements OnInit {
       }
     }
     else{
-      console.log("ok");
       for(var activite of this.var_choix_images){
         choixImagesToChoix1.push(activite);
       }
     }
-    console.log(choixImagesToChoix1);
     sessionStorage.setItem('dataCategorie', JSON.stringify(choixImagesToChoix1));
     this.sharedService.setDataCategorie(choixImagesToChoix1);
 

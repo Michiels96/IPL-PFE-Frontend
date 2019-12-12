@@ -186,8 +186,6 @@ export class ChoixCategorieComponent implements OnInit {
         sessionStorage.setItem('kid_session_info', '');
       }
     } 
-      //event.preventDefault();
-     //event.returnValue = false;
   }
   deconnecterEnfant(kid){
     this.api.updateKid(kid,false).subscribe(
