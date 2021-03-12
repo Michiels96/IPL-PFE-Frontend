@@ -39,7 +39,7 @@
     "heroku": "^7.35.0",
     "html2canvas": "^1.0.0-rc.5",
     "https-serve": "^1.0.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.2.11",
     "jspdf-html2canvas": "^1.1.0",
     "ngx-bootstrap": "^5.2.0",
